@@ -261,6 +261,16 @@ class PostForm {
             }
         ];
         this.selectedEmotions = [];
+        this.selectedCity = null;
+        this.customCity = null;
+        this.isCustomCity = false;
+        this.cityList = [
+            'Los Angeles, CA', 'New York, NY', 'Chicago, IL', 'Miami, FL', 'Atlanta, GA', 'Houston, TX',
+            'San Francisco, CA', 'San Jose, CA', 'Bay Area, CA', 'Phoenix, AZ', 'Austin, TX', 'Seattle, WA',
+            'Denver, CO', 'Las Vegas, NV', 'San Diego, CA', 'Philadelphia, PA', 'Washington, DC', 'Portland, OR',
+            'Orlando, FL', 'Minneapolis, MN', 'Nashville, TN', 'Boston, MA', 'Tampa, FL', 'Salt Lake City, UT', 'New Orleans, LA'
+        ];
+        this.filteredCities = [...this.cityList];
 
         // Create emotion section
         const emotionSection = document.createElement('div');
@@ -277,9 +287,21 @@ class PostForm {
         emotionBtn.innerHTML = '+ Add Emotion';
         emotionBtn.onclick = () => this.openEmotionModal();
 
+        // --- CITY TAG BUTTON ---
+        const cityBtn = document.createElement('button');
+        cityBtn.type = 'button';
+        cityBtn.className = 'letitout-city-btn';
+        cityBtn.innerHTML = 'Tag City';
+        cityBtn.onclick = () => this.openCityModal();
+
         // Selected tags display
         this.selectedTagsDisplay = document.createElement('div');
         this.selectedTagsDisplay.className = 'letitout-selected-tags';
+
+        // Selected city display
+        this.selectedCityDisplay = document.createElement('div');
+        this.selectedCityDisplay.className = 'letitout-selected-city';
+        this.updateSelectedCity();
 
         // Error message
         this.emotionError = document.createElement('div');
@@ -288,8 +310,10 @@ class PostForm {
 
         // Assemble emotion section
         emotionBtnRow.appendChild(emotionBtn);
+        emotionBtnRow.appendChild(cityBtn);
         emotionSection.appendChild(emotionBtnRow);
         emotionSection.appendChild(this.selectedTagsDisplay);
+        emotionSection.appendChild(this.selectedCityDisplay);
         emotionSection.appendChild(this.emotionError);
         formContent.appendChild(emotionSection);
 
@@ -345,12 +369,21 @@ class PostForm {
             submitButton.disabled = true;
             submitButton.textContent = 'Posting...';
 
-            await window.PostService.createPost(content, this.selectedEmotions.join(', '));
+            await window.PostService.createPost(
+                content,
+                this.selectedEmotions.join(', '),
+                this.selectedCity,
+                this.isCustomCity
+            );
 
             // Reset form
             textarea.value = '';
             this.form.querySelector('.char-counter-inside').textContent = '0/500';
             this.selectedEmotions = [];
+            this.selectedCity = null;
+            this.customCity = null;
+            this.isCustomCity = false;
+            this.updateSelectedCity();
             submitButton.textContent = 'Let It Out';
             submitButton.disabled = false;
 
@@ -501,6 +534,128 @@ class PostForm {
         if (resetButton) {
             resetButton.style.display = (prompt !== this.defaultPrompt) ? 'inline-flex' : 'none';
         }
+    }
+
+    updateSelectedCity() {
+        this.selectedCityDisplay.innerHTML = '';
+        if (this.selectedCity) {
+            const tag = document.createElement('div');
+            tag.className = 'city-tag';
+            tag.innerHTML = `
+                ${this.selectedCity}
+                <span class="remove-tag">&times;</span>
+            `;
+            tag.querySelector('.remove-tag').onclick = () => {
+                this.selectedCity = null;
+                this.customCity = null;
+                this.isCustomCity = false;
+                this.updateSelectedCity();
+            };
+            this.selectedCityDisplay.appendChild(tag);
+        }
+    }
+
+    openCityModal() {
+        if (!this.cityModal) {
+            this.cityModal = document.createElement('div');
+            this.cityModal.className = 'letitout-city-modal-overlay';
+            this.cityModal.innerHTML = `
+                <div class="letitout-city-modal">
+                    <div class="letitout-city-modal-header">
+                        <div class="letitout-city-modal-title">Tag Your City (Optional)</div>
+                        <button class="letitout-city-modal-close">&times;</button>
+                    </div>
+                    <div class="letitout-city-modal-content">
+                        <input type="text" class="city-search-input" placeholder="Search cities..." autocomplete="off" />
+                        <div class="city-suggested-list"></div>
+                        <div class="city-other-section">
+                            <label for="city-other-input">Other / City Not Listed? Add yours:</label>
+                            <input type="text" class="city-other-input" placeholder="Enter your city" />
+                            <button class="city-other-btn">Add</button>
+                        </div>
+                    </div>
+                    <div class="letitout-city-modal-footer">
+                        <button class="letitout-city-modal-btn cancel">Cancel</button>
+                        <button class="letitout-city-modal-btn done" disabled>Done</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(this.cityModal);
+        }
+        const modal = this.cityModal;
+        const content = modal.querySelector('.letitout-city-modal-content');
+        const doneBtn = modal.querySelector('.letitout-city-modal-btn.done');
+        const closeBtn = modal.querySelector('.letitout-city-modal-close');
+        const cancelBtn = modal.querySelector('.letitout-city-modal-btn.cancel');
+        const searchInput = modal.querySelector('.city-search-input');
+        const suggestedList = modal.querySelector('.city-suggested-list');
+        const otherInput = modal.querySelector('.city-other-input');
+        const otherBtn = modal.querySelector('.city-other-btn');
+
+        // Reset state
+        searchInput.value = '';
+        otherInput.value = '';
+        this.filteredCities = [...this.cityList];
+        this.isCustomCity = false;
+        this.customCity = null;
+        this.renderCitySuggestions(suggestedList, doneBtn);
+        doneBtn.disabled = !this.selectedCity;
+
+        // Search logic
+        searchInput.oninput = () => {
+            const val = searchInput.value.trim().toLowerCase();
+            this.filteredCities = this.cityList.filter(city => city.toLowerCase().includes(val));
+            this.renderCitySuggestions(suggestedList, doneBtn);
+        };
+
+        // Other/city not listed logic
+        otherBtn.onclick = (e) => {
+            e.preventDefault();
+            const val = otherInput.value.trim();
+            if (val) {
+                this.selectedCity = val;
+                this.customCity = val;
+                this.isCustomCity = true;
+                this.renderCitySuggestions(suggestedList, doneBtn);
+                doneBtn.disabled = false;
+            }
+        };
+
+        // Modal close logic
+        const closeModal = () => {
+            modal.classList.remove('visible');
+        };
+        closeBtn.onclick = closeModal;
+        cancelBtn.onclick = closeModal;
+        doneBtn.onclick = () => {
+            this.updateSelectedCity();
+            closeModal();
+        };
+        modal.onclick = (e) => {
+            if (e.target === modal) closeModal();
+        };
+
+        // Show modal
+        modal.classList.add('visible');
+    }
+
+    renderCitySuggestions(container, doneBtn) {
+        container.innerHTML = '';
+        this.filteredCities.forEach(city => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'city-suggestion-btn';
+            btn.textContent = city;
+            if (this.selectedCity === city && !this.isCustomCity) btn.classList.add('selected');
+            btn.onclick = () => {
+                this.selectedCity = city;
+                this.customCity = null;
+                this.isCustomCity = false;
+                this.renderCitySuggestions(container, doneBtn);
+                doneBtn.disabled = false;
+            };
+            container.appendChild(btn);
+        });
     }
 }
 

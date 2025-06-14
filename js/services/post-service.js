@@ -5,7 +5,7 @@ class PostService {
         this.collection = this.db.collection('letitout-posts');
     }
 
-    async createPost(content, emotion) {
+    async createPost(content, emotion, city = null, isCustomCity = false) {
         try {
             const userId = window.LocalIdManager.getId();
             const post = {
@@ -14,7 +14,8 @@ class PostService {
                 userId,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 feltCount: 0,
-                location: null // TODO: Add geolocation if needed
+                city: city || null,
+                customCity: !!isCustomCity
             };
 
             const docRef = await this.collection.add(post);

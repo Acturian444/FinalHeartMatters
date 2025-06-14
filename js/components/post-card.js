@@ -28,6 +28,14 @@ class PostCard {
         emotionTag.className = 'emotion-tag';
         emotionTag.textContent = post.emotion;
 
+        // City tag
+        if (post.city) {
+            const cityTag = document.createElement('span');
+            cityTag.className = 'city-tag';
+            cityTag.textContent = post.city;
+            meta.appendChild(cityTag);
+        }
+
         actions.appendChild(feltButton);
         meta.appendChild(timestamp);
         meta.appendChild(emotionTag);
