@@ -14,22 +14,43 @@
     margin-bottom: var(--letitout-spacing-xl);
 }
 
+.textarea-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 .letitout-form textarea {
     width: 100%;
     min-height: 120px;
     padding: var(--letitout-spacing-sm);
+    padding-bottom: 2.2rem; /* Extra space for counter */
+    padding-right: 3.5rem;  /* Extra space for counter */
     border: 1px solid var(--letitout-border);
     border-radius: var(--letitout-radius-md);
     font-family: var(--letitout-font-family);
     font-size: var(--letitout-font-size-base);
-    margin-bottom: var(--letitout-spacing-md);
+    /* margin-bottom: var(--letitout-spacing-md); */
     resize: vertical;
+    box-sizing: border-box;
 }
 
 .letitout-form textarea:focus {
     outline: none;
     border-color: var(--letitout-primary);
     box-shadow: 0 0 0 2px rgba(193, 0, 22, 0.1);
+}
+
+.char-counter-inside {
+    position: absolute;
+    bottom: 0.7rem;
+    right: 1.2rem;
+    font-size: 0.95rem;
+    color: #888;
+    background: rgba(255,255,255,0.85);
+    padding: 0 0.4rem;
+    border-radius: 1rem;
+    pointer-events: none;
+    z-index: 2;
 }
 
 /* Emotion Tags */
@@ -138,4 +159,71 @@
     padding: var(--letitout-spacing-sm);
     border-radius: var(--letitout-radius-sm);
     margin-bottom: var(--letitout-spacing-md);
+}
+
+.letitout-subtitle-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    gap: 0.3rem;
+}
+.letitout-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+    margin-bottom: 0.2rem;
+}
+.letitout-shuffle-btn {
+    background: none;
+    border: none;
+    color: #c10016;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    transition: color 0.2s;
+}
+.letitout-shuffle-btn:hover {
+    color: #7a0010;
+    text-decoration: underline;
+}
+.shuffle-icon {
+    font-size: 1.1em;
+}
+.letitout-prompt-display {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 0.2rem;
+    text-align: center;
+    max-width: 90vw;
+    line-height: 1.5;
+}
+.letitout-reset-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    transition: color 0.2s;
+}
+.letitout-reset-btn:hover {
+    color: #c10016;
+    text-decoration: underline;
 } 
