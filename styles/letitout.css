@@ -7,11 +7,20 @@
 
 /* Post Form Styles */
 .letitout-form {
-    background: var(--letitout-background);
-    padding: var(--letitout-spacing-lg);
-    border-radius: var(--letitout-radius-lg);
-    box-shadow: var(--letitout-shadow-md);
-    margin-bottom: var(--letitout-spacing-xl);
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.letitout-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .textarea-wrapper {
@@ -226,4 +235,317 @@
 .letitout-reset-btn:hover {
     color: #c10016;
     text-decoration: underline;
+}
+
+/* Emotion Section */
+.emotion-section {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.emotion-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.emotion-btn-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.letitout-emotion-btn {
+    background: #c10016;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.letitout-emotion-btn:hover {
+    background: #7a0010;
+    transform: translateY(-1px);
+}
+
+.letitout-emotion-btn:active {
+    transform: translateY(0);
+}
+
+.letitout-selected-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.emotion-tag {
+    background: #FFF0F0;
+    color: #c10016;
+    border: 1px solid #FFE0E0;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.emotion-tag .remove-tag {
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.emotion-tag .remove-tag:hover {
+    opacity: 1;
+}
+
+.letitout-emotion-error {
+    color: #c10016;
+    font-size: 14px;
+    margin-top: 8px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Emotion Modal */
+.letitout-emotion-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.letitout-emotion-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.letitout-emotion-modal {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.letitout-emotion-modal-overlay.visible .letitout-emotion-modal {
+    transform: translateY(0);
+}
+
+.letitout-emotion-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.letitout-emotion-modal-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.letitout-emotion-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+}
+
+.letitout-emotion-modal-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.emotion-category {
+    margin-bottom: 24px;
+}
+
+.emotion-category-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.emotion-subtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.emotion-subtag {
+    background: #F8F8F8;
+    border: 1px solid #eee;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.emotion-subtag:hover {
+    background: #FFF0F0;
+    border-color: #FFE0E0;
+}
+
+.emotion-subtag.selected {
+    background: #c10016;
+    color: white;
+    border-color: #c10016;
+}
+
+.letitout-emotion-modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.letitout-emotion-modal-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.letitout-emotion-modal-btn.cancel {
+    background: #F8F8F8;
+    color: #666;
+    border: 1px solid #eee;
+}
+
+.letitout-emotion-modal-btn.cancel:hover {
+    background: #eee;
+}
+
+.letitout-emotion-modal-btn.done {
+    background: #c10016;
+    color: white;
+    border: none;
+}
+
+.letitout-emotion-modal-btn.done:hover {
+    background: #7a0010;
+}
+
+.letitout-emotion-modal-btn.done:disabled {
+    background: #FFB3B3;
+    cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+    .letitout-emotion-modal {
+        border-radius: 20px;
+        max-height: 90vh;
+    }
+    
+    .letitout-emotion-modal-overlay {
+        align-items: center;
+    }
+    
+    .letitout-emotion-modal {
+        transform: translateY(20px);
+    }
+    
+    .letitout-emotion-modal-overlay.visible .letitout-emotion-modal {
+        transform: translateY(0);
+    }
+    
+    .letitout-submit-btn {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Main CTA Button */
+.letitout-cta-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.letitout-submit-btn {
+    width: 100%;
+    max-width: 300px;
+    background-color: #c10016;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(193, 0, 22, 0.2);
+}
+
+.letitout-submit-btn:hover {
+    background-color: #7a0010;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(193, 0, 22, 0.3);
+}
+
+.letitout-submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(193, 0, 22, 0.2);
+}
+
+.letitout-submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+@media (min-width: 768px) {
+    .letitout-submit-btn {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 } 
