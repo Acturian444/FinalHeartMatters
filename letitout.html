@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fffcf1">
+    <title>Let It Out - Heart Matters</title>
+    <meta name="description" content="A safe space to express your feelings and connect with others">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/letitout.css">
+    <link rel="stylesheet" href="styles/letitout-mobile.css">
+    <link rel="stylesheet" href="styles/letitout-theme.css">
+    <style>
+    .letitout-link {
+        font-family: 'Anton', sans-serif !important;
+        font-weight: bold !important;
+        letter-spacing: 1.5px;
+    }
+    .nav-links a {
+        font-family: 'Anton', sans-serif !important;
+        font-weight: bold !important;
+        letter-spacing: 1.5px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav-centered">
+                <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links nav-left">
+                    <li><a href="info.html">JOIN THE MOVEMENT</a></li>
+                </ul>
+                <a href="index.html" class="logo-text center-logo">Heart Matters</a>
+                <ul class="nav-links nav-right">
+                    <li><a href="theheartroom.html">THE HEART ROOM</a></li>
+                    <li><a href="letitout.html" class="letitout-link active">LET IT OUT</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="menu-overlay" id="menuOverlay">
+            <button class="close-btn" aria-label="Close menu" onclick="closeMenu()">&times;</button>
+            <nav>
+                <a href="info.html">JOIN THE MOVEMENT</a>
+                <a href="theheartroom.html">THE HEART ROOM</a>
+                <a href="letitout.html" class="letitout-link active">LET IT OUT</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="letitout-main">
+        <!-- Content will be dynamically loaded -->
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Heart Matters. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="js/config/firebase-config.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/localId.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/services/post-service.js"></script>
+    <script src="js/components/post-card.js"></script>
+    <script src="js/postForm.js"></script>
+    <script src="js/wallFeed.js"></script>
+    
+    <!-- Test Script -->
+    <script src="js/test-setup.js"></script>
+</body>
+</html> 

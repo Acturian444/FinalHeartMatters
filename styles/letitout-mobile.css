@@ -1,0 +1,61 @@
+/* Mobile Styles for Let It Out */
+@media (max-width: 768px) {
+    #letitout-main {
+        padding: var(--letitout-spacing-md);
+    }
+
+    .letitout-form {
+        padding: var(--letitout-spacing-md);
+        margin-bottom: var(--letitout-spacing-lg);
+    }
+
+    .emotion-tags {
+        gap: var(--letitout-spacing-xs);
+    }
+
+    .emotion-tag {
+        padding: var(--letitout-spacing-xs) var(--letitout-spacing-sm);
+        font-size: var(--letitout-font-size-sm);
+    }
+
+    .post-card {
+        padding: var(--letitout-spacing-sm);
+    }
+
+    .post-content {
+        font-size: var(--letitout-font-size-base);
+    }
+
+    .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--letitout-spacing-xs);
+    }
+
+    .post-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    #letitout-main {
+        padding: var(--letitout-spacing-sm);
+    }
+
+    .letitout-form {
+        padding: var(--letitout-spacing-sm);
+    }
+
+    .letitout-form textarea {
+        min-height: 100px;
+    }
+
+    .post-card {
+        padding: var(--letitout-spacing-sm);
+    }
+
+    .post-content {
+        font-size: var(--letitout-font-size-sm);
+    }
+} 

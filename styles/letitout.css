@@ -1,0 +1,141 @@
+/* Let It Out Main Styles */
+#letitout-main {
+    padding: var(--letitout-spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Post Form Styles */
+.letitout-form {
+    background: var(--letitout-background);
+    padding: var(--letitout-spacing-lg);
+    border-radius: var(--letitout-radius-lg);
+    box-shadow: var(--letitout-shadow-md);
+    margin-bottom: var(--letitout-spacing-xl);
+}
+
+.letitout-form textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: var(--letitout-spacing-sm);
+    border: 1px solid var(--letitout-border);
+    border-radius: var(--letitout-radius-md);
+    font-family: var(--letitout-font-family);
+    font-size: var(--letitout-font-size-base);
+    margin-bottom: var(--letitout-spacing-md);
+    resize: vertical;
+}
+
+.letitout-form textarea:focus {
+    outline: none;
+    border-color: var(--letitout-primary);
+    box-shadow: 0 0 0 2px rgba(193, 0, 22, 0.1);
+}
+
+/* Emotion Tags */
+.emotion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--letitout-spacing-sm);
+    margin-bottom: var(--letitout-spacing-md);
+}
+
+.emotion-tag {
+    padding: var(--letitout-spacing-xs) var(--letitout-spacing-sm);
+    border-radius: var(--letitout-radius-sm);
+    background: var(--letitout-background);
+    border: 1px solid var(--letitout-border);
+    cursor: pointer;
+    transition: var(--letitout-transition-fast);
+}
+
+.emotion-tag.selected {
+    background: var(--letitout-primary);
+    color: white;
+    border-color: var(--letitout-primary);
+}
+
+/* Submit Button */
+.letitout-submit {
+    background: var(--letitout-primary);
+    color: white;
+    border: none;
+    padding: var(--letitout-spacing-sm) var(--letitout-spacing-lg);
+    border-radius: var(--letitout-radius-md);
+    font-family: var(--letitout-font-family);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--letitout-transition-fast);
+}
+
+.letitout-submit:hover {
+    background: var(--letitout-secondary);
+}
+
+/* Wall Feed */
+.wall-feed {
+    display: grid;
+    gap: var(--letitout-spacing-md);
+}
+
+/* Post Card */
+.post-card {
+    background: white;
+    padding: var(--letitout-spacing-md);
+    border-radius: var(--letitout-radius-md);
+    box-shadow: var(--letitout-shadow-sm);
+    transition: var(--letitout-transition-normal);
+}
+
+.post-card:hover {
+    box-shadow: var(--letitout-shadow-md);
+    transform: translateY(-2px);
+}
+
+.post-content {
+    font-family: var(--letitout-font-family);
+    font-size: var(--letitout-font-size-base);
+    line-height: 1.6;
+    margin-bottom: var(--letitout-spacing-sm);
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--letitout-text-light);
+    font-size: var(--letitout-font-size-sm);
+}
+
+.post-actions {
+    display: flex;
+    gap: var(--letitout-spacing-sm);
+}
+
+.post-action {
+    background: none;
+    border: none;
+    color: var(--letitout-text-light);
+    cursor: pointer;
+    transition: var(--letitout-transition-fast);
+}
+
+.post-action:hover {
+    color: var(--letitout-primary);
+}
+
+/* Loading States */
+.loading {
+    text-align: center;
+    padding: var(--letitout-spacing-xl);
+    color: var(--letitout-text-light);
+}
+
+/* Error States */
+.error-message {
+    background: #fee;
+    color: #c00;
+    padding: var(--letitout-spacing-sm);
+    border-radius: var(--letitout-radius-sm);
+    margin-bottom: var(--letitout-spacing-md);
+} 
