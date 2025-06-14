@@ -266,11 +266,6 @@ class PostForm {
         const emotionSection = document.createElement('div');
         emotionSection.className = 'emotion-section';
 
-        // Create label
-        const emotionLabel = document.createElement('div');
-        emotionLabel.className = 'emotion-label';
-        emotionLabel.textContent = 'What emotion best captures this post?';
-
         // Create button row
         const emotionBtnRow = document.createElement('div');
         emotionBtnRow.className = 'emotion-btn-row';
@@ -293,7 +288,6 @@ class PostForm {
 
         // Assemble emotion section
         emotionBtnRow.appendChild(emotionBtn);
-        emotionSection.appendChild(emotionLabel);
         emotionSection.appendChild(emotionBtnRow);
         emotionSection.appendChild(this.selectedTagsDisplay);
         emotionSection.appendChild(this.emotionError);

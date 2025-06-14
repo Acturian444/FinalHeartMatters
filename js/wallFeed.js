@@ -24,7 +24,8 @@ class WallFeed {
         if (posts.length === 0) {
             const emptyState = document.createElement('div');
             emptyState.className = 'empty-state';
-            emptyState.textContent = 'Be the first to share your feelings.';
+            emptyState.textContent = 'Your post will appear on the Wall. Anonymous, always.';
+            emptyState.style.textAlign = 'center';
             this.feed.appendChild(emptyState);
             return;
         }
