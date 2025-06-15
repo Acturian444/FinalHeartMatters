@@ -47,7 +47,7 @@ class PostForm {
             "Who do you miss even though they don't deserve it?",
             "What are you ashamed to admit?",
             "What are you tired of pretending to be okay about?",
-            "What would you write if no one could see your name?",
+            "What do you wish more people knew about you?",
             "What's a moment you'll never fully get over?",
             "What do you want to let go of but can't?",
             "Who do you blame for the way you are?",
@@ -114,7 +114,13 @@ class PostForm {
             "What boundary did someone cross that changed you?",
             "What shame do you carry that doesn't belong to you?",
             "What part of your healing feels impossible right now?",
-            "What's something you need to scream into the void?"
+            "What's something you need to scream into the void?",
+            "When was the last time you felt truly alive?",
+            "If today was your last day, what would you regret not saying?",
+            "What are you scared to admit — even to yourself?",
+            "What memory do you keep revisiting?",
+            "What part of you still feels unseen?",
+            "What are you tired of pretending doesn't hurt?"
         ];
         this.defaultPrompt = "What's on your heart today?";
 
@@ -332,10 +338,8 @@ class PostForm {
         // My Posts button
         this.myPostsBtn = document.createElement('button');
         this.myPostsBtn.className = 'letitout-my-posts-btn';
-        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="margin-right:0.5em;display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></span>My Posts';
-        this.myPostsBtn.style.position = 'absolute';
-        this.myPostsBtn.style.top = '1.5rem';
-        this.myPostsBtn.style.right = '1.5rem';
+        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></span>';
+        this.myPostsBtn.setAttribute('aria-label', 'My Posts');
         this.myPostsBtn.onclick = () => this.openMyPostsModal();
     }
 
@@ -465,6 +469,13 @@ class PostForm {
         }
         // Add the form
         container.appendChild(this.form);
+        // Move My Posts button to the top right of the main container
+        if (this.myPostsBtn) {
+            this.myPostsBtn.classList.add('letitout-my-posts-btn-global');
+            if (!container.contains(this.myPostsBtn)) {
+                container.appendChild(this.myPostsBtn);
+            }
+        }
         // Add the button container after the form
         if (!this.buttonContainer) {
             this.buttonContainer = document.createElement('div');
@@ -570,7 +581,7 @@ class PostForm {
         // Only show posts with replies
         const postsWithReplies = posts.filter(post => post.replies && post.replies.length);
         if (!postsWithReplies.length) {
-            container.innerHTML = '<div class="empty-state">No replies yet. When someone shares love on your post, it will appear here.</div>';
+            container.innerHTML = '<div class="empty-state">No replies yet.<br>When someone shares love on your post, it will appear here.</div>';
             return;
         }
         let html = '';

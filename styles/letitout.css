@@ -3,6 +3,7 @@
     padding: var(--letitout-spacing-lg);
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 /* Post Form Styles */
@@ -914,29 +915,44 @@
   }
 }
 
-/* My Posts Button */
-.letitout-my-posts-btn {
+/* My Posts Button (Global Top Right) */
+.letitout-my-posts-btn-global {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: #fff;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
   color: #c10016;
   border: 2px solid #c10016;
   border-radius: 2rem;
   font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  padding: 0.5rem 1.3rem;
+  padding: 0.5rem 0.7rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(193,0,22,0.06);
-  z-index: 10;
+  box-shadow: none;
+  z-index: 20;
   transition: background 0.2s, color 0.2s, border 0.2s;
 }
-.letitout-my-posts-btn:hover {
-  background: #c10016;
-  color: #fff;
+.letitout-my-posts-btn-global .my-posts-icon svg {
+  stroke: #c10016;
+  transition: stroke 0.2s;
+}
+.letitout-my-posts-btn-global:hover {
+  background: rgba(193,0,22,0.08);
+  border-color: #c10016;
+}
+.letitout-my-posts-btn-global:hover .my-posts-icon svg {
+  stroke: #c10016;
+}
+@media (max-width: 600px) {
+  .letitout-my-posts-btn-global {
+    top: 0.2rem;
+    right: 0.2rem;
+    font-size: 0.98rem;
+    padding: 0.4rem 0.7rem;
+  }
 }
 
 /* My Posts Modal Overlay */
@@ -954,13 +970,14 @@
   background: #fff;
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 8px rgba(0,0,0,0.06);
-  padding: 2.2rem 1.5rem 2rem 1.5rem;
+  padding: 3.2rem 3.5rem 3rem 3.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 320px;
-  max-width: 98vw;
-  max-height: 90vh;
+  min-width: 540px;
+  max-width: 720px;
+  height: 420px;
+  max-height: 92vh;
   overflow-y: auto;
   position: relative;
 }
@@ -999,9 +1016,22 @@
   border-bottom: 2.5px solid #c10016;
   font-weight: 700;
 }
+.letitout-my-posts-tabs button:not(.active) {
+  color: #111;
+}
 .letitout-my-posts-content {
   width: 100%;
   margin-top: 0.5rem;
+}
+.letitout-my-posts-content .empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.13rem;
+  color: #222;
 }
 .my-post-card {
   background: #fff6f7;
@@ -1014,17 +1044,14 @@
   color: #222;
   line-height: 1.6;
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .letitout-my-posts-modal {
     min-width: 0;
     width: 98vw;
-    padding: 1.1rem 0.3rem 1.1rem 0.3rem;
-  }
-  .letitout-my-posts-btn {
-    top: 0.7rem;
-    right: 0.7rem;
-    font-size: 0.98rem;
-    padding: 0.4rem 0.9rem;
+    max-width: 99vw;
+    padding: 2rem 0.7rem 2rem 0.7rem;
+    height: auto;
+    min-height: 260px;
   }
 }
 
