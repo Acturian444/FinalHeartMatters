@@ -133,59 +133,34 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: var(--accent-text);
-    font-weight: 500;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
     transition: color 0.3s ease;
-}
-
-/* Add styles for Info link */
-.nav-links a[href="info.html"] {
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    font-family: 'Anton', sans-serif;
-    color: #000000;
-}
-
-/* Add styles for Share Your Story link */
-.nav-links a[href="https://tally.so/r/mVypp6"] {
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    font-family: 'Anton', sans-serif;
-    color: #000000;
     display: inline-block;
     white-space: nowrap;
-    opacity: 1 !important;
-    visibility: visible !important;
 }
 
-/* Add styles for The Heart Room link */
-.nav-links a[href="theheartroom.html"] {
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    font-family: 'Anton', sans-serif;
-    color: #000000;
-    display: inline-block;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-}
-
-.nav-links a[href="theheartroom.html"]:hover {
+.nav-links a:hover {
     color: #c10016;
 }
 
-.nav-links a[href="theheartroom.html"].active {
+.nav-links a.active {
     color: #c10016;
 }
 
 /* Remove any conflicting styles */
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--primary-color);
+.nav-links a[href="info.html"],
+.nav-links a[href="theheartroom.html"],
+.nav-links a[href="letitout.html"] {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    font-family: 'Anton', sans-serif;
+    color: #000000;
 }
 
 /* Main Content */
@@ -1067,7 +1042,7 @@ footer {
     padding-left: 2.5rem;
 }
 .menu-overlay a {
-    font-family: 'Anton', 'DM Sans', sans-serif;
+    font-family: 'Anton', sans-serif;
     font-size: 2rem;
     color: #000000;
     text-decoration: none;
@@ -1077,7 +1052,10 @@ footer {
     transition: color 0.2s;
 }
 .menu-overlay a:hover {
-    color: #a20013;
+    color: #c10016;
+}
+.menu-overlay a.active {
+    color: #c10016;
 }
 @media (max-width: 600px) {
     .menu-overlay nav {
@@ -1220,7 +1198,7 @@ footer {
     }
 }
 
-h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"], .nav-links a[href="theheartroom.html"], .nav-links a[href="https://tally.so/r/mVypp6"], .mission-modern-title, .feature-title h2, #join .section-heading, .menu-overlay a {
+h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"], .nav-links a[href="theheartroom.html"], .nav-links a[href="letitout.html"], .nav-links a[href="https://tally.so/r/mVypp6"], .mission-modern-title, .feature-title h2, #join .section-heading, .menu-overlay a {
     font-family: 'Anton', sans-serif;
     font-weight: 400 !important;
 }
