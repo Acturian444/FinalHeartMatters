@@ -71,6 +71,19 @@ class PostService {
                 window.LetItOutUtils.showError('Error loading posts. Please refresh the page.');
             });
     }
+
+    async getPostsByUser(userId) {
+        try {
+            const snapshot = await this.collection
+                .where('userId', '==', userId)
+                .orderBy('timestamp', 'desc')
+                .get();
+            return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        } catch (error) {
+            console.error('Error getting user posts:', error);
+            return [];
+        }
+    }
 }
 
 // Export for use in other modules

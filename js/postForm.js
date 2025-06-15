@@ -118,18 +118,6 @@ class PostForm {
         ];
         this.defaultPrompt = "What's on your heart today?";
 
-        // Create submit button first
-        const submitButton = document.createElement('button');
-        submitButton.type = 'submit';
-        submitButton.className = 'letitout-submit-btn';
-        submitButton.textContent = 'Let It Out';
-        submitButton.disabled = false;
-
-        // Create container for the button
-        const buttonContainer = document.createElement('div');
-        buttonContainer.className = 'letitout-cta-container';
-        buttonContainer.appendChild(submitButton);
-
         // Create the form content
         const formContent = document.createElement('div');
         formContent.className = 'letitout-form-content';
@@ -286,6 +274,9 @@ class PostForm {
         emotionBtn.className = 'letitout-emotion-btn';
         emotionBtn.innerHTML = '+ Add Emotion';
         emotionBtn.onclick = () => this.openEmotionModal();
+        // Blur after tap/click to prevent persistent focus on mobile
+        emotionBtn.addEventListener('mouseup', function() { this.blur(); });
+        emotionBtn.addEventListener('touchend', function() { this.blur(); });
 
         // --- CITY TAG BUTTON ---
         const cityBtn = document.createElement('button');
@@ -320,12 +311,6 @@ class PostForm {
         // Assemble form
         this.form.appendChild(formContent);
 
-        // Handle form submission
-        this.form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await this.handleSubmit(textarea);
-        });
-
         // Modal skeleton
         this.emotionModal = document.createElement('div');
         this.emotionModal.className = 'letitout-emotion-modal-overlay';
@@ -343,6 +328,15 @@ class PostForm {
             </div>
         `;
         document.body.appendChild(this.emotionModal);
+
+        // My Posts button
+        this.myPostsBtn = document.createElement('button');
+        this.myPostsBtn.className = 'letitout-my-posts-btn';
+        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="margin-right:0.5em;display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></span>My Posts';
+        this.myPostsBtn.style.position = 'absolute';
+        this.myPostsBtn.style.top = '1.5rem';
+        this.myPostsBtn.style.right = '1.5rem';
+        this.myPostsBtn.onclick = () => this.openMyPostsModal();
     }
 
     toggleEmotion(tag) {
@@ -364,17 +358,20 @@ class PostForm {
             return;
         }
 
-        try {
-            const submitButton = this.form.querySelector('.letitout-submit-btn');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Posting...';
+        const submitButton = this.form.querySelector('.letitout-submit-btn');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Posting...';
 
-            await window.PostService.createPost(
+        let newPostId = null;
+        try {
+            // Create post and get ID
+            const post = await window.PostService.createPost(
                 content,
                 this.selectedEmotions.join(', '),
                 this.selectedCity,
                 this.isCustomCity
             );
+            newPostId = post.id;
 
             // Reset form
             textarea.value = '';
@@ -387,11 +384,69 @@ class PostForm {
             submitButton.textContent = 'Let It Out';
             submitButton.disabled = false;
 
+            // Show confirmation modal
+            window.LetItOutIncognito().then(isIncognito => {
+                this.showConfirmationModal(isIncognito);
+                setTimeout(() => {
+                    this.hideConfirmationModal();
+                    // Switch to Wall tab (simulate click)
+                    const wallTab = document.getElementById('wall-tab');
+                    if (wallTab) wallTab.click();
+                    // Wait for wall to render, then scroll to top and highlight post
+                    setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        // Highlight the new post if possible
+                        const wallFeed = document.querySelector('.wall-feed');
+                        if (wallFeed && newPostId) {
+                            const postCard = wallFeed.querySelector(`[data-post-id="${newPostId}"]`);
+                            if (postCard) {
+                                postCard.classList.add('letitout-highlight-post');
+                                setTimeout(() => postCard.classList.remove('letitout-highlight-post'), 1600);
+                            }
+                        }
+                    }, 500);
+                }, 1700);
+            });
         } catch (error) {
             window.LetItOutUtils.showError('Error posting. Please try again.');
             submitButton.disabled = false;
             submitButton.textContent = 'Let It Out';
         }
+    }
+
+    showConfirmationModal(isIncognito) {
+        // Remove any existing overlay
+        this.hideConfirmationModal();
+        const overlay = document.createElement('div');
+        overlay.className = 'letitout-confirmation-overlay';
+        overlay.innerHTML = `
+          <div class="letitout-confirmation-modal">
+            <div class="letitout-confirmation-heart">
+              <svg viewBox="0 0 8 7" width="54" height="48" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <rect x="1" y="1" width="2" height="1" fill="#c10016"/>
+                <rect x="5" y="1" width="2" height="1" fill="#c10016"/>
+                <rect x="0" y="2" width="4" height="1" fill="#c10016"/>
+                <rect x="4" y="2" width="4" height="1" fill="#c10016"/>
+                <rect x="0" y="3" width="8" height="1" fill="#c10016"/>
+                <rect x="1" y="4" width="6" height="1" fill="#c10016"/>
+                <rect x="2" y="5" width="4" height="1" fill="#c10016"/>
+                <rect x="3" y="6" width="2" height="1" fill="#c10016"/>
+              </svg>
+            </div>
+            <div class="letitout-confirmation-text">
+              <span class="confirmation-line">Your post is live.</span>
+              <span class="confirmation-line">You let it out.</span>
+              <span class="confirmation-line">You're not alone.</span>
+            </div>
+            ${isIncognito ? '<div class="letitout-confirmation-note">Your post won\'t be saved to "My Posts" in this session.</div>' : ''}
+          </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+
+    hideConfirmationModal() {
+        const overlay = document.querySelector('.letitout-confirmation-overlay');
+        if (overlay) overlay.remove();
     }
 
     getRandomPrompt() {
@@ -404,21 +459,131 @@ class PostForm {
     }
 
     render(container) {
-        // Add the form first
+        // Remove button from form if present
+        if (this.buttonContainer && this.buttonContainer.parentNode === this.form) {
+            this.form.removeChild(this.buttonContainer);
+        }
+        // Add the form
         container.appendChild(this.form);
+        // Add the button container after the form
+        if (!this.buttonContainer) {
+            this.buttonContainer = document.createElement('div');
+            this.buttonContainer.className = 'letitout-cta-container';
+            const submitButton = document.createElement('button');
+            submitButton.type = 'button';
+            submitButton.className = 'letitout-submit-btn';
+            submitButton.textContent = 'Let It Out';
+            submitButton.onclick = (e) => {
+                e.preventDefault();
+                this.form.requestSubmit();
+            };
+            this.buttonContainer.appendChild(submitButton);
+            this.submitButton = submitButton;
+        } else {
+            // Always update the reference in case of re-render
+            this.submitButton = this.buttonContainer.querySelector('.letitout-submit-btn');
+        }
+        container.appendChild(this.buttonContainer);
+        // Ensure form submit event is set up
+        if (!this.form._submitHandlerSet) {
+            this.form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                await this.handleSubmit(this.form.querySelector('textarea'));
+            });
+            this.form._submitHandlerSet = true;
+        }
+    }
 
-        // Then add the CTA button container after the form
-        const buttonContainer = document.createElement('div');
-        buttonContainer.className = 'letitout-cta-container';
+    openMyPostsModal() {
+        // Remove any existing modal
+        this.closeMyPostsModal();
+        const modal = document.createElement('div');
+        modal.className = 'letitout-my-posts-modal-overlay';
+        modal.innerHTML = `
+          <div class="letitout-my-posts-modal">
+            <button class="letitout-my-posts-close">&times;</button>
+            <div class="letitout-my-posts-tabs">
+              <button class="my-posts-tab active">My Posts</button>
+              <button class="inbox-tab">Inbox <span class="inbox-badge" style="display:none;"></span></button>
+            </div>
+            <div class="letitout-my-posts-content"></div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+        // Close logic
+        modal.querySelector('.letitout-my-posts-close').onclick = () => this.closeMyPostsModal();
+        // Tab logic
+        const myPostsTab = modal.querySelector('.my-posts-tab');
+        const inboxTab = modal.querySelector('.inbox-tab');
+        const content = modal.querySelector('.letitout-my-posts-content');
+        myPostsTab.onclick = () => {
+            myPostsTab.classList.add('active');
+            inboxTab.classList.remove('active');
+            this.renderMyPosts(content, modal);
+        };
+        inboxTab.onclick = () => {
+            inboxTab.classList.add('active');
+            myPostsTab.classList.remove('active');
+            this.renderInbox(content);
+        };
+        // Render default
+        this.renderMyPosts(content, modal);
+    }
+    closeMyPostsModal() {
+        const modal = document.querySelector('.letitout-my-posts-modal-overlay');
+        if (modal) modal.remove();
+    }
+    async renderMyPosts(container, modal) {
+        const userId = window.LocalIdManager.getId();
+        const posts = await window.PostService.getPostsByUser(userId);
+        let html = '';
+        let inboxCount = 0;
+        for (const post of posts) {
+            let replyLine = '';
+            if (post.replies && post.replies.length) {
+                inboxCount += post.replies.filter(r => !r.viewed).length;
+                replyLine = `<div class="my-post-reply-line">${post.replies.length} reply received – <span class="view-in-inbox">View in Inbox</span></div>`;
+            }
+            html += `<div class="my-post-card">${post.content}${replyLine}</div>`;
+        }
+        if (!posts.length) {
+            html = '<div class="empty-state">No posts yet. Your posts will appear here.</div>';
+        }
+        container.innerHTML = html;
+        // Show badge if new replies
+        if (modal) {
+            const badge = modal.querySelector('.inbox-badge');
+            if (badge) {
+                if (inboxCount > 0) {
+                    badge.textContent = '🔴 ' + inboxCount;
+                    badge.style.display = 'inline-block';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+        }
+    }
 
-        const submitButton = document.createElement('button');
-        submitButton.type = 'submit';
-        submitButton.className = 'letitout-submit-btn';
-        submitButton.textContent = 'Let It Out';
-        submitButton.onclick = () => this.form.requestSubmit();
-
-        buttonContainer.appendChild(submitButton);
-        container.appendChild(buttonContainer);
+    async renderInbox(container) {
+        const userId = window.LocalIdManager.getId();
+        const posts = await window.PostService.getPostsByUser(userId);
+        // Only show posts with replies
+        const postsWithReplies = posts.filter(post => post.replies && post.replies.length);
+        if (!postsWithReplies.length) {
+            container.innerHTML = '<div class="empty-state">No replies yet. When someone shares love on your post, it will appear here.</div>';
+            return;
+        }
+        let html = '';
+        for (const post of postsWithReplies) {
+            html += `<div class="my-post-card">
+                <div class="my-post-content">${post.content}</div>
+                <div class="my-post-replies">
+                    <strong>Replies:</strong>
+                    <ul>${post.replies.map(r => `<li>${r.text}</li>`).join('')}</ul>
+                </div>
+            </div>`;
+        }
+        container.innerHTML = html;
     }
 
     openEmotionModal() {
@@ -659,11 +824,4 @@ class PostForm {
     }
 }
 
-// Initialize form when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const main = document.getElementById('letitout-main');
-    if (main) {
-        const postForm = new PostForm();
-        postForm.render(main);
-    }
-}); 
+window.PostForm = PostForm; 

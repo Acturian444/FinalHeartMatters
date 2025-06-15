@@ -55,5 +55,20 @@ const Utils = {
     }
 };
 
+// Detect incognito/private mode
+// Returns a Promise that resolves to true if incognito, false otherwise
+function detectIncognito() {
+    return new Promise((resolve) => {
+        const fs = window.RequestFileSystem || window.webkitRequestFileSystem;
+        if (!fs) {
+            // Not supported, assume not incognito
+            resolve(false);
+        } else {
+            fs(window.TEMPORARY, 100, () => resolve(false), () => resolve(true));
+        }
+    });
+}
+
 // Export for use in other modules
-window.LetItOutUtils = Utils; 
+window.LetItOutUtils = Utils;
+window.LetItOutIncognito = detectIncognito; 
