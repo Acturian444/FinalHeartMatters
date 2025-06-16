@@ -244,7 +244,7 @@ class PostForm {
             {
                 name: 'Transformation & Release',
                 emotions: [
-                    'It\'s time to let go', 'I\'m ready to grow', 'This is my turning point', 'I\'ve been holding this too long', 'I want to begin again', 'I want to heal', 'I forgive myself', 'I\'m finally saying it', 'I\'m letting it out', 'I\'m still here', 'I\'m ready to move on', 'I\'m not who I was', 'I\'m becoming someone new', 'I\'m still carrying this — but I want to be free'
+                    'It\'s time to let go', 'I\'m ready to grow', 'This is my turning point', 'I\'ve been holding this too long', 'I want to begin again', 'I want to heal', 'I forgive myself', 'I\'m finally saying it', 'I\'m letting it out', 'I\'m still here', 'I\'m ready to move on', 'I\'m not who I was', 'I\'m becoming someone new', 'I\'ve been carrying this but I\'m ready to be free'
                 ]
             },
             {
@@ -608,45 +608,79 @@ class PostForm {
         // Clear previous content
         content.innerHTML = '';
 
-        // Create emotion categories and sub-emotions
-        this.emotionCategories.forEach(category => {
-            const categoryDiv = document.createElement('div');
-            categoryDiv.className = 'emotion-category';
+        // --- Add search input ---
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.className = 'emotion-search-input';
+        searchInput.placeholder = 'Search emotions...';
+        searchInput.autocomplete = 'off';
+        searchInput.style.marginBottom = '18px';
+        content.appendChild(searchInput);
 
-            const categoryTitle = document.createElement('div');
-            categoryTitle.className = 'emotion-category-title';
-            categoryTitle.textContent = category.name;
+        // Container for all categories
+        const categoriesContainer = document.createElement('div');
+        categoriesContainer.className = 'emotion-categories-container';
+        content.appendChild(categoriesContainer);
 
-            const subTagsDiv = document.createElement('div');
-            subTagsDiv.className = 'emotion-subtags';
+        // Helper to render categories and emotions
+        const renderEmotions = (filter = '') => {
+            categoriesContainer.innerHTML = '';
+            const filterVal = filter.trim().toLowerCase();
+            this.emotionCategories.forEach(category => {
+                // Filter emotions in this category
+                const filteredEmotions = filterVal
+                    ? category.emotions.filter(e => e.toLowerCase().includes(filterVal))
+                    : category.emotions;
+                if (filteredEmotions.length === 0) return; // Hide category if no emotions
 
-            category.emotions.forEach(emotion => {
-                const subTag = document.createElement('button');
-                subTag.className = 'emotion-subtag';
-                subTag.textContent = emotion;
-                if (this.selectedEmotions.includes(emotion)) {
-                    subTag.classList.add('selected');
-                }
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'emotion-category';
 
-                subTag.onclick = () => {
-                    if (subTag.classList.contains('selected')) {
-                        subTag.classList.remove('selected');
-                        this.selectedEmotions = this.selectedEmotions.filter(e => e !== emotion);
-                    } else if (this.selectedEmotions.length < 3) {
+                const categoryTitle = document.createElement('div');
+                categoryTitle.className = 'emotion-category-title';
+                categoryTitle.textContent = category.name;
+
+                const subTagsDiv = document.createElement('div');
+                subTagsDiv.className = 'emotion-subtags';
+
+                filteredEmotions.forEach(emotion => {
+                    const subTag = document.createElement('button');
+                    subTag.className = 'emotion-subtag';
+                    subTag.textContent = emotion;
+                    if (this.selectedEmotions.includes(emotion)) {
                         subTag.classList.add('selected');
-                        this.selectedEmotions.push(emotion);
                     }
-                    this.updateSelectedTags();
-                    doneBtn.disabled = this.selectedEmotions.length === 0;
-                };
 
-                subTagsDiv.appendChild(subTag);
+                    subTag.onclick = () => {
+                        if (subTag.classList.contains('selected')) {
+                            subTag.classList.remove('selected');
+                            this.selectedEmotions = this.selectedEmotions.filter(e => e !== emotion);
+                        } else if (this.selectedEmotions.length < 3) {
+                            subTag.classList.add('selected');
+                            this.selectedEmotions.push(emotion);
+                        }
+                        this.updateSelectedTags();
+                        doneBtn.disabled = this.selectedEmotions.length === 0;
+                        // Re-render to update selected state
+                        renderEmotions(searchInput.value);
+                    };
+
+                    subTagsDiv.appendChild(subTag);
+                });
+
+                categoryDiv.appendChild(categoryTitle);
+                categoryDiv.appendChild(subTagsDiv);
+                categoriesContainer.appendChild(categoryDiv);
             });
+        };
 
-            categoryDiv.appendChild(categoryTitle);
-            categoryDiv.appendChild(subTagsDiv);
-            content.appendChild(categoryDiv);
-        });
+        // Initial render
+        renderEmotions();
+
+        // Search handler
+        searchInput.oninput = () => {
+            renderEmotions(searchInput.value);
+        };
 
         // Show modal
         modal.classList.add('visible');
