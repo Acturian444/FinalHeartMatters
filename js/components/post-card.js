@@ -5,16 +5,47 @@ class PostCard {
         card.className = 'post-card';
         card.dataset.postId = post.id;
 
+        // Create content area wrapper
+        const contentArea = document.createElement('div');
+        contentArea.className = 'post-content-area';
+
         const content = document.createElement('div');
         content.className = 'post-content';
         content.textContent = post.content;
 
+        // City line with timestamp (Anonymous from [City] · 8h ago)
+        const cityLine = document.createElement('div');
+        cityLine.className = 'post-city-line';
+        const timeString = window.LetItOutUtils.formatDate(post.timestamp);
+        if (post.city) {
+            cityLine.textContent = `Anonymous from ${post.city} · ${timeString}`;
+        } else {
+            cityLine.textContent = `Anonymous · ${timeString}`;
+        }
+
+        // Emotion tags (one per pill, small)
+        const emotionTags = document.createElement('div');
+        emotionTags.className = 'post-emotion-tags';
+        if (Array.isArray(post.emotions) && post.emotions.length > 0) {
+            post.emotions.forEach(emotion => {
+                const tag = document.createElement('span');
+                tag.className = 'emotion-tag emotion-tag-small';
+                tag.textContent = emotion;
+                emotionTags.appendChild(tag);
+            });
+        } else if (post.emotion) {
+            // fallback for single emotion
+            const tag = document.createElement('span');
+            tag.className = 'emotion-tag emotion-tag-small';
+            tag.textContent = post.emotion;
+            emotionTags.appendChild(tag);
+        }
+        contentArea.appendChild(emotionTags);
+        contentArea.appendChild(content);
+        contentArea.appendChild(cityLine);
+
         const meta = document.createElement('div');
         meta.className = 'post-meta';
-
-        const timestamp = document.createElement('span');
-        timestamp.className = 'post-timestamp';
-        timestamp.textContent = window.LetItOutUtils.formatDate(post.timestamp);
 
         const actions = document.createElement('div');
         actions.className = 'post-actions';
@@ -56,26 +87,13 @@ class PostCard {
             shareLoveBtn.onclick = () => this.openReplyModal(post.id);
         }
 
-        const emotionTag = document.createElement('span');
-        emotionTag.className = 'emotion-tag';
-        emotionTag.textContent = post.emotion;
-
-        // City tag
-        if (post.city) {
-            const cityTag = document.createElement('span');
-            cityTag.className = 'city-tag';
-            cityTag.textContent = post.city;
-            meta.appendChild(cityTag);
-        }
-
         actions.appendChild(feltItBtn);
         actions.appendChild(shareLoveBtn);
-        meta.appendChild(timestamp);
-        meta.appendChild(emotionTag);
         meta.appendChild(actions);
 
-        card.appendChild(content);
-        card.appendChild(meta);
+        contentArea.appendChild(meta);
+
+        card.appendChild(contentArea);
 
         return card;
     }
