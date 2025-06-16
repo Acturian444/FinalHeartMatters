@@ -28,17 +28,26 @@ class PostCard {
         emotionTags.className = 'post-emotion-tags';
         if (Array.isArray(post.emotions) && post.emotions.length > 0) {
             post.emotions.forEach(emotion => {
-                const tag = document.createElement('span');
-                tag.className = 'emotion-tag emotion-tag-small';
-                tag.textContent = emotion;
-                emotionTags.appendChild(tag);
+                // If emotion is a comma-separated string, split and render each
+                emotion.split(',').map(e => e.trim()).forEach(e => {
+                    if (e) {
+                        const tag = document.createElement('span');
+                        tag.className = 'emotion-tag emotion-tag-small';
+                        tag.textContent = e;
+                        emotionTags.appendChild(tag);
+                    }
+                });
             });
         } else if (post.emotion) {
-            // fallback for single emotion
-            const tag = document.createElement('span');
-            tag.className = 'emotion-tag emotion-tag-small';
-            tag.textContent = post.emotion;
-            emotionTags.appendChild(tag);
+            // fallback for single emotion (may be comma-separated)
+            post.emotion.split(',').map(e => e.trim()).forEach(e => {
+                if (e) {
+                    const tag = document.createElement('span');
+                    tag.className = 'emotion-tag emotion-tag-small';
+                    tag.textContent = e;
+                    emotionTags.appendChild(tag);
+                }
+            });
         }
         contentArea.appendChild(emotionTags);
         contentArea.appendChild(content);
