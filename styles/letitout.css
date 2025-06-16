@@ -108,7 +108,7 @@
 /* Wall Feed */
 .wall-feed {
     display: grid;
-    gap: var(--letitout-spacing-md);
+    gap: 0.1rem;
 }
 
 /* Post Card */
@@ -122,7 +122,7 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2.2rem;
+    margin-bottom: 1rem;
     border: 1px solid #f2f2f2;
     display: flex;
     flex-direction: column;
@@ -1670,7 +1670,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
