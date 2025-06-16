@@ -486,6 +486,9 @@ class PostForm {
         if (!this.buttonContainer) {
             this.buttonContainer = document.createElement('div');
             this.buttonContainer.className = 'letitout-cta-container';
+            this.buttonContainer.style.display = 'flex';
+            this.buttonContainer.style.flexDirection = 'column';
+            this.buttonContainer.style.alignItems = 'center';
             const submitButton = document.createElement('button');
             submitButton.type = 'button';
             submitButton.className = 'letitout-submit-btn';
@@ -495,7 +498,13 @@ class PostForm {
                 this.form.requestSubmit();
             };
             this.buttonContainer.appendChild(submitButton);
-            this.submitButton = submitButton;
+
+            // Add info text below the CTA button
+            const infoText = document.createElement('div');
+            infoText.className = 'letitout-info-text';
+            infoText.style.marginTop = '1.5rem';
+            infoText.textContent = 'Release it. This is your space. Always anonymous.';
+            this.buttonContainer.appendChild(infoText);
         } else {
             // Always update the reference in case of re-render
             this.submitButton = this.buttonContainer.querySelector('.letitout-submit-btn');
