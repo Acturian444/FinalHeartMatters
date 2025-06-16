@@ -363,8 +363,10 @@ class PostForm {
         }
 
         const submitButton = this.form.querySelector('.letitout-submit-btn');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Posting...';
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Posting...';
+        }
 
         let newPostId = null;
         try {
@@ -385,8 +387,10 @@ class PostForm {
             this.customCity = null;
             this.isCustomCity = false;
             this.updateSelectedCity();
-            submitButton.textContent = 'Let It Out';
-            submitButton.disabled = false;
+            if (submitButton) {
+                submitButton.textContent = 'Let It Out';
+                submitButton.disabled = false;
+            }
 
             // Show confirmation modal
             window.LetItOutIncognito().then(isIncognito => {
@@ -413,8 +417,10 @@ class PostForm {
             });
         } catch (error) {
             window.LetItOutUtils.showError('Error posting. Please try again.');
-            submitButton.disabled = false;
-            submitButton.textContent = 'Let It Out';
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Let It Out';
+            }
         }
     }
 
@@ -576,25 +582,20 @@ class PostForm {
     }
 
     async renderInbox(container) {
-        const userId = window.LocalIdManager.getId();
-        const posts = await window.PostService.getPostsByUser(userId);
+        const isPremiumUser = localStorage.getItem('premium') === 'true';
+        const posts = await window.PostService.getPostsByUser();
         // Only show posts with replies
         const postsWithReplies = posts.filter(post => post.replies && post.replies.length);
         if (!postsWithReplies.length) {
-            container.innerHTML = '<div class="empty-state">No replies yet.<br>When someone shares love on your post, it will appear here.</div>';
+            container.innerHTML = '<div class="inbox-empty-state"><div class="inbox-empty-state-title">No replies yet</div><div class="inbox-empty-state-text">When someone shares love on your post, it will appear here.</div></div>';
             return;
         }
-        let html = '';
-        for (const post of postsWithReplies) {
-            html += `<div class="my-post-card">
-                <div class="my-post-content">${post.content}</div>
-                <div class="my-post-replies">
-                    <strong>Replies:</strong>
-                    <ul>${post.replies.map(r => `<li>${r.text}</li>`).join('')}</ul>
-                </div>
-            </div>`;
-        }
-        container.innerHTML = html;
+        container.innerHTML = '';
+        postsWithReplies.forEach(post => {
+            // Pass isPremiumUser to PostCard
+            const postCard = new window.PostCard({ post, isInbox: true, isPremiumUser });
+            container.appendChild(postCard.renderToElement());
+        });
     }
 
     openEmotionModal() {

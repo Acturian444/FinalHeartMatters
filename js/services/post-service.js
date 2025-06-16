@@ -3,11 +3,12 @@ class PostService {
     constructor() {
         this.db = window.letitoutDb;
         this.collection = this.db.collection('letitout-posts');
+        this.anonymousId = window.firebaseUserId;
     }
 
     async createPost(content, emotion, city = null, isCustomCity = false) {
         try {
-            const userId = window.LocalIdManager.getId();
+            const userId = window.firebaseUserId;
             const post = {
                 content: window.LetItOutUtils.sanitizeText(content),
                 emotion,
@@ -72,16 +73,103 @@ class PostService {
             });
     }
 
-    async getPostsByUser(userId) {
+    async addReply(postId, reply) {
         try {
-            const snapshot = await this.collection
-                .where('userId', '==', userId)
+            const userReply = await this.getUserReply(postId);
+            if (userReply) {
+                throw new Error('You have already replied to this post');
+            }
+
+            const replyData = {
+                content: reply,
+                timestamp: new Date(),
+                anonymousId: window.firebaseUserId,
+                read: false
+            };
+
+            await this.db.collection('posts').doc(postId).update({
+                replies: firebase.firestore.FieldValue.arrayUnion(replyData)
+            });
+
+            return replyData;
+        } catch (error) {
+            console.error('Error adding reply:', error);
+            throw error;
+        }
+    }
+
+    async getUserReply(postId) {
+        try {
+            const post = await this.getPost(postId);
+            if (!post.replies) return null;
+            
+            return post.replies.find(reply => reply.anonymousId === window.firebaseUserId);
+        } catch (error) {
+            console.error('Error getting user reply:', error);
+            throw error;
+        }
+    }
+
+    async markRepliesAsRead(postId) {
+        try {
+            const post = await this.getPost(postId);
+            if (!post.replies) return;
+
+            const updatedReplies = post.replies.map(reply => {
+                if (reply.anonymousId === window.firebaseUserId) {
+                    return { ...reply, read: true };
+                }
+                return reply;
+            });
+
+            await this.db.collection('posts').doc(postId).update({
+                replies: updatedReplies
+            });
+        } catch (error) {
+            console.error('Error marking replies as read:', error);
+            throw error;
+        }
+    }
+
+    async getPostsByUser() {
+        try {
+            const snapshot = await this.db
+                .collection('posts')
+                .where('userId', '==', window.firebaseUserId)
                 .orderBy('timestamp', 'desc')
                 .get();
-            return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            return snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
         } catch (error) {
             console.error('Error getting user posts:', error);
-            return [];
+            throw error;
+        }
+    }
+
+    async getUnreadReplyCount() {
+        try {
+            const posts = await this.getPostsByUser();
+            return posts.reduce((count, post) => {
+                if (!post.replies) return count;
+                return count + post.replies.filter(reply => !reply.read).length;
+            }, 0);
+        } catch (error) {
+            console.error('Error getting unread reply count:', error);
+            throw error;
+        }
+    }
+
+    async upgradeToPremium() {
+        try {
+            // TODO: Implement Stripe subscription
+            // This will be implemented when we add Stripe integration
+            console.log('Implementing premium upgrade...');
+        } catch (error) {
+            console.error('Error upgrading to premium:', error);
+            throw error;
         }
     }
 }
