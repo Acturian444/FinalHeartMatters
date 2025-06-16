@@ -60,7 +60,7 @@ class PostService {
     subscribeToPosts(callback) {
         return this.collection
             .orderBy('timestamp', 'desc')
-            .limit(20)
+            .limit(100) // Increased limit for search/filter functionality
             .onSnapshot(snapshot => {
                 const posts = snapshot.docs.map(doc => ({
                     id: doc.id,

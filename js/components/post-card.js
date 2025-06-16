@@ -19,6 +19,26 @@ class PostCard {
         const actions = document.createElement('div');
         actions.className = 'post-actions';
 
+        // Felt It Button
+        const feltItBtn = document.createElement('button');
+        feltItBtn.className = 'felt-it-btn';
+        feltItBtn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="felt-it-text">Felt It</span>
+            ${post.feltCount >= 2 ? `<span class="felt-it-count">${post.feltCount}</span>` : ''}
+        `;
+
+        // Check if user has already felt it
+        const hasFeltIt = this.checkIfUserFeltIt(post.id);
+        if (hasFeltIt) {
+            feltItBtn.classList.add('felt');
+            feltItBtn.querySelector('.felt-it-text').textContent = 'Felt';
+        }
+
+        feltItBtn.onclick = () => this.handleFeltIt(post.id, feltItBtn);
+
         // Share Love Button
         const shareLoveBtn = document.createElement('button');
         shareLoveBtn.className = 'share-love-btn';
@@ -26,17 +46,15 @@ class PostCard {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
-            Share Love
+            <span class="share-love-text">Share Love</span>
         `;
-
-        // Check if user has already sent love
-        const hasSentLove = this.checkIfUserSentLove(post.id);
-        if (hasSentLove) {
+        if (this.checkIfUserSentLove(post.id)) {
             shareLoveBtn.classList.add('sent');
             shareLoveBtn.innerHTML = 'Love Sent';
+            shareLoveBtn.disabled = true;
+        } else {
+            shareLoveBtn.onclick = () => this.openReplyModal(post.id);
         }
-
-        shareLoveBtn.onclick = () => this.openReplyModal(post.id);
 
         const emotionTag = document.createElement('span');
         emotionTag.className = 'emotion-tag';
@@ -50,6 +68,7 @@ class PostCard {
             meta.appendChild(cityTag);
         }
 
+        actions.appendChild(feltItBtn);
         actions.appendChild(shareLoveBtn);
         meta.appendChild(timestamp);
         meta.appendChild(emotionTag);
@@ -59,6 +78,50 @@ class PostCard {
         card.appendChild(meta);
 
         return card;
+    }
+
+    static checkIfUserFeltIt(postId) {
+        const feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
+        return feltPosts.includes(postId);
+    }
+
+    static async handleFeltIt(postId, button) {
+        if (this.checkIfUserFeltIt(postId)) {
+            return; // Already felt it
+        }
+
+        try {
+            // Add to felt posts in localStorage
+            const feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
+            feltPosts.push(postId);
+            localStorage.setItem('feltPosts', JSON.stringify(feltPosts));
+
+            // Update UI
+            button.classList.add('felt');
+            button.querySelector('.felt-it-text').textContent = 'Felt';
+
+            // Update count
+            const countSpan = button.querySelector('.felt-it-count');
+            const currentCount = parseInt(countSpan?.textContent || '0');
+            const newCount = currentCount + 1;
+
+            if (newCount >= 2) {
+                if (!countSpan) {
+                    const newCountSpan = document.createElement('span');
+                    newCountSpan.className = 'felt-it-count';
+                    newCountSpan.textContent = newCount;
+                    button.appendChild(newCountSpan);
+                } else {
+                    countSpan.textContent = newCount;
+                }
+            }
+
+            // Update in Firestore
+            await window.PostService.incrementFeltCount(postId);
+        } catch (error) {
+            console.error('Error updating felt count:', error);
+            window.LetItOutUtils.showError('Error updating felt count. Please try again.');
+        }
     }
 
     static checkIfUserSentLove(postId) {
