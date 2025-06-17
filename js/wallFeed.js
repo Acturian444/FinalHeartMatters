@@ -291,101 +291,115 @@ class WallFeed {
 
     openFilterModal() {
         const modal = document.createElement('div');
-        modal.className = 'wall-filter-modal';
+        modal.className = 'wall-filter-modal visible';
         modal.innerHTML = `
-            <div class="wall-filter-modal-content">
-                <div class="wall-filter-modal-header">
-                    <h3>Filter by Emotion</h3>
-                    <button class="close-btn">&times;</button>
+            <div class="letitout-emotion-modal">
+                <div class="letitout-emotion-modal-header">
+                    <div class="letitout-emotion-modal-title">Filter by Emotion</div>
+                    <button class="letitout-emotion-modal-close">&times;</button>
                 </div>
-                <div class="wall-filter-search">
-                    <input type="text" placeholder="Search emotions..." class="wall-filter-search-input">
-                </div>
-                <div class="wall-filter-tabs">
-                    ${this.getEmotionCategories().map(category => `
-                        <button class="filter-tab ${category === this.getEmotionCategories()[0] ? 'active' : ''}" 
-                                data-category="${category}">
-                            ${category}
-                        </button>
-                    `).join('')}
-                </div>
-                <div class="wall-filter-options">
-                    ${this.getEmotionCategories().map(category => `
-                        <div class="filter-options ${category === this.getEmotionCategories()[0] ? 'active' : ''}" 
-                             data-category="${category}">
-                            ${this.getSubEmotions(category).map(emotion => `
-                                <button class="filter-option ${this.currentFilter === emotion ? 'selected' : ''}" 
-                                        data-emotion="${emotion}">
-                                    ${emotion}
-                                </button>
-                            `).join('')}
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="wall-filter-footer">
-                    <button class="clear-filter-btn">Clear Filter</button>
-                    <button class="apply-filter-btn">Apply</button>
+                <div class="letitout-emotion-modal-content"></div>
+                <div class="letitout-emotion-modal-footer">
+                    <button class="letitout-emotion-modal-btn clear">Clear Filter</button>
+                    <button class="letitout-emotion-modal-btn done">Apply</button>
                 </div>
             </div>
         `;
-        
         document.body.appendChild(modal);
-        
-        // Handle tab switching
-        const tabs = modal.querySelectorAll('.filter-tab');
-        tabs.forEach(tab => {
-            tab.onclick = () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                const options = modal.querySelectorAll('.filter-options');
-                options.forEach(opt => opt.classList.remove('active'));
-                modal.querySelector(`.filter-options[data-category="${tab.dataset.category}"]`).classList.add('active');
-            };
-        });
-        
-        // Handle emotion selection
-        const emotionButtons = modal.querySelectorAll('.filter-option');
-        emotionButtons.forEach(btn => {
-            btn.onclick = () => {
-                emotionButtons.forEach(b => b.classList.remove('selected'));
-                btn.classList.add('selected');
-            };
-        });
-        
-        // Handle search
-        const searchInput = modal.querySelector('.wall-filter-search-input');
-        searchInput.oninput = (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const emotionButtons = modal.querySelectorAll('.filter-option');
-            emotionButtons.forEach(btn => {
-                const emotion = btn.dataset.emotion;
-                btn.style.display = emotion.toLowerCase().includes(searchTerm) ? 'block' : 'none';
+
+        const content = modal.querySelector('.letitout-emotion-modal-content');
+        const doneBtn = modal.querySelector('.letitout-emotion-modal-btn.done');
+        const clearBtn = modal.querySelector('.letitout-emotion-modal-btn.clear');
+        const closeBtn = modal.querySelector('.letitout-emotion-modal-close');
+
+        // Add search input
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.className = 'emotion-search-input';
+        searchInput.placeholder = 'Search emotions...';
+        searchInput.autocomplete = 'off';
+        searchInput.style.marginBottom = '8px';
+        content.appendChild(searchInput);
+
+        // Container for all categories
+        const categoriesContainer = document.createElement('div');
+        categoriesContainer.className = 'emotion-categories-container';
+        content.appendChild(categoriesContainer);
+
+        // Helper to render categories and emotions
+        const renderEmotions = (filter = '') => {
+            categoriesContainer.innerHTML = '';
+            const filterVal = filter.trim().toLowerCase();
+            this.getEmotionCategories().forEach(category => {
+                // Filter emotions in this category
+                const filteredEmotions = filterVal
+                    ? this.getSubEmotions(category).filter(e => e.toLowerCase().includes(filterVal))
+                    : this.getSubEmotions(category);
+                if (filteredEmotions.length === 0) return; // Hide category if no emotions
+
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'emotion-category';
+
+                const categoryTitle = document.createElement('div');
+                categoryTitle.className = 'emotion-category-title';
+                categoryTitle.textContent = category;
+
+                const subTagsDiv = document.createElement('div');
+                subTagsDiv.className = 'emotion-subtags';
+
+                filteredEmotions.forEach(emotion => {
+                    const subTag = document.createElement('button');
+                    subTag.className = 'emotion-subtag';
+                    subTag.textContent = emotion;
+                    if (this.currentFilter === emotion) {
+                        subTag.classList.add('selected');
+                    }
+                    subTag.onclick = () => {
+                        // Only one can be selected
+                        categoriesContainer.querySelectorAll('.emotion-subtag').forEach(t => t.classList.remove('selected'));
+                        if (this.currentFilter === emotion) {
+                            this.currentFilter = null;
+                        } else {
+                            subTag.classList.add('selected');
+                            this.currentFilter = emotion;
+                        }
+                    };
+                    subTagsDiv.appendChild(subTag);
+                });
+
+                categoryDiv.appendChild(categoryTitle);
+                categoryDiv.appendChild(subTagsDiv);
+                categoriesContainer.appendChild(categoryDiv);
             });
         };
-        
-        // Handle clear filter
-        const clearBtn = modal.querySelector('.clear-filter-btn');
-        clearBtn.onclick = () => {
-            emotionButtons.forEach(btn => btn.classList.remove('selected'));
+
+        // Initial render
+        renderEmotions();
+
+        // Search handler
+        searchInput.oninput = () => {
+            renderEmotions(searchInput.value);
         };
-        
-        // Handle apply filter
-        const applyBtn = modal.querySelector('.apply-filter-btn');
-        applyBtn.onclick = () => {
-            const selectedEmotion = modal.querySelector('.filter-option.selected')?.dataset.emotion;
-            this.currentFilter = selectedEmotion || null;
+
+        // Clear Filter button
+        clearBtn.onclick = () => {
+            this.currentFilter = null;
+            renderEmotions(searchInput.value);
+        };
+
+        // Apply button
+        doneBtn.onclick = () => {
             this.updateFeed();
             modal.remove();
         };
-        
-        // Handle close
-        const closeBtn = modal.querySelector('.close-btn');
-        closeBtn.onclick = () => modal.remove();
-        
-        // Close on outside click
+
+        // Close handlers
+        const closeModal = () => {
+            modal.remove();
+        };
+        closeBtn.onclick = closeModal;
         modal.onclick = (e) => {
-            if (e.target === modal) modal.remove();
+            if (e.target === modal) closeModal();
         };
     }
 
@@ -483,35 +497,39 @@ class WallFeed {
 
     getEmotionCategories() {
         return [
-            'Joy & Gratitude',
-            'Love & Connection',
-            'Fear & Anxiety',
-            'Anger & Frustration',
-            'Sadness & Grief',
-            'Loneliness & Isolation',
-            'Hope & Inspiration',
-            'Confusion & Uncertainty',
-            'Pride & Achievement',
-            'Regret & Remorse',
-            'Peace & Contentment',
-            'Excitement & Anticipation'
+            'Pain & Pressure',
+            'Unspoken & Unsaid',
+            'Hope & Healing',
+            'Longing & Love',
+            'Identity & Self',
+            'Transformation & Release',
+            'Light & Alive'
         ];
     }
 
     getSubEmotions(category) {
         const emotions = {
-            'Joy & Gratitude': ['Happy', 'Grateful', 'Excited', 'Proud', 'Blessed', 'Thankful', 'Joyful', 'Content'],
-            'Love & Connection': ['Loved', 'Connected', 'Supported', 'Cherished', 'Valued', 'Appreciated', 'Cared for', 'Understood'],
-            'Fear & Anxiety': ['Anxious', 'Scared', 'Worried', 'Nervous', 'Overwhelmed', 'Stressed', 'Panicked', 'Terrified'],
-            'Anger & Frustration': ['Angry', 'Frustrated', 'Irritated', 'Annoyed', 'Resentful', 'Furious', 'Outraged', 'Disgusted'],
-            'Sadness & Grief': ['Sad', 'Heartbroken', 'Devastated', 'Depressed', 'Mourning', 'Grieving', 'Hurt', 'Disappointed'],
-            'Loneliness & Isolation': ['Lonely', 'Isolated', 'Alone', 'Abandoned', 'Rejected', 'Excluded', 'Unwanted', 'Disconnected'],
-            'Hope & Inspiration': ['Hopeful', 'Inspired', 'Motivated', 'Optimistic', 'Encouraged', 'Empowered', 'Determined', 'Confident'],
-            'Confusion & Uncertainty': ['Confused', 'Uncertain', 'Lost', 'Doubtful', 'Indecisive', 'Perplexed', 'Bewildered', 'Disoriented'],
-            'Pride & Achievement': ['Proud', 'Accomplished', 'Successful', 'Achieved', 'Victorious', 'Triumphant', 'Elated', 'Gratified'],
-            'Regret & Remorse': ['Regretful', 'Remorseful', 'Guilty', 'Ashamed', 'Embarrassed', 'Humbled', 'Penitent', 'Contrite'],
-            'Peace & Contentment': ['Peaceful', 'Content', 'Calm', 'Serene', 'Tranquil', 'Relaxed', 'Satisfied', 'Fulfilled'],
-            'Excitement & Anticipation': ['Excited', 'Eager', 'Enthusiastic', 'Thrilled', 'Anticipating', 'Looking forward', 'Pumped', 'Stoked']
+            'Pain & Pressure': [
+                'Grief', 'Shame', 'Guilt', 'Anger', 'Loneliness', 'Anxiety', 'Fear', 'Depression', 'Jealousy', 'Resentment', 'Emptiness', 'Heartbreak', 'Regret', 'Hopelessness', 'Insecurity', 'Sadness', 'Frustration', 'Bitterness', 'Confusion', 'Panic', 'Overwhelm', 'Embarrassment', 'Rejection', 'Envy', 'Abandonment', 'Self-hate', 'Powerlessness', 'Exhausted', 'Alone', 'Stuck'
+            ],
+            'Unspoken & Unsaid': [
+                "What I've never said", "What I never got to say", "What I'm afraid to admit", "What I wish I could take back", "What I carry in silence", "What I want to scream", "What I can't tell anyone", "What I hide behind my smile", "What I still don't understand", "What I miss", "What I can't forgive", "What's been eating me alive", "What I needed to hear", "What I never believed I deserved"
+            ],
+            'Hope & Healing': [
+                'Faith', 'Forgiveness', 'Gratitude', 'Relief', 'Acceptance', 'Letting go', 'Joy', 'Healing', 'Clarity', 'Compassion', 'Surrender', 'Presence', 'Trust', 'Peace', 'Closure', 'Stillness', 'Lightness', 'Courage'
+            ],
+            'Longing & Love': [
+                'Missed Connection', 'Desire', 'I miss someone', 'I want to feel loved', 'I need connection', 'I feel unloved', "I'm falling for someone", "I still love them", "I never said I loved them", "I loved them more than they knew", "I'm scared to love again", "I don't feel lovable"
+            ],
+            'Identity & Self': [
+                "I don't know who I am", "I feel too much", "I feel like not enough", "I'm trying to change", "I'm tired of pretending", "I hate who I used to be", "I want to start over", "I want to be seen", "I'm not okay", "I'm learning to love myself", "I'm ashamed of who I am", "I feel invisible", "I want to love myself", "I crave touch", "I want to feel chosen", "I'm learning who I am", "I want to be authentic", "I feel misunderstood"
+            ],
+            'Transformation & Release': [
+                "It's time to let go", "I'm ready to grow", "This is my turning point", "I've been holding this too long", "I want to begin again", "I want to heal", "I forgive myself", "I'm finally saying it", "I'm letting it out", "I'm still here", "I'm ready to move on", "I'm not who I was", "I'm becoming someone new", "I've been carrying this but I'm ready to be free"
+            ],
+            'Light & Alive': [
+                'Freedom', 'Excitement', 'Pride', 'Celebration', 'Breakthrough', 'I made it through', 'Hope returned', 'Becoming me', 'Safe now', 'Self-love', 'Adventurous', 'Energized', 'Peaceful inside'
+            ]
         };
         return emotions[category] || [];
     }

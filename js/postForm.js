@@ -811,7 +811,7 @@ class PostForm {
                         <input type="text" class="city-search-input" placeholder="Search cities..." autocomplete="off" />
                         <div class="city-suggested-list"></div>
                         <div class="city-other-section">
-                            <label for="city-other-input">Other / City Not Listed? Add yours:</label>
+                            <label for="city-other-input">Add your city</label>
                             <input type="text" class="city-other-input" placeholder="Enter your city" />
                             <button class="city-other-btn">Add</button>
                         </div>
