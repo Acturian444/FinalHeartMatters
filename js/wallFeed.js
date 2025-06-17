@@ -56,16 +56,38 @@ class WallFeed {
         
         const locationBtn = document.createElement('button');
         locationBtn.className = 'wall-location-btn';
-        locationBtn.innerHTML = `
-            <i class="fas fa-globe"></i>
-            <span>${this.currentCity}</span>
-            <i class="fas fa-chevron-down"></i>
-        `;
+        locationBtn.innerHTML = this.getLocationButtonHTML();
         
         locationBtn.onclick = () => this.openLocationModal();
         
         locationFilter.appendChild(locationBtn);
         return locationFilter;
+    }
+
+    getLocationButtonHTML() {
+        const isGlobal = this.currentCity === 'Global';
+        const hasEmotionFilter = this.currentFilter;
+        
+        let icon, locationText, emotionText;
+        
+        if (isGlobal) {
+            icon = '<i class="fas fa-map-marker-alt"></i>';
+            locationText = 'Global';
+        } else {
+            icon = '📍';
+            locationText = this.currentCity;
+        }
+        
+        if (hasEmotionFilter) {
+            emotionText = this.currentFilter;
+        } else {
+            emotionText = 'All Emotions';
+        }
+        
+        return `
+            <span>${icon} ${locationText} — ${emotionText}</span>
+            <i class="fas fa-chevron-down"></i>
+        `;
     }
 
     createSearchBar() {
@@ -384,12 +406,14 @@ class WallFeed {
         // Clear Filter button
         clearBtn.onclick = () => {
             this.currentFilter = null;
+            this.updateLocationButton();
             renderEmotions(searchInput.value);
         };
 
         // Apply button
         doneBtn.onclick = () => {
             this.updateFeed();
+            this.updateLocationButton();
             modal.remove();
         };
 
@@ -410,9 +434,9 @@ class WallFeed {
     }
 
     updateLocationButton() {
-        const locationBtn = document.querySelector('.wall-location-btn span');
+        const locationBtn = document.querySelector('.wall-location-btn');
         if (locationBtn) {
-            locationBtn.textContent = this.currentCity;
+            locationBtn.innerHTML = this.getLocationButtonHTML();
         }
     }
 
@@ -426,7 +450,12 @@ class WallFeed {
         
         // Apply emotion filter
         if (this.currentFilter) {
-            filteredPosts = filteredPosts.filter(post => post.emotion === this.currentFilter);
+            filteredPosts = filteredPosts.filter(post => {
+                if (!post.emotion) return false;
+                // Handle comma-separated emotions
+                const postEmotions = post.emotion.split(',').map(e => e.trim());
+                return postEmotions.includes(this.currentFilter);
+            });
         }
         
         // Apply search
