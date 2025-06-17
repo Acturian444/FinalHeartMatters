@@ -1813,7 +1813,7 @@
 }
 .dropdown-arrow {
     margin-left: 0.5rem;
-    font-size: 0.75em;
+    font-size: 0.65em;
     pointer-events: none;
 }
 .wall-sort-list {
@@ -1862,9 +1862,9 @@
 }
 .wall-sort-option:hover,
 .wall-sort-option:focus {
-    color: #c10016;
+    background: #f5f5f5;
     outline: none;
-    background: none;
+    color: inherit;
 }
 .wall-sort-option.selected {
     font-weight: 700;

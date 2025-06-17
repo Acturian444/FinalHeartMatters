@@ -183,11 +183,7 @@ class WallFeed {
             const expanded = trigger.getAttribute('aria-expanded') === 'true';
             trigger.setAttribute('aria-expanded', String(!expanded));
             dropdown.style.display = expanded ? 'none' : 'block';
-            if (!expanded) {
-                // Focus first option
-                const first = dropdown.querySelector('.wall-sort-option');
-                if (first) first.focus();
-            }
+            // Remove auto-focus on first option
         };
         // Close dropdown on outside click
         document.addEventListener('click', (e) => {
@@ -202,8 +198,7 @@ class WallFeed {
                 e.preventDefault();
                 dropdown.style.display = 'block';
                 trigger.setAttribute('aria-expanded', 'true');
-                const first = dropdown.querySelector('.wall-sort-option');
-                if (first) first.focus();
+                // Remove auto-focus on first option
             }
         };
         dropdown.onkeydown = (e) => {
