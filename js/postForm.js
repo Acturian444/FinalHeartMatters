@@ -328,7 +328,6 @@ class PostForm {
                 </div>
                 <div class="letitout-emotion-modal-content"></div>
                 <div class="letitout-emotion-modal-footer">
-                    <button class="letitout-emotion-modal-btn cancel">Cancel</button>
                     <button class="letitout-emotion-modal-btn done" disabled>Done</button>
                 </div>
             </div>
@@ -612,7 +611,9 @@ class PostForm {
         const content = modal.querySelector('.letitout-emotion-modal-content');
         const doneBtn = modal.querySelector('.letitout-emotion-modal-btn.done');
         const closeBtn = modal.querySelector('.letitout-emotion-modal-close');
+        // Remove the cancel button if it exists
         const cancelBtn = modal.querySelector('.letitout-emotion-modal-btn.cancel');
+        if (cancelBtn) cancelBtn.remove();
 
         // Clear previous content
         content.innerHTML = '';
@@ -691,6 +692,28 @@ class PostForm {
             renderEmotions(searchInput.value);
         };
 
+        // --- Add Clear Filters button ---
+        let clearBtn = modal.querySelector('.letitout-emotion-modal-btn.clear');
+        if (!clearBtn) {
+            clearBtn = document.createElement('button');
+            clearBtn.className = 'letitout-emotion-modal-btn clear';
+            clearBtn.textContent = 'Clear Filters';
+            clearBtn.style.position = '';
+            clearBtn.style.right = '';
+            clearBtn.style.bottom = '';
+            clearBtn.onclick = () => {
+                this.selectedEmotions = [];
+                this.updateSelectedTags();
+                doneBtn.disabled = true;
+                renderEmotions(searchInput.value);
+            };
+            // Insert as the first button in the modal footer
+            const footer = modal.querySelector('.letitout-emotion-modal-footer');
+            if (footer) {
+                footer.insertBefore(clearBtn, footer.firstChild);
+            }
+        }
+
         // Show modal
         modal.classList.add('visible');
 
@@ -700,7 +723,6 @@ class PostForm {
         };
 
         closeBtn.onclick = closeModal;
-        cancelBtn.onclick = closeModal;
         doneBtn.onclick = () => {
             this.updateSelectedTags();
             closeModal();

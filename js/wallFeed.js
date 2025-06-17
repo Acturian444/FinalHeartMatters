@@ -135,13 +135,13 @@ class WallFeed {
         dropdownLabel.textContent = 'Sort by';
         dropdownLabel.setAttribute('aria-hidden', 'true');
         dropdown.appendChild(dropdownLabel);
-
+        
         const options = [
             { value: 'newest', text: 'Newest' },
             { value: 'oldest', text: 'Oldest' },
             { value: 'mostFelt', text: 'Most Felt' }
         ];
-
+        
         options.forEach(opt => {
             const li = document.createElement('li');
             li.className = 'wall-sort-option';
@@ -160,7 +160,7 @@ class WallFeed {
                 dropdown.querySelectorAll('.wall-sort-option').forEach(optEl => {
                     optEl.classList.remove('selected');
                     optEl.removeAttribute('aria-selected');
-                });
+        });
                 // Add 'selected' to the clicked option
                 li.classList.add('selected');
                 li.setAttribute('aria-selected', 'true');
@@ -241,23 +241,22 @@ class WallFeed {
                 <div class="wall-location-search">
                     <input type="text" placeholder="Search cities..." class="wall-location-search-input">
                 </div>
-                <div class="wall-location-list">
-                    <button class="location-option ${this.currentCity === 'Global' ? 'selected' : ''}" data-city="Global">
+                <div class="wall-city-chip-list">
+                    <button class="wall-city-chip ${this.currentCity === 'Global' ? 'selected' : ''}" data-city="Global">
                         <i class="fas fa-globe"></i> Global
                     </button>
                     ${this.getCityList().map(city => `
-                        <button class="location-option ${this.currentCity === city ? 'selected' : ''}" data-city="${city}">
+                        <button class="wall-city-chip ${this.currentCity === city ? 'selected' : ''}" data-city="${city}">
                             ${city}
                         </button>
                     `).join('')}
                 </div>
             </div>
         `;
-        
         document.body.appendChild(modal);
-        
+
         // Handle city selection
-        const cityButtons = modal.querySelectorAll('.location-option');
+        const cityButtons = modal.querySelectorAll('.wall-city-chip');
         cityButtons.forEach(btn => {
             btn.onclick = () => {
                 const city = btn.dataset.city;
@@ -268,22 +267,22 @@ class WallFeed {
                 modal.remove();
             };
         });
-        
+
         // Handle search
         const searchInput = modal.querySelector('.wall-location-search-input');
         searchInput.oninput = (e) => {
             const searchTerm = e.target.value.toLowerCase();
-            const cityButtons = modal.querySelectorAll('.location-option');
+            const cityButtons = modal.querySelectorAll('.wall-city-chip');
             cityButtons.forEach(btn => {
                 const city = btn.dataset.city;
-                btn.style.display = city.toLowerCase().includes(searchTerm) ? 'block' : 'none';
+                btn.style.display = city.toLowerCase().includes(searchTerm) || city === 'Global' ? 'flex' : 'none';
             });
         };
-        
+
         // Handle close
         const closeBtn = modal.querySelector('.close-btn');
         closeBtn.onclick = () => modal.remove();
-        
+
         // Close on outside click
         modal.onclick = (e) => {
             if (e.target === modal) modal.remove();
