@@ -9,9 +9,61 @@ class PostCard {
         const contentArea = document.createElement('div');
         contentArea.className = 'post-content-area';
 
+        // --- PREVIEW/EXPAND LOGIC ---
         const content = document.createElement('div');
         content.className = 'post-content';
-        content.textContent = post.content;
+        const fullText = post.content;
+        const previewLimit = 200;
+        const needsPreview = fullText.length > previewLimit;
+        let expanded = false;
+
+        // For smooth expand/collapse
+        content.style.overflow = 'hidden';
+        content.style.transition = 'max-height 0.3s cubic-bezier(0.4,0,0.2,1)';
+        content.style.maxHeight = needsPreview ? '4.8em' : 'none'; // ~3 lines
+        content.style.display = '-webkit-box';
+        content.style.webkitBoxOrient = 'vertical';
+        content.style.webkitLineClamp = needsPreview ? '3' : 'unset';
+        content.style.whiteSpace = 'pre-line';
+
+        // Set preview text
+        if (needsPreview) {
+            content.textContent = fullText.slice(0, previewLimit).replace(/\n/g, '\n');
+        } else {
+            content.textContent = fullText;
+        }
+
+        // Read more/less link
+        let readMoreLink = null;
+        if (needsPreview) {
+            readMoreLink = document.createElement('a');
+            readMoreLink.href = '#';
+            readMoreLink.className = 'post-read-more';
+            readMoreLink.textContent = '...Read more';
+            readMoreLink.style.marginLeft = '0.3em';
+            readMoreLink.onclick = (e) => {
+                e.preventDefault();
+                expanded = !expanded;
+                if (expanded) {
+                    content.textContent = fullText;
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.webkitLineClamp = 'unset';
+                    readMoreLink.textContent = 'Show less';
+                    setTimeout(() => {
+                        content.style.maxHeight = '1000px'; // allow for smooth transition
+                    }, 10);
+                } else {
+                    content.textContent = fullText.slice(0, previewLimit).replace(/\n/g, '\n');
+                    content.style.maxHeight = '4.8em';
+                    content.style.webkitLineClamp = '3';
+                    readMoreLink.textContent = '...Read more';
+                }
+                // Re-append the link
+                content.appendChild(readMoreLink);
+            };
+            // Append link to preview
+            content.appendChild(readMoreLink);
+        }
 
         // City line with timestamp (Anonymous from [City] · 8h ago)
         const cityLine = document.createElement('div');
@@ -74,17 +126,59 @@ class PostCard {
         const hasFeltIt = this.checkIfUserFeltIt(post.id);
         if (hasFeltIt) {
             feltItBtn.classList.add('felt');
-            feltItBtn.querySelector('.felt-it-text').textContent = 'Felt';
+            // Always show 'Felt It', do not change to 'Felt'
+            // feltItBtn.querySelector('.felt-it-text').textContent = 'Felt';
         }
 
-        feltItBtn.onclick = () => this.handleFeltIt(post.id, feltItBtn);
+        feltItBtn.onclick = async () => {
+            const hasFeltIt = this.checkIfUserFeltIt(post.id);
+            const countSpan = feltItBtn.querySelector('.felt-it-count');
+            let currentCount = parseInt(countSpan?.textContent || '0');
+            if (hasFeltIt) {
+                // Remove reaction
+                feltItBtn.classList.remove('felt');
+                // Update localStorage
+                let feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
+                feltPosts = feltPosts.filter(pid => pid !== post.id);
+                localStorage.setItem('feltPosts', JSON.stringify(feltPosts));
+                // Update UI
+                if (countSpan) {
+                    const newCount = Math.max(currentCount - 1, 0);
+                    if (newCount < 2) {
+                        countSpan.remove();
+                    } else {
+                        countSpan.textContent = newCount;
+                    }
+                }
+                // Update Firestore
+                await window.PostService.decrementFeltCount(post.id);
+            } else {
+                // Add reaction
+                feltItBtn.classList.add('felt');
+                let feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
+                feltPosts.push(post.id);
+                localStorage.setItem('feltPosts', JSON.stringify(feltPosts));
+                // Update UI
+                if (countSpan) {
+                    const newCount = currentCount + 1;
+                    countSpan.textContent = newCount;
+                } else {
+                    const newCountSpan = document.createElement('span');
+                    newCountSpan.className = 'felt-it-count';
+                    newCountSpan.textContent = '2';
+                    feltItBtn.appendChild(newCountSpan);
+                }
+                await window.PostService.incrementFeltCount(post.id);
+            }
+        };
 
         // Share Love Button
         const shareLoveBtn = document.createElement('button');
         shareLoveBtn.className = 'share-love-btn';
         shareLoveBtn.innerHTML = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="5" width="18" height="14" rx="3"/>
+                <polyline points="3 7 12 13 21 7"/>
             </svg>
             <span class="share-love-text">Share Love</span>
         `;
@@ -125,7 +219,8 @@ class PostCard {
 
             // Update UI
             button.classList.add('felt');
-            button.querySelector('.felt-it-text').textContent = 'Felt';
+            // Always show 'Felt It', do not change to 'Felt'
+            // button.querySelector('.felt-it-text').textContent = 'Felt';
 
             // Update count
             const countSpan = button.querySelector('.felt-it-count');

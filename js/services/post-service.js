@@ -56,6 +56,18 @@ class PostService {
         }
     }
 
+    async decrementFeltCount(postId) {
+        try {
+            const postRef = this.collection.doc(postId);
+            await postRef.update({
+                feltCount: firebase.firestore.FieldValue.increment(-1)
+            });
+        } catch (error) {
+            console.error('Error decrementing felt count:', error);
+            throw error;
+        }
+    }
+
     // Real-time updates
     subscribeToPosts(callback) {
         return this.collection
