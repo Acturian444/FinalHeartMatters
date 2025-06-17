@@ -34,12 +34,14 @@ class WallFeed {
         
         controls.appendChild(searchFilterRow);
 
-        // Sort dropdown
-        const sortDropdown = this.createSortDropdown();
-        controls.appendChild(sortDropdown);
-
         // Add controls to container
         container.appendChild(controls);
+
+        // Sort dropdown (left-aligned, with label)
+        const sortDropdown = this.createSortDropdown();
+        // Remove centering margin if present
+        sortDropdown.style.margin = '';
+        container.appendChild(sortDropdown);
         
         // Add feed
         container.appendChild(this.feed);
@@ -105,32 +107,130 @@ class WallFeed {
 
     createSortDropdown() {
         const sortContainer = document.createElement('div');
-        sortContainer.className = 'wall-sort-container';
-        
-        const sortSelect = document.createElement('select');
-        sortSelect.className = 'wall-sort-select';
-        sortSelect.value = this.currentSort;
-        
+        sortContainer.className = 'wall-sort-container custom-dropdown';
+        sortContainer.setAttribute('role', 'group');
+
+        // Custom dropdown trigger
+        const trigger = document.createElement('button');
+        trigger.className = 'wall-sort-trigger';
+        trigger.id = 'wall-sort-trigger';
+        trigger.setAttribute('aria-haspopup', 'listbox');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.setAttribute('aria-labelledby', 'wall-sort-trigger');
+        trigger.type = 'button';
+        trigger.tabIndex = 0;
+        trigger.innerHTML = `${this.getSortText(this.currentSort)} <span class=\"dropdown-arrow\">▼</span>`;
+        sortContainer.appendChild(trigger);
+
+        // Dropdown list
+        const dropdown = document.createElement('ul');
+        dropdown.className = 'wall-sort-list';
+        dropdown.setAttribute('role', 'listbox');
+        dropdown.tabIndex = -1;
+        dropdown.style.display = 'none';
+
+        // Add dropdown label/header
+        const dropdownLabel = document.createElement('li');
+        dropdownLabel.className = 'wall-sort-label-dropdown';
+        dropdownLabel.textContent = 'Sort by';
+        dropdownLabel.setAttribute('aria-hidden', 'true');
+        dropdown.appendChild(dropdownLabel);
+
         const options = [
             { value: 'newest', text: 'Newest' },
             { value: 'oldest', text: 'Oldest' },
             { value: 'mostFelt', text: 'Most Felt' }
         ];
-        
+
         options.forEach(opt => {
-            const option = document.createElement('option');
-            option.value = opt.value;
-            option.textContent = opt.text;
-            sortSelect.appendChild(option);
+            const li = document.createElement('li');
+            li.className = 'wall-sort-option';
+            li.setAttribute('role', 'option');
+            li.setAttribute('data-value', opt.value);
+            li.tabIndex = 0;
+            li.textContent = opt.text;
+            if (opt.value === this.currentSort) {
+                li.classList.add('selected');
+                li.setAttribute('aria-selected', 'true');
+            }
+            li.onclick = () => {
+                this.currentSort = opt.value;
+                trigger.innerHTML = `${opt.text} <span class=\"dropdown-arrow\">▼</span>`;
+                // Remove 'selected' from all options
+                dropdown.querySelectorAll('.wall-sort-option').forEach(optEl => {
+                    optEl.classList.remove('selected');
+                    optEl.removeAttribute('aria-selected');
+                });
+                // Add 'selected' to the clicked option
+                li.classList.add('selected');
+                li.setAttribute('aria-selected', 'true');
+                dropdown.style.display = 'none';
+                trigger.setAttribute('aria-expanded', 'false');
+                this.updateFeed();
+            };
+            li.onkeydown = (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    li.click();
+                }
+            };
+            dropdown.appendChild(li);
         });
-        
-        sortSelect.onchange = () => {
-            this.currentSort = sortSelect.value;
-            this.updateFeed();
+        sortContainer.appendChild(dropdown);
+
+        // Toggle dropdown
+        trigger.onclick = (e) => {
+            e.stopPropagation();
+            const expanded = trigger.getAttribute('aria-expanded') === 'true';
+            trigger.setAttribute('aria-expanded', String(!expanded));
+            dropdown.style.display = expanded ? 'none' : 'block';
+            if (!expanded) {
+                // Focus first option
+                const first = dropdown.querySelector('.wall-sort-option');
+                if (first) first.focus();
+            }
         };
-        
-        sortContainer.appendChild(sortSelect);
+        // Close dropdown on outside click
+        document.addEventListener('click', (e) => {
+            if (!sortContainer.contains(e.target)) {
+                dropdown.style.display = 'none';
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        // Keyboard navigation
+        trigger.onkeydown = (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                dropdown.style.display = 'block';
+                trigger.setAttribute('aria-expanded', 'true');
+                const first = dropdown.querySelector('.wall-sort-option');
+                if (first) first.focus();
+            }
+        };
+        dropdown.onkeydown = (e) => {
+            const options = Array.from(dropdown.querySelectorAll('.wall-sort-option'));
+            const current = document.activeElement;
+            let idx = options.indexOf(current);
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (idx < options.length - 1) options[idx + 1].focus();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (idx > 0) options[idx - 1].focus();
+            } else if (e.key === 'Escape') {
+                dropdown.style.display = 'none';
+                trigger.setAttribute('aria-expanded', 'false');
+                trigger.focus();
+            }
+        };
         return sortContainer;
+    }
+
+    getSortText(value) {
+        switch (value) {
+            case 'oldest': return 'Oldest';
+            case 'mostFelt': return 'Most Felt';
+            default: return 'Newest';
+        }
     }
 
     openLocationModal() {
