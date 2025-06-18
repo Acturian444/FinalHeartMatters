@@ -278,7 +278,7 @@ class PostForm {
         const emotionBtn = document.createElement('button');
         emotionBtn.type = 'button';
         emotionBtn.className = 'letitout-emotion-btn';
-        emotionBtn.innerHTML = '+ Add Emotion';
+        emotionBtn.innerHTML = '+ Add Feeling';
         emotionBtn.onclick = () => this.openEmotionModal();
         // Blur after tap/click to prevent persistent focus on mobile
         emotionBtn.addEventListener('mouseup', function() { this.blur(); });
@@ -323,7 +323,7 @@ class PostForm {
         this.emotionModal.innerHTML = `
             <div class="letitout-emotion-modal">
                 <div class="letitout-emotion-modal-header">
-                    <div class="letitout-emotion-modal-title">Select Emotions (1-3)</div>
+                    <div class="letitout-emotion-modal-title">Select Feelings (1-3)</div>
                     <button class="letitout-emotion-modal-close">&times;</button>
                 </div>
                 <div class="letitout-emotion-modal-content"></div>
@@ -696,7 +696,7 @@ class PostForm {
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
         searchInput.className = 'emotion-search-input';
-        searchInput.placeholder = 'Search emotions...';
+        searchInput.placeholder = 'Search feelings...';
         searchInput.autocomplete = 'off';
         searchInput.style.marginBottom = '18px';
         content.appendChild(searchInput);
@@ -830,7 +830,7 @@ class PostForm {
 
         // Update error message
         if (this.selectedEmotions.length === 0) {
-            this.emotionError.textContent = 'Please select at least one emotion';
+            this.emotionError.textContent = 'Please select at least one feeling';
             this.emotionError.style.display = 'block';
         } else {
             this.emotionError.style.display = 'none';

@@ -84,7 +84,7 @@ class WallFeed {
         if (hasEmotionFilter) {
             emotionText = this.currentFilter;
         } else {
-            emotionText = 'All Emotions';
+            emotionText = 'All Feelings';
         }
         
         return `
@@ -320,7 +320,7 @@ class WallFeed {
         modal.innerHTML = `
             <div class="letitout-emotion-modal">
                 <div class="letitout-emotion-modal-header">
-                    <div class="letitout-emotion-modal-title">Filter by Emotion</div>
+                    <div class="letitout-emotion-modal-title">Filter by Feeling</div>
                     <button class="letitout-emotion-modal-close">&times;</button>
                 </div>
                 <div class="letitout-emotion-modal-content"></div>
@@ -341,7 +341,7 @@ class WallFeed {
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
         searchInput.className = 'emotion-search-input';
-        searchInput.placeholder = 'Search emotions...';
+        searchInput.placeholder = 'Search feelings...';
         searchInput.autocomplete = 'off';
         searchInput.style.marginBottom = '8px';
         content.appendChild(searchInput);
