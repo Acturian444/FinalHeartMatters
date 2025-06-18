@@ -337,7 +337,7 @@ class PostForm {
         // My Posts button
         this.myPostsBtn = document.createElement('button');
         this.myPostsBtn.className = 'letitout-my-posts-btn';
-        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v4M12 16h.01"/><path d="M8 12h8" stroke="#c10016" fill="#c10016"/><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#c10016" stroke="none"/></svg></span>';
+        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="4" rx="2"/><path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/><path d="M9 12h6"/></svg></span>';
         this.myPostsBtn.setAttribute('aria-label', 'My Posts & Inbox');
         this.myPostsBtn.onclick = () => this.openMyPostsModal();
     }
@@ -525,11 +525,13 @@ class PostForm {
     openMyPostsModal() {
         // Remove any existing modal
         this.closeMyPostsModal();
+        const localId = window.LocalIdManager.getId();
         const modal = document.createElement('div');
         modal.className = 'letitout-my-posts-modal-overlay';
         modal.innerHTML = `
           <div class="letitout-my-posts-modal">
             <button class="letitout-my-posts-close">&times;</button>
+            <div class="letitout-my-posts-title">${localId}</div>
             <div class="letitout-my-posts-tabs">
               <button class="my-posts-tab active">My Posts</button>
               <button class="inbox-tab">Inbox <span class="inbox-badge" style="display:none;"></span></button>
@@ -570,12 +572,34 @@ class PostForm {
             let replyLine = '';
             if (post.replies && post.replies.length) {
                 inboxCount += post.replies.filter(r => !r.viewed).length;
-                replyLine = `<div class="my-post-reply-line">${post.replies.length} reply received – <span class="view-in-inbox">View in Inbox</span></div>`;
+                replyLine = `<div class=\"my-post-reply-line\">${post.replies.length} reply received – <span class=\"view-in-inbox\">View in Inbox</span></div>`;
             }
-            html += `<div class="my-post-card">${post.content}${replyLine}</div>`;
+            // Format timestamp
+            let date;
+            if (post.timestamp && typeof post.timestamp.toDate === 'function') {
+                date = post.timestamp.toDate();
+            } else {
+                date = new Date(post.timestamp);
+            }
+            const timestamp = !isNaN(date) ? date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+            // Render emotion tags if present, using WallFeed markup
+            let emotionsHtml = '';
+            if (Array.isArray(post.emotions) && post.emotions.length) {
+                emotionsHtml = `<div class=\"post-emotions\">${post.emotions.map(e => `<span class=\"emotion-tag\">${e}</span>`).join(' ')}</div>`;
+            } else if (post.emotion && typeof post.emotion === 'string') {
+                // If emotion is a comma-separated string, split and render each as a tag
+                const emotionArr = post.emotion.includes(',') ? post.emotion.split(',').map(e => e.trim()) : [post.emotion];
+                emotionsHtml = `<div class=\"post-emotions\">${emotionArr.map(e => `<span class=\"emotion-tag\">${e}</span>`).join(' ')}</div>`;
+            }
+            html += `<div class=\"my-post-card\">
+                ${emotionsHtml}
+                <div class=\"my-post-message\">${post.content}</div>
+                <div class=\"my-post-timestamp\" style=\"font-size:0.97rem;color:#888;margin-top:0.3rem;font-weight:400;letter-spacing:0.01em;line-height:1.4;\">${timestamp}</div>
+                ${replyLine}
+            </div>`;
         }
         if (!posts.length) {
-            html = '<div class="empty-state">No posts yet. Your posts will appear here.</div>';
+            html = '<div class=\"empty-state\"><div class=\"inbox-empty-state-title\">No posts yet.</div><div class=\"inbox-empty-state-text\">These are the things you let out.</div></div>';
         }
         container.innerHTML = html;
         // Show badge if new replies

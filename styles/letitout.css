@@ -75,17 +75,16 @@
 
 .emotion-tag {
     display: inline-block;
-    padding: 0.18em 1.1em;
-    border-radius: 16px;
+    padding: 0.07em 0.48em;
+    border-radius: 999px;
     background: #f5f5f5;
     border: 1px solid #e0e0e0;
     color: #c10016;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.98em;
+    font-size: 0.78em;
     font-weight: 500;
-    margin-right: 0.4em;
     margin-bottom: 0.4em;
-    cursor: pointer;
+    cursor: default;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .emotion-tag.selected {
@@ -1103,37 +1102,30 @@
 .letitout-my-posts-btn-global {
   background: transparent;
   color: #c10016;
-  border: 2px solid #c10016;
-  border-radius: 50%;
+  border: none;
+  border-radius: 0;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  padding: 0.6rem;
+  padding: 0.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: none;
   transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
-  width: 2.8rem;
-  height: 2.8rem;
+  width: auto;
+  height: auto;
 }
-
 .letitout-my-posts-btn-global .my-posts-icon svg {
-  stroke: #c10016;
+  stroke: #000;
   transition: stroke 0.2s;
 }
-
 .letitout-my-posts-btn-global:hover {
-  background: rgba(193,0,22,0.08);
-  border-color: #c10016;
+  background: transparent;
+  border: none;
   transform: scale(1.05);
 }
-
-.letitout-my-posts-btn-global:hover .my-posts-icon svg {
-  stroke: #c10016;
-}
-
 .letitout-my-posts-btn-global:active {
   transform: scale(0.95);
 }
@@ -1162,21 +1154,35 @@
   align-items: center;
   justify-content: center;
   animation: fadeIn 0.3s;
+  width: 100vw;
+  height: 100vh;
 }
 .letitout-my-posts-modal {
   background: #fff;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 8px rgba(0,0,0,0.06);
+  border-radius: 0;
+  box-shadow: none;
   padding: 3.2rem 3.5rem 3rem 3.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 540px;
-  max-width: 720px;
-  height: 420px;
-  max-height: 92vh;
+  min-width: 0;
+  max-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
   overflow-y: auto;
   position: relative;
+}
+@media (max-width: 900px), (max-width: 600px) {
+  .letitout-my-posts-modal {
+    padding: 1.2rem 0.2rem 1.2rem 0.2rem;
+    border-radius: 0 !important;
+    min-width: 0;
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+  }
 }
 .letitout-my-posts-close {
   position: absolute;
@@ -1190,11 +1196,14 @@
   z-index: 10;
 }
 .letitout-my-posts-tabs {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 1.2rem;
-  border-bottom: 1.5px solid #f2d6da;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  padding-top: 1.2rem;
+  padding-bottom: 0.7rem;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 }
 .letitout-my-posts-tabs button {
   background: none;
@@ -1217,11 +1226,13 @@
   color: #111;
 }
 .letitout-my-posts-content {
-  width: 100%;
-  margin-top: 0.5rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 .letitout-my-posts-content .empty-state {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 180px;
@@ -1229,17 +1240,30 @@
   text-align: center;
   font-size: 1.13rem;
   color: #222;
+  padding: 2rem 1rem;
 }
 .my-post-card {
-  background: #fff6f7;
+  background: #fff;
+  border: 1.5px solid #f5f5f5;
   border-radius: 1rem;
-  box-shadow: 0 1.5px 8px rgba(193,0,22,0.06);
-  padding: 1.1rem 1.2rem;
+  box-shadow: none;
+  padding: 1.2rem 1.3rem 1.1rem 1.3rem;
   margin-bottom: 1.1rem;
   font-family: 'DM Sans', sans-serif;
   font-size: 1.08rem;
   color: #222;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.my-post-timestamp {
+  font-size: 0.97rem;
+  color: #aaa;
+  margin-top: 0.3rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
 }
 @media (max-width: 900px) {
   .letitout-my-posts-modal {
@@ -1247,8 +1271,20 @@
     width: 98vw;
     max-width: 99vw;
     padding: 2rem 0.7rem 2rem 0.7rem;
-    height: auto;
+    height: 80vh;
     min-height: 260px;
+    max-height: 98vh;
+  }
+}
+@media (max-width: 600px) {
+  .letitout-my-posts-modal {
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+    height: 92vh;
+    min-height: 320px;
+    padding: 1.2rem 0.2rem 1.2rem 0.2rem;
+    border-radius: 0.7rem;
   }
 }
 
@@ -2683,4 +2719,96 @@
 .felt-it-btn:hover svg,
 .felt-it-btn:focus svg {
   stroke: #c4122e;
+}
+
+.letitout-my-posts-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+  margin-bottom: 1.3rem;
+  margin-top: 0.1rem;
+  letter-spacing: 0.01em;
+}
+.letitout-my-posts-userid {
+  text-align: center;
+  font-size: 1.08rem;
+  color: #c10016;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+
+@media (min-width: 601px) {
+  .letitout-my-posts-modal-overlay {
+    align-items: center;
+    justify-content: center;
+  }
+  .letitout-my-posts-modal {
+    width: 800px;
+    max-width: 96vw;
+    height: 500px;
+    min-height: 500px;
+    max-height: 90vh;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 8px rgba(0,0,0,0.06);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    position: relative;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 600px) {
+  .letitout-my-posts-modal {
+    width: 100vw;
+    height: 100vh;
+    min-width: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    padding: 1.2rem 0.2rem 1.2rem 0.2rem;
+  }
+}
+
+.post-emotions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+}
+.emotion-tag {
+  display: inline-block;
+  padding: 0.07em 0.48em;
+  border-radius: 999px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  color: #c10016;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78em;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+  cursor: default;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+@media (max-width: 600px) {
+  .emotion-tag {
+    font-size: 0.7em;
+    padding: 0.05em 0.38em;
+    border-radius: 999px;
+    margin-bottom: 0.3em;
+  }
+}
+
+@media (max-width: 600px) {
+  .letitout-my-posts-modal .emotion-tag {
+    font-size: 0.7em !important;
+    padding: 0.05em 0.38em !important;
+    border-radius: 999px !important;
+    margin-bottom: 0.3em !important;
+  }
 }

@@ -574,7 +574,15 @@ class WallFeed {
             if (!myPostsBtn) {
                 myPostsBtn = document.createElement('button');
                 myPostsBtn.className = 'letitout-my-posts-btn letitout-my-posts-btn-global';
-                myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v4M12 16h.01"/><path d="M8 12h8" stroke="#c10016" fill="#c10016"/><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#c10016" stroke="none"/></svg></span>';
+                myPostsBtn.innerHTML = `
+                  <span class="my-posts-icon" style="display:inline-flex;align-items:center;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="4" rx="2"/>
+                      <path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/>
+                      <path d="M9 12h6"/>
+                    </svg>
+                  </span>
+                `;
                 myPostsBtn.setAttribute('aria-label', 'My Posts & Inbox');
                 myPostsBtn.onclick = () => this.openMyPostsModal();
             }
