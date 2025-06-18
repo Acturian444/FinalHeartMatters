@@ -1375,7 +1375,7 @@
   transform: translateY(-1px);
 }
 
-/* Share Love Button & Reply Modal Styles */
+/* Send Love Button & Reply Modal Styles */
 .share-love-btn {
     background: #c10016;
     color: white;
@@ -1959,25 +1959,27 @@
     border-radius: var(--letitout-radius-md);
     font-family: var(--letitout-font-family);
     font-size: 0.95rem;
-    background: #F5F5F5;
+    background: #f8f8f8;
     transition: border-color 0.2s, box-shadow 0.2s;
+    height: 44px;
+    box-sizing: border-box;
 }
 
 .wall-search-input:focus,
 .wall-search-input:hover {
-    border: 1.5px solid #bdbdbd;
+    border: 1px solid #bdbdbd;
     box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     outline: none;
 }
 
 .wall-search-button {
-    background: var(--letitout-primary);
-    color: white;
-    border: none;
+    background: none;
+    border: 1px solid var(--letitout-border);
+    color: var(--letitout-primary);
     padding: 0.75rem 1rem;
     border-radius: var(--letitout-radius-md);
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
     height: 44px;
     min-width: 48px;
     display: flex;
@@ -1986,8 +1988,12 @@
     box-sizing: border-box;
 }
 
-.wall-search-button:hover {
-    background: var(--letitout-secondary);
+.wall-search-button:hover,
+.wall-search-button:focus {
+    background: #f5f5f5;
+    border-color: var(--letitout-border);
+    color: var(--letitout-primary);
+    outline: none;
 }
 
 .wall-filter-btn {
@@ -2518,12 +2524,15 @@
   color: #000;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
-  padding: 0.6em 1.2em;
+  padding: 0.75rem 1.5rem;
   border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 0.5em;
-  font-size: 1.08em;
+  font-size: 0.95rem;
+  min-width: 120px;
+  height: 44px;
+  box-sizing: border-box;
 }
 .felt-it-btn svg {
   stroke: #000;

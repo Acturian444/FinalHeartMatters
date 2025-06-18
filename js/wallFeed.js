@@ -77,7 +77,7 @@ class WallFeed {
             icon = '<i class="fas fa-map-marker-alt"></i>';
             locationText = 'Global';
         } else {
-            icon = '📍';
+            icon = '<i class="fas fa-map-marker-alt"></i>';
             locationText = this.currentCity;
         }
         
@@ -268,11 +268,11 @@ class WallFeed {
                 </div>
                 <div class="wall-city-chip-list">
                     <button class="wall-city-chip ${this.currentCity === 'Global' ? 'selected' : ''}" data-city="Global">
-                        <i class="fas fa-globe"></i> Global
+                        ${this.currentCity === 'Global' ? '<i class="fas fa-map-marker-alt"></i> ' : ''}Global
                     </button>
                     ${this.getCityList().map(city => `
                         <button class="wall-city-chip ${this.currentCity === city ? 'selected' : ''}" data-city="${city}">
-                            ${city}
+                            ${this.currentCity === city ? '<i class="fas fa-map-marker-alt"></i> ' : ''}${city}
                         </button>
                     `).join('')}
                 </div>

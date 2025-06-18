@@ -172,26 +172,30 @@ class PostCard {
             }
         };
 
-        // Share Love Button
-        const shareLoveBtn = document.createElement('button');
-        shareLoveBtn.className = 'share-love-btn';
-        shareLoveBtn.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="5" width="18" height="14" rx="3"/>
-                <polyline points="3 7 12 13 21 7"/>
-            </svg>
-            <span class="share-love-text">Share Love</span>
-        `;
-        if (this.checkIfUserSentLove(post.id)) {
-            shareLoveBtn.classList.add('sent');
-            shareLoveBtn.innerHTML = 'Love Sent';
-            shareLoveBtn.disabled = true;
-        } else {
-            shareLoveBtn.onclick = () => this.openReplyModal(post.id);
-        }
-
+        // Always append Felt It button first
         actions.appendChild(feltItBtn);
-        actions.appendChild(shareLoveBtn);
+
+        // Send Love Button - Only show if not user's own post
+        const isOwnPost = post.userId === window.firebaseUserId;
+        if (!isOwnPost) {
+            const shareLoveBtn = document.createElement('button');
+            shareLoveBtn.className = 'share-love-btn';
+            shareLoveBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="5" width="18" height="14" rx="3"/>
+                    <polyline points="3 7 12 13 21 7"/>
+                </svg>
+                <span class="share-love-text">Send Love</span>
+            `;
+            if (this.checkIfUserSentLove(post.id)) {
+                shareLoveBtn.classList.add('sent');
+                shareLoveBtn.innerHTML = 'Love Sent';
+                shareLoveBtn.disabled = true;
+            } else {
+                shareLoveBtn.onclick = () => this.openReplyModal(post.id);
+            }
+            actions.appendChild(shareLoveBtn);
+        }
         meta.appendChild(actions);
 
         contentArea.appendChild(meta);
@@ -265,9 +269,9 @@ class PostCard {
         modal.className = 'reply-modal';
         modal.innerHTML = `
             <div class="reply-modal-header">
-                <div class="reply-modal-title">Send a short note of support to the person who wrote this</div>
+                <div class="reply-modal-title">Send a message of support</div>
             </div>
-            <textarea class="reply-textarea" placeholder="Write your message of support..." maxlength="250"></textarea>
+            <textarea class="reply-textarea" placeholder="Write a message to remind them they're not alone..." maxlength="250"></textarea>
             <div class="char-counter">0/250</div>
             <div class="reply-actions">
                 <button class="cancel-btn">Cancel</button>
@@ -477,7 +481,7 @@ class PostCard {
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
-                            Share Love
+                            Send Love
                         </button>
                     </div>
                 `}
@@ -486,7 +490,7 @@ class PostCard {
                     <div class="modal-overlay">
                         <div class="modal">
                             <div class="modal-header">
-                                <h3>Share Your Love</h3>
+                                <h3>Send Your Love</h3>
                                 <button class="modal-close" data-action="close-modal">×</button>
                             </div>
                             <div class="modal-body">
