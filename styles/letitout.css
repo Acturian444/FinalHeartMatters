@@ -1093,10 +1093,14 @@
 }
 
 /* My Posts Button (Global Top Right) */
-.letitout-my-posts-btn-global {
+.letitout-my-posts-container {
   position: absolute;
   top: 1.8rem;
   right: 1.2rem;
+  z-index: 20;
+}
+
+.letitout-my-posts-btn-global {
   background: transparent;
   color: #c10016;
   border: 2px solid #c10016;
@@ -1110,26 +1114,37 @@
   align-items: center;
   justify-content: center;
   box-shadow: none;
-  z-index: 20;
-  transition: background 0.2s, color 0.2s, border 0.2s;
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
   width: 2.8rem;
   height: 2.8rem;
 }
+
 .letitout-my-posts-btn-global .my-posts-icon svg {
   stroke: #c10016;
   transition: stroke 0.2s;
 }
+
 .letitout-my-posts-btn-global:hover {
   background: rgba(193,0,22,0.08);
   border-color: #c10016;
+  transform: scale(1.05);
 }
+
 .letitout-my-posts-btn-global:hover .my-posts-icon svg {
   stroke: #c10016;
 }
+
+.letitout-my-posts-btn-global:active {
+  transform: scale(0.95);
+}
+
 @media (max-width: 600px) {
-  .letitout-my-posts-btn-global {
+  .letitout-my-posts-container {
     top: 1.2rem;
     right: 0.8rem;
+  }
+  
+  .letitout-my-posts-btn-global {
     font-size: 0.98rem;
     padding: 0.5rem;
     width: 2.5rem;
@@ -1281,6 +1296,47 @@
 .my-post-replies li {
   margin-bottom: 0.3em;
   color: #222;
+}
+
+/* Inbox Empty State */
+.inbox-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.inbox-empty-state-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+.inbox-empty-state-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+.inbox-empty-state-cta {
+  background: #c10016;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.inbox-empty-state-cta:hover {
+  background: #7a0010;
+  transform: translateY(-1px);
 }
 
 /* Share Love Button & Reply Modal Styles */

@@ -337,8 +337,8 @@ class PostForm {
         // My Posts button
         this.myPostsBtn = document.createElement('button');
         this.myPostsBtn.className = 'letitout-my-posts-btn';
-        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></span>';
-        this.myPostsBtn.setAttribute('aria-label', 'My Posts');
+        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v4M12 16h.01"/><path d="M8 12h8" stroke="#c10016" fill="#c10016"/><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#c10016" stroke="none"/></svg></span>';
+        this.myPostsBtn.setAttribute('aria-label', 'My Posts & Inbox');
         this.myPostsBtn.onclick = () => this.openMyPostsModal();
     }
 
@@ -474,13 +474,16 @@ class PostForm {
         }
         // Add the form
         container.appendChild(this.form);
-        // Move My Posts button to the top right of the main container
-        if (this.myPostsBtn) {
+        
+        // Add My Posts button to global container
+        const globalContainer = document.getElementById('letitout-my-posts-container');
+        if (globalContainer && this.myPostsBtn) {
             this.myPostsBtn.classList.add('letitout-my-posts-btn-global');
-            if (!container.contains(this.myPostsBtn)) {
-                container.appendChild(this.myPostsBtn);
-            }
+            // Clear existing content and add the button
+            globalContainer.innerHTML = '';
+            globalContainer.appendChild(this.myPostsBtn);
         }
+        
         // Add the button container after the form
         if (!this.buttonContainer) {
             this.buttonContainer = document.createElement('div');
@@ -559,8 +562,8 @@ class PostForm {
         if (modal) modal.remove();
     }
     async renderMyPosts(container, modal) {
-        const userId = window.LocalIdManager.getId();
-        const posts = await window.PostService.getPostsByUser(userId);
+        const localId = window.LocalIdManager.getId();
+        const posts = await window.PostService.getPostsByUser(localId, 'localId');
         let html = '';
         let inboxCount = 0;
         for (const post of posts) {
@@ -591,7 +594,8 @@ class PostForm {
 
     async renderInbox(container) {
         const isPremiumUser = localStorage.getItem('premium') === 'true';
-        const posts = await window.PostService.getPostsByUser();
+        const localId = window.LocalIdManager.getId();
+        const posts = await window.PostService.getPostsByUser(localId, 'localId');
         // Only show posts with replies
         const postsWithReplies = posts.filter(post => post.replies && post.replies.length);
         if (!postsWithReplies.length) {

@@ -46,6 +46,9 @@ class WallFeed {
         // Add feed
         container.appendChild(this.feed);
         
+        // Add My Posts button to global container
+        this.addMyPostsButton();
+        
         // Subscribe to posts
         this.subscribeToPosts();
     }
@@ -561,6 +564,115 @@ class WallFeed {
             ]
         };
         return emotions[category] || [];
+    }
+
+    addMyPostsButton() {
+        const globalContainer = document.getElementById('letitout-my-posts-container');
+        if (globalContainer) {
+            // Create My Posts button if it doesn't exist
+            let myPostsBtn = globalContainer.querySelector('.letitout-my-posts-btn-global');
+            if (!myPostsBtn) {
+                myPostsBtn = document.createElement('button');
+                myPostsBtn.className = 'letitout-my-posts-btn letitout-my-posts-btn-global';
+                myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c10016" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v4M12 16h.01"/><path d="M8 12h8" stroke="#c10016" fill="#c10016"/><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#c10016" stroke="none"/></svg></span>';
+                myPostsBtn.setAttribute('aria-label', 'My Posts & Inbox');
+                myPostsBtn.onclick = () => this.openMyPostsModal();
+            }
+            
+            // Clear existing content and add the button
+            globalContainer.innerHTML = '';
+            globalContainer.appendChild(myPostsBtn);
+        }
+    }
+
+    openMyPostsModal() {
+        // Remove any existing modal
+        this.closeMyPostsModal();
+        const modal = document.createElement('div');
+        modal.className = 'letitout-my-posts-modal-overlay';
+        modal.innerHTML = `
+          <div class="letitout-my-posts-modal">
+            <button class="letitout-my-posts-close">&times;</button>
+            <div class="letitout-my-posts-tabs">
+              <button class="my-posts-tab active">My Posts</button>
+              <button class="inbox-tab">Inbox <span class="inbox-badge" style="display:none;"></span></button>
+            </div>
+            <div class="letitout-my-posts-content"></div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+        // Close logic
+        modal.querySelector('.letitout-my-posts-close').onclick = () => this.closeMyPostsModal();
+        // Tab logic
+        const myPostsTab = modal.querySelector('.my-posts-tab');
+        const inboxTab = modal.querySelector('.inbox-tab');
+        const content = modal.querySelector('.letitout-my-posts-content');
+        myPostsTab.onclick = () => {
+            myPostsTab.classList.add('active');
+            inboxTab.classList.remove('active');
+            this.renderMyPosts(content, modal);
+        };
+        inboxTab.onclick = () => {
+            inboxTab.classList.add('active');
+            myPostsTab.classList.remove('active');
+            this.renderInbox(content);
+        };
+        // Render default
+        this.renderMyPosts(content, modal);
+    }
+
+    closeMyPostsModal() {
+        const modal = document.querySelector('.letitout-my-posts-modal-overlay');
+        if (modal) modal.remove();
+    }
+
+    async renderMyPosts(container, modal) {
+        const localId = window.LocalIdManager.getId();
+        const posts = await window.PostService.getPostsByUser(localId, 'localId');
+        let html = '';
+        let inboxCount = 0;
+        for (const post of posts) {
+            let replyLine = '';
+            if (post.replies && post.replies.length) {
+                inboxCount += post.replies.filter(r => !r.viewed).length;
+                replyLine = `<div class="my-post-reply-line">${post.replies.length} reply received – <span class="view-in-inbox">View in Inbox</span></div>`;
+            }
+            html += `<div class="my-post-card">${post.content}${replyLine}</div>`;
+        }
+        if (!posts.length) {
+            html = '<div class="empty-state">No posts yet. Your posts will appear here.</div>';
+        }
+        container.innerHTML = html;
+        // Show badge if new replies
+        if (modal) {
+            const badge = modal.querySelector('.inbox-badge');
+            if (badge) {
+                if (inboxCount > 0) {
+                    badge.textContent = '🔴 ' + inboxCount;
+                    badge.style.display = 'inline-block';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+        }
+    }
+
+    async renderInbox(container) {
+        const isPremiumUser = localStorage.getItem('premium') === 'true';
+        const localId = window.LocalIdManager.getId();
+        const posts = await window.PostService.getPostsByUser(localId, 'localId');
+        // Only show posts with replies
+        const postsWithReplies = posts.filter(post => post.replies && post.replies.length);
+        if (!postsWithReplies.length) {
+            container.innerHTML = '<div class="inbox-empty-state"><div class="inbox-empty-state-title">No replies yet</div><div class="inbox-empty-state-text">When someone shares love on your post, it will appear here.</div></div>';
+            return;
+        }
+        container.innerHTML = '';
+        postsWithReplies.forEach(post => {
+            // Pass isPremiumUser to PostCard
+            const postCard = new window.PostCard({ post, isInbox: true, isPremiumUser });
+            container.appendChild(postCard.renderToElement());
+        });
     }
 }
 

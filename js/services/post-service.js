@@ -13,6 +13,7 @@ class PostService {
                 content: window.LetItOutUtils.sanitizeText(content),
                 emotion,
                 userId,
+                localId: window.LocalIdManager.getId(),
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 feltCount: 0,
                 city: city || null,
@@ -143,11 +144,16 @@ class PostService {
         }
     }
 
-    async getPostsByUser() {
+    /**
+     * Fetch posts by localId (default) or userId (if type is 'userId').
+     * @param {string} id - The id to match (localId or userId). Defaults to current localId.
+     * @param {string} type - 'localId' (default) or 'userId'.
+     */
+    async getPostsByUser(id = window.LocalIdManager.getId(), type = 'localId') {
         try {
-            const snapshot = await this.db
-                .collection('posts')
-                .where('userId', '==', window.firebaseUserId)
+            const field = type === 'userId' ? 'userId' : 'localId';
+            const snapshot = await this.collection
+                .where(field, '==', id)
                 .orderBy('timestamp', 'desc')
                 .get();
 
