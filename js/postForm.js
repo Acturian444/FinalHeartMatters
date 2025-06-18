@@ -591,17 +591,63 @@ class PostForm {
                 const emotionArr = post.emotion.includes(',') ? post.emotion.split(',').map(e => e.trim()) : [post.emotion];
                 emotionsHtml = `<div class=\"post-emotions\">${emotionArr.map(e => `<span class=\"emotion-tag\">${e}</span>`).join(' ')}</div>`;
             }
-            html += `<div class=\"my-post-card\">
-                ${emotionsHtml}
-                <div class=\"my-post-message\">${post.content}</div>
-                <div class=\"my-post-timestamp\" style=\"font-size:0.97rem;color:#888;margin-top:0.3rem;font-weight:400;letter-spacing:0.01em;line-height:1.4;\">${timestamp}</div>
-                ${replyLine}
-            </div>`;
+            // Generate a unique id for the post card
+            const postId = post.id || Math.random().toString(36).substr(2, 9);
+            html += `<div class=\"my-post-card\" data-post-id=\"${postId}\">\n                ${emotionsHtml}\n                <div class=\"my-post-message\" data-expanded=\"false\">${post.content}</div>\n                <a href=\"#\" class=\"my-post-read-more\" style=\"display:none;\">Read more</a>\n                <div class=\"my-post-timestamp\" style=\"font-size:0.97rem;color:#888;margin-top:0.3rem;font-weight:400;letter-spacing:0.01em;line-height:1.4;\">${timestamp}</div>\n                ${replyLine}\n            </div>`;
         }
         if (!posts.length) {
             html = '<div class=\"empty-state\"><div class=\"inbox-empty-state-title\">No posts yet.</div><div class=\"inbox-empty-state-text\">These are the things you let out.</div></div>';
         }
         container.innerHTML = html;
+        // After rendering, apply truncation and expand/collapse logic
+        const cards = container.querySelectorAll('.my-post-card');
+        cards.forEach(card => {
+            const message = card.querySelector('.my-post-message');
+            const readMore = card.querySelector('.my-post-read-more');
+            if (!message) return;
+            // Create a temporary element to measure line count
+            const temp = document.createElement('div');
+            temp.style.position = 'absolute';
+            temp.style.visibility = 'hidden';
+            temp.style.pointerEvents = 'none';
+            temp.style.width = message.offsetWidth + 'px';
+            temp.style.font = window.getComputedStyle(message).font;
+            temp.style.lineHeight = window.getComputedStyle(message).lineHeight;
+            temp.style.whiteSpace = 'pre-line';
+            temp.textContent = message.textContent;
+            document.body.appendChild(temp);
+            // Estimate line count
+            const lineHeight = parseFloat(window.getComputedStyle(message).lineHeight);
+            const maxLines = 3;
+            const maxHeight = lineHeight * maxLines;
+            if (temp.offsetHeight > maxHeight) {
+                // Truncate
+                message.style.display = '-webkit-box';
+                message.style.webkitBoxOrient = 'vertical';
+                message.style.webkitLineClamp = maxLines;
+                message.style.overflow = 'hidden';
+                readMore.style.display = 'inline';
+                readMore.textContent = 'Read more';
+                message.setAttribute('data-expanded', 'false');
+            }
+            document.body.removeChild(temp);
+            // Expand/collapse logic
+            readMore?.addEventListener('click', e => {
+                e.preventDefault();
+                const expanded = message.getAttribute('data-expanded') === 'true';
+                if (!expanded) {
+                    message.style.webkitLineClamp = 'unset';
+                    message.style.overflow = 'visible';
+                    message.setAttribute('data-expanded', 'true');
+                    readMore.textContent = 'Show less';
+                } else {
+                    message.style.webkitLineClamp = maxLines;
+                    message.style.overflow = 'hidden';
+                    message.setAttribute('data-expanded', 'false');
+                    readMore.textContent = 'Read more';
+                }
+            });
+        });
         // Show badge if new replies
         if (modal) {
             const badge = modal.querySelector('.inbox-badge');
