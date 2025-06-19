@@ -1,4 +1,4 @@
-// Utility Functions
+// Initialize base utilities
 const Utils = {
     formatDate(timestamp) {
         if (!timestamp) return '';
@@ -50,13 +50,92 @@ const Utils = {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
         errorDiv.textContent = message;
-        document.getElementById('letitout-main').prepend(errorDiv);
-        setTimeout(() => errorDiv.remove(), 5000);
+        document.body.appendChild(errorDiv);
+        setTimeout(() => {
+            errorDiv.style.opacity = '0';
+            setTimeout(() => errorDiv.remove(), 300);
+        }, 5000);
+    },
+
+    showSuccess(message) {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message';
+        successDiv.textContent = message;
+        document.body.appendChild(successDiv);
+        setTimeout(() => {
+            successDiv.style.opacity = '0';
+            setTimeout(() => successDiv.remove(), 300);
+        }, 3000);
+    },
+
+    // Premium feature utilities
+    getFreeUnlockedPosts() {
+        try {
+            return JSON.parse(localStorage.getItem('freeUnlockedPosts') || '[]');
+        } catch (e) {
+            console.error('Error getting free unlocked posts:', e);
+            return [];
+        }
+    },
+
+    getPaidUnlockedPosts() {
+        try {
+            return JSON.parse(localStorage.getItem('paidUnlockedPosts') || '[]');
+        } catch (e) {
+            console.error('Error getting paid unlocked posts:', e);
+            return [];
+        }
+    },
+
+    addFreeUnlockedPost(postId) {
+        try {
+            const arr = this.getFreeUnlockedPosts();
+            if (!arr.includes(postId)) {
+                arr.push(postId);
+                localStorage.setItem('freeUnlockedPosts', JSON.stringify(arr));
+            }
+        } catch (e) {
+            console.error('Error adding free unlocked post:', e);
+        }
+    },
+
+    addPaidUnlockedPost(postId) {
+        try {
+            const arr = this.getPaidUnlockedPosts();
+            if (!arr.includes(postId)) {
+                arr.push(postId);
+                localStorage.setItem('paidUnlockedPosts', JSON.stringify(arr));
+            }
+        } catch (e) {
+            console.error('Error adding paid unlocked post:', e);
+        }
+    },
+
+    getFreeUnlocksLeft() {
+        try {
+            return 3 - this.getFreeUnlockedPosts().length;
+        } catch (e) {
+            console.error('Error getting free unlocks left:', e);
+            return 3;
+        }
+    },
+
+    // Check for unlocked posts from Stripe success
+    checkForUnlockedPosts() {
+        const params = new URLSearchParams(window.location.search);
+        const unlockedPostId = params.get('unlocked');
+        if (unlockedPostId) {
+            this.addPaidUnlockedPost(unlockedPostId);
+            // Clean up URL
+            const newUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState({}, document.title, newUrl);
+            // Show success message
+            this.showSuccess('Post replies unlocked! You can now view all messages for this post.');
+        }
     }
 };
 
 // Detect incognito/private mode
-// Returns a Promise that resolves to true if incognito, false otherwise
 function detectIncognito() {
     return new Promise((resolve) => {
         const fs = window.RequestFileSystem || window.webkitRequestFileSystem;
@@ -69,6 +148,18 @@ function detectIncognito() {
     });
 }
 
-// Export for use in other modules
+// Initialize utilities globally
 window.LetItOutUtils = Utils;
-window.LetItOutIncognito = detectIncognito; 
+window.Utils = Utils; // For backwards compatibility
+window.LetItOutIncognito = detectIncognito;
+
+// Debug logging
+console.log('Utils initialized:', {
+    LetItOutUtils: window.LetItOutUtils,
+    hasGetFreeUnlockedPosts: typeof window.LetItOutUtils?.getFreeUnlockedPosts,
+    hasGetPaidUnlockedPosts: typeof window.LetItOutUtils?.getPaidUnlockedPosts,
+    hasAddFreeUnlockedPost: typeof window.LetItOutUtils?.addFreeUnlockedPost,
+    hasAddPaidUnlockedPost: typeof window.LetItOutUtils?.addPaidUnlockedPost,
+    hasGetFreeUnlocksLeft: typeof window.LetItOutUtils?.getFreeUnlocksLeft,
+    hasCheckForUnlockedPosts: typeof window.LetItOutUtils?.checkForUnlockedPosts
+});

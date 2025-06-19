@@ -562,7 +562,7 @@ class PostForm {
                     hasUnreadReplies = true;
                 }
                 const replyWord = post.replies.length === 1 ? 'reply' : 'replies';
-                replyLine = `<div class="my-post-reply-line">${post.replies.length} ${replyWord} received – <span class="view-messages" data-post-id="${post.id}">View Messages</span></div>`;
+                replyLine = `<div class="my-post-reply-line">${post.replies.length} ${replyWord} received – <button class="view-messages-btn" data-post-id="${post.id}">View Messages</button></div>`;
             }
             
             // Format timestamp
@@ -667,102 +667,246 @@ class PostForm {
             }
         }
         
-        // Add click handler for "View Messages"
-        const viewMessagesLinks = container.querySelectorAll('.view-messages');
-        viewMessagesLinks.forEach(link => {
-            link.addEventListener('click', async (e) => {
+        // After rendering, bind click handlers
+        const viewMessagesBtns = container.querySelectorAll('.view-messages-btn');
+        viewMessagesBtns.forEach(btn => {
+            btn.addEventListener('click', async (e) => {
                 e.preventDefault();
-                const postId = link.getAttribute('data-post-id');
-                await this.showRepliesView(container, modal, postId);
+                const postId = btn.getAttribute('data-post-id');
+                if (postId) {
+                    const modalElement = document.querySelector('.letitout-my-posts-modal-overlay');
+                    const modalContent = modalElement?.querySelector('.letitout-my-posts-modal');
+                    if (modalContent) {
+                        await this.showRepliesView(modalContent.querySelector('.letitout-my-posts-content'), modalElement, postId);
+                    }
+                }
             });
         });
     }
 
     async showRepliesView(container, modal, postId) {
-        const localId = window.LocalIdManager.getId();
-        const posts = await window.PostService.getPostsByUser(localId, 'localId');
-        const post = posts.find(p => p.id === postId);
-        
-        if (!post || !post.replies || !post.replies.length) {
+        if (!container || !modal || !postId) {
+            console.error('Missing required parameters for showRepliesView');
             return;
         }
-        
-        // Mark replies as read
-        const unreadReplies = post.replies.filter(r => !r.viewed);
-        if (unreadReplies.length > 0) {
-            // Update the post in Firestore to mark replies as read
-            await window.PostService.markRepliesAsRead(postId);
-        }
-        
-        // Format the original post timestamp
-        let postDate;
-        if (post.timestamp && typeof post.timestamp.toDate === 'function') {
-            postDate = post.timestamp.toDate();
-        } else {
-            postDate = new Date(post.timestamp);
-        }
-        const postTimestamp = !isNaN(postDate) ? postDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
-        
-        // Render emotion tags for the original post
-        let emotionsHtml = '';
-        if (Array.isArray(post.emotions) && post.emotions.length) {
-            emotionsHtml = `<div class="post-emotions">${post.emotions.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
-        } else if (post.emotion && typeof post.emotion === 'string') {
-            const emotionArr = post.emotion.includes(',') ? post.emotion.split(',').map(e => e.trim()) : [post.emotion];
-            emotionsHtml = `<div class="post-emotions">${emotionArr.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
-        }
-        
-        // Create the replies view HTML
-        let repliesHtml = '';
-        post.replies.forEach(reply => {
-            let replyDate;
-            if (reply.timestamp && typeof reply.timestamp.toDate === 'function') {
-                replyDate = reply.timestamp.toDate();
-            } else {
-                replyDate = new Date(reply.timestamp);
+
+        try {
+            // Check if utilities are available
+            if (!window.LetItOutUtils) {
+                console.error('LetItOutUtils not initialized');
+                return;
             }
-            const replyTimestamp = !isNaN(replyDate) ? replyDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+
+            // Debug logging
+            console.log('showRepliesView debug:', {
+                LetItOutUtils: window.LetItOutUtils,
+                hasGetFreeUnlockedPosts: typeof window.LetItOutUtils.getFreeUnlockedPosts,
+                hasGetPaidUnlockedPosts: typeof window.LetItOutUtils.getPaidUnlockedPosts,
+                hasAddFreeUnlockedPost: typeof window.LetItOutUtils.addFreeUnlockedPost,
+                hasAddPaidUnlockedPost: typeof window.LetItOutUtils.addPaidUnlockedPost,
+                hasGetFreeUnlocksLeft: typeof window.LetItOutUtils.getFreeUnlocksLeft,
+                hasCheckForUnlockedPosts: typeof window.LetItOutUtils.checkForUnlockedPosts
+            });
+
+            const localId = window.LocalIdManager.getId();
+            const posts = await window.PostService.getPostsByUser(localId, 'localId');
+            const post = posts.find(p => p.id === postId);
             
-            repliesHtml += `
-                <div class="reply-card">
-                    <div class="reply-content">${reply.content}</div>
-                    <div class="reply-timestamp">${replyTimestamp}</div>
-                </div>
-            `;
-        });
-        
-        // Update the modal content
-        const modalContent = modal.querySelector('.letitout-my-posts-modal');
-        modalContent.innerHTML = `
-            <button class="letitout-my-posts-close">&times;</button>
-            <button class="back-to-posts-btn">← My Posts</button>
-            <div class="letitout-my-posts-title">Messages</div>
-            <div class="letitout-my-posts-content">
-                <div class="original-post-card">
-                    ${emotionsHtml}
-                    <div class="original-post-message">${post.content}</div>
-                    <div class="original-post-timestamp">${postTimestamp}</div>
-                </div>
-                <div class="replies-section">
-                    <div class="replies-header">${post.replies.length} Message${post.replies.length > 1 ? 's' : ''}</div>
-                    <div class="replies-list">
-                        ${repliesHtml}
+            if (!post || !post.replies || !post.replies.length) {
+                return;
+            }
+
+            // --- Premium unlock logic ---
+            const freeUnlocked = window.LetItOutUtils.getFreeUnlockedPosts();
+            const paidUnlocked = window.LetItOutUtils.getPaidUnlockedPosts();
+            const isFreeUnlocked = freeUnlocked.includes(postId);
+            const isPaidUnlocked = paidUnlocked.includes(postId);
+            const freeUnlocksLeft = window.LetItOutUtils.getFreeUnlocksLeft();
+
+            console.log('Unlock logic debug:', {
+                postId,
+                freeUnlocked,
+                paidUnlocked,
+                isFreeUnlocked,
+                isPaidUnlocked,
+                freeUnlocksLeft,
+                freeUnlockedLength: freeUnlocked.length
+            });
+
+            // Check unlock status
+            if (isFreeUnlocked || isPaidUnlocked) {
+                console.log('Post already unlocked, continuing...');
+                // Already unlocked, continue to show replies
+            } else if (freeUnlocked.length < 3) {
+                console.log('Adding free unlock for post:', postId);
+                window.LetItOutUtils.addFreeUnlockedPost(postId);
+                this.showFreeUnlockBanner(2 - freeUnlocked.length);
+            } else {
+                console.log('Showing paywall for post:', postId);
+                this.showPaywallModal(postId);
+                return;
+            }
+
+            // Mark replies as read
+            const unreadReplies = post.replies.filter(r => !r.viewed);
+            if (unreadReplies.length > 0) {
+                await window.PostService.markRepliesAsRead(postId);
+            }
+
+            // Format timestamps and prepare HTML
+            let postDate = post.timestamp?.toDate?.() || new Date(post.timestamp);
+            const postTimestamp = !isNaN(postDate) ? postDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+
+            // Render emotion tags
+            let emotionsHtml = '';
+            if (Array.isArray(post.emotions) && post.emotions.length) {
+                emotionsHtml = `<div class="post-emotions">${post.emotions.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
+            } else if (post.emotion && typeof post.emotion === 'string') {
+                const emotionArr = post.emotion.includes(',') ? post.emotion.split(',').map(e => e.trim()) : [post.emotion];
+                emotionsHtml = `<div class="post-emotions">${emotionArr.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
+            }
+
+            // Render replies
+            let repliesHtml = '';
+            post.replies.forEach(reply => {
+                let replyDate = reply.timestamp?.toDate?.() || new Date(reply.timestamp);
+                const replyTimestamp = !isNaN(replyDate) ? replyDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+                repliesHtml += `
+                    <div class="reply-card">
+                        <div class="reply-content">${reply.content}</div>
+                        <div class="reply-timestamp">${replyTimestamp}</div>
+                    </div>
+                `;
+            });
+
+            // Update modal content
+            const modalContent = modal.querySelector('.letitout-my-posts-modal');
+            if (!modalContent) {
+                throw new Error('Modal content container not found');
+            }
+
+            modalContent.innerHTML = `
+                <button class="letitout-my-posts-close">&times;</button>
+                <button class="back-to-posts-btn">← My Posts</button>
+                <div class="letitout-my-posts-title">Messages</div>
+                <div class="letitout-my-posts-content">
+                    <div class="original-post-card">
+                        ${emotionsHtml}
+                        <div class="original-post-message">${post.content}</div>
+                        <div class="original-post-timestamp">${postTimestamp}</div>
+                    </div>
+                    <div class="replies-section">
+                        <div class="replies-header">${post.replies.length} Message${post.replies.length > 1 ? 's' : ''}</div>
+                        <div class="replies-list">
+                            ${repliesHtml}
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        
-        // Add event listeners
-        modal.querySelector('.letitout-my-posts-close').onclick = () => this.closeMyPostsModal();
-        modal.querySelector('.back-to-posts-btn').onclick = () => {
-            this.openMyPostsModal();
-        };
-        
-        // Update notification dot since replies are now read
-        const notificationDot = modal.querySelector('.my-posts-notification-dot');
-        if (notificationDot) {
-            notificationDot.style.display = 'none';
+            `;
+
+            // Bind event listeners
+            const closeBtn = modalContent.querySelector('.letitout-my-posts-close');
+            const backBtn = modalContent.querySelector('.back-to-posts-btn');
+            
+            if (closeBtn) {
+                closeBtn.onclick = () => this.closeMyPostsModal();
+            }
+            
+            if (backBtn) {
+                backBtn.onclick = () => this.openMyPostsModal();
+            }
+
+            // Update notification dot
+            const notificationDot = modal.querySelector('.my-posts-notification-dot');
+            if (notificationDot) {
+                notificationDot.style.display = 'none';
+            }
+
+        } catch (error) {
+            console.error('Error in showRepliesView:', error);
+            window.LetItOutUtils.showError('Something went wrong. Please try again.');
         }
+    }
+
+    showFreeUnlockBanner(left) {
+        const banner = document.createElement('div');
+        banner.className = 'free-unlock-banner';
+        banner.innerHTML = `
+            You've unlocked replies for this post! You have <b>${left}</b> free reply view${left === 1 ? '' : 's'} left.
+            <button class="close-btn" style="position: absolute; right: 1.2rem; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.2rem; color: #c10016; cursor: pointer; padding: 0.5rem; line-height: 1;">&times;</button>
+        `;
+        const modalContent = document.querySelector('.letitout-my-posts-modal');
+        if (modalContent) {
+            modalContent.prepend(banner);
+            
+            // Add close functionality
+            const closeBtn = banner.querySelector('.close-btn');
+            if (closeBtn) {
+                closeBtn.onclick = () => {
+                    banner.style.opacity = '0';
+                    banner.style.transform = 'translateY(-20px)';
+                    setTimeout(() => banner.remove(), 300);
+                };
+            }
+        }
+    }
+
+    showPaywallModal(postId) {
+        // Always close the My Posts modal if open
+        if (typeof this.closeMyPostsModal === 'function') {
+            this.closeMyPostsModal();
+        }
+
+        // Remove any existing paywall modal
+        const existing = document.querySelector('.paywall-modal-overlay');
+        if (existing) {
+            existing.remove();
+        }
+
+        const overlay = document.createElement('div');
+        overlay.className = 'paywall-modal-overlay';
+        
+        const modalDiv = document.createElement('div');
+        modalDiv.className = 'paywall-modal';
+        modalDiv.innerHTML = `
+            <div class="paywall-modal-title">You've received more love on this post.</div>
+            <div class="paywall-modal-subtitle">To read the replies:</div>
+            <div class="paywall-modal-price">$4.99 → Unlock replies for this post</div>
+            <button class="paywall-unlock-btn">Unlock This Post</button>
+            <div class="paywall-modal-info">Unlock replies for this post — $4.99<br>Unlocks all replies on just this post. One-time purchase.</div>
+            <button class="paywall-cancel-btn">Maybe Later</button>
+        `;
+
+        overlay.appendChild(modalDiv);
+        document.body.appendChild(overlay);
+        
+        // Add visible class after a brief delay for animation
+        setTimeout(() => {
+            overlay.classList.add('visible');
+        }, 10);
+
+        // Cancel button
+        modalDiv.querySelector('.paywall-cancel-btn').onclick = () => {
+            overlay.classList.remove('visible');
+            setTimeout(() => overlay.remove(), 300);
+        };
+
+        // Unlock button
+        modalDiv.querySelector('.paywall-unlock-btn').onclick = async () => {
+            try {
+                const stripePublicKey = 'pk_test_51RaP4RQ1hjqBwoa0ZnOuoRygvmNsfrRQmGG5wXIjcVhyKebi1CFfcG00pIQCceYu8pqlzFhAuJeNGz2dw5wlAcbD00wooUWDOR';
+                const stripe = Stripe(stripePublicKey);
+                const priceId = 'price_XXXXXXXXXXXXXX'; // Replace with your test price ID
+                await stripe.redirectToCheckout({
+                    lineItems: [{ price: priceId, quantity: 1 }],
+                    mode: 'payment',
+                    successUrl: window.location.origin + window.location.pathname + `?unlocked=${postId}`,
+                    cancelUrl: window.location.origin + window.location.pathname,
+                });
+            } catch (error) {
+                window.LetItOutUtils.showError('Payment error. Please try again.');
+            }
+        };
     }
 
     openEmotionModal() {

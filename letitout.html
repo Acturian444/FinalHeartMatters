@@ -303,24 +303,30 @@
     </footer>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js" defer></script>
 
     <!-- Application Scripts -->
-    <script src="js/config/firebase-config.js?v=2"></script>
-    <script src="js/firebase.js?v=2"></script>
-    <script src="js/localId.js"></script>
-    <script src="js/utils.js?v=2"></script>
-    <script src="js/services/post-service.js?v=3"></script>
-    <script src="js/components/post-card.js?v=8"></script>
-    <script src="js/postForm.js?v=2"></script>
-    <script src="js/wallFeed.js?v=2"></script>
+    <script src="js/config/firebase-config.js?v=2" defer></script>
+    <script src="js/localId.js?v=2" defer></script>
+    <script src="js/utils.js?v=3"></script>
+    <script src="js/firebase.js?v=2" defer></script>
+    <script src="js/services/post-service.js?v=2" defer></script>
+    <script src="js/components/post-card.js?v=2" defer></script>
+    <script src="js/postForm.js?v=3" defer></script>
+    <script src="js/wallFeed.js?v=2" defer></script>
     
     <!-- Test Script -->
     <!-- <script src="js/test-setup.js"></script> -->
-    <script>
+    <script defer>
     document.addEventListener('DOMContentLoaded', function() {
+        // Ensure utils are initialized before using them
+        if (!window.LetItOutUtils) {
+            console.error('LetItOutUtils not initialized');
+            return;
+        }
+
         const writeTab = document.getElementById('write-tab');
         const wallTab = document.getElementById('wall-tab');
         const tabContent = document.getElementById('letitout-tab-content');
@@ -363,6 +369,11 @@
                 localStorage.setItem('letItOutIntroShown', 'true');
                 document.body.style.overflow = '';
             });
+        }
+
+        // Check for unlocked posts from Stripe success
+        if (window.LetItOutUtils && window.LetItOutUtils.checkForUnlockedPosts) {
+            window.LetItOutUtils.checkForUnlockedPosts();
         }
     });
     </script>
