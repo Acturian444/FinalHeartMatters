@@ -148,12 +148,10 @@ class PostService {
             const post = await this.getPost(postId);
             if (!post.replies) return;
 
-            const updatedReplies = post.replies.map(reply => {
-                if (reply.anonymousId === window.firebaseUserId) {
-                    return { ...reply, read: true };
-                }
-                return reply;
-            });
+            const updatedReplies = post.replies.map(reply => ({
+                ...reply,
+                viewed: true
+            }));
 
             await this.collection.doc(postId).update({
                 replies: updatedReplies

@@ -533,8 +533,7 @@ class PostForm {
             <button class="letitout-my-posts-close">&times;</button>
             <div class="letitout-my-posts-title">${localId}</div>
             <div class="letitout-my-posts-tabs">
-              <button class="my-posts-tab active">My Posts</button>
-              <button class="inbox-tab">Inbox <span class="inbox-badge" style="display:none;"></span></button>
+              <button class="my-posts-tab active">My Posts <span class="my-posts-notification-dot" style="display:none;"></span></button>
             </div>
             <div class="letitout-my-posts-content"></div>
           </div>
@@ -542,22 +541,8 @@ class PostForm {
         document.body.appendChild(modal);
         // Close logic
         modal.querySelector('.letitout-my-posts-close').onclick = () => this.closeMyPostsModal();
-        // Tab logic
-        const myPostsTab = modal.querySelector('.my-posts-tab');
-        const inboxTab = modal.querySelector('.inbox-tab');
-        const content = modal.querySelector('.letitout-my-posts-content');
-        myPostsTab.onclick = () => {
-            myPostsTab.classList.add('active');
-            inboxTab.classList.remove('active');
-            this.renderMyPosts(content, modal);
-        };
-        inboxTab.onclick = () => {
-            inboxTab.classList.add('active');
-            myPostsTab.classList.remove('active');
-            this.renderInbox(content);
-        };
         // Render default
-        this.renderMyPosts(content, modal);
+        this.renderMyPosts(modal.querySelector('.letitout-my-posts-content'), modal);
     }
     closeMyPostsModal() {
         const modal = document.querySelector('.letitout-my-posts-modal-overlay');
@@ -567,13 +552,19 @@ class PostForm {
         const localId = window.LocalIdManager.getId();
         const posts = await window.PostService.getPostsByUser(localId, 'localId');
         let html = '';
-        let inboxCount = 0;
+        let hasUnreadReplies = false;
+        
         for (const post of posts) {
             let replyLine = '';
             if (post.replies && post.replies.length) {
-                inboxCount += post.replies.filter(r => !r.viewed).length;
-                replyLine = `<div class=\"my-post-reply-line\">${post.replies.length} reply received – <span class=\"view-in-inbox\">View in Inbox</span></div>`;
+                const unreadReplies = post.replies.filter(r => !r.viewed).length;
+                if (unreadReplies > 0) {
+                    hasUnreadReplies = true;
+                }
+                const replyWord = post.replies.length === 1 ? 'reply' : 'replies';
+                replyLine = `<div class="my-post-reply-line">${post.replies.length} ${replyWord} received – <span class="view-messages" data-post-id="${post.id}">View Messages</span></div>`;
             }
+            
             // Format timestamp
             let date;
             if (post.timestamp && typeof post.timestamp.toDate === 'function') {
@@ -582,29 +573,41 @@ class PostForm {
                 date = new Date(post.timestamp);
             }
             const timestamp = !isNaN(date) ? date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+            
             // Render emotion tags if present, using WallFeed markup
             let emotionsHtml = '';
             if (Array.isArray(post.emotions) && post.emotions.length) {
-                emotionsHtml = `<div class=\"post-emotions\">${post.emotions.map(e => `<span class=\"emotion-tag\">${e}</span>`).join(' ')}</div>`;
+                emotionsHtml = `<div class="post-emotions">${post.emotions.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
             } else if (post.emotion && typeof post.emotion === 'string') {
                 // If emotion is a comma-separated string, split and render each as a tag
                 const emotionArr = post.emotion.includes(',') ? post.emotion.split(',').map(e => e.trim()) : [post.emotion];
-                emotionsHtml = `<div class=\"post-emotions\">${emotionArr.map(e => `<span class=\"emotion-tag\">${e}</span>`).join(' ')}</div>`;
+                emotionsHtml = `<div class="post-emotions">${emotionArr.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
             }
+            
             // Generate a unique id for the post card
             const postId = post.id || Math.random().toString(36).substr(2, 9);
-            html += `<div class=\"my-post-card\" data-post-id=\"${postId}\">\n                ${emotionsHtml}\n                <div class=\"my-post-message\" data-expanded=\"false\">${post.content}</div>\n                <a href=\"#\" class=\"my-post-read-more\" style=\"display:none;\">Read more</a>\n                <div class=\"my-post-timestamp\" style=\"font-size:0.97rem;color:#888;margin-top:0.3rem;font-weight:400;letter-spacing:0.01em;line-height:1.4;\">${timestamp}</div>\n                ${replyLine}\n            </div>`;
+            html += `<div class="my-post-card" data-post-id="${postId}">
+                ${emotionsHtml}
+                <div class="my-post-message" data-expanded="false">${post.content}</div>
+                <a href="#" class="my-post-read-more" style="display:none;">Read more</a>
+                <div class="my-post-timestamp" style="font-size:0.97rem;color:#888;margin-top:0.3rem;font-weight:400;letter-spacing:0.01em;line-height:1.4;">${timestamp}</div>
+                ${replyLine}
+            </div>`;
         }
+        
         if (!posts.length) {
-            html = '<div class=\"empty-state\"><div class=\"inbox-empty-state-title\">No posts yet.</div><div class=\"inbox-empty-state-text\">These are the things you let out.</div></div>';
+            html = '<div class="empty-state"><div class="inbox-empty-state-title">No posts yet.</div><div class="inbox-empty-state-text">These are the things you let out.</div></div>';
         }
+        
         container.innerHTML = html;
+        
         // After rendering, apply truncation and expand/collapse logic
         const cards = container.querySelectorAll('.my-post-card');
         cards.forEach(card => {
             const message = card.querySelector('.my-post-message');
             const readMore = card.querySelector('.my-post-read-more');
             if (!message) return;
+            
             // Create a temporary element to measure line count
             const temp = document.createElement('div');
             temp.style.position = 'absolute';
@@ -616,10 +619,12 @@ class PostForm {
             temp.style.whiteSpace = 'pre-line';
             temp.textContent = message.textContent;
             document.body.appendChild(temp);
+            
             // Estimate line count
             const lineHeight = parseFloat(window.getComputedStyle(message).lineHeight);
             const maxLines = 3;
             const maxHeight = lineHeight * maxLines;
+            
             if (temp.offsetHeight > maxHeight) {
                 // Truncate
                 message.style.display = '-webkit-box';
@@ -631,6 +636,7 @@ class PostForm {
                 message.setAttribute('data-expanded', 'false');
             }
             document.body.removeChild(temp);
+            
             // Expand/collapse logic
             readMore?.addEventListener('click', e => {
                 e.preventDefault();
@@ -648,53 +654,115 @@ class PostForm {
                 }
             });
         });
-        // Show badge if new replies
+        
+        // Show notification dot if unread replies
         if (modal) {
-            const badge = modal.querySelector('.inbox-badge');
-            if (badge) {
-                if (inboxCount > 0) {
-                    badge.textContent = '🔴 ' + inboxCount;
-                    badge.style.display = 'inline-block';
+            const notificationDot = modal.querySelector('.my-posts-notification-dot');
+            if (notificationDot) {
+                if (hasUnreadReplies) {
+                    notificationDot.style.display = 'inline-block';
                 } else {
-                    badge.style.display = 'none';
+                    notificationDot.style.display = 'none';
                 }
             }
         }
-        // Add click handler for "View in Inbox"
-        const viewInInboxLinks = container.querySelectorAll('.view-in-inbox');
-        if (viewInInboxLinks.length && modal) {
-            const inboxTab = modal.querySelector('.inbox-tab');
-            const myPostsTab = modal.querySelector('.my-posts-tab');
-            const content = modal.querySelector('.letitout-my-posts-content');
-            viewInInboxLinks.forEach(link => {
-                link.addEventListener('click', e => {
-                    e.preventDefault();
-                    if (inboxTab && myPostsTab && content) {
-                        inboxTab.classList.add('active');
-                        myPostsTab.classList.remove('active');
-                        this.renderInbox(content);
-                    }
-                });
+        
+        // Add click handler for "View Messages"
+        const viewMessagesLinks = container.querySelectorAll('.view-messages');
+        viewMessagesLinks.forEach(link => {
+            link.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const postId = link.getAttribute('data-post-id');
+                await this.showRepliesView(container, modal, postId);
             });
-        }
+        });
     }
 
-    async renderInbox(container) {
-        const isPremiumUser = localStorage.getItem('premium') === 'true';
+    async showRepliesView(container, modal, postId) {
         const localId = window.LocalIdManager.getId();
         const posts = await window.PostService.getPostsByUser(localId, 'localId');
-        // Only show posts with replies
-        const postsWithReplies = posts.filter(post => post.replies && post.replies.length);
-        if (!postsWithReplies.length) {
-            container.innerHTML = '<div class="inbox-empty-state"><div class="inbox-empty-state-title">No replies yet</div><div class="inbox-empty-state-text">When someone shares love on your post, it will appear here.</div></div>';
+        const post = posts.find(p => p.id === postId);
+        
+        if (!post || !post.replies || !post.replies.length) {
             return;
         }
-        container.innerHTML = '';
-        postsWithReplies.forEach(post => {
-            // Pass isPremiumUser to PostCard
-            const postCardEl = window.PostCard.create({ ...post, isInbox: true, isPremiumUser });
-            container.appendChild(postCardEl);
+        
+        // Mark replies as read
+        const unreadReplies = post.replies.filter(r => !r.viewed);
+        if (unreadReplies.length > 0) {
+            // Update the post in Firestore to mark replies as read
+            await window.PostService.markRepliesAsRead(postId);
+        }
+        
+        // Format the original post timestamp
+        let postDate;
+        if (post.timestamp && typeof post.timestamp.toDate === 'function') {
+            postDate = post.timestamp.toDate();
+        } else {
+            postDate = new Date(post.timestamp);
+        }
+        const postTimestamp = !isNaN(postDate) ? postDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+        
+        // Render emotion tags for the original post
+        let emotionsHtml = '';
+        if (Array.isArray(post.emotions) && post.emotions.length) {
+            emotionsHtml = `<div class="post-emotions">${post.emotions.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
+        } else if (post.emotion && typeof post.emotion === 'string') {
+            const emotionArr = post.emotion.includes(',') ? post.emotion.split(',').map(e => e.trim()) : [post.emotion];
+            emotionsHtml = `<div class="post-emotions">${emotionArr.map(e => `<span class="emotion-tag">${e}</span>`).join(' ')}</div>`;
+        }
+        
+        // Create the replies view HTML
+        let repliesHtml = '';
+        post.replies.forEach(reply => {
+            let replyDate;
+            if (reply.timestamp && typeof reply.timestamp.toDate === 'function') {
+                replyDate = reply.timestamp.toDate();
+            } else {
+                replyDate = new Date(reply.timestamp);
+            }
+            const replyTimestamp = !isNaN(replyDate) ? replyDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+            
+            repliesHtml += `
+                <div class="reply-card">
+                    <div class="reply-content">${reply.content}</div>
+                    <div class="reply-timestamp">${replyTimestamp}</div>
+                </div>
+            `;
         });
+        
+        // Update the modal content
+        const modalContent = modal.querySelector('.letitout-my-posts-modal');
+        modalContent.innerHTML = `
+            <button class="letitout-my-posts-close">&times;</button>
+            <button class="back-to-posts-btn">← My Posts</button>
+            <div class="letitout-my-posts-title">Messages</div>
+            <div class="letitout-my-posts-content">
+                <div class="original-post-card">
+                    ${emotionsHtml}
+                    <div class="original-post-message">${post.content}</div>
+                    <div class="original-post-timestamp">${postTimestamp}</div>
+                </div>
+                <div class="replies-section">
+                    <div class="replies-header">${post.replies.length} Message${post.replies.length > 1 ? 's' : ''}</div>
+                    <div class="replies-list">
+                        ${repliesHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add event listeners
+        modal.querySelector('.letitout-my-posts-close').onclick = () => this.closeMyPostsModal();
+        modal.querySelector('.back-to-posts-btn').onclick = () => {
+            this.openMyPostsModal();
+        };
+        
+        // Update notification dot since replies are now read
+        const notificationDot = modal.querySelector('.my-posts-notification-dot');
+        if (notificationDot) {
+            notificationDot.style.display = 'none';
+        }
     }
 
     openEmotionModal() {

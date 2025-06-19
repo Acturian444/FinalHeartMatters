@@ -224,6 +224,8 @@ class PostCard {
         if (!isOwnPost) {
             const shareLoveBtn = document.createElement('button');
             shareLoveBtn.className = 'share-love-btn';
+            shareLoveBtn.setAttribute('type', 'button');
+            shareLoveBtn.setAttribute('tabindex', '0');
             shareLoveBtn.innerHTML = `
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="5" width="18" height="14" rx="3"/>
@@ -231,10 +233,22 @@ class PostCard {
                 </svg>
                 <span class="share-love-text">Send Love</span>
             `;
-            if (this.checkIfUserSentLove(post.id)) {
+            const sentLove = this.checkIfUserSentLove(post.id);
+            if (sentLove) {
                 shareLoveBtn.classList.add('sent');
                 shareLoveBtn.innerHTML = 'Love Sent';
                 shareLoveBtn.disabled = true;
+                shareLoveBtn.style.background = '#f5f5f5';
+                shareLoveBtn.style.color = '#888';
+                shareLoveBtn.style.cursor = 'not-allowed';
+                shareLoveBtn.style.boxShadow = 'none';
+                // Tooltip for desktop
+                shareLoveBtn.setAttribute('title', "You've already sent a message to this post");
+                // Label for mobile
+                const mobileLabel = document.createElement('div');
+                mobileLabel.className = 'share-love-mobile-label';
+                mobileLabel.textContent = "You've already sent a message to this post";
+                shareLoveBtn.after(mobileLabel);
             } else {
                 shareLoveBtn.onclick = () => this.openReplyModal(post.id);
             }
@@ -391,7 +405,7 @@ class PostCard {
     static async openReplyModal(postId) {
         // Check if user has already sent love
         if (this.checkIfUserSentLove(postId)) {
-            this.showSentMessage(postId);
+            // Do nothing: button should be disabled and only show tooltip/label
             return;
         }
 
@@ -477,7 +491,7 @@ class PostCard {
     static showSuccessMessage() {
         const message = document.createElement('div');
         message.className = 'reply-success-message';
-        message.textContent = 'Your love was sent anonymously.';
+        message.textContent = 'Your love was sent anonymously. You won\'t be able to see it again.';
         document.body.appendChild(message);
         setTimeout(() => message.classList.add('visible'), 10);
         setTimeout(() => {
