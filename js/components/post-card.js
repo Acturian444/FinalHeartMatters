@@ -491,7 +491,7 @@ class PostCard {
     static showSuccessMessage() {
         const message = document.createElement('div');
         message.className = 'reply-success-message';
-        message.textContent = 'Your love was sent anonymously. You won\'t be able to see it again.';
+        message.innerHTML = 'Your love was sent anonymously.<br>You won\'t be able to see it again.';
         document.body.appendChild(message);
         setTimeout(() => message.classList.add('visible'), 10);
         setTimeout(() => {

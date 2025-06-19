@@ -1525,46 +1525,14 @@
 }
 
 /* Success Message */
-.reply-success-message {
-    position: fixed;
-    top: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff0f2;
-    color: #c10016;
-    border: 1.5px solid #c10016;
-    border-radius: 1rem;
-    padding: 1.1rem 2.2rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.08rem;
-    font-weight: 600;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    box-shadow: 0 4px 24px rgba(193,0,22,0.10);
-    transition: opacity 0.3s;
-}
+/* Reply success message styles moved to unified section above */
 .reply-success-message.visible {
     opacity: 1;
     pointer-events: auto;
 }
 
 /* Sent Message View */
-.sent-message-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    z-index: 1002;
-    max-width: 90%;
-    width: 400px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+/* Sent message modal styles moved to unified section above */
 
 .sent-message-modal.visible {
     opacity: 1;
@@ -3095,48 +3063,47 @@
 .paywall-modal {
     background: white;
     border-radius: 1.5rem;
-    padding: 2rem;
+    padding: 3rem;
     max-width: 90%;
-    width: 400px;
+    width: 480px;
     text-align: center;
     transform: translateY(20px);
     transition: transform 0.3s ease;
-    /* Debug: ensure it's visible */
     position: relative;
     z-index: 3001;
 }
 
 .paywall-modal-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #c10016;
-    margin-bottom: 1.2rem;
+    color: #000 !important;
+    margin-bottom: 1.8rem;
 }
 
 .paywall-modal-subtitle {
     font-size: 1.08rem;
     color: #222;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .paywall-modal-price {
     font-size: 1.5rem;
     font-weight: 700;
     color: #c10016;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.8rem;
 }
 
 .paywall-unlock-btn {
     background: #c10016;
     color: white;
     border: none;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2rem;
     border-radius: 8px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 1.1rem;
     cursor: pointer;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     width: 100%;
     transition: background-color 0.2s ease;
 }
@@ -3148,12 +3115,13 @@
 .paywall-modal-info {
     font-size: 0.98rem;
     color: #666;
-    margin-top: 0.7rem;
-    line-height: 1.4;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
 }
 
 .paywall-cancel-btn {
-    margin-top: 1.5rem;
+    margin-top: 1.8rem;
     background: none;
     border: none;
     color: #888;
@@ -3167,21 +3135,7 @@
     color: #666;
 }
 
-.success-message {
-    position: fixed;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff0f2;
-    color: #c10016;
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(193,0,22,0.15);
-    z-index: 9999;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    animation: slideDown 0.3s ease;
-}
+/* Success message styles moved to unified section above */
 
 @keyframes slideDown {
     from {
@@ -3238,4 +3192,52 @@
 .view-messages-btn:focus {
     outline: none;
     text-decoration: underline;
+}
+
+/* Success Message Styles */
+.success-message,
+.reply-success-message,
+.sent-message-modal {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff0f2;
+    color: #c10016;
+    padding: 1.2rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(193,0,22,0.15);
+    z-index: 9999;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    animation: slideDown 0.3s ease;
+    border: none;
+    width: calc(100% - 2rem);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -20px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .success-message,
+    .reply-success-message,
+    .sent-message-modal {
+        width: calc(100% - 2rem);
+        max-width: none;
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+    }
 }

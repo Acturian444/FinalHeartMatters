@@ -869,11 +869,11 @@ class PostForm {
         const modalDiv = document.createElement('div');
         modalDiv.className = 'paywall-modal';
         modalDiv.innerHTML = `
-            <div class="paywall-modal-title">You've received more love on this post.</div>
+            <div class="paywall-modal-title">They replied to your post.<br>See what they said.</div>
             <div class="paywall-modal-subtitle">To read the replies:</div>
-            <div class="paywall-modal-price">$4.99 → Unlock replies for this post</div>
-            <button class="paywall-unlock-btn">Unlock This Post</button>
-            <div class="paywall-modal-info">Unlock replies for this post — $4.99<br>Unlocks all replies on just this post. One-time purchase.</div>
+            <div class="paywall-modal-price">$4.99 – Unlock This Post</div>
+            <button class="paywall-unlock-btn">View Replies</button>
+            <div class="paywall-modal-info">This one-time purchase unlocks all replies to this post forever.</div>
             <button class="paywall-cancel-btn">Maybe Later</button>
         `;
 
@@ -896,15 +896,38 @@ class PostForm {
             try {
                 const stripePublicKey = 'pk_test_51RaP4RQ1hjqBwoa0ZnOuoRygvmNsfrRQmGG5wXIjcVhyKebi1CFfcG00pIQCceYu8pqlzFhAuJeNGz2dw5wlAcbD00wooUWDOR';
                 const stripe = Stripe(stripePublicKey);
-                const priceId = 'price_XXXXXXXXXXXXXX'; // Replace with your test price ID
-                await stripe.redirectToCheckout({
-                    lineItems: [{ price: priceId, quantity: 1 }],
-                    mode: 'payment',
-                    successUrl: window.location.origin + window.location.pathname + `?unlocked=${postId}`,
-                    cancelUrl: window.location.origin + window.location.pathname,
+                
+                // Create a Checkout Session
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        postId: postId,
+                        priceAmount: 499, // $4.99 in cents
+                        successUrl: window.location.origin + window.location.pathname + `?unlocked=${postId}`,
+                        cancelUrl: window.location.origin + window.location.pathname,
+                    }),
                 });
+
+                const session = await response.json();
+
+                if (session.error) {
+                    throw new Error(session.error);
+                }
+
+                // Redirect to Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
             } catch (error) {
-                window.LetItOutUtils.showError('Payment error. Please try again.');
+                console.error('Payment error:', error);
+                window.LetItOutUtils.showError('Payment setup failed. Please try again.');
             }
         };
     }
