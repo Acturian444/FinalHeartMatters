@@ -2736,7 +2736,7 @@
   font-weight: 700;
   color: #222;
   text-align: center;
-  margin-bottom: 1.3rem;
+  margin-bottom: 0.5rem;
   margin-top: 0.1rem;
   letter-spacing: 0.01em;
 }
@@ -2850,4 +2850,19 @@
 .my-post-read-more:hover {
   color: #7a0010;
   text-decoration: none;
+}
+
+/* Remove hover/focus effect for inbox reply card (soft red border) */
+.post-card[style*='f8bfc4']:hover,
+.post-card[style*='f8bfc4']:focus {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    transform: none !important;
+    border-color: #f8bfc4 !important;
+}
+
+.letitout-my-posts-content {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
 }

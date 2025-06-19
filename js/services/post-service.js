@@ -86,6 +86,22 @@ class PostService {
             });
     }
 
+    async getPost(postId) {
+        try {
+            const doc = await this.collection.doc(postId).get();
+            if (!doc.exists) {
+                throw new Error('Post not found');
+            }
+            return {
+                id: doc.id,
+                ...doc.data()
+            };
+        } catch (error) {
+            console.error('Error getting post:', error);
+            throw error;
+        }
+    }
+
     async addReply(postId, reply) {
         try {
             const userReply = await this.getUserReply(postId);
@@ -94,13 +110,17 @@ class PostService {
             }
 
             const replyData = {
-                content: reply,
+                content: (reply.replyText || reply.content || '').trim(),
                 timestamp: new Date(),
                 anonymousId: window.firebaseUserId,
                 read: false
             };
 
-            await this.db.collection('posts').doc(postId).update({
+            if (!replyData.content) {
+                throw new Error('Reply content is empty.');
+            }
+
+            await this.collection.doc(postId).update({
                 replies: firebase.firestore.FieldValue.arrayUnion(replyData)
             });
 
@@ -135,7 +155,7 @@ class PostService {
                 return reply;
             });
 
-            await this.db.collection('posts').doc(postId).update({
+            await this.collection.doc(postId).update({
                 replies: updatedReplies
             });
         } catch (error) {

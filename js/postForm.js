@@ -660,6 +660,23 @@ class PostForm {
                 }
             }
         }
+        // Add click handler for "View in Inbox"
+        const viewInInboxLinks = container.querySelectorAll('.view-in-inbox');
+        if (viewInInboxLinks.length && modal) {
+            const inboxTab = modal.querySelector('.inbox-tab');
+            const myPostsTab = modal.querySelector('.my-posts-tab');
+            const content = modal.querySelector('.letitout-my-posts-content');
+            viewInInboxLinks.forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    if (inboxTab && myPostsTab && content) {
+                        inboxTab.classList.add('active');
+                        myPostsTab.classList.remove('active');
+                        this.renderInbox(content);
+                    }
+                });
+            });
+        }
     }
 
     async renderInbox(container) {
@@ -675,8 +692,8 @@ class PostForm {
         container.innerHTML = '';
         postsWithReplies.forEach(post => {
             // Pass isPremiumUser to PostCard
-            const postCard = new window.PostCard({ post, isInbox: true, isPremiumUser });
-            container.appendChild(postCard.renderToElement());
+            const postCardEl = window.PostCard.create({ ...post, isInbox: true, isPremiumUser });
+            container.appendChild(postCardEl);
         });
     }
 

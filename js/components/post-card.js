@@ -78,7 +78,36 @@ class PostCard {
         // Emotion tags (one per pill, small)
         const emotionTags = document.createElement('div');
         emotionTags.className = 'post-emotion-tags';
-        if (Array.isArray(post.emotions) && post.emotions.length > 0) {
+        if (post.isInbox) {
+            // Replace with Love Received pill styled like emotion tags
+            const lovePill = document.createElement('span');
+            lovePill.className = 'love-received-pill';
+            lovePill.innerHTML = '💌 Love Received';
+            emotionTags.appendChild(lovePill);
+            // Style the card for inbox reply to match .my-post-card/post-card
+            card.style.background = '#fff';
+            card.style.border = '1.5px solid #f8bfc4';
+            card.style.maxWidth = '';
+            card.style.width = '';
+            card.style.minWidth = '';
+            card.style.flex = '';
+            // Align content to left
+            contentArea.style.alignItems = 'flex-start';
+            contentArea.style.textAlign = 'left';
+            // Love Received pill: match emotion tag style
+            lovePill.style.background = '#ffe5e9';
+            lovePill.style.color = '#c10016';
+            lovePill.style.borderRadius = '999px';
+            lovePill.style.padding = '0.13em 0.9em';
+            lovePill.style.fontSize = '0.92em';
+            lovePill.style.fontWeight = '500';
+            lovePill.style.marginBottom = '0.7em';
+            lovePill.style.marginRight = '0.3em';
+            lovePill.style.display = 'inline-block';
+            lovePill.style.boxShadow = 'none';
+            lovePill.style.border = 'none';
+            card.style.transition = 'none';
+        } else if (Array.isArray(post.emotions) && post.emotions.length > 0) {
             post.emotions.forEach(emotion => {
                 // If emotion is a comma-separated string, split and render each
                 emotion.split(',').map(e => e.trim()).forEach(e => {
@@ -103,7 +132,26 @@ class PostCard {
         }
         contentArea.appendChild(emotionTags);
         contentArea.appendChild(content);
-        contentArea.appendChild(cityLine);
+        if (post.isInbox) {
+            // Show only the reply timestamp in the desired format
+            const replyTimestamp = post.replies && post.replies.length > 0 && post.replies[0].timestamp
+                ? new Date(post.replies[0].timestamp.seconds ? post.replies[0].timestamp.seconds * 1000 : post.replies[0].timestamp).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })
+                : '';
+            if (replyTimestamp) {
+                const replyTimeLine = document.createElement('div');
+                replyTimeLine.className = 'reply-timestamp-line';
+                replyTimeLine.textContent = replyTimestamp;
+                replyTimeLine.style.fontSize = '0.97rem';
+                replyTimeLine.style.color = '#888';
+                replyTimeLine.style.marginTop = '0.3rem';
+                replyTimeLine.style.fontWeight = '400';
+                replyTimeLine.style.letterSpacing = '0.01em';
+                replyTimeLine.style.lineHeight = '1.4';
+                contentArea.appendChild(replyTimeLine);
+            }
+        } else {
+            contentArea.appendChild(cityLine);
+        }
 
         const meta = document.createElement('div');
         meta.className = 'post-meta';
@@ -112,68 +160,64 @@ class PostCard {
         actions.className = 'post-actions';
 
         // Felt It Button
-        const feltItBtn = document.createElement('button');
-        feltItBtn.className = 'felt-it-btn';
-        feltItBtn.innerHTML = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-            </svg>
-            <span class="felt-it-text">Felt It</span>
-            ${post.feltCount >= 2 ? `<span class="felt-it-count">${post.feltCount}</span>` : ''}
-        `;
+        // Only show on public wall posts (not in inbox)
+        if (!post.isInbox) {
+            const feltItBtn = document.createElement('button');
+            feltItBtn.className = 'felt-it-btn';
+            feltItBtn.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span class="felt-it-text">Felt It</span>
+                ${post.feltCount >= 2 ? `<span class="felt-it-count">${post.feltCount}</span>` : ''}
+            `;
 
-        // Check if user has already felt it
-        const hasFeltIt = this.checkIfUserFeltIt(post.id);
-        if (hasFeltIt) {
-            feltItBtn.classList.add('felt');
-            // Always show 'Felt It', do not change to 'Felt'
-            // feltItBtn.querySelector('.felt-it-text').textContent = 'Felt';
-        }
-
-        feltItBtn.onclick = async () => {
+            // Check if user has already felt it
             const hasFeltIt = this.checkIfUserFeltIt(post.id);
-            const countSpan = feltItBtn.querySelector('.felt-it-count');
-            let currentCount = parseInt(countSpan?.textContent || '0');
             if (hasFeltIt) {
-                // Remove reaction
-                feltItBtn.classList.remove('felt');
-                // Update localStorage
-                let feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
-                feltPosts = feltPosts.filter(pid => pid !== post.id);
-                localStorage.setItem('feltPosts', JSON.stringify(feltPosts));
-                // Update UI
-                if (countSpan) {
-                    const newCount = Math.max(currentCount - 1, 0);
-                    if (newCount < 2) {
-                        countSpan.remove();
-                    } else {
-                        countSpan.textContent = newCount;
-                    }
-                }
-                // Update Firestore
-                await window.PostService.decrementFeltCount(post.id);
-            } else {
-                // Add reaction
                 feltItBtn.classList.add('felt');
-                let feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
-                feltPosts.push(post.id);
-                localStorage.setItem('feltPosts', JSON.stringify(feltPosts));
-                // Update UI
-                if (countSpan) {
-                    const newCount = currentCount + 1;
-                    countSpan.textContent = newCount;
-                } else {
-                    const newCountSpan = document.createElement('span');
-                    newCountSpan.className = 'felt-it-count';
-                    newCountSpan.textContent = '2';
-                    feltItBtn.appendChild(newCountSpan);
-                }
-                await window.PostService.incrementFeltCount(post.id);
             }
-        };
 
-        // Always append Felt It button first
-        actions.appendChild(feltItBtn);
+            feltItBtn.onclick = async () => {
+                const hasFeltIt = this.checkIfUserFeltIt(post.id);
+                const countSpan = feltItBtn.querySelector('.felt-it-count');
+                let currentCount = parseInt(countSpan?.textContent || '0');
+                if (hasFeltIt) {
+                    // Remove reaction
+                    feltItBtn.classList.remove('felt');
+                    let feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
+                    feltPosts = feltPosts.filter(pid => pid !== post.id);
+                    localStorage.setItem('feltPosts', JSON.stringify(feltPosts));
+                    if (countSpan) {
+                        const newCount = Math.max(currentCount - 1, 0);
+                        if (newCount < 2) {
+                            countSpan.remove();
+                        } else {
+                            countSpan.textContent = newCount;
+                        }
+                    }
+                    await window.PostService.decrementFeltCount(post.id);
+                } else {
+                    feltItBtn.classList.add('felt');
+                    let feltPosts = JSON.parse(localStorage.getItem('feltPosts') || '[]');
+                    feltPosts.push(post.id);
+                    localStorage.setItem('feltPosts', JSON.stringify(feltPosts));
+                    if (countSpan) {
+                        const newCount = currentCount + 1;
+                        countSpan.textContent = newCount;
+                    } else {
+                        const newCountSpan = document.createElement('span');
+                        newCountSpan.className = 'felt-it-count';
+                        newCountSpan.textContent = '2';
+                        feltItBtn.appendChild(newCountSpan);
+                    }
+                    await window.PostService.incrementFeltCount(post.id);
+                }
+            };
+
+            // Always append Felt It button first
+            actions.appendChild(feltItBtn);
+        }
 
         // Send Love Button - Only show if not user's own post
         const isOwnPost = post.userId === window.firebaseUserId;
@@ -201,6 +245,95 @@ class PostCard {
         contentArea.appendChild(meta);
 
         card.appendChild(contentArea);
+
+        // Add styles for the Love Received pill
+        if (post.isInbox) {
+            const style = document.createElement('style');
+            style.textContent = `
+                .love-received-pill {
+                    display: inline-block;
+                    background: #ffe5e9;
+                    color: #c10016;
+                    border-radius: 1.2em;
+                    padding: 0.32em 1.1em 0.32em 0.9em;
+                    font-size: 1.01em;
+                    font-weight: 600;
+                    letter-spacing: 0.01em;
+                    margin-bottom: 0.5em;
+                    margin-right: 0.2em;
+                    box-shadow: 0 1px 4px rgba(193,0,22,0.04);
+                    border: none;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        if (post.isInbox) {
+            // Only set border color for distinction, inherit all other styles from .post-card
+            card.style.border = '1.5px solid #f8bfc4';
+
+            // --- Add original post preview and reply message ---
+            while (contentArea.firstChild) contentArea.removeChild(contentArea.firstChild);
+
+            // Love Received pill with no extra top margin or padding
+            emotionTags.style.marginTop = '0';
+            emotionTags.style.paddingTop = '0';
+            emotionTags.style.marginBottom = '1.2em';
+            contentArea.appendChild(emotionTags);
+
+            // You posted: preview
+            const youPostedLine = document.createElement('div');
+            youPostedLine.style.color = '#888';
+            youPostedLine.style.fontSize = '1em';
+            youPostedLine.style.marginBottom = '0.45em';
+            youPostedLine.style.fontWeight = '500';
+            const postPreview = (post.content && post.content.length > 60)
+                ? post.content.slice(0, 60).trim() + '…'
+                : (post.content || '');
+            const youPostedText = document.createElement('span');
+            youPostedText.style.color = '#111';
+            youPostedText.style.fontWeight = '400';
+            youPostedText.textContent = `"${postPreview}"`;
+            youPostedLine.textContent = 'You posted: ';
+            youPostedLine.appendChild(youPostedText);
+            contentArea.appendChild(youPostedLine);
+
+            // Someone replied: message
+            const someoneRepliedLine = document.createElement('div');
+            someoneRepliedLine.style.color = '#888';
+            someoneRepliedLine.style.fontSize = '1em';
+            someoneRepliedLine.style.marginTop = '0.5em';
+            someoneRepliedLine.style.marginBottom = '1.1em';
+            someoneRepliedLine.style.fontWeight = '500';
+            const replyText = (post.replies && post.replies.length > 0 && post.replies[0].content)
+                ? post.replies[0].content : '';
+            const someoneRepliedText = document.createElement('span');
+            someoneRepliedText.style.color = '#111';
+            someoneRepliedText.style.fontWeight = '400';
+            someoneRepliedText.textContent = `"${replyText}"`;
+            someoneRepliedLine.textContent = 'Someone replied: ';
+            someoneRepliedLine.appendChild(someoneRepliedText);
+            contentArea.appendChild(someoneRepliedLine);
+
+            // Timestamp with no extra bottom margin or padding
+            const replyTimestamp = post.replies && post.replies.length > 0 && post.replies[0].timestamp
+                ? new Date(post.replies[0].timestamp.seconds ? post.replies[0].timestamp.seconds * 1000 : post.replies[0].timestamp).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })
+                : '';
+            if (replyTimestamp) {
+                const replyTimeLine = document.createElement('div');
+                replyTimeLine.className = 'reply-timestamp-line';
+                replyTimeLine.textContent = replyTimestamp;
+                replyTimeLine.style.fontSize = '0.97rem';
+                replyTimeLine.style.color = '#888';
+                replyTimeLine.style.marginTop = '0.1rem';
+                replyTimeLine.style.marginBottom = '0';
+                replyTimeLine.style.paddingBottom = '0';
+                replyTimeLine.style.fontWeight = '400';
+                replyTimeLine.style.letterSpacing = '0.01em';
+                replyTimeLine.style.lineHeight = '1.4';
+                contentArea.appendChild(replyTimeLine);
+            }
+        }
 
         return card;
     }
