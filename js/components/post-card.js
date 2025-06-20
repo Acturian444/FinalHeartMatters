@@ -14,6 +14,7 @@ class PostCard {
         optionsMenu.innerHTML = `
             <a href="#" class="copy-link-button">Copy Link</a>
             <a href="#" class="share-post-button">Share</a>
+            <a href="#" class="report-post-button">Report Post</a>
         `;
 
         card.appendChild(moreOptionsButton);

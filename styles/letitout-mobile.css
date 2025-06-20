@@ -19,7 +19,7 @@
     }
 
     .post-card {
-        padding: var(--letitout-spacing-sm);
+        padding: 0.7rem 0.20rem;
     }
 
     .post-content {
@@ -52,7 +52,7 @@
     }
 
     .post-card {
-        padding: var(--letitout-spacing-sm);
+        padding: 0.7rem 0.20rem;
     }
 
     .post-content {

@@ -23,6 +23,7 @@ class WallFeed {
         const moreOptionsButton = e.target.closest('.more-options-button');
         const copyLinkButton = e.target.closest('.copy-link-button');
         const shareButton = e.target.closest('.share-post-button');
+        const reportButton = e.target.closest('.report-post-button');
 
         if (moreOptionsButton) {
             e.preventDefault();
@@ -33,6 +34,9 @@ class WallFeed {
         } else if (shareButton) {
             e.preventDefault();
             this.handleShareClick(shareButton);
+        } else if (reportButton) {
+            e.preventDefault();
+            this.handleReportClick(reportButton);
         }
     }
 
@@ -90,6 +94,116 @@ class WallFeed {
         this.showToast('Creating shareable image...');
         this.generateShareImage(post);
         this.closeAllOptionMenus();
+    }
+
+    handleReportClick(button) {
+        const card = button.closest('.post-card');
+        const postId = card.dataset.postId;
+        const post = this.posts.find(p => p.id === postId);
+
+        if (post) {
+            this.openReportModal(post);
+        } else {
+            console.error('Could not find post to report:', postId);
+            this.showToast('Something went wrong. Could not report post.', 'error');
+        }
+    }
+
+    openReportModal(post) {
+        const modalOverlay = document.getElementById('report-modal-overlay');
+        const modal = document.getElementById('report-modal');
+        const reasonsContainer = document.getElementById('report-reasons');
+        const submitBtn = document.getElementById('report-submit-btn');
+        const closeBtn = document.getElementById('report-modal-close');
+    
+        const reasons = [
+            {
+                title: "Hate Speech",
+                description: "Promotes prejudice or discrimination toward a group."
+            },
+            {
+                title: "Harassment or Bullying",
+                description: "Targets or attacks someone personally."
+            },
+            {
+                title: "Threat of Violence",
+                description: "Expresses or implies harm to others."
+            },
+            {
+                title: "Promoting Self-Harm or Suicide",
+                description: "Encourages or glorifies harm to self."
+            },
+            {
+                title: "Inappropriate or Offensive Content",
+                description: "Sexual, graphic, or unsuitable for this space."
+            },
+            {
+                title: "Spam or Irrelevant",
+                description: "Not genuine or emotionally disruptive to the wall."
+            },
+            {
+                title: "Urgent Mental Health Concern",
+                description: "Flag this if someone may be in immediate danger."
+            }
+        ];
+    
+        reasonsContainer.innerHTML = '';
+        reasons.forEach(reason => {
+            const reasonEl = document.createElement('div');
+            reasonEl.className = 'report-reason';
+            reasonEl.dataset.reason = reason.title;
+            reasonEl.innerHTML = `
+                <strong class="report-reason-title">${reason.title}</strong>
+                <p class="report-reason-description">${reason.description}</p>
+            `;
+            reasonsContainer.appendChild(reasonEl);
+        });
+    
+        modalOverlay.classList.add('visible');
+    
+        let selectedReason = null;
+    
+        const reasonElements = reasonsContainer.querySelectorAll('.report-reason');
+        reasonElements.forEach(el => {
+            el.onclick = () => {
+                reasonElements.forEach(innerEl => innerEl.classList.remove('selected'));
+                el.classList.add('selected');
+                selectedReason = el.dataset.reason;
+                submitBtn.disabled = false;
+            };
+        });
+    
+        const closeModal = () => {
+            modalOverlay.classList.remove('visible');
+            submitBtn.disabled = true;
+            selectedReason = null;
+        };
+    
+        closeBtn.onclick = closeModal;
+        modalOverlay.onclick = (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        };
+    
+        submitBtn.onclick = async () => {
+            if (!selectedReason) return;
+    
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+    
+            try {
+                await window.PostService.submitReport(post, selectedReason);
+                this.showToast('Report submitted. Thank you for helping keep this space safe.');
+            } catch (error) {
+                console.error("Error submitting report:", error);
+                this.showToast('Could not submit report. Please try again.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Report';
+                closeModal();
+            }
+        };
     }
 
     showToast(message, type = 'success') {

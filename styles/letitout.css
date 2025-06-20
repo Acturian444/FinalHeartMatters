@@ -431,7 +431,7 @@
 .letitout-emotion-modal-title {
     font-family: 'DM Sans', sans-serif;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700 !important;
     color: #333;
 }
 
@@ -2212,7 +2212,7 @@
 .wall-location-modal-header h3 {
     font-family: var(--letitout-font-family);
     font-size: 1.15rem;
-    font-weight: 700;
+    font-weight: 700 !important;
     color: #222;
     letter-spacing: 0.01em;
     margin: 0;
@@ -2221,23 +2221,24 @@
 .wall-location-modal-header .close-btn {
     background: none;
     border: none;
-    font-size: 1.6rem;
-    color: #888;
-    border-radius: 50%;
-    width: 2.2rem;
-    height: 2.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    margin-left: 0.5rem;
+    font-size: 1.6rem !important;
+    color: #888 !important;
+    border-radius: 50% !important;
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: background 0.2s, color 0.2s !important;
+    margin-left: 0.5rem !important;
+    outline: none !important;
 }
-.wall-location-modal-header .close-btn:hover,
-.wall-location-modal-header .close-btn:focus {
-    background: #f5f5f5;
-    color: var(--letitout-primary);
-    outline: none;
+.wall-location-modal-close:hover,
+.wall-location-modal-close:focus {
+    background: #f5f5f5 !important;
+    color: #c10016 !important;
+    outline: none !important;
 }
 
 .wall-location-search-input {
@@ -2360,7 +2361,8 @@
 
 .wall-filter-modal-header h3 {
     font-family: var(--letitout-font-family);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+    font-weight: 700 !important;
     color: var(--letitout-text);
     margin: 0;
 }
@@ -3430,4 +3432,243 @@
 @keyframes fadeInModal {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* Report Modal Styles */
+.report-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.report-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.report-modal {
+    background: #fff;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.report-modal-overlay.visible .report-modal {
+    transform: scale(1);
+}
+
+.report-modal-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-modal-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #222;
+}
+
+.report-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.report-modal-close:hover {
+    color: #222;
+}
+
+.report-modal-content {
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.report-modal-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.report-reasons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.report-reason {
+    display: block;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.report-reason:hover {
+    background: #f5f5f5;
+    border-color: #ddd;
+}
+
+.report-reason.selected {
+    background: #fff0f2;
+    border-color: #c10016;
+}
+
+.report-reason-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.report-reason-description {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.report-modal-footer {
+    padding: 1rem 1.5rem;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.report-submit-btn {
+    background: #c10016;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.report-submit-btn:hover {
+    background: #a00012;
+}
+
+.report-submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Report Modal-Specific Styles */
+#report-modal .letitout-emotion-modal-header {
+    align-items: center; /* Ensures vertical alignment */
+}
+
+#report-modal .letitout-emotion-modal-title {
+    text-transform: none;
+    font-weight: 700 !important;
+    margin: 0; /* Fix alignment */
+}
+
+#report-modal .letitout-emotion-modal-content {
+    padding: 1.25rem;
+}
+
+#report-modal .report-modal-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+#report-modal .report-reasons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#report-modal .report-reason {
+    display: block;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+#report-modal .report-reason:hover {
+    background: #f5f5f5;
+    border-color: #ddd;
+}
+
+#report-modal .report-reason.selected {
+    background: #fff0f2;
+    border-color: #c10016;
+}
+
+#report-modal .report-reason-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+#report-modal .report-reason-description {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+#report-modal .letitout-emotion-modal-footer {
+    /* Add padding for the home bar on iOS */
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+@media (max-width: 768px) {
+    #report-modal.letitout-emotion-modal {
+        height: auto;
+        max-height: 90vh; /* Allow it to take more vertical space */
+    }
 }

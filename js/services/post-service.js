@@ -229,6 +229,31 @@ class PostService {
             console.error('Error setting up user posts subscription:', error);
         }
     }
+
+    async submitReport(post, reason) {
+        try {
+            const report = {
+                // Report metadata
+                reason: reason,
+                reporterId: window.firebaseUserId,
+                reportTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
+                // Snapshot of the reported post
+                postId: post.id,
+                postText: post.content || '',
+                postEmotions: post.emotion || '',
+                postCity: post.city || 'N/A',
+                postFeltCount: post.feltCount || 0,
+                postTimestamp: post.timestamp || null,
+                postAuthorId: post.userId || 'unknown',
+                postLocalId: post.localId || 'unknown'
+            };
+            await this.db.collection('reports').add(report);
+        } catch (error) {
+            console.error('Error submitting report:', error);
+            throw error;
+        }
+    }
 }
 
 // Export for use in other modules
