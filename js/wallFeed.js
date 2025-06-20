@@ -9,6 +9,106 @@ class WallFeed {
         this.currentFilter = null;
         this.currentSearch = '';
         this.posts = [];
+        this.initializeEventListeners();
+    }
+
+    initializeEventListeners() {
+        // Listener for all clicks within the feed
+        this.feed.addEventListener('click', this.handleFeedClick.bind(this));
+        // Listener to close menu when clicking outside
+        document.addEventListener('click', this.handleDocumentClick.bind(this));
+    }
+
+    handleFeedClick(e) {
+        const moreOptionsButton = e.target.closest('.more-options-button');
+        const copyLinkButton = e.target.closest('.copy-link-button');
+        const shareButton = e.target.closest('.share-post-button');
+
+        if (moreOptionsButton) {
+            e.preventDefault();
+            this.handleMoreOptionsClick(moreOptionsButton);
+        } else if (copyLinkButton) {
+            e.preventDefault();
+            this.handleCopyLinkClick(copyLinkButton);
+        } else if (shareButton) {
+            e.preventDefault();
+            this.handleShareClick(shareButton);
+        }
+    }
+
+    handleMoreOptionsClick(button) {
+        const menu = button.nextElementSibling;
+        const isVisible = menu.classList.contains('visible');
+        // Close all menus first
+        this.closeAllOptionMenus();
+        // If the menu wasn't visible, show it
+        if (!isVisible) {
+            menu.classList.add('visible');
+        }
+    }
+    
+    handleDocumentClick(e) {
+        // If the click is not on a more-options-button or inside a menu, close all menus.
+        if (!e.target.closest('.more-options-button') && !e.target.closest('.options-menu')) {
+            this.closeAllOptionMenus();
+        }
+    }
+
+    closeAllOptionMenus() {
+        this.feed.querySelectorAll('.options-menu.visible').forEach(openMenu => {
+            openMenu.classList.remove('visible');
+        });
+    }
+
+    handleCopyLinkClick(button) {
+        const postCard = button.closest('.post-card');
+        const postId = postCard.dataset.postId;
+        if (!postId) return;
+
+        const url = `${window.location.origin}${window.location.pathname}?post=${postId}`;
+        navigator.clipboard.writeText(url).then(() => {
+            this.showToast('Link copied!');
+        }).catch(err => {
+            console.error('Failed to copy link: ', err);
+            this.showToast('Failed to copy link.', 'error');
+        });
+        this.closeAllOptionMenus();
+    }
+
+    handleShareClick(button) {
+        const postCard = button.closest('.post-card');
+        const postId = postCard.dataset.postId;
+        if (!postId) return;
+
+        const post = this.posts.find(p => p.id === postId);
+        if (!post) {
+            console.error('Post data not found for sharing.');
+            this.showToast('Could not share post.', 'error');
+            return;
+        }
+
+        this.showToast('Creating shareable image...');
+        this.generateShareImage(post);
+        this.closeAllOptionMenus();
+    }
+
+    showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast-notification ${type}`;
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        // Animate in
+        setTimeout(() => {
+            toast.classList.add('visible');
+        }, 10);
+
+        // Animate out and remove
+        setTimeout(() => {
+            toast.classList.remove('visible');
+            toast.addEventListener('transitionend', () => toast.remove());
+        }, 3000);
     }
 
     render(container) {
@@ -493,23 +593,258 @@ class WallFeed {
     }
 
     renderPosts(posts) {
-        // Clear existing posts
         this.feed.innerHTML = '';
+        if (posts.length > 0) {
+            posts.forEach(post => {
+                const card = PostCard.create(post);
+                this.feed.appendChild(card);
+            });
+        } else {
+            this.feed.innerHTML = '<p class="wall-empty-message">No posts found. Try adjusting your filters.</p>';
+        }
+        this.highlightPostFromUrl();
+    }
 
-        if (posts.length === 0) {
-            const emptyState = document.createElement('div');
-            emptyState.className = 'empty-state';
-            emptyState.textContent = 'No posts found. Try adjusting your filters.';
-            emptyState.style.textAlign = 'center';
-            this.feed.appendChild(emptyState);
-            return;
+    highlightPostFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postIdFromUrl = urlParams.get('post');
+        if (!postIdFromUrl) return;
+
+        const postCard = this.feed.querySelector(`.post-card[data-post-id="${postIdFromUrl}"]`);
+        if (postCard) {
+            postCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            postCard.style.transition = 'box-shadow 0.3s ease, background-color 0.5s ease';
+            postCard.style.backgroundColor = '#fff9e5'; // A soft yellow highlight
+            setTimeout(() => {
+                postCard.style.backgroundColor = ''; // Revert to default
+            }, 2500);
+        }
+    }
+
+    async generateShareImage(post) {
+        // Create the off-screen container for rendering
+        const shareContainer = document.createElement('div');
+        shareContainer.id = 'share-image-container';
+        
+        // --- Main Canvas Styling (1080x1350px) ---
+        Object.assign(shareContainer.style, {
+            position: 'absolute',
+            left: '-9999px',
+            top: '0px',
+            width: '1080px',
+            height: '1350px',
+            backgroundColor: '#fffcf1',
+            padding: '80px 60px',
+            boxSizing: 'border-box',
+            fontFamily: '"DM Sans", sans-serif',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-between' // Positions header at top, footer at bottom
+        });
+
+        // --- Container for all top-aligned content ---
+        const topWrapper = document.createElement('div');
+        Object.assign(topWrapper.style, {
+            width: '100%',
+            textAlign: 'center'
+        });
+
+        // --- Header (Title & Signature) ---
+        const header = document.createElement('div');
+        header.style.textAlign = 'center';
+        
+        const title = document.createElement('h1');
+        title.textContent = 'LET IT OUT';
+        Object.assign(title.style, {
+            fontFamily: '"Anton", sans-serif',
+            color: '#c10016',
+            fontSize: '96px',
+            fontWeight: 'bold',
+            letterSpacing: '2px',
+            margin: '0'
+        });
+
+        const signature = document.createElement('p');
+        signature.textContent = post.city ? `Anonymous from ${post.city}` : 'Anonymous';
+        Object.assign(signature.style, {
+            fontSize: '28px',
+            color: '#888',
+            margin: '10px 0 0 0'
+        });
+
+        header.append(title, signature);
+
+        // --- Main Content ---
+        const mainContent = document.createElement('div');
+        Object.assign(mainContent.style, {
+            width: '100%',
+            marginTop: '80px' // Creates space between signature and tags
+        });
+
+        const tagsContainer = document.createElement('div');
+        Object.assign(tagsContainer.style, {
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: '15px',
+            marginBottom: '50px'
+        });
+
+        let allEmotions = [];
+        if (Array.isArray(post.emotions) && post.emotions.length > 0) {
+            allEmotions = post.emotions.join(',').split(',').map(e => e.trim()).filter(e => e);
+        } else if (typeof post.emotion === 'string' && post.emotion) { // Fallback for older data
+            allEmotions = post.emotion.split(',').map(e => e.trim()).filter(e => e);
         }
 
-        // Render each post
-        posts.forEach(post => {
-            const postCard = window.PostCard.create(post);
-            this.feed.appendChild(postCard);
+        // --- New Tag Display Logic ---
+        const STRONG_EMOTIONS = ["What I never said"];
+        let tagsToDisplay = [];
+        const strongEmotion = allEmotions.find(e => STRONG_EMOTIONS.includes(e));
+
+        if (strongEmotion) {
+            tagsToDisplay = [strongEmotion];
+        } else if (allEmotions.length === 1) {
+            tagsToDisplay = allEmotions;
+        } else if (allEmotions.length === 3) {
+            const totalLength = allEmotions.reduce((acc, tag) => acc + tag.length, 0);
+            // Heuristic to show 3 tags only if they are short enough to fit on one line
+            if (totalLength < 45) {
+                tagsToDisplay = allEmotions;
+            } else {
+                tagsToDisplay = allEmotions.slice(0, 2);
+            }
+        } else { // Handles 0, 2, or 4+ emotions
+            tagsToDisplay = allEmotions.slice(0, 2);
+        }
+        
+        if (tagsToDisplay.length > 0) {
+            tagsToDisplay.forEach(e => {
+                const tag = document.createElement('span');
+                tag.textContent = e;
+                Object.assign(tag.style, {
+                    backgroundColor: '#fff0f2',
+                    color: '#c10016',
+                    borderRadius: '30px',
+                    padding: '12px 24px',
+                    fontSize: '24px',
+                    fontWeight: '600'
+                });
+                tagsContainer.appendChild(tag);
+            });
+        }
+        
+        const content = document.createElement('p');
+        content.textContent = post.content;
+        Object.assign(content.style, {
+            fontSize: '42px',
+            color: 'black',
+            lineHeight: '1.6',
+            whiteSpace: 'pre-wrap',
+            textAlign: 'center',
+            margin: '0'
         });
+        
+        mainContent.append(tagsContainer, content);
+        
+        // --- Footer (Watermark) ---
+        const footer = document.createElement('div');
+        footer.style.textAlign = 'center';
+
+        const watermark = document.createElement('p');
+        watermark.innerHTML = 'Heart Matters &nbsp;&middot;&nbsp; wereheartmatters.com';
+        Object.assign(watermark.style, {
+            fontFamily: '"DM Sans", sans-serif',
+            fontSize: '24px',
+            color: '#aaa',
+            fontWeight: '500',
+            margin: '0'
+        });
+        
+        footer.appendChild(watermark);
+
+        // --- Assemble and Render ---
+        topWrapper.append(header, mainContent);
+        shareContainer.append(topWrapper, footer);
+        document.body.appendChild(shareContainer);
+
+        try {
+            const canvas = await html2canvas(shareContainer, {
+                useCORS: true,
+                scale: 1, // Use 1x scale as we've defined exact dimensions
+                backgroundColor: null,
+                width: 1080,
+                height: 1350,
+                scrollX: 0,
+                scrollY: -window.scrollY // Fix for capturing off-screen content
+            });
+            
+            document.body.removeChild(shareContainer);
+
+            const dataUrl = canvas.toDataURL('image/png');
+
+            if (navigator.share && navigator.canShare) {
+                const blob = await (await fetch(dataUrl)).blob();
+                const file = new File([blob], 'heart-matters-post.png', { type: blob.type });
+                await navigator.share({
+                    files: [file],
+                    title: 'A post from Heart Matters',
+                    text: 'Someone shared how they felt on Heart Matters. See the post.',
+                });
+            } else {
+                this.showShareModal(dataUrl);
+            }
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log('Share action was canceled by the user.');
+            } else {
+                console.error('Error generating share image:', error);
+                this.showToast('Could not create image.', 'error');
+            }
+            
+            if(document.body.contains(shareContainer)) {
+                document.body.removeChild(shareContainer);
+            }
+        }
+    }
+
+    showShareModal(dataUrl) {
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'share-modal-overlay';
+        
+        const modalContent = document.createElement('div');
+        modalContent.className = 'share-modal-content';
+
+        const closeButton = document.createElement('button');
+        closeButton.className = 'share-modal-close';
+        closeButton.innerHTML = '&times;';
+        closeButton.onclick = () => document.body.removeChild(modalOverlay);
+
+        const heading = document.createElement('h3');
+        heading.textContent = 'Share this Post';
+
+        const image = document.createElement('img');
+        image.src = dataUrl;
+        image.style.width = '100%';
+        image.style.borderRadius = '8px';
+        image.style.border = '1px solid #eee';
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = dataUrl;
+        downloadLink.download = 'heart-matters-post.png';
+        downloadLink.className = 'share-modal-download-button';
+        downloadLink.textContent = 'Download Image';
+
+        modalContent.append(closeButton, heading, image, downloadLink);
+        modalOverlay.appendChild(modalContent);
+        document.body.appendChild(modalOverlay);
+        
+        modalOverlay.onclick = (e) => {
+            if (e.target === modalOverlay) {
+                document.body.removeChild(modalOverlay);
+            }
+        };
     }
 
     cleanup() {
@@ -645,122 +980,8 @@ class WallFeed {
             }
             html += `<div class="my-post-card">${post.content}${replyLine}</div>`;
         }
-        
-        if (!posts.length) {
-            html = '<div class="empty-state">No posts yet. Your posts will appear here.</div>';
-        }
-        
         container.innerHTML = html;
-        
-        // Show notification dot if unread replies
-        if (modal) {
-            const notificationDot = modal.querySelector('.my-posts-notification-dot');
-            if (notificationDot) {
-                if (hasUnreadReplies) {
-                    notificationDot.style.display = 'inline-block';
-                } else {
-                    notificationDot.style.display = 'none';
-                }
-            }
-        }
-        
-        // Add click handler for "View Messages"
-        const viewMessagesLinks = container.querySelectorAll('.view-messages');
-        viewMessagesLinks.forEach(link => {
-            link.addEventListener('click', async (e) => {
-                e.preventDefault();
-                const postId = link.getAttribute('data-post-id');
-                await this.showRepliesView(container, modal, postId);
-            });
-        });
-    }
-
-    async showRepliesView(container, modal, postId) {
-        const localId = window.LocalIdManager.getId();
-        const posts = await window.PostService.getPostsByUser(localId, 'localId');
-        const post = posts.find(p => p.id === postId);
-        
-        if (!post || !post.replies || !post.replies.length) {
-            return;
-        }
-        
-        // Mark replies as read
-        const unreadReplies = post.replies.filter(r => !r.viewed);
-        if (unreadReplies.length > 0) {
-            // Update the post in Firestore to mark replies as read
-            await window.PostService.markRepliesAsRead(postId);
-            
-            // Update unread badge after marking replies as read
-            if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
-                window.LetItOutUtils.updateUnreadBadge();
-            }
-        }
-        
-        // Format the original post timestamp
-        let postDate;
-        if (post.timestamp && typeof post.timestamp.toDate === 'function') {
-            postDate = post.timestamp.toDate();
-        } else {
-            postDate = new Date(post.timestamp);
-        }
-        const postTimestamp = !isNaN(postDate) ? postDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
-        
-        // Create the replies view HTML
-        let repliesHtml = '';
-        post.replies.forEach(reply => {
-            let replyDate;
-            if (reply.timestamp && typeof reply.timestamp.toDate === 'function') {
-                replyDate = reply.timestamp.toDate();
-            } else {
-                replyDate = new Date(reply.timestamp);
-            }
-            const replyTimestamp = !isNaN(replyDate) ? replyDate.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
-            
-            repliesHtml += `
-                <div class="reply-card">
-                    <div class="reply-content">${reply.content}</div>
-                    <div class="reply-timestamp">${replyTimestamp}</div>
-                </div>
-            `;
-        });
-        
-        // Update the modal content
-        const modalContent = modal.querySelector('.letitout-my-posts-modal');
-        modalContent.innerHTML = `
-            <button class="back-to-posts-btn">← My Posts</button>
-            <div class="letitout-my-posts-title">Messages</div>
-            <div class="letitout-my-posts-content">
-                <div class="original-post-card">
-                    <div class="original-post-message">${post.content}</div>
-                    <div class="original-post-timestamp">${postTimestamp}</div>
-                </div>
-                <div class="replies-section">
-                    <div class="replies-header">${post.replies.length} Message${post.replies.length > 1 ? 's' : ''}</div>
-                    <div class="replies-list">
-                        ${repliesHtml}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        // Add event listeners
-        const closeBtn = modalContent.querySelector('.letitout-my-posts-close');
-        if (closeBtn) {
-            closeBtn.onclick = () => this.closeMyPostsModal();
-        }
-
-        const backBtn = modalContent.querySelector('.back-to-posts-btn');
-        if (backBtn) {
-            backBtn.onclick = () => this.openMyPostsModal();
-        }
-        
-        // Update notification dot since replies are now read
-        const notificationDot = modal.querySelector('.my-posts-notification-dot');
-        if (notificationDot) {
-            notificationDot.style.display = 'none';
-        }
     }
 }
 
-// Only export WallFeed to window
-window.WallFeed = WallFeed; 
+window.WallFeed = WallFeed;

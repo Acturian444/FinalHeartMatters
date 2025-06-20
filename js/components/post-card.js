@@ -5,6 +5,20 @@ class PostCard {
         card.className = 'post-card';
         card.dataset.postId = post.id;
 
+        const moreOptionsButton = document.createElement('button');
+        moreOptionsButton.className = 'more-options-button';
+        moreOptionsButton.innerHTML = '&#x22EE;'; // Vertical ellipsis (⋮)
+
+        const optionsMenu = document.createElement('div');
+        optionsMenu.className = 'options-menu';
+        optionsMenu.innerHTML = `
+            <a href="#" class="copy-link-button">Copy Link</a>
+            <a href="#" class="share-post-button">Share</a>
+        `;
+
+        card.appendChild(moreOptionsButton);
+        card.appendChild(optionsMenu);
+
         // Create content area wrapper
         const contentArea = document.createElement('div');
         contentArea.className = 'post-content-area';
