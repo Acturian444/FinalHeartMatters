@@ -23,7 +23,7 @@
     }
 
     .post-content {
-        font-size: var(--letitout-font-size-base);
+        font-size: 1.08rem;
     }
 
     .post-meta {
@@ -56,6 +56,6 @@
     }
 
     .post-content {
-        font-size: var(--letitout-font-size-sm);
+        font-size: 1.08rem;
     }
 } 

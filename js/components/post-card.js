@@ -26,43 +26,66 @@ class PostCard {
         content.style.webkitLineClamp = needsPreview ? '3' : 'unset';
         content.style.whiteSpace = 'pre-line';
 
-        // Set preview text
-        if (needsPreview) {
-            content.textContent = fullText.slice(0, previewLimit).replace(/\n/g, '\n');
-        } else {
-            content.textContent = fullText;
-        }
+        // Always set the full text content. The CSS will handle truncation.
+        content.textContent = fullText;
 
-        // Read more/less link
-        let readMoreLink = null;
+        // Emotion tags (one per pill, small)
+        const emotionTags = document.createElement('div');
+        emotionTags.className = 'post-emotion-tags';
+        if (post.isInbox) {
+            // This is logic for the "My Posts" view, not the main wall.
+            // It won't run here but is kept for component consistency.
+        } else if (Array.isArray(post.emotions) && post.emotions.length > 0) {
+            post.emotions.forEach(emotion => {
+                emotion.split(',').map(e => e.trim()).forEach(e => {
+                    if (e) {
+                        const tag = document.createElement('span');
+                        tag.className = 'emotion-tag emotion-tag-small';
+                        tag.textContent = e;
+                        emotionTags.appendChild(tag);
+                    }
+                });
+            });
+        } else if (post.emotion) {
+             // Fallback for older data structure
+            post.emotion.split(',').map(e => e.trim()).forEach(e => {
+                if (e) {
+                    const tag = document.createElement('span');
+                    tag.className = 'emotion-tag emotion-tag-small';
+                    tag.textContent = e;
+                    emotionTags.appendChild(tag);
+                }
+            });
+        }
+        
+        contentArea.appendChild(emotionTags);
+        contentArea.appendChild(content);
+
+        // Read more/less link is now a sibling to the content
         if (needsPreview) {
-            readMoreLink = document.createElement('a');
+            const readMoreLink = document.createElement('a');
             readMoreLink.href = '#';
             readMoreLink.className = 'post-read-more';
-            readMoreLink.textContent = '...Read more';
-            readMoreLink.style.marginLeft = '0.3em';
+            readMoreLink.textContent = 'Read more';
+            
             readMoreLink.onclick = (e) => {
                 e.preventDefault();
                 expanded = !expanded;
                 if (expanded) {
-                    content.textContent = fullText;
                     content.style.maxHeight = content.scrollHeight + 'px';
                     content.style.webkitLineClamp = 'unset';
                     readMoreLink.textContent = 'Show less';
                     setTimeout(() => {
-                        content.style.maxHeight = '1000px'; // allow for smooth transition
-                    }, 10);
+                        content.style.maxHeight = 'none';
+                    }, 300);
                 } else {
-                    content.textContent = fullText.slice(0, previewLimit).replace(/\n/g, '\n');
                     content.style.maxHeight = '4.8em';
                     content.style.webkitLineClamp = '3';
-                    readMoreLink.textContent = '...Read more';
+                    readMoreLink.textContent = 'Read more';
                 }
-                // Re-append the link
-                content.appendChild(readMoreLink);
             };
-            // Append link to preview
-            content.appendChild(readMoreLink);
+            
+            contentArea.appendChild(readMoreLink);
         }
 
         // City line with timestamp (Anonymous from [City] · 8h ago)
@@ -74,84 +97,7 @@ class PostCard {
         } else {
             cityLine.textContent = `Anonymous · ${timeString}`;
         }
-
-        // Emotion tags (one per pill, small)
-        const emotionTags = document.createElement('div');
-        emotionTags.className = 'post-emotion-tags';
-        if (post.isInbox) {
-            // Replace with Love Received pill styled like emotion tags
-            const lovePill = document.createElement('span');
-            lovePill.className = 'love-received-pill';
-            lovePill.innerHTML = '💌 Love Received';
-            emotionTags.appendChild(lovePill);
-            // Style the card for inbox reply to match .my-post-card/post-card
-            card.style.background = '#fff';
-            card.style.border = '1.5px solid #f8bfc4';
-            card.style.maxWidth = '';
-            card.style.width = '';
-            card.style.minWidth = '';
-            card.style.flex = '';
-            // Align content to left
-            contentArea.style.alignItems = 'flex-start';
-            contentArea.style.textAlign = 'left';
-            // Love Received pill: match emotion tag style
-            lovePill.style.background = '#ffe5e9';
-            lovePill.style.color = '#c10016';
-            lovePill.style.borderRadius = '999px';
-            lovePill.style.padding = '0.13em 0.9em';
-            lovePill.style.fontSize = '0.92em';
-            lovePill.style.fontWeight = '500';
-            lovePill.style.marginBottom = '0.7em';
-            lovePill.style.marginRight = '0.3em';
-            lovePill.style.display = 'inline-block';
-            lovePill.style.boxShadow = 'none';
-            lovePill.style.border = 'none';
-            card.style.transition = 'none';
-        } else if (Array.isArray(post.emotions) && post.emotions.length > 0) {
-            post.emotions.forEach(emotion => {
-                // If emotion is a comma-separated string, split and render each
-                emotion.split(',').map(e => e.trim()).forEach(e => {
-                    if (e) {
-                        const tag = document.createElement('span');
-                        tag.className = 'emotion-tag emotion-tag-small';
-                        tag.textContent = e;
-                        emotionTags.appendChild(tag);
-                    }
-                });
-            });
-        } else if (post.emotion) {
-            // fallback for single emotion (may be comma-separated)
-            post.emotion.split(',').map(e => e.trim()).forEach(e => {
-                if (e) {
-                    const tag = document.createElement('span');
-                    tag.className = 'emotion-tag emotion-tag-small';
-                    tag.textContent = e;
-                    emotionTags.appendChild(tag);
-                }
-            });
-        }
-        contentArea.appendChild(emotionTags);
-        contentArea.appendChild(content);
-        if (post.isInbox) {
-            // Show only the reply timestamp in the desired format
-            const replyTimestamp = post.replies && post.replies.length > 0 && post.replies[0].timestamp
-                ? new Date(post.replies[0].timestamp.seconds ? post.replies[0].timestamp.seconds * 1000 : post.replies[0].timestamp).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })
-                : '';
-            if (replyTimestamp) {
-                const replyTimeLine = document.createElement('div');
-                replyTimeLine.className = 'reply-timestamp-line';
-                replyTimeLine.textContent = replyTimestamp;
-                replyTimeLine.style.fontSize = '0.97rem';
-                replyTimeLine.style.color = '#888';
-                replyTimeLine.style.marginTop = '0.3rem';
-                replyTimeLine.style.fontWeight = '400';
-                replyTimeLine.style.letterSpacing = '0.01em';
-                replyTimeLine.style.lineHeight = '1.4';
-                contentArea.appendChild(replyTimeLine);
-            }
-        } else {
-            contentArea.appendChild(cityLine);
-        }
+        contentArea.appendChild(cityLine);
 
         const meta = document.createElement('div');
         meta.className = 'post-meta';
