@@ -340,6 +340,7 @@
             // Render the post form
             if (window.PostForm) {
                 const form = new window.PostForm();
+                window.postFormInstance = form; // Store instance globally
                 form.render(tabContent);
             }
             // Update badge when switching tabs
@@ -363,8 +364,47 @@
         }
         writeTab.addEventListener('click', showWrite);
         wallTab.addEventListener('click', showWall);
-        // Default to Write tab
+
+        // --- Initial Page Render ---
+        // Always render the default "Write" tab view first.
+        // This ensures the page is in a correct state, especially after a Stripe redirect.
         showWrite();
+
+        // --- Stripe Success Handling ---
+        // Now, check if we need to show the success modal flow over the top.
+        const params = new URLSearchParams(window.location.search);
+        const unlockedPostId = params.get('unlocked');
+
+        if (unlockedPostId && window.LetItOutUtils && window.PostForm) {
+            // This is a redirect from a successful purchase.
+            (async () => {
+                // 1. Mark the post as unlocked in the background.
+                window.LetItOutUtils.addPaidUnlockedPost(unlockedPostId);
+
+                // 2. Clean the URL so the user doesn't see the parameter.
+                const newUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, document.title, newUrl);
+
+                // 3. Show a temporary success message.
+                window.LetItOutUtils.showSuccess('Success! Taking you to your messages...');
+
+                // 4. Automatically open the modal and navigate to the replies.
+                // We need to use the instance of PostForm that was created by showWrite().
+                const postForm = window.postFormInstance;
+                if (postForm) {
+                    postForm.openMyPostsModal();
+
+                    // 5. Find the newly created modal elements in the DOM.
+                    await new Promise(resolve => setTimeout(resolve, 50)); // Brief pause for DOM update
+                    const modalOverlay = document.querySelector('.letitout-my-posts-modal-overlay');
+                    const modalContent = modalOverlay?.querySelector('.letitout-my-posts-modal');
+                    
+                    if (modalContent && modalOverlay) {
+                        await postForm.showRepliesView(modalContent.querySelector('.letitout-my-posts-content'), modalOverlay, unlockedPostId);
+                    }
+                }
+            })();
+        }
 
         // Intro modal logic
         const introModal = document.getElementById('letitout-intro-modal');
@@ -381,12 +421,7 @@
             });
         }
 
-        // Check for unlocked posts from Stripe success
-        if (window.LetItOutUtils && window.LetItOutUtils.checkForUnlockedPosts) {
-            window.LetItOutUtils.checkForUnlockedPosts();
-        }
-
-        // Update unread badge on page load
+        // Initial badge updates on any page load.
         if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
             window.LetItOutUtils.updateUnreadBadge();
         }
