@@ -132,6 +132,37 @@ const Utils = {
             // Show success message
             this.showSuccess('Post replies unlocked! You can now view all messages for this post.');
         }
+    },
+
+    // Update unread message badge on My Posts button
+    async updateUnreadBadge() {
+        try {
+            if (!window.PostService) {
+                console.error('PostService not available');
+                return;
+            }
+
+            const unreadCount = await window.PostService.getUnreadReplyCount();
+            const myPostsBtn = document.querySelector('.letitout-my-posts-btn-global');
+            
+            if (myPostsBtn) {
+                // Remove existing badge if any
+                const existingBadge = myPostsBtn.querySelector('.unread-badge');
+                if (existingBadge) {
+                    existingBadge.remove();
+                }
+
+                // Add badge if there are unread messages
+                if (unreadCount > 0) {
+                    const badge = document.createElement('span');
+                    badge.className = 'unread-badge';
+                    badge.textContent = unreadCount > 99 ? '99+' : unreadCount.toString();
+                    myPostsBtn.appendChild(badge);
+                }
+            }
+        } catch (error) {
+            console.error('Error updating unread badge:', error);
+        }
     }
 };
 

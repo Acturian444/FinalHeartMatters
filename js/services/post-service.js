@@ -190,7 +190,7 @@ class PostService {
             const posts = await this.getPostsByUser();
             return posts.reduce((count, post) => {
                 if (!post.replies) return count;
-                return count + post.replies.filter(reply => !reply.read).length;
+                return count + post.replies.filter(reply => !reply.viewed).length;
             }, 0);
         } catch (error) {
             console.error('Error getting unread reply count:', error);
@@ -206,6 +206,27 @@ class PostService {
         } catch (error) {
             console.error('Error upgrading to premium:', error);
             throw error;
+        }
+    }
+
+    // Subscribe to user's posts for real-time badge updates
+    subscribeToUserPosts(callback) {
+        try {
+            const localId = window.LocalIdManager.getId();
+            return this.collection
+                .where('localId', '==', localId)
+                .orderBy('timestamp', 'desc')
+                .onSnapshot(snapshot => {
+                    const posts = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    callback(posts);
+                }, error => {
+                    console.error('Error in user posts subscription:', error);
+                });
+        } catch (error) {
+            console.error('Error setting up user posts subscription:', error);
         }
     }
 }

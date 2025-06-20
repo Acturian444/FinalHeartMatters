@@ -1116,6 +1116,7 @@
   transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
   width: auto;
   height: auto;
+  position: relative;
 }
 .letitout-my-posts-btn-global .my-posts-icon svg {
   stroke: #000;
@@ -1128,6 +1129,45 @@
 }
 .letitout-my-posts-btn-global:active {
   transform: scale(0.95);
+}
+
+/* Unread Badge for My Posts Button */
+.letitout-my-posts-btn-global .unread-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #c10016;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+  animation: badgePulse 2s infinite;
+  line-height: 1;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+@keyframes badgePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @media (max-width: 600px) {
@@ -1200,7 +1240,7 @@
   top: 0;
   z-index: 2;
   background: #fff;
-  padding-top: 1.2rem;
+  padding-top: 0.5rem; /* Reduced from 1.2rem */
   padding-bottom: 0.7rem;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
@@ -1299,7 +1339,14 @@
   display: inline-block;
   font-weight: 500;
   letter-spacing: 0.01em;
+  transition: background-color 0.3s ease;
 }
+
+.my-post-reply-line.unread {
+  background-color: #ffd6da; /* Darker background for unread */
+  font-weight: 700; /* Bolder font for unread */
+}
+
 .view-in-inbox {
   text-decoration: underline;
   cursor: pointer;
@@ -2703,7 +2750,7 @@
   font-weight: 700;
   color: #222;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem; /* Reduced from 0.5rem */
   margin-top: 0.1rem;
   letter-spacing: 0.01em;
 }

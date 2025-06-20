@@ -590,6 +590,11 @@ class WallFeed {
             // Clear existing content and add the button
             globalContainer.innerHTML = '';
             globalContainer.appendChild(myPostsBtn);
+            
+            // Update unread badge
+            if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
+                window.LetItOutUtils.updateUnreadBadge();
+            }
         }
     }
 
@@ -629,11 +634,14 @@ class WallFeed {
             let replyLine = '';
             if (post.replies && post.replies.length) {
                 const unreadReplies = post.replies.filter(r => !r.viewed).length;
+                const replyLineClass = unreadReplies > 0 ? 'my-post-reply-line unread' : 'my-post-reply-line';
+                const linkText = unreadReplies > 0 ? 'View New Messages' : 'View Messages';
+
                 if (unreadReplies > 0) {
                     hasUnreadReplies = true;
                 }
                 const replyWord = post.replies.length === 1 ? 'reply' : 'replies';
-                replyLine = `<div class=\"my-post-reply-line\">${post.replies.length} ${replyWord} received – <span class=\"view-messages\" data-post-id=\"${post.id}\">View Messages</span></div>`;
+                replyLine = `<div class="${replyLineClass}">${post.replies.length} ${replyWord} received – <span class="view-messages" data-post-id="${post.id}">${linkText}</span></div>`;
             }
             html += `<div class="my-post-card">${post.content}${replyLine}</div>`;
         }
@@ -681,6 +689,11 @@ class WallFeed {
         if (unreadReplies.length > 0) {
             // Update the post in Firestore to mark replies as read
             await window.PostService.markRepliesAsRead(postId);
+            
+            // Update unread badge after marking replies as read
+            if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
+                window.LetItOutUtils.updateUnreadBadge();
+            }
         }
         
         // Format the original post timestamp
@@ -714,7 +727,6 @@ class WallFeed {
         // Update the modal content
         const modalContent = modal.querySelector('.letitout-my-posts-modal');
         modalContent.innerHTML = `
-            <button class="letitout-my-posts-close">&times;</button>
             <button class="back-to-posts-btn">← My Posts</button>
             <div class="letitout-my-posts-title">Messages</div>
             <div class="letitout-my-posts-content">
@@ -732,10 +744,15 @@ class WallFeed {
         `;
         
         // Add event listeners
-        modal.querySelector('.letitout-my-posts-close').onclick = () => this.closeMyPostsModal();
-        modal.querySelector('.back-to-posts-btn').onclick = () => {
-            this.openMyPostsModal();
-        };
+        const closeBtn = modalContent.querySelector('.letitout-my-posts-close');
+        if (closeBtn) {
+            closeBtn.onclick = () => this.closeMyPostsModal();
+        }
+
+        const backBtn = modalContent.querySelector('.back-to-posts-btn');
+        if (backBtn) {
+            backBtn.onclick = () => this.openMyPostsModal();
+        }
         
         // Update notification dot since replies are now read
         const notificationDot = modal.querySelector('.my-posts-notification-dot');

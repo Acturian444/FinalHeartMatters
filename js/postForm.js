@@ -482,6 +482,11 @@ class PostForm {
             // Clear existing content and add the button
             globalContainer.innerHTML = '';
             globalContainer.appendChild(this.myPostsBtn);
+            
+            // Update unread badge
+            if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
+                window.LetItOutUtils.updateUnreadBadge();
+            }
         }
         
         // Add the button container after the form
@@ -558,11 +563,14 @@ class PostForm {
             let replyLine = '';
             if (post.replies && post.replies.length) {
                 const unreadReplies = post.replies.filter(r => !r.viewed).length;
+                const replyLineClass = unreadReplies > 0 ? 'my-post-reply-line unread' : 'my-post-reply-line';
+                const buttonText = unreadReplies > 0 ? 'View New Messages' : 'View Messages';
+
                 if (unreadReplies > 0) {
                     hasUnreadReplies = true;
                 }
                 const replyWord = post.replies.length === 1 ? 'reply' : 'replies';
-                replyLine = `<div class="my-post-reply-line">${post.replies.length} ${replyWord} received – <button class="view-messages-btn" data-post-id="${post.id}">View Messages</button></div>`;
+                replyLine = `<div class="${replyLineClass}">${post.replies.length} ${replyWord} received – <button class="view-messages-btn" data-post-id="${post.id}">${buttonText}</button></div>`;
             }
             
             // Format timestamp
@@ -751,6 +759,11 @@ class PostForm {
             const unreadReplies = post.replies.filter(r => !r.viewed);
             if (unreadReplies.length > 0) {
                 await window.PostService.markRepliesAsRead(postId);
+                
+                // Update unread badge after marking replies as read
+                if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
+                    window.LetItOutUtils.updateUnreadBadge();
+                }
             }
 
             // Format timestamps and prepare HTML
@@ -786,7 +799,6 @@ class PostForm {
             }
 
             modalContent.innerHTML = `
-                <button class="letitout-my-posts-close">&times;</button>
                 <button class="back-to-posts-btn">← My Posts</button>
                 <div class="letitout-my-posts-title">Messages</div>
                 <div class="letitout-my-posts-content">
