@@ -250,7 +250,7 @@
     <header>
         <div class="container">
             <nav class="nav-centered" style="position:relative;">
-                <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+                <button class="hamburger" aria-label="Open menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul class="nav-links nav-left">
@@ -264,10 +264,9 @@
             </nav>
         </div>
         <div class="menu-overlay" id="menuOverlay">
-            <button class="close-btn" aria-label="Close menu" onclick="closeMenu()">&times;</button>
             <nav>
                 <a href="info.html">JOIN THE MOVEMENT</a>
-                <a href="theheartroom.html">THE HEART ROOM</a>
+                <a href="theheartroom.html" class="active">THE HEART ROOM</a>
                 <a href="letitout.html" class="letitout-link">LET IT OUT</a>
             </nav>
         </div>
@@ -380,16 +379,7 @@
             <p style="text-align: center;">&copy; 2025 Heart Matters. All rights reserved.</p>
         </div>
     </footer>
-    <script>
-    function openMenu() {
-      document.getElementById('menuOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu() {
-      document.getElementById('menuOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    </script>
+    <script src="js/menu.js"></script>
     <script src="js/postForm.js?v=2"></script>
     <script src="js/wallFeed.js?v=2"></script>
     <script src="js/utils.js?v=2"></script>

@@ -685,22 +685,18 @@ footer {
         position: relative;
     }
     .center-logo {
-        flex: 1 1 auto;
-        text-align: center;
+        flex: 0 1 auto;
         margin: 0;
-        position: relative;
-        left: 0;
-        right: 0;
         z-index: 1;
-        font-size: 1.5rem;
-        display: block;
     }
     .hamburger {
+        display: block;
         position: absolute;
-        left: 1.2rem;
+        left: 0.5rem;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 2;
+        z-index: 1201;
+        padding: 0.75rem;
     }
 }
 
@@ -996,67 +992,88 @@ footer {
         display: block;
     }
     .nav-links, .nav-left, .nav-right {
-        display: none !important;
+        display: none;
     }
 }
 
 .menu-overlay {
-    display: none;
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1200;
-    top: 0; left: 0; right: 0; bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #fffcf1;
-    color: #c10016;
-    font-family: 'Anton', 'DM Sans', sans-serif;
-    transition: opacity 0.3s;
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
 .menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-overlay nav {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Start off-screen */
+    width: 280px;
+    height: 100%;
+    background: #fffcf1;
+    z-index: 1201;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    opacity: 1;
-    pointer-events: auto;
+    align-items: center;
+    justify-content: center; /* Center items vertically */
+    gap: 1rem; /* Space between links */
+    padding: 2rem 0; /* Vertical padding for top/bottom */
+    transition: left 0.3s ease;
+    box-shadow: 4px 0px 15px rgba(0,0,0,0.1);
 }
+
+.menu-overlay.open nav {
+    left: 0; /* Slide in */
+}
+
 .menu-overlay .close-btn {
-    font-size: 2.2rem;
-    color: #c10016;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    color: #333;
     background: none;
     border: none;
-    position: absolute;
-    top: 1.2rem;
-    right: 1.5rem;
     cursor: pointer;
-    z-index: 1202;
 }
-.menu-overlay nav {
-    width: 100%;
-    margin-top: 4.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 2.5rem;
+
+/* Hide the old, stray close button from the header */
+.nav-centered > .close-btn {
+    display: none !important;
 }
+
 .menu-overlay a {
-    font-family: 'Anton', sans-serif;
-    font-size: 2rem;
-    color: #000000;
+    font-family: 'DM Sans', sans-serif;
+    color: #333;
     text-decoration: none;
-    margin-bottom: 2rem;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    transition: color 0.2s;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 0; /* Adjust padding for better hover feel */
+    text-align: center;
+    width: 100%;
+    transition: background-color 0.2s ease;
 }
-.menu-overlay a:hover {
-    color: #c10016;
+
+.menu-overlay a:hover,
+.menu-overlay a:focus {
+    background-color: #f0ebe0;
 }
+
 .menu-overlay a.active {
     color: #c10016;
+    font-weight: 700;
 }
+
 @media (max-width: 600px) {
     .menu-overlay nav {
         padding-left: 1.2rem;

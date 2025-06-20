@@ -261,7 +261,7 @@
     <header>
         <div class="container">
             <nav class="nav-centered">
-                <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+                <button class="hamburger" aria-label="Open menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul class="nav-links nav-left">
@@ -275,7 +275,6 @@
             </nav>
         </div>
         <div class="menu-overlay" id="menuOverlay">
-            <button class="close-btn" aria-label="Close menu" onclick="closeMenu()">&times;</button>
             <nav>
                 <a href="info.html">JOIN THE MOVEMENT</a>
                 <a href="theheartroom.html">THE HEART ROOM</a>
@@ -326,24 +325,29 @@
         </div>
     </div>
 
+    <div id="filter-modal" class="modal-bottom-sheet">
+        <!-- ... modal content ... -->
+    </div>
+
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <!-- Application Scripts -->
-    <script src="js/config/firebase-config.js?v=2" defer></script>
-    <script src="js/localId.js?v=2" defer></script>
+    <script src="js/config/firebase-config.js?v=2"></script>
+    <script src="js/localId.js?v=2"></script>
     <script src="js/utils.js?v=3"></script>
-    <script src="js/firebase.js?v=2" defer></script>
-    <script src="js/services/post-service.js?v=2" defer></script>
-    <script src="js/components/post-card.js?v=2" defer></script>
-    <script src="js/postForm.js?v=4" defer></script>
-    <script src="js/wallFeed.js?v=2" defer></script>
+    <script src="js/menu.js"></script>
+    <script src="js/firebase.js?v=2"></script>
+    <script src="js/services/post-service.js?v=2"></script>
+    <script src="js/components/post-card.js?v=2"></script>
+    <script src="js/postForm.js?v=4"></script>
+    <script src="js/wallFeed.js?v=2"></script>
     
     <!-- Test Script -->
     <!-- <script src="js/test-setup.js"></script> -->
-    <script defer>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Ensure utils are initialized before using them
         if (!window.LetItOutUtils) {
