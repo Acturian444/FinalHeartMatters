@@ -197,7 +197,7 @@ class PostForm {
         textarea.required = true;
         
         const counter = document.createElement('div');
-        counter.className = 'char-counter-inside';
+        counter.className = 'char-counter';
         counter.textContent = '0/500';
         
         textarea.addEventListener('input', () => {
@@ -205,8 +205,8 @@ class PostForm {
         });
         
         textareaWrapper.appendChild(textarea);
-        textareaWrapper.appendChild(counter);
         formContent.appendChild(textareaWrapper);
+        formContent.appendChild(counter);
 
         // --- EMOTION TAGGING UPGRADE ---
         // Emotion categories and sub-emotions
@@ -380,7 +380,7 @@ class PostForm {
 
             // Reset form
             textarea.value = '';
-            this.form.querySelector('.char-counter-inside').textContent = '0/500';
+            this.form.querySelector('.char-counter').textContent = '0/500';
             this.selectedEmotions = [];
             this.selectedCity = null;
             this.customCity = null;

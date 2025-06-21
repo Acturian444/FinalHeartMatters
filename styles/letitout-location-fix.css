@@ -88,6 +88,13 @@ that appears when clicking the location filter button in the wall controls.
     outline: none !important;
 }
 
+.wall-empty-message {
+    text-align: center;
+    color: var(--letitout-text-secondary);
+    padding: 3rem 1rem;
+    font-size: 1rem;
+}
+
 /* Mobile override to ensure the fix works on all screen sizes */
 @media (max-width: 768px) {
     .dark-mode .wall-location-modal .wall-location-modal-content {
