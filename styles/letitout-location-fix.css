@@ -1,0 +1,96 @@
+/* 
+==============================================
+LOCATION MODAL DARK MODE FIX
+==============================================
+This file contains the correct dark mode styles for the location modal
+that appears when clicking the location filter button in the wall controls.
+*/
+
+.dark-mode .wall-location-modal .wall-location-modal-content {
+    background: #252526 !important;
+    border: 1px solid #555 !important;
+    color: #D4D4D4 !important;
+}
+
+.dark-mode .wall-location-modal .wall-location-modal-header {
+    border-bottom: 1px solid #444 !important;
+}
+
+.dark-mode .wall-location-modal .wall-location-modal-header h3 {
+    color: #ffffff !important;
+}
+
+.dark-mode .wall-location-modal .close-btn {
+    color: #AAA !important;
+}
+
+.dark-mode .wall-location-modal .close-btn:hover {
+    color: #FFF !important;
+}
+
+.dark-mode .wall-location-modal .wall-location-search-input {
+    background-color: #3a3a3a !important;
+    color: #D4D4D4 !important;
+    border: 1px solid #555 !important;
+}
+
+.dark-mode .wall-location-modal .wall-city-chip {
+    background-color: #3a3a3a !important;
+    color: #D4D4D4 !important;
+    border: 1px solid #555 !important;
+}
+
+.dark-mode .wall-location-modal .wall-city-chip:hover {
+    background-color: #4a4a4a !important;
+    border-color: #666 !important;
+}
+
+.dark-mode .wall-location-modal .wall-city-chip.selected {
+    background-color: #5282E8 !important;
+    color: white !important;
+    border-color: #5282E8 !important;
+}
+
+/* --- My Posts Modal Tab Fix --- */
+.dark-mode .my-posts-tab {
+    color: #ffffff !important;
+}
+
+/* --- Wall Control Buttons - Remove Background --- */
+.dark-mode .wall-location-btn,
+.dark-mode .wall-sort-trigger,
+.dark-mode .wall-search-button,
+.dark-mode .wall-filter-btn {
+    background-color: transparent !important;
+}
+
+/* --- Wall Control Buttons - Hover & Focus States --- */
+.dark-mode .wall-location-btn:hover,
+.dark-mode .wall-location-btn:focus,
+.dark-mode .wall-sort-trigger:hover,
+.dark-mode .wall-sort-trigger:focus,
+.dark-mode .wall-search-button:hover,
+.dark-mode .wall-search-button:focus,
+.dark-mode .wall-filter-btn:hover,
+.dark-mode .wall-filter-btn:focus {
+    background-color: #3a3a3a !important;
+}
+
+/* --- Consistent Border Colors --- */
+.dark-mode .wall-search-button {
+    border-color: #333 !important;
+}
+
+/* --- Remove White Border/Outline from Sort Trigger --- */
+.dark-mode .wall-sort-trigger:hover,
+.dark-mode .wall-sort-trigger:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Mobile override to ensure the fix works on all screen sizes */
+@media (max-width: 768px) {
+    .dark-mode .wall-location-modal .wall-location-modal-content {
+        background: #252526 !important;
+    }
+} 

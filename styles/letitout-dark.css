@@ -125,13 +125,31 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .release-text {
-    color: #808080;
+    color: #D4D4D4;
+}
+
+.dark-mode .letitout-info-text {
+    color: #D4D4D4;
 }
 
 /* --- Main Content: Post Cards (Wall tab) --- */
 .dark-mode .post-card-container {
+    background-color: transparent;
+}
+.dark-mode .post-card {
     background-color: #252526;
-    border-color: #333333;
+    border: 1px solid #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #D4D4D4;
+}
+.dark-mode .post-card .post-content-area .emotion-tag.emotion-tag-small {
+    background-color: #c10016 !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+.dark-mode .post-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border-color: #444;
 }
 
 .dark-mode .post-card-content {
@@ -200,4 +218,668 @@ LET IT OUT - DARK MODE STYLES
 
 .dark-mode .filter-actions .btn-secondary {
     color: #D4D4D4;
+}
+
+/*
+==============================================
+DARK MODE - FIXES & ADDITIONS
+==============================================
+*/
+
+/* --- Post Card (Wall) & Form Container (Write) --- */
+.dark-mode .post-card,
+.dark-mode .letitout-form {
+    background-color: #252526;
+    border-color: #333333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #D4D4D4;
+}
+
+.dark-mode .post-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border-color: #444;
+}
+
+/* --- Post Card & Form Elements --- */
+.dark-mode .post-content,
+.dark-mode .my-post-message,
+.dark-mode .original-post-message,
+.dark-mode .reply-content {
+    color: #D4D4D4;
+}
+
+.dark-mode .post-meta,
+.dark-mode .post-city-line,
+.dark-mode .my-post-timestamp,
+.dark-mode .original-post-timestamp,
+.dark-mode .reply-timestamp {
+    color: #888;
+}
+
+.dark-mode .letitout-form textarea {
+    background-color: transparent;
+    border: 1px solid #444;
+    color: #e0e0e0;
+}
+.dark-mode .letitout-form textarea:hover,
+.dark-mode .letitout-form textarea:focus {
+    border-color: #666;
+    box-shadow: none;
+}
+.dark-mode .letitout-form textarea::placeholder {
+    color: #D4D4D4;
+}
+
+.dark-mode .char-counter-inside {
+    background-color: rgba(30, 30, 30, 0.85);
+    color: #888;
+}
+
+.dark-mode .letitout-prompt-bar .letitout-subtitle {
+    color: #ffffff !important;
+}
+
+.dark-mode .letitout-shuffle-btn {
+    color: #c10016;
+}
+.dark-mode .letitout-reset-btn {
+    color: #D4D4D4;
+}
+
+
+/* --- Emotion & City Tags --- */
+.dark-mode .emotion-tag,
+.dark-mode .city-tag {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #c10016;
+}
+.dark-mode .emotion-tag.selected {
+    background: #c10016;
+    color: #fff;
+    border-color: #c10016;
+}
+
+.dark-mode .letitout-selected-tags .emotion-tag,
+.dark-mode .letitout-selected-city .city-tag {
+    background-color: #c10016;
+    color: #fff;
+    border-color: #c10016;
+}
+
+.dark-mode .letitout-selected-tags .emotion-tag .remove-tag,
+.dark-mode .letitout-selected-city .city-tag .remove-tag {
+    color: #fff;
+    opacity: 0.7;
+}
+
+.dark-mode .letitout-selected-tags .emotion-tag .remove-tag:hover,
+.dark-mode .letitout-selected-city .city-tag .remove-tag:hover {
+    opacity: 1;
+}
+
+/* --- Buttons --- */
+.dark-mode .felt-it-btn {
+    color: #D4D4D4;
+    border-color: #555;
+    background-color: #3a3a3a;
+}
+.dark-mode .felt-it-btn:hover {
+    background-color: #4a4a4a;
+    border-color: #666;
+}
+.dark-mode .felt-it-btn.felt {
+    background-color: #c10016;
+    border-color: #c10016;
+    color: #fff;
+}
+.dark-mode .share-love-btn {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border: 1px solid #555;
+}
+.dark-mode .share-love-btn:hover {
+    background-color: #4a4a4a;
+}
+.dark-mode .letitout-submit {
+    background-color: #c10016;
+}
+
+/* --- Context Menu --- */
+.dark-mode .options-menu {
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.dark-mode .options-menu a {
+    color: #D4D4D4;
+}
+.dark-mode .options-menu a:hover {
+    background-color: #4a4a4a;
+}
+
+/* --- Wall Page Filters --- */
+.dark-mode .wall-controls,
+.dark-mode .wall-search-filter-row {
+     background-color: #1E1E1E; /* Match body background */
+}
+
+.dark-mode .wall-location-btn,
+.dark-mode .wall-filter-btn,
+.dark-mode .wall-sort-trigger {
+    background-color: #252526;
+    color: #D4D4D4;
+    border-color: #333;
+}
+.dark-mode .wall-search-input {
+    background-color: #252526;
+    color: #D4D4D4;
+    border-color: #333;
+}
+.dark-mode .wall-search-button {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border-color: #555;
+}
+.dark-mode .wall-sort-list {
+    background: #252526;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border: 1px solid #333;
+}
+.dark-mode .wall-sort-label-dropdown {
+    color: #ffffff;
+    font-weight: 700;
+}
+.dark-mode .wall-sort-option {
+    color: #D4D4D4;
+}
+.dark-mode .wall-sort-option:hover,
+.dark-mode .wall-sort-option:focus {
+    background: #3a3a3a;
+}
+.dark-mode .wall-sort-option.selected {
+    color: #c10016;
+    background: #2f2f2f;
+}
+
+
+/* --- General Modals (Feeling, City, Location, Report) --- */
+.dark-mode .letitout-emotion-modal,
+.dark-mode .letitout-city-modal,
+.dark-mode .wall-location-modal .letitout-emotion-modal,
+.dark-mode .report-modal {
+    background-color: #252526;
+    color: #D4D4D4;
+}
+
+.dark-mode .letitout-emotion-modal-header,
+.dark-mode .letitout-city-modal-header {
+    border-bottom-color: #333;
+}
+
+.dark-mode .letitout-emotion-modal-title,
+.dark-mode .letitout-city-modal-title {
+    color: #D4D4D4;
+}
+
+.dark-mode .letitout-emotion-modal-close,
+.dark-mode .letitout-city-modal-close {
+    color: #888;
+}
+.dark-mode .letitout-emotion-modal-close:hover,
+.dark-mode .letitout-city-modal-close:hover {
+    color: #D4D4D4;
+}
+
+
+/* --- Modal Content --- */
+.dark-mode .city-search-input,
+.dark-mode .emotion-search-input {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+    border-color: #333;
+    box-shadow: none;
+}
+.dark-mode .city-search-input:focus,
+.dark-mode .emotion-search-input:focus {
+    outline: none;
+    border-color: #666;
+}
+.dark-mode .emotion-category-title {
+    color: #D4D4D4;
+}
+
+.dark-mode .emotion-subtag,
+.dark-mode .city-suggestion-btn {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border-color: #555;
+}
+
+.dark-mode .emotion-subtag.selected,
+.dark-mode .emotion-subtag:hover,
+.dark-mode .city-suggestion-btn.selected,
+.dark-mode .city-suggestion-btn:hover {
+    background-color: #c10016;
+    color: #fff;
+    border-color: #c10016;
+}
+
+.dark-mode .letitout-emotion-modal-footer,
+.dark-mode .letitout-city-modal-footer {
+    border-top-color: #333;
+}
+
+.dark-mode .letitout-emotion-modal-btn.cancel,
+.dark-mode .letitout-city-modal-btn.cancel {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #D4D4D4;
+}
+.dark-mode .letitout-emotion-modal-btn.cancel:hover,
+.dark-mode .letitout-city-modal-btn.cancel:hover {
+    background-color: #4a4a4a;
+}
+.dark-mode .letitout-emotion-modal-btn.clear {
+     color: #D4D4D4;
+     background-color: #3a3a3a;
+     border: 1px solid #555;
+}
+.dark-mode .letitout-emotion-modal-btn.clear:hover {
+    background-color: #4a4a4a;
+}
+
+.dark-mode .city-other-input {
+    background-color: #252526;
+    color: #D4D4D4;
+    border: 1px solid #333;
+}
+.dark-mode .city-other-input:focus {
+    outline: none;
+    border-color: #666;
+}
+.dark-mode .city-other-btn {
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+    color: #e0e0e0;
+}
+.dark-mode .city-other-btn:hover {
+    background-color: #4a4a4a;
+}
+
+/* --- "My Posts" Modal --- */
+.dark-mode .letitout-my-posts-modal-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.dark-mode .letitout-my-posts-modal {
+    background-color: #1E1E1E;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.dark-mode .letitout-my-posts-title,
+.dark-mode .letitout-my-posts-content .empty-state {
+    color: #D4D4D4;
+}
+.dark-mode .letitout-my-posts-close {
+    color: #ffffff;
+}
+.dark-mode .letitout-my-posts-tabs {
+    background-color: #1E1E1E;
+}
+.dark-mode .letitout-my-posts-tabs button:not(.active) {
+    color: #ffffff;
+}
+.dark-mode .my-post-card,
+.dark-mode .original-post-card {
+    background-color: #252526;
+    border-color: #333;
+    color: #D4D4D4;
+}
+.dark-mode .my-post-card .emotion-tag {
+    background-color: #c10016;
+    color: #fff;
+    border-color: #c10016;
+}
+.dark-mode .my-post-reply-line {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+}
+.dark-mode .my-post-reply-line button {
+    color: #c10016;
+}
+.dark-mode .my-post-reply-line.unread {
+    background-color: #5a1e26;
+}
+.dark-mode .reply-card {
+    background-color: #2f2f2f;
+    border-color: #c10016;
+}
+
+/* --- Misc --- */
+.dark-mode .toast-notification {
+    background-color: #252526;
+    color: #D4D4D4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.dark-mode .toast-notification.error {
+    background-color: #5a1e26;
+    color: #fff;
+}
+.dark-mode .letitout-intro-modal {
+    background: #252526;
+}
+.dark-mode .letitout-intro-title {
+    color: #D4D4D4;
+}
+.dark-mode .letitout-intro-copy {
+    color: #b0b0b0;
+}
+
+/* --- Wall Control Container --- */
+.dark-mode .wall-control {
+    border: 1px solid #333;
+}
+
+/* --- Location Filter Modal --- */
+.dark-mode .location-filter-modal {
+    background-color: #252526;
+    border-color: #333;
+}
+.dark-mode .location-filter-modal .modal-header {
+    background-color: #1E1E1E;
+    border-bottom-color: #333;
+}
+.dark-mode .location-filter-modal .modal-title {
+    color: #D4D4D4;
+}
+.dark-mode .location-filter-modal .modal-body {
+    background-color: #252526;
+    color: #D4D4D4;
+}
+.dark-mode .location-filter-modal .location-option {
+    background-color: #1E1E1E;
+    border-color: #333;
+    color: #D4D4D4;
+}
+.dark-mode .location-filter-modal .location-option:hover {
+    background-color: #3a3a3a;
+}
+.dark-mode .location-filter-modal .location-option.selected {
+    background-color: #c10016;
+    color: #ffffff;
+}
+
+/* --- Sort Dropdown --- */
+.dark-mode .wall-controls {
+    border: 1px solid #444;
+    box-shadow: none;
+}
+
+.dark-mode .wall-sort-container select {
+    background-color: #252526 !important;
+    color: #ffffff !important;
+    border: 1px solid #333 !important;
+}
+
+.dark-mode .wall-sort-container select option {
+    background-color: #252526;
+    color: #D4D4D4;
+}
+
+.dark-mode .wall-sort-container select option:disabled {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+.dark-mode .wall-location-modal {
+    --letitout-border: #333;
+    --letitout-text: #D4D4D4;
+    --letitout-background: #1E1E1E;
+    background-color: transparent;
+    border-bottom: 1px solid #333;
+}
+
+.dark-mode .wall-location-modal .wall-location-modal-content {
+    background-color: #252526;
+    border: 1px solid #555;
+    color: #D4D4D4;
+}
+.dark-mode .wall-location-modal .wall-location-modal-header {
+    border-bottom: 1px solid #444;
+}
+.dark-mode .wall-location-modal .wall-location-modal-header h3 {
+    color: #ffffff;
+}
+.dark-mode .wall-location-modal .wall-location-modal-header .close-btn {
+    color: #AAA;
+}
+.dark-mode .wall-location-modal .wall-location-modal-header .close-btn:hover {
+    color: #FFF;
+}
+.dark-mode .wall-location-modal .wall-location-search-input {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border: 1px solid #555;
+}
+.dark-mode .wall-location-modal .location-search-input {
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    color: #D4D4D4;
+}
+.dark-mode .wall-location-modal .location-search-input::placeholder {
+    color: #888;
+}
+.dark-mode .wall-location-modal .location-search-input:focus {
+    outline: none;
+    border-color: #666;
+}
+.dark-mode .wall-location-modal .wall-location-list .location-option {
+    background-color: #3a3a3a !important;
+    color: #D4D4D4 !important;
+    border: 1px solid #444 !important;
+}
+.dark-mode .wall-location-modal .wall-location-list .location-option:hover {
+    background-color: #4a4a4a !important;
+}
+.dark-mode .wall-location-modal .location-option.selected {
+    background-color: #c10016 !important;
+    color: #ffffff !important;
+    border-color: #c10016 !important;
+}
+
+/* --- Report Post Modal --- */
+.dark-mode #report-modal.letitout-emotion-modal {
+     background-color: #252526;
+}
+.dark-mode #report-modal .letitout-emotion-modal-header {
+    background-color: transparent;
+    border-bottom: 1px solid #333;
+}
+.dark-mode #report-modal .letitout-emotion-modal-title,
+.dark-mode #report-modal .letitout-emotion-modal-close {
+    color: #D4D4D4;
+}
+.dark-mode #report-modal .report-modal-subtitle {
+    color: #b0b0b0;
+}
+.dark-mode #report-modal .report-reasons-container .report-reason {
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    color: #D4D4D4;
+}
+.dark-mode #report-modal .report-reasons-container .report-reason:hover {
+    background-color: #3a3a3a;
+}
+.dark-mode #report-modal .report-reasons-container .report-reason.selected {
+    border-color: #c10016;
+    background-color: #3a1a20;
+}
+.dark-mode #report-modal .report-reason-title {
+    color: #D4D4D4;
+}
+.dark-mode #report-modal .report-reason-description {
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .dark-mode .wall-location-modal .wall-location-modal-content {
+        background: #252526 !important;
+    }
+}
+
+.dark-mode .post-card .felt-it-btn {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border: 1px solid #555;
+}
+.dark-mode .post-card .felt-it-btn.felt,
+.dark-mode .post-card .felt-it-btn:hover {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+.dark-mode .post-card .felt-it-btn svg {
+    stroke: #D4D4D4;
+}
+.dark-mode .post-card .felt-it-btn.felt svg,
+.dark-mode .post-card .felt-it-btn:hover svg {
+    stroke: #ffffff;
+}
+
+.dark-mode .post-card .felt-it-btn.felt svg {
+    stroke: #c10016;
+    fill: #c10016;
+}
+
+.dark-mode .post-card .share-love-btn {
+    background-color: #c10016;
+    color: #ffffff;
+    border: 1px solid #c10016;
+}
+.dark-mode .post-card .share-love-btn:hover {
+    background-color: #a00012;
+    border-color: #a00012;
+}
+.dark-mode .post-card .share-love-btn.sent {
+    background-color: #252526 !important;
+    color: #888 !important;
+    border-color: #333 !important;
+    cursor: not-allowed;
+}
+
+.dark-mode .post-city-line {
+    color: #888;
+}
+.dark-mode .post-meta {
+    color: #888;
+}
+
+/* --- Send Love (Reply) Modal --- */
+.dark-mode .reply-modal-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.dark-mode .reply-modal {
+    background-color: #252526;
+    color: #D4D4D4;
+    border: 1px solid #333;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+.dark-mode .reply-modal .reply-modal-title {
+    color: #ffffff;
+}
+.dark-mode .reply-modal .reply-textarea {
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    color: #D4D4D4;
+}
+.dark-mode .reply-modal .reply-textarea::placeholder {
+    color: #888;
+}
+.dark-mode .reply-modal .reply-textarea:focus {
+    border-color: #666;
+    outline: none;
+}
+.dark-mode .reply-modal .char-counter {
+    color: #888;
+}
+.dark-mode .reply-modal .cancel-btn {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border: 1px solid #555;
+}
+.dark-mode .reply-modal .send-btn {
+    background-color: #c10016;
+    color: #ffffff;
+    border: 1px solid #c10016;
+}
+.dark-mode .reply-modal .send-btn:disabled {
+    background-color: #5a1e26;
+    color: #a0a0a0;
+    border-color: #5a1e26;
+}
+
+
+/* --- Report Post Modal --- */
+.dark-mode #report-modal.letitout-emotion-modal {
+    background-color: #252526;
+}
+
+/* --- Toast Notification --- */
+.dark-mode .toast-notification.success {
+    background-color: #3a3a3a;
+    color: #E0F0E0;
+    border: 1px solid #555;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Location Tags in Modal --- */
+.dark-mode .wall-location-modal .location-option {
+    background-color: #3a3a3a !important;
+    color: #D4D4D4 !important;
+    border: 1px solid #444 !important;
+}
+.dark-mode .wall-location-modal .location-option:hover {
+    background-color: #4a4a4a !important;
+}
+
+/* --- Location Modal --- */
+.dark-mode .wall-location-modal-content {
+    background: #252526;
+    border: 1px solid #555;
+    color: #D4D4D4;
+}
+
+.dark-mode .wall-location-modal-header {
+    border-bottom: 1px solid #444;
+}
+
+.dark-mode .wall-location-modal .close-btn {
+    color: #AAA;
+}
+.dark-mode .wall-location-modal .close-btn:hover {
+    color: #FFF;
+}
+
+.dark-mode .wall-location-search-input {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border: 1px solid #555;
+}
+
+.dark-mode .wall-city-chip {
+    background-color: #3a3a3a;
+    color: #D4D4D4;
+    border: 1px solid #555;
+}
+.dark-mode .wall-city-chip:hover {
+    background-color: #4a4a4a;
+    border-color: #666;
+}
+.dark-mode .wall-city-chip.selected {
+    background-color: #5282E8;
+    color: white;
+    border-color: #5282E8;
+}
+
+/* --- Filter Modal --- */
+.dark-mode .letitout-emotion-modal {
+    background-color: #252526;
 } 
