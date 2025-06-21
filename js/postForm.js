@@ -202,6 +202,10 @@ class PostForm {
         
         textarea.addEventListener('input', () => {
             counter.textContent = `${textarea.value.length}/500`;
+
+            // Auto-expand textarea
+            textarea.style.height = 'auto';
+            textarea.style.height = `${textarea.scrollHeight}px`;
         });
         
         textareaWrapper.appendChild(textarea);

@@ -89,7 +89,7 @@
     border-radius: var(--letitout-radius-md);
     font-family: var(--letitout-font-family);
     font-size: 1rem;
-    resize: vertical;
+    resize: none; /* Changed from vertical to none */
     box-sizing: border-box;
     background-color: var(--letitout-input-bg);
     color: var(--letitout-text);
