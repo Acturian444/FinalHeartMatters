@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="styles/letitout.css?v=10">
     <link rel="stylesheet" href="styles/letitout-mobile.css?v=2">
     <link rel="stylesheet" href="styles/letitout-theme.css?v=2">
+    <link rel="stylesheet" href="styles/letitout-dark.css?v=1">
     <style>
     .letitout-title-bar {
         display: flex;
@@ -284,6 +285,9 @@
     </header>
 
     <main id="letitout-main">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
         <div class="letitout-title-bar">
             <h1 class="letitout-title">Let It Out</h1>
             <div class="letitout-segmented-control" id="letitout-segmented-control">
@@ -339,6 +343,7 @@
     <script src="js/localId.js?v=2"></script>
     <script src="js/utils.js?v=3"></script>
     <script src="js/menu.js"></script>
+    <script src="js/darkMode.js"></script>
     <script src="js/firebase.js?v=2"></script>
     <script src="js/services/post-service.js?v=2"></script>
     <script src="js/components/post-card.js?v=2"></script>

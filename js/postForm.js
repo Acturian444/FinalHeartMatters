@@ -288,7 +288,7 @@ class PostForm {
         const cityBtn = document.createElement('button');
         cityBtn.type = 'button';
         cityBtn.className = 'letitout-city-btn';
-        cityBtn.innerHTML = 'Tag City';
+        cityBtn.innerHTML = '+ Tag City';
         cityBtn.onclick = () => this.openCityModal();
 
         // Selected tags display

@@ -81,13 +81,13 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1100;
     width: 100vw;
     left: 0;
     right: 0;
     transition: box-shadow 0.2s;
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
 }
 
 nav {
@@ -1050,6 +1050,56 @@ footer {
 /* Hide the old, stray close button from the header */
 .nav-centered > .close-btn {
     display: none !important;
+}
+
+.theme-toggle-btn {
+    position: absolute;
+    top: 3.5rem;
+    left: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    padding: 0.2rem;
+    font-size: 1.4rem;
+}
+
+@media (max-width: 900px) {
+    .theme-toggle-btn {
+        left: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .theme-toggle-btn {
+        top: auto;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        position: fixed;
+        background-color: #fffcf1;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        z-index: 100;
+    }
+    .dark-mode .theme-toggle-btn {
+        background-color: #333333;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        color: #D4D4D4;
+    }
+}
+
+.dark-mode .theme-toggle-btn {
+    color: #D4D4D4;
 }
 
 .menu-overlay a {

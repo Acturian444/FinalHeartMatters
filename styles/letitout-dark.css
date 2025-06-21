@@ -1,0 +1,203 @@
+/* 
+==============================================
+LET IT OUT - DARK MODE STYLES
+==============================================
+*/
+
+/* --- General --- */
+.dark-mode {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+}
+
+/* --- Header & Footer --- */
+.dark-mode header,
+.dark-mode footer {
+    background-color: #252526;
+    border-color: #333333;
+}
+
+.dark-mode .center-logo,
+.dark-mode .copyright p {
+    color: #D4D4D4;
+}
+
+.dark-mode .nav-links a {
+    color: #D4D4D4;
+}
+
+.dark-mode .center-logo {
+    color: #c10016; /* Brand red */
+}
+
+.dark-mode .letitout-my-posts-btn-global .my-posts-icon svg {
+    stroke: #D4D4D4;
+}
+
+.dark-mode .hamburger i {
+    color: #D4D4D4;
+}
+
+/* --- Mobile Menu Drawer --- */
+.dark-mode .menu-overlay nav {
+    background: #252526;
+    box-shadow: 4px 0px 15px rgba(0,0,0,0.4);
+}
+
+.dark-mode .menu-overlay a {
+    color: #D4D4D4;
+}
+
+.dark-mode .menu-overlay a.active {
+    color: #c10016; /* Keep brand red for active link */
+}
+
+.dark-mode .menu-overlay a:hover,
+.dark-mode .menu-overlay a:focus {
+    background-color: #333333;
+}
+
+.dark-mode .menu-overlay .close-btn {
+    color: #D4D4D4;
+}
+
+/* --- Main Content: Segmented Control --- */
+.dark-mode .letitout-title {
+    color: #D4D4D4 !important;
+}
+
+.dark-mode .letitout-segmented-control {
+    background: #252526;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.dark-mode .segment-btn {
+    color: #D4D4D4;
+}
+
+.dark-mode .segment-btn.active {
+    background: #c10016; /* Keep brand red */
+    color: #fff !important;
+}
+
+/* --- Main Content: Post Form (Write tab) --- */
+.dark-mode .letitout-post-card {
+    background-color: #252526;
+    border-color: #333333;
+}
+
+.dark-mode .letitout-post-card-header h2 {
+    color: #D4D4D4;
+}
+
+.dark-mode .letitout-post-card-header .new-question-btn {
+    color: #c10016; /* Keep brand red */
+}
+
+.dark-mode .letitout-post-card-body textarea {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+    border-color: #333333;
+}
+
+.dark-mode .letitout-post-card-body textarea::placeholder {
+    color: #808080;
+}
+
+.dark-mode .letitout-post-card-footer .char-count {
+    color: #808080;
+}
+
+.dark-mode .letitout-post-card-actions .action-btn {
+    background-color: #333333;
+    color: #D4D4D4;
+    border-color: #444444;
+}
+
+.dark-mode .letitout-post-card-submit .submit-btn {
+    background-color: #c10016; /* Keep brand red */
+    color: #fff;
+}
+
+.dark-mode .letitout-post-card-submit .submit-btn:disabled {
+    background-color: #5a1e26;
+    color: #a0a0a0;
+}
+
+.dark-mode .release-text {
+    color: #808080;
+}
+
+/* --- Main Content: Post Cards (Wall tab) --- */
+.dark-mode .post-card-container {
+    background-color: #252526;
+    border-color: #333333;
+}
+
+.dark-mode .post-card-content {
+    color: #D4D4D4;
+}
+
+.dark-mode .post-card-footer {
+    border-top-color: #333333;
+}
+
+.dark-mode .post-card-footer .post-meta,
+.dark-mode .post-card-footer .post-actions .felt-this-count {
+    color: #808080;
+}
+
+.dark-mode .post-card-footer .post-actions .action-icon,
+.dark-mode .post-card-footer .post-actions .more-options-btn {
+    color: #D4D4D4;
+}
+
+.dark-mode .post-card-footer .post-actions .action-icon.felt {
+    color: #c10016; /* Keep brand red */
+}
+
+/* --- Modals --- */
+.dark-mode .letitout-emotion-modal,
+.dark-mode .modal-bottom-sheet {
+    background: #252526;
+}
+
+.dark-mode .letitout-emotion-modal-title {
+    color: #D4D4D4 !important;
+}
+
+.dark-mode .letitout-emotion-modal-close {
+    color: #D4D4D4;
+}
+
+.dark-mode .report-modal-subtitle,
+.dark-mode .filter-option label {
+    color: #D4D4D4;
+}
+
+.dark-mode .report-reasons-container .reason-btn {
+    background-color: #333333;
+    color: #D4D4D4;
+}
+
+.dark-mode .report-reasons-container .reason-btn.selected {
+    background-color: #c10016;
+    color: #fff;
+}
+
+.dark-mode .letitout-emotion-modal-btn.done {
+    background-color: #c10016;
+}
+
+.dark-mode .letitout-emotion-modal-btn.done:disabled {
+    background-color: #5a1e26;
+    color: #a0a0a0;
+}
+
+.dark-mode .filter-actions .btn-primary {
+    background-color: #c10016;
+}
+
+.dark-mode .filter-actions .btn-secondary {
+    color: #D4D4D4;
+} 
