@@ -542,7 +542,7 @@ class PostForm {
             <button class="letitout-my-posts-close">&times;</button>
             <div class="letitout-my-posts-title">${localId}</div>
             <div class="letitout-my-posts-tabs">
-              <button class="my-posts-tab active">My Posts <span class="my-posts-notification-dot" style="display:none;"></span></button>
+              <button class="my-posts-tab active">My Journals <span class="my-posts-notification-dot" style="display:none;"></span></button>
             </div>
             <div class="letitout-my-posts-content"></div>
           </div>
@@ -803,7 +803,7 @@ class PostForm {
             }
 
             modalContent.innerHTML = `
-                <button class="back-to-posts-btn">← My Posts</button>
+                <button class="back-to-posts-btn">← My Journals</button>
                 <div class="letitout-my-posts-title">Messages</div>
                 <div class="letitout-my-posts-content">
                     <div class="original-post-card">

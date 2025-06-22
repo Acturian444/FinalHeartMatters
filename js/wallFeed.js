@@ -1057,7 +1057,7 @@ class WallFeed {
           <div class="letitout-my-posts-modal">
             <button class="letitout-my-posts-close">&times;</button>
             <div class="letitout-my-posts-tabs">
-              <button class="my-posts-tab active">My Posts <span class="my-posts-notification-dot" style="display:none;"></span></button>
+              <button class="my-posts-tab active">My Journals <span class="my-posts-notification-dot" style="display:none;"></span></button>
             </div>
             <div class="letitout-my-posts-content"></div>
           </div>
