@@ -525,8 +525,17 @@ class PostForm {
             const infoText = document.createElement('div');
             infoText.className = 'letitout-info-text';
             infoText.style.marginTop = '1.5rem';
-            infoText.textContent = 'Release it. This is your space. Always anonymous.';
+            infoText.textContent = 'This is your public journal. Always anonymous.';
             this.buttonContainer.appendChild(infoText);
+
+            // Add "Need Support" button
+            const supportButton = document.createElement('button');
+            supportButton.type = 'button';
+            supportButton.className = 'support-link-btn';
+            supportButton.textContent = 'Need support right now?';
+            supportButton.onclick = () => this.openSupportModal();
+            this.buttonContainer.appendChild(supportButton);
+
         } else {
             // Always update the reference in case of re-render
             this.submitButton = this.buttonContainer.querySelector('.letitout-submit-btn');
@@ -1294,6 +1303,57 @@ class PostForm {
 
     clearDraft() {
         sessionStorage.removeItem(this.draftKey);
+    }
+
+    openSupportModal() {
+        // Remove any existing modal to prevent duplicates
+        const existingModal = document.querySelector('.support-modal-overlay');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
+        const overlay = document.createElement('div');
+        overlay.className = 'support-modal-overlay';
+
+        overlay.innerHTML = `
+            <div class="support-modal">
+                <button class="support-modal-close">&times;</button>
+                <h3 class="support-modal-title">You're not alone.</h3>
+                <p class="support-modal-body">If you're in immediate danger or feel overwhelmed, you can call or text 988 for 24/7 free and confidential support.</p>
+                <div class="support-modal-actions">
+                    <a href="tel:988" class="support-modal-btn call-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>Call 988</span>
+                    </a>
+                    <a href="sms:988" class="support-modal-btn text-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Text 988</span>
+                    </a>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // Add visibility for animation
+        setTimeout(() => overlay.classList.add('visible'), 10);
+
+        // Add close listeners
+        const closeModal = () => {
+            overlay.classList.remove('visible');
+            setTimeout(() => overlay.remove(), 300);
+        };
+
+        overlay.querySelector('.support-modal-close').onclick = closeModal;
+        overlay.onclick = (e) => {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        };
     }
 }
 
