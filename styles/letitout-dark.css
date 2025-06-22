@@ -549,6 +549,11 @@ DARK MODE - FIXES & ADDITIONS
 .dark-mode .my-post-reply-line.unread {
     background-color: #5a1e26;
 }
+.dark-mode .my-post-reply-line .view-messages,
+.dark-mode .my-post-reply-line .view-messages-btn {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
 .dark-mode .reply-card {
     background-color: #2f2f2f;
     border-color: #c10016;

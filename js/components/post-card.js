@@ -699,32 +699,29 @@ class PostCard {
 
     async handleShare() {
         try {
-            if (navigator.share) {
-                await navigator.share({
-                    title: 'Heart Matters',
-                    text: 'Check out my post on Heart Matters',
-                    url: window.location.href
-                });
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                const dummy = document.createElement('input');
-                document.body.appendChild(dummy);
-                dummy.value = window.location.href;
-                dummy.select();
-                document.execCommand('copy');
-                document.body.removeChild(dummy);
-                
-                // Show copied message
-                const shareBtn = this.element.querySelector('[data-action="share"]');
-                const originalText = shareBtn.textContent;
-                shareBtn.textContent = 'Link copied!';
-                setTimeout(() => {
-                    shareBtn.textContent = originalText;
-                }, 2000);
-            }
+            // This is a placeholder for the actual share image generation logic
+            // The real logic will be implemented in the next step after discovery
+            const postContent = this.querySelector('.post-content').textContent;
+            const postEmotions = Array.from(this.querySelectorAll('.post-emotion-tags .emotion-tag')).map(t => t.textContent);
+
+            // Temporarily log to console to show it's being called
+            console.log("Sharing post:", postContent, postEmotions);
+
+            // Placeholder for calling the real image generator
+            // e.g., window.ShareImageGenerator.create(this.postData);
+
         } catch (error) {
             console.error('Share error:', error);
         }
+    }
+
+    showShareModal(imageUrl) {
+        // Remove existing modal if any
+        // ... existing code ...
+    }
+
+    showToast(message, type) {
+        // ... existing code ...
     }
 }
 

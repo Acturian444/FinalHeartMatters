@@ -736,7 +736,9 @@ class WallFeed {
     }
 
     async generateShareImage(post) {
-        // Create the off-screen container for rendering
+        // --- Dark Mode Check ---
+        const isDarkMode = document.body.classList.contains('dark-mode');
+
         const shareContainer = document.createElement('div');
         shareContainer.id = 'share-image-container';
         
@@ -747,7 +749,7 @@ class WallFeed {
             top: '0px',
             width: '1080px',
             height: '1350px',
-            backgroundColor: '#fffcf1',
+            backgroundColor: isDarkMode ? '#1e1e1e' : '#fffcf1', // THEME AWARE
             padding: '80px 60px',
             boxSizing: 'border-box',
             fontFamily: '"DM Sans", sans-serif',
@@ -772,7 +774,7 @@ class WallFeed {
         title.textContent = 'LET IT OUT';
         Object.assign(title.style, {
             fontFamily: '"Anton", sans-serif',
-            color: '#c10016',
+            color: isDarkMode ? '#D4D4D4' : '#c10016', // THEME AWARE
             fontSize: '96px',
             fontWeight: 'bold',
             letterSpacing: '2px',
@@ -783,7 +785,7 @@ class WallFeed {
         signature.textContent = post.city ? `Anonymous from ${post.city}` : 'Anonymous';
         Object.assign(signature.style, {
             fontSize: '28px',
-            color: '#888',
+            color: isDarkMode ? '#888' : '#888', // No change needed, but explicit for clarity
             margin: '10px 0 0 0'
         });
 
@@ -838,8 +840,8 @@ class WallFeed {
                 const tag = document.createElement('span');
                 tag.textContent = e;
                 Object.assign(tag.style, {
-                    backgroundColor: '#fff0f2',
-                    color: '#c10016',
+                    backgroundColor: isDarkMode ? '#c10016' : '#fff0f2', // THEME AWARE
+                    color: isDarkMode ? '#ffffff' : '#c10016', // THEME AWARE
                     borderRadius: '30px',
                     padding: '12px 24px',
                     fontSize: '24px',
@@ -853,7 +855,7 @@ class WallFeed {
         content.textContent = post.content;
         Object.assign(content.style, {
             fontSize: '42px',
-            color: 'black',
+            color: isDarkMode ? '#D4D4D4' : 'black', // THEME AWARE
             lineHeight: '1.6',
             whiteSpace: 'pre-wrap',
             textAlign: 'center',
@@ -871,7 +873,7 @@ class WallFeed {
         Object.assign(watermark.style, {
             fontFamily: '"DM Sans", sans-serif',
             fontSize: '24px',
-            color: '#aaa',
+            color: isDarkMode ? '#666' : '#aaa', // THEME AWARE
             fontWeight: '500',
             margin: '0'
         });
@@ -903,8 +905,7 @@ class WallFeed {
                 const file = new File([blob], 'heart-matters-post.png', { type: blob.type });
                 await navigator.share({
                     files: [file],
-                    title: 'A post from Heart Matters',
-                    text: 'Someone shared how they felt on Heart Matters. See the post.',
+                    title: 'Someone opened up on Let It Out. Read their journal.',
                 });
             } else {
                 this.showShareModal(dataUrl);
