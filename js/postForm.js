@@ -7,6 +7,9 @@ class PostForm {
     }
 
     setupForm() {
+        // --- DRAFT LOGIC ---
+        this.draftKey = 'letitout_draft';
+
         // Restore prompt bank and default prompt
         this.prompts = [
             "What's something you've never said out loud until now?",
@@ -202,6 +205,7 @@ class PostForm {
         
         textarea.addEventListener('input', () => {
             counter.textContent = `${textarea.value.length}/500`;
+            this.saveDraft(); // Save draft on text change
 
             // Auto-expand textarea
             textarea.style.height = 'auto';
@@ -283,7 +287,10 @@ class PostForm {
         emotionBtn.type = 'button';
         emotionBtn.className = 'letitout-emotion-btn';
         emotionBtn.innerHTML = '+ Add Feeling';
-        emotionBtn.onclick = () => this.openEmotionModal();
+        emotionBtn.onclick = () => {
+            this.openEmotionModal();
+            this.saveDraft(); // Save draft when opening modal
+        };
         // Blur after tap/click to prevent persistent focus on mobile
         emotionBtn.addEventListener('mouseup', function() { this.blur(); });
         emotionBtn.addEventListener('touchend', function() { this.blur(); });
@@ -390,6 +397,7 @@ class PostForm {
             this.customCity = null;
             this.isCustomCity = false;
             this.updateSelectedCity();
+            this.clearDraft(); // Clear draft on successful post
             if (submitButton) {
                 submitButton.textContent = 'Let It Out';
                 submitButton.disabled = false;
@@ -478,6 +486,9 @@ class PostForm {
         }
         // Add the form
         container.appendChild(this.form);
+        
+        // Load draft after form is in the DOM
+        this.loadDraft();
         
         // Add My Posts button to global container
         const globalContainer = document.getElementById('letitout-my-posts-container');
@@ -1067,6 +1078,7 @@ class PostForm {
         closeBtn.onclick = closeModal;
         doneBtn.onclick = () => {
             this.updateSelectedTags();
+            this.saveDraft();
             closeModal();
         };
 
@@ -1091,6 +1103,7 @@ class PostForm {
             tag.querySelector('.remove-tag').onclick = () => {
                 this.selectedEmotions = this.selectedEmotions.filter(e => e !== emotion);
                 this.updateSelectedTags();
+                this.saveDraft(); // Save draft when a tag is removed
             };
 
             this.selectedTagsDisplay.appendChild(tag);
@@ -1134,6 +1147,7 @@ class PostForm {
                 this.customCity = null;
                 this.isCustomCity = false;
                 this.updateSelectedCity();
+                this.saveDraft(); // Save draft when city is removed
             };
             this.selectedCityDisplay.appendChild(tag);
         }
@@ -1213,6 +1227,7 @@ class PostForm {
         cancelBtn.onclick = closeModal;
         doneBtn.onclick = () => {
             this.updateSelectedCity();
+            this.saveDraft();
             closeModal();
         };
         modal.onclick = (e) => {
@@ -1240,6 +1255,45 @@ class PostForm {
             };
             container.appendChild(btn);
         });
+    }
+
+    // --- DRAFT FUNCTIONS ---
+    saveDraft() {
+        const draft = {
+            content: this.form.querySelector('textarea').value,
+            emotions: this.selectedEmotions,
+            city: this.selectedCity,
+            isCustomCity: this.isCustomCity,
+        };
+        sessionStorage.setItem(this.draftKey, JSON.stringify(draft));
+    }
+
+    loadDraft() {
+        const draftJSON = sessionStorage.getItem(this.draftKey);
+        if (!draftJSON) return;
+
+        try {
+            const draft = JSON.parse(draftJSON);
+            const textarea = this.form.querySelector('textarea');
+            
+            textarea.value = draft.content || '';
+            this.selectedEmotions = draft.emotions || [];
+            this.selectedCity = draft.city || null;
+            this.isCustomCity = draft.isCustomCity || false;
+
+            // Trigger updates to reflect loaded data
+            textarea.dispatchEvent(new Event('input', { bubbles: true })); // Updates counter and auto-expands
+            this.updateSelectedTags();
+            this.updateSelectedCity();
+
+        } catch (error) {
+            console.error("Error loading draft:", error);
+            this.clearDraft();
+        }
+    }
+
+    clearDraft() {
+        sessionStorage.removeItem(this.draftKey);
     }
 }
 
