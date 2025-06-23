@@ -351,8 +351,12 @@
     font-weight: 700;
     color: #222;
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 0.2rem;
+    flex-grow: 1;
+    min-height: 3em; /* Adjusted height for consistency */
+    display: flex;
+    align-items: center; /* This is the key property for vertical alignment */
+    justify-content: center;
+    line-height: 1.4; /* Ensure consistent line spacing */
 }
 .letitout-shuffle-btn {
     background: none;
@@ -3908,4 +3912,59 @@
 
 .support-modal-btn svg {
     stroke: #ffffff;
+}
+
+/* --- New Prompt Controls --- */
+.prompt-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px; /* Or adjust as needed */
+    margin: 0 auto;
+    padding-top: 1rem; /* Added padding */
+}
+
+.prompt-nav-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    line-height: 1;
+    color: var(--letitout-primary);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.prompt-nav-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.prompt-nav-btn.back-btn {
+    margin-right: 1rem;
+}
+
+.prompt-nav-btn.next-btn {
+    margin-left: 1rem;
+}
+
+.letitout-subtitle {
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #222;
+    text-align: center;
+    flex-grow: 1;
+    min-height: 3em; /* Adjusted height for consistency */
+    display: flex;
+    align-items: center; /* This is the key property for vertical alignment */
+    justify-content: center;
+    line-height: 1.4; /* Ensure consistent line spacing */
+}
+
+/* --- Mobile-specific prompt styles --- */
+@media (max-width: 768px) {
+    .letitout-subtitle {
+        font-size: 1.15rem; /* Smaller font for mobile */
+    }
 }

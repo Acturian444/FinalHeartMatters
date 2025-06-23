@@ -974,4 +974,13 @@ DARK MODE - FIXES & ADDITIONS
 
 .dark-mode .support-modal-btn {
     /* The red CTA works well on dark backgrounds, no change needed */
+}
+
+/* --- Prompt Controls --- */
+.dark-mode .prompt-nav-btn {
+    color: #f5f5f7;
+}
+
+.dark-mode .letitout-subtitle {
+    color: #f5f5f7;
 } 

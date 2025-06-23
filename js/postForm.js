@@ -7,6 +7,12 @@ class PostForm {
     }
 
     setupForm() {
+        // --- PROMPT STATE ---
+        this.promptHistory = [];
+        this.availablePrompts = [];
+        this.currentHistoryIndex = -1;
+        this.isInitialized = false;
+
         // --- DRAFT LOGIC ---
         this.draftKey = 'letitout_draft';
 
@@ -43,54 +49,32 @@ class PostForm {
         promptBar.style.alignItems = 'center';
         promptBar.style.marginBottom = '1.2rem';
 
+        // --- NEW PROMPT CONTROLS ---
+        const promptControls = document.createElement('div');
+        promptControls.className = 'prompt-controls';
+
+        // Back button
+        this.backBtn = document.createElement('button');
+        this.backBtn.type = 'button';
+        this.backBtn.className = 'prompt-nav-btn back-btn';
+        this.backBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+        this.backBtn.onclick = () => this.handleBackClick();
+
         // Main prompt title
-        const subtitle = document.createElement('div');
-        subtitle.className = 'letitout-subtitle';
-        subtitle.textContent = this.defaultPrompt;
-        subtitle.style.fontWeight = '700';
-        subtitle.style.fontSize = '1.35rem';
-        subtitle.style.color = '#222';
-        subtitle.style.textAlign = 'center';
-        subtitle.style.marginBottom = '0.2rem';
+        this.promptTitle = document.createElement('div');
+        this.promptTitle.className = 'letitout-subtitle';
+        
+        // Next button
+        this.nextBtn = document.createElement('button');
+        this.nextBtn.type = 'button';
+        this.nextBtn.className = 'prompt-nav-btn next-btn';
+        this.nextBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+        this.nextBtn.onclick = () => this.handleNextClick();
 
-        // Button row for shuffle/reset
-        const buttonRow = document.createElement('div');
-        buttonRow.className = 'letitout-button-row';
-        buttonRow.style.display = 'flex';
-        buttonRow.style.alignItems = 'center';
-        buttonRow.style.justifyContent = 'center';
-        buttonRow.style.gap = '0.7em';
-        buttonRow.style.marginBottom = '0.2rem';
-
-        // Shuffle button
-        const shuffleBtn = document.createElement('button');
-        shuffleBtn.type = 'button';
-        shuffleBtn.className = 'letitout-shuffle-btn';
-        shuffleBtn.innerHTML = '<span class="next-arrow-icon" style="display:inline-flex;align-items:center;margin-right:0.4em;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 4l6 6-6 6" stroke="#c10016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Need a new question?';
-
-        // Reset button
-        const resetBtn = document.createElement('button');
-        resetBtn.type = 'button';
-        resetBtn.className = 'letitout-reset-btn';
-        resetBtn.textContent = 'Reset';
-        resetBtn.style.display = 'none';
-
-        // Shuffle logic
-        shuffleBtn.onclick = () => {
-            const prompt = this.getRandomPrompt();
-            subtitle.textContent = prompt;
-            resetBtn.style.display = 'inline-flex';
-        };
-        // Reset logic
-        resetBtn.onclick = () => {
-            subtitle.textContent = this.defaultPrompt;
-            resetBtn.style.display = 'none';
-        };
-
-        buttonRow.appendChild(shuffleBtn);
-        buttonRow.appendChild(resetBtn);
-        promptBar.appendChild(subtitle);
-        promptBar.appendChild(buttonRow);
+        promptControls.appendChild(this.backBtn);
+        promptControls.appendChild(this.promptTitle);
+        promptControls.appendChild(this.nextBtn);
+        promptBar.appendChild(promptControls);
         formContent.appendChild(promptBar);
 
         // Create wrapper for textarea and counter
@@ -254,6 +238,59 @@ class PostForm {
         this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="4" rx="2"/><path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/><path d="M9 12h6"/></svg></span>';
         this.myPostsBtn.setAttribute('aria-label', 'My Posts & Inbox');
         this.myPostsBtn.onclick = () => this.openMyPostsModal();
+
+        // Initialize the prompt system
+        this.initializePrompts();
+    }
+
+    initializePrompts() {
+        this.availablePrompts = [...Array(this.prompts.length).keys()];
+        this.promptHistory = [];
+        this.currentHistoryIndex = -1;
+        this.updatePromptUI();
+    }
+
+    handleNextClick() {
+        this.currentHistoryIndex++;
+
+        // If we are moving past our current history
+        if (this.currentHistoryIndex >= this.promptHistory.length) {
+            // Check if we've run out of new prompts
+            if (this.availablePrompts.length === 0) {
+                // All prompts shown, reset to default (clean loop)
+                this.initializePrompts();
+                return;
+            }
+
+            // Get a new random prompt
+            const randomIndex = Math.floor(Math.random() * this.availablePrompts.length);
+            const newPromptIndex = this.availablePrompts.splice(randomIndex, 1)[0];
+            this.promptHistory.push(newPromptIndex);
+        }
+
+        this.updatePromptUI();
+    }
+
+    handleBackClick() {
+        if (this.currentHistoryIndex > -1) {
+            this.currentHistoryIndex--;
+            this.updatePromptUI();
+        }
+    }
+
+    updatePromptUI() {
+        if (this.currentHistoryIndex === -1) {
+            // Default state
+            this.promptTitle.textContent = this.defaultPrompt;
+            this.backBtn.style.visibility = 'hidden';
+        } else {
+            // Show a prompt from history
+            const promptIndex = this.promptHistory[this.currentHistoryIndex];
+            this.promptTitle.textContent = this.prompts[promptIndex];
+            this.backBtn.style.visibility = 'visible';
+        }
+        // Next button is always visible
+        this.nextBtn.style.visibility = 'visible';
     }
 
     toggleEmotion(tag) {
