@@ -1745,14 +1745,14 @@
 
 /* Inbox UI Styles */
 .inbox-reply-card {
-    background: #fff6f7;
+    background: #f8f9fa !important;
     border-radius: 1rem;
     padding: 1.2rem;
     margin-bottom: 1rem;
     font-family: 'DM Sans', sans-serif;
     color: #222;
     line-height: 1.6;
-    box-shadow: 0 1.5px 8px rgba(193,0,22,0.06);
+    box-shadow: none !important;
     transition: transform 0.2s ease;
 }
 
@@ -3083,8 +3083,8 @@
 
 /* Reply Card */
 .reply-card {
-  background: #fff;
-  border: 1.5px solid #f8bfc4;
+  background: #f8f9fa;
+  border: none;
   border-radius: 1rem;
   box-shadow: none;
   padding: 1.2rem 1.3rem 1.1rem 1.3rem;
@@ -3967,4 +3967,136 @@
     .letitout-subtitle {
         font-size: 1.15rem; /* Smaller font for mobile */
     }
+}
+
+/* 1. Move Messages title up */
+.letitout-my-posts-modal .messages-title {
+  margin-top: 0.5rem !important; /* Move title closer to top */
+  margin-bottom: 1.2rem !important; /* Slightly less space below */
+}
+
+/* 2. Make emotion/feeling tag pills in Inbox/Messages match My Posts cards */
+.letitout-my-posts-modal .emotion-tag {
+  font-size: 13px !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  font-weight: 400;
+  height: auto;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+/* 3. Remove red border/outline from reply card in Inbox/Messages */
+.letitout-my-posts-modal .inbox-reply-card {
+  border: 1.5px solid #e0e0e0 !important;
+  border-color: #e0e0e0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 4. Light mode: set reply card background to light grey in Inbox/Messages */
+.letitout-my-posts-modal .inbox-reply-card {
+  background: #f5f5f5 !important;
+}
+
+/* 5. Add space above the first post card below the title */
+.letitout-my-posts-modal .messages-list,
+.letitout-my-posts-modal .inbox-post-preview {
+  margin-top: 0.7rem !important;
+}
+
+/* Move Messages title up - try common selectors */
+.letitout-my-posts-modal h2,
+.letitout-my-posts-modal h3,
+.letitout-my-posts-modal .letitout-my-posts-title,
+.letitout-my-posts-modal .messages-title {
+  margin-top: 0.5rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+/* Dark mode: make (x) Message label above reply cards white */
+.dark-mode .letitout-my-posts-modal .messages-count,
+.dark-mode .letitout-my-posts-modal .reply-count-label,
+.dark-mode .letitout-my-posts-modal .messages-label,
+.dark-mode .letitout-my-posts-modal .inbox-messages-count,
+.dark-mode .letitout-my-posts-modal .inbox-messages-label {
+  color: #fff !important;
+}
+
+/* Also try for any h4/h5 in modal */
+.dark-mode .letitout-my-posts-modal h4,
+.dark-mode .letitout-my-posts-modal h5 {
+  color: #fff !important;
+}
+
+.letitout-my-posts-modal .replies-header {
+  margin-left: 1.2rem;
+}
+
+.letitout-my-posts-modal .my-journals-back,
+.letitout-my-posts-modal .back-to-journals,
+.letitout-my-posts-modal .back-link,
+.letitout-my-posts-modal .back {
+  margin-top: 2.2rem;
+  display: inline-block;
+}
+
+.letitout-my-posts-modal .messages-header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  /* Optionally, add justify-content: flex-start or space-between if needed */
+}
+.letitout-my-posts-modal .my-journals-back,
+.letitout-my-posts-modal .back-to-journals,
+.letitout-my-posts-modal .back-link,
+.letitout-my-posts-modal .back {
+  margin-top: 0 !important;
+  display: inline-block;
+}
+.letitout-my-posts-modal .letitout-my-posts-title,
+.letitout-my-posts-modal .messages-title {
+  margin-top: 0 !important;
+}/* Cache bust: Mon Jun 23 11:44:32 PDT 2025 */
+
+/* Force override for inbox-reply-card border - highest specificity */
+.letitout-my-posts-modal .inbox-reply-card,
+.letitout-my-posts-modal .inbox-reply-card *,
+.inbox-reply-card,
+.inbox-reply-card * {
+  border: 1.5px solid #e0e0e0 !important;
+  border-color: #e0e0e0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Dark mode override */
+.dark-mode .letitout-my-posts-modal .inbox-reply-card,
+.dark-mode .letitout-my-posts-modal .inbox-reply-card *,
+.dark-mode .inbox-reply-card,
+.dark-mode .inbox-reply-card * {
+  border: 1.5px solid #555 !important;
+  border-color: #555 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Light mode: light background for inbox reply cards */
+.letitout-my-posts-modal .inbox-reply-card {
+  background-color: #f8f9fa !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Dark mode: keep existing styling */
+.dark-mode .letitout-my-posts-modal .inbox-reply-card {
+  background-color: #2f2f2f !important;
+  border: 1.5px solid #555 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.letitout-my-posts-modal .letitout-my-posts-close {
+  color: #111 !important;
 }

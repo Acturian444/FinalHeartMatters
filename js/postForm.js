@@ -764,7 +764,7 @@ class PostForm {
 
             modalContent.innerHTML = `
                 <button class="back-to-posts-btn">← My Journals</button>
-                <div class="letitout-my-posts-title">Messages</div>
+                <div class="letitout-my-posts-title">Replies</div>
                 <div class="letitout-my-posts-content">
                     <div class="original-post-card">
                         ${emotionsHtml}

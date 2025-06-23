@@ -556,7 +556,7 @@ DARK MODE - FIXES & ADDITIONS
 }
 .dark-mode .reply-card {
     background-color: #2f2f2f;
-    border-color: #c10016;
+    border-color: #555;
 }
 
 /* --- Misc --- */
@@ -983,4 +983,9 @@ DARK MODE - FIXES & ADDITIONS
 
 .dark-mode .letitout-subtitle {
     color: #f5f5f7;
+}
+
+/* Dark mode: make the replies header (x Message) label white in Inbox/Messages modal */
+.dark-mode .letitout-my-posts-modal .replies-header {
+  color: #fff !important;
 } 
