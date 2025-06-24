@@ -505,37 +505,4 @@ class PostCard {
             setTimeout(() => modal.remove(), 300);
         };
     }
-
-    render() {
-        const { post, isInbox = false } = this.props;
-        const { showReplyModal, replyText, isSubmitting, error } = this.state;
-        const hasReplies = post.replies && post.replies.length > 0;
-        const isPremiumUser = localStorage.getItem('premium') === 'true';
-        const showAllReplies = isPremiumUser || (post.replies && post.replies.length <= 3);
-        const visibleReplies = showAllReplies ? post.replies : post.replies.slice(0, 3);
-        const hasMoreReplies = post.replies && post.replies.length > 3 && !isPremiumUser;
-        const hasUnreadReplies = post.replies && post.replies.some(reply => !reply.read);
-
-        return `
-            <div class="post-card ${isInbox ? 'inbox-post' : ''}">
-                <div class="post-header">
-                    <div class="post-meta">
-                        <span class="post-date">${this.formatDate(post.timestamp)}</span>
-                        ${post.emotions ? `
-                            <div class="post-emotions">
-                                ${post.emotions.map(emotion => `
-                                    <span class="emotion-tag">${emotion}</span>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                    </div>
-                    ${isInbox && hasUnreadReplies ? `
-                        <span class="unread-badge">New</span>
-                    ` : ''}
-                </div>
-                
-                <div class="post-content">${post.content}</div>
-                
-                ${isInbox ? `
-                    <div class="reply-list">
-                        ${hasReplies ? `
+}

@@ -4100,3 +4100,515 @@
 .letitout-my-posts-modal .letitout-my-posts-close {
   color: #111 !important;
 }
+
+/* --- Premium Packs Styles --- */
+
+/* Ghost Button for Premium Packs */
+.premium-packs-cta {
+    background: transparent;
+    border: 1px solid #e0e0e0;
+    color: #666;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.premium-packs-cta:hover {
+    background: #f5f5f5;
+    border-color: #d0d0d0;
+    color: #333;
+}
+
+.dark-mode .premium-packs-cta {
+    border-color: #444;
+    color: #aaa;
+}
+
+.dark-mode .premium-packs-cta:hover {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+/* Pack Selector Dropdown */
+.pack-selector {
+    position: relative;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.pack-selector-btn {
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.pack-selector-btn:hover {
+    background: #e9e9e9;
+    border-color: #d0d0d0;
+}
+
+.pack-selector-btn svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s ease;
+}
+
+.pack-selector-btn.open svg {
+    transform: rotate(180deg);
+}
+
+.dark-mode .pack-selector-btn {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+.dark-mode .pack-selector-btn:hover {
+    background: #444;
+    border-color: #666;
+}
+
+.pack-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+.pack-dropdown.show {
+    display: block;
+}
+
+.pack-dropdown-item {
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+}
+
+.pack-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.pack-dropdown-item:hover {
+    background: #f5f5f5;
+}
+
+.pack-dropdown-item.selected {
+    background: #c10016;
+    color: white;
+}
+
+.dark-mode .pack-dropdown {
+    background: #252526;
+    border-color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .pack-dropdown-item {
+    border-bottom-color: #333;
+    color: #D4D4D4;
+}
+
+.dark-mode .pack-dropdown-item:hover {
+    background: #3a3a3a;
+}
+
+.dark-mode .pack-dropdown-item.selected {
+    background: #c10016;
+    color: white;
+}
+
+/* Premium Packs Modal */
+.premium-packs-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 1rem;
+}
+
+.premium-packs-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.premium-packs-modal {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.premium-packs-modal-overlay.visible .premium-packs-modal {
+    transform: translateY(0);
+}
+
+.premium-packs-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.premium-packs-modal-close:hover {
+    background: #f5f5f5;
+}
+
+.premium-packs-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.premium-packs-modal-subtitle {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.premium-packs-level {
+    font-size: 0.85rem;
+    color: #888;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* Pack Cards Grid */
+.premium-packs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.premium-pack-card {
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1.1rem 1.1rem 0.85rem 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.premium-pack-card:hover {
+    background: #f0f0f0;
+    border-color: #d0d0d0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.premium-pack-card.unlocked {
+    background: #fff5f5;
+    border-color: #c10016;
+}
+
+.premium-pack-card.unlocked:hover {
+    background: #e8f5e8;
+}
+
+.premium-pack-card.locked {
+    opacity: 0.7;
+}
+
+.premium-pack-card.locked:hover {
+    opacity: 0.9;
+}
+
+.premium-pack-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.premium-pack-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 0.18rem;
+    flex: 1;
+}
+
+.premium-pack-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 0.2rem;
+}
+
+.premium-pack-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.premium-pack-status.unlocked {
+    color: #c10016;
+}
+
+.premium-pack-status.locked {
+    color: #888;
+}
+
+.premium-pack-status.unlocked .premium-pack-icon {
+    stroke: #c10016;
+    color: #c10016;
+}
+
+.premium-pack-price {
+    background: #c10016;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.premium-pack-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Dark Mode Styles */
+.dark-mode .premium-packs-modal {
+    background: #252526;
+    color: #D4D4D4;
+}
+
+.dark-mode .premium-packs-modal-title {
+    color: #ffffff;
+}
+
+.dark-mode .premium-packs-modal-subtitle {
+    color: #aaa;
+}
+
+.dark-mode .premium-packs-modal-close:hover {
+    background: #3a3a3a;
+}
+
+.dark-mode .premium-pack-card {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #D4D4D4;
+}
+
+.dark-mode .premium-pack-card:hover {
+    background: #333;
+    border-color: #555;
+}
+
+.dark-mode .premium-pack-card.unlocked {
+    background: #444;
+    border-color: #fff;
+}
+
+.dark-mode .premium-pack-card.unlocked:hover {
+    background: #555;
+}
+
+.dark-mode .premium-pack-title {
+    color: #ffffff;
+}
+
+.dark-mode .premium-pack-subtitle {
+    color: #aaa;
+}
+
+.dark-mode .premium-pack-status.locked {
+    color: #666;
+}
+
+/* Loading State */
+.premium-pack-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.premium-pack-loading .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f0f0f0;
+    border-top: 2px solid #c10016;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .premium-packs-modal {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .premium-packs-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .premium-pack-card {
+        padding: 1.25rem;
+    }
+    
+    .premium-packs-modal-title {
+        font-size: 1.25rem;
+    }
+    
+    .premium-packs-modal-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* Error State */
+.premium-pack-error {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    color: #c53030;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.dark-mode .premium-pack-error {
+    background: #2a1a1a;
+    border-color: #4a2a2a;
+    color: #f56565;
+}
+
+@media (max-width: 600px) {
+    .premium-packs-modal-overlay {
+        align-items: flex-start;
+        padding: 0;
+    }
+    .premium-packs-modal {
+        width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+        padding: 2.2rem 0.5rem 2rem 0.5rem;
+        box-shadow: none;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .premium-packs-modal-close {
+        top: 1.25rem;
+        right: 1.25rem;
+    }
+    .premium-packs-modal-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 0.7rem;
+        letter-spacing: -0.01em;
+    }
+    .premium-packs-modal-subtitle {
+        font-size: 1.05rem;
+        color: #666;
+        text-align: center;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+    .premium-packs-level {
+        font-size: 0.95rem;
+        color: #888;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+    }
+    .premium-packs-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    .premium-pack-card {
+        padding: 1.1rem;
+    }
+}
+
+.dark-mode .premium-pack-status.unlocked {
+    color: #fff;
+}
+
+.dark-mode .premium-pack-status.unlocked .premium-pack-icon {
+    stroke: #fff;
+    color: #fff;
+}

@@ -348,6 +348,7 @@
     <script src="js/firebase.js?v=2"></script>
     <script src="js/services/post-service.js?v=2"></script>
     <script src="js/components/post-card.js?v=2"></script>
+    <script src="js/premium-packs.js?v=1"></script>
     <script src="js/postForm.js?v=4"></script>
     <script src="js/wallFeed.js?v=2"></script>
     
@@ -406,9 +407,10 @@
         // Now, check if we need to show the success modal flow over the top.
         const params = new URLSearchParams(window.location.search);
         const unlockedPostId = params.get('unlocked');
+        const unlockedPackId = params.get('pack_unlocked');
 
         if (unlockedPostId && window.LetItOutUtils && window.PostForm) {
-            // This is a redirect from a successful purchase.
+            // This is a redirect from a successful post unlock purchase.
             (async () => {
                 // 1. Mark the post as unlocked in the background.
                 window.LetItOutUtils.addPaidUnlockedPost(unlockedPostId);
@@ -434,6 +436,40 @@
                     if (modalContent && modalOverlay) {
                         await postForm.showRepliesView(modalContent.querySelector('.letitout-my-posts-content'), modalOverlay, unlockedPostId);
                     }
+                }
+            })();
+        }
+
+        if (unlockedPackId && window.LetItOutUtils && window.PostForm) {
+            // This is a redirect from a successful pack purchase.
+            (async () => {
+                // 1. Clean the URL so the user doesn't see the parameter.
+                const newUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, document.title, newUrl);
+
+                // 2. Show success message and unlock the pack.
+                const postForm = window.postFormInstance;
+                if (postForm && postForm.premiumPacks) {
+                    // Unlock the pack
+                    postForm.premiumPacks.unlockPack(unlockedPackId);
+                    
+                    // Show success message
+                    window.LetItOutUtils.showSuccess(`✓ You unlocked "${postForm.premiumPacks.premiumPacks[unlockedPackId]?.title}". First journal prompt ready.`);
+                    
+                    // 3. Wait 5 seconds then switch to the new pack
+                    setTimeout(() => {
+                        postForm.switchPack(unlockedPackId);
+                        
+                        // Update UI to show pack selector if this is the first pack
+                        if (!postForm.packSelector && postForm.premiumPacks.hasUnlockedPacks()) {
+                            postForm.createPackSelector(postForm.form.querySelector('.letitout-prompt-bar'));
+                        }
+                        
+                        // Update CTA button text
+                        if (postForm.premiumCtaBtn) {
+                            postForm.premiumCtaBtn.textContent = 'Explore More Prompts';
+                        }
+                    }, 5000);
                 }
             })();
         }

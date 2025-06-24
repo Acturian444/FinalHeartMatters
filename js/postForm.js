@@ -3,6 +3,15 @@ class PostForm {
     constructor() {
         this.form = document.createElement('form');
         this.form.className = 'letitout-form';
+        
+        // Initialize premium packs with safety check
+        if (window.PremiumPacks) {
+            this.premiumPacks = new window.PremiumPacks();
+        } else {
+            console.warn('PremiumPacks module not available, using fallback behavior');
+            this.premiumPacks = null;
+        }
+        
         this.setupForm();
     }
 
@@ -23,10 +32,10 @@ class PostForm {
             "What emotion do you suppress the most and why?",
             "What boundary did someone cross that changed you?",
             "What story have you never told until now?",
-            "What do you need to let out before it eats you alive?",
+            "What do you need to release before it consumes you?",
             "What's something you wish you could erase from your past?",
             "What memory do you keep revisiting?",
-            "What version of you did you have to kill to survive?",
+            "What old version of yourself are you ready to leave behind?",
             "What would your younger self say to you today?",
             "What guilt have you never forgiven yourself for?",
             "What do you carry that no one sees?",
@@ -74,7 +83,22 @@ class PostForm {
         promptControls.appendChild(this.backBtn);
         promptControls.appendChild(this.promptTitle);
         promptControls.appendChild(this.nextBtn);
+
+        // --- PACK SELECTOR DROPDOWN ---
+        if (this.premiumPacks && this.premiumPacks.hasUnlockedPacks()) {
+            this.createPackSelector(promptBar);
+        }
+
         promptBar.appendChild(promptControls);
+
+        // --- PREMIUM PACKS CTA BUTTON ---
+        this.premiumCtaBtn = document.createElement('button');
+        this.premiumCtaBtn.type = 'button';
+        this.premiumCtaBtn.className = 'premium-packs-cta';
+        this.premiumCtaBtn.textContent = this.premiumPacks ? (this.premiumPacks.hasUnlockedPacks() ? 'Explore More Prompts' : 'Unlock Healing Prompts') : 'Unlock Healing Prompts';
+        this.premiumCtaBtn.onclick = () => this.openPremiumPacksModal();
+        promptBar.appendChild(this.premiumCtaBtn);
+
         formContent.appendChild(promptBar);
 
         // Create wrapper for textarea and counter
@@ -250,47 +274,118 @@ class PostForm {
         this.updatePromptUI();
     }
 
-    handleNextClick() {
-        this.currentHistoryIndex++;
-
-        // If we are moving past our current history
-        if (this.currentHistoryIndex >= this.promptHistory.length) {
-            // Check if we've run out of new prompts
-            if (this.availablePrompts.length === 0) {
-                // All prompts shown, reset to default (clean loop)
-                this.initializePrompts();
-                return;
+    updatePromptUI() {
+        if (!this.premiumPacks) {
+            // Fallback to original logic
+            if (this.currentHistoryIndex === -1) {
+                this.promptTitle.textContent = this.defaultPrompt;
+                this.backBtn.style.visibility = 'hidden';
+            } else {
+                const promptIndex = this.promptHistory[this.currentHistoryIndex];
+                this.promptTitle.textContent = this.prompts[promptIndex];
+                this.backBtn.style.visibility = 'visible';
             }
+            this.nextBtn.style.visibility = 'visible';
+            return;
+        }
 
-            // Get a new random prompt
-            const randomIndex = Math.floor(Math.random() * this.availablePrompts.length);
-            const newPromptIndex = this.availablePrompts.splice(randomIndex, 1)[0];
-            this.promptHistory.push(newPromptIndex);
+        const currentPack = this.premiumPacks.getCurrentPackData();
+        
+        if (currentPack.id === 'starter') {
+            // Use existing logic for starter pack
+            if (this.currentHistoryIndex === -1) {
+                this.promptTitle.textContent = this.defaultPrompt;
+                this.backBtn.style.visibility = 'hidden';
+            } else {
+                const promptIndex = this.promptHistory[this.currentHistoryIndex];
+                this.promptTitle.textContent = this.prompts[promptIndex];
+                this.backBtn.style.visibility = 'visible';
+            }
+            this.nextBtn.style.visibility = 'visible';
+        } else {
+            // Use sequential logic for premium packs
+            const currentIndex = this.premiumPacks.getCurrentPromptIndex();
+            const prompts = currentPack.prompts;
+            this.promptTitle.textContent = prompts[currentIndex] || prompts[0];
+            
+            // Show/hide navigation buttons based on position
+            this.backBtn.style.visibility = currentIndex > 0 ? 'visible' : 'hidden';
+            this.nextBtn.style.visibility = currentIndex < prompts.length - 1 ? 'visible' : 'hidden';
+        }
+    }
+
+    handleNextClick() {
+        if (!this.premiumPacks) {
+            // Fallback to original logic
+            this.currentHistoryIndex++;
+
+            if (this.currentHistoryIndex >= this.promptHistory.length) {
+                if (this.availablePrompts.length === 0) {
+                    this.initializePrompts();
+                    return;
+                }
+
+                const randomIndex = Math.floor(Math.random() * this.availablePrompts.length);
+                const newPromptIndex = this.availablePrompts.splice(randomIndex, 1)[0];
+                this.promptHistory.push(newPromptIndex);
+            }
+            
+            this.updatePromptUI();
+            return;
+        }
+
+        const currentPack = this.premiumPacks.getCurrentPackData();
+        
+        if (currentPack.id === 'starter') {
+            // Use existing logic for starter pack
+            this.currentHistoryIndex++;
+
+            if (this.currentHistoryIndex >= this.promptHistory.length) {
+                if (this.availablePrompts.length === 0) {
+                    this.initializePrompts();
+                    return;
+                }
+
+                const randomIndex = Math.floor(Math.random() * this.availablePrompts.length);
+                const newPromptIndex = this.availablePrompts.splice(randomIndex, 1)[0];
+                this.promptHistory.push(newPromptIndex);
+            }
+        } else {
+            // Use sequential logic for premium packs
+            const currentIndex = this.premiumPacks.getCurrentPromptIndex();
+            const prompts = currentPack.prompts;
+            const nextIndex = Math.min(currentIndex + 1, prompts.length - 1);
+            this.premiumPacks.setCurrentPromptIndex(nextIndex);
         }
 
         this.updatePromptUI();
     }
 
     handleBackClick() {
-        if (this.currentHistoryIndex > -1) {
-            this.currentHistoryIndex--;
+        if (!this.premiumPacks) {
+            // Fallback to original logic
+            if (this.currentHistoryIndex > -1) {
+                this.currentHistoryIndex--;
+            }
             this.updatePromptUI();
+            return;
         }
-    }
 
-    updatePromptUI() {
-        if (this.currentHistoryIndex === -1) {
-            // Default state
-            this.promptTitle.textContent = this.defaultPrompt;
-            this.backBtn.style.visibility = 'hidden';
+        const currentPack = this.premiumPacks.getCurrentPackData();
+        
+        if (currentPack.id === 'starter') {
+            // Use existing logic for starter pack
+            if (this.currentHistoryIndex > -1) {
+                this.currentHistoryIndex--;
+            }
         } else {
-            // Show a prompt from history
-            const promptIndex = this.promptHistory[this.currentHistoryIndex];
-            this.promptTitle.textContent = this.prompts[promptIndex];
-            this.backBtn.style.visibility = 'visible';
+            // Use sequential logic for premium packs
+            const currentIndex = this.premiumPacks.getCurrentPromptIndex();
+            const prevIndex = Math.max(currentIndex - 1, 0);
+            this.premiumPacks.setCurrentPromptIndex(prevIndex);
         }
-        // Next button is always visible
-        this.nextBtn.style.visibility = 'visible';
+
+        this.updatePromptUI();
     }
 
     toggleEmotion(tag) {
@@ -870,6 +965,11 @@ class PostForm {
         // Unlock button
         modalDiv.querySelector('.paywall-unlock-btn').onclick = async () => {
             try {
+                // Check if Stripe is available
+                if (typeof Stripe === 'undefined') {
+                    throw new Error('Stripe is not available');
+                }
+
                 const stripePublicKey = 'pk_test_51RaP4RQ1hjqBwoa0ZnOuoRygvmNsfrRQmGG5wXIjcVhyKebi1CFfcG00pIQCceYu8pqlzFhAuJeNGz2dw5wlAcbD00wooUWDOR';
                 const stripe = Stripe(stripePublicKey);
                 
@@ -1294,6 +1394,305 @@ class PostForm {
                 closeModal();
             }
         };
+    }
+
+    // --- PREMIUM PACKS METHODS ---
+
+    createPackSelector(container) {
+        const packSelector = document.createElement('div');
+        packSelector.className = 'pack-selector';
+
+        const currentPack = this.premiumPacks.getCurrentPackData();
+        const packTitle = currentPack.id === 'starter' ? currentPack.title : `${currentPack.title} · Level 1`;
+
+        const packBtn = document.createElement('button');
+        packBtn.type = 'button';
+        packBtn.className = 'pack-selector-btn';
+        packBtn.innerHTML = `
+            ${packTitle}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        `;
+        packBtn.onclick = () => this.togglePackDropdown(packSelector);
+
+        const packDropdown = document.createElement('div');
+        packDropdown.className = 'pack-dropdown';
+        this.renderPackDropdown(packDropdown);
+
+        packSelector.appendChild(packBtn);
+        packSelector.appendChild(packDropdown);
+        container.appendChild(packSelector);
+
+        this.packSelector = packSelector;
+        this.packBtn = packBtn;
+        this.packDropdown = packDropdown;
+    }
+
+    renderPackDropdown(dropdown) {
+        dropdown.innerHTML = '';
+        
+        // Add starter pack
+        const starterPack = this.premiumPacks.starterPack;
+        const starterItem = document.createElement('div');
+        starterItem.className = 'pack-dropdown-item';
+        starterItem.textContent = starterPack.title;
+        starterItem.onclick = () => this.switchPack('starter');
+        dropdown.appendChild(starterItem);
+
+        // Add unlocked premium packs
+        const unlockedPacks = this.premiumPacks.getUnlockedPacks();
+        unlockedPacks.forEach(packId => {
+            const pack = this.premiumPacks.premiumPacks[packId];
+            if (pack) {
+                const packItem = document.createElement('div');
+                packItem.className = 'pack-dropdown-item';
+                packItem.textContent = `${pack.title} · Level 1`;
+                packItem.onclick = () => this.switchPack(packId);
+                dropdown.appendChild(packItem);
+            }
+        });
+    }
+
+    togglePackDropdown(selector) {
+        const dropdown = selector.querySelector('.pack-dropdown');
+        const btn = selector.querySelector('.pack-selector-btn');
+        
+        if (dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show');
+            btn.classList.remove('open');
+        } else {
+            dropdown.classList.add('show');
+            btn.classList.add('open');
+        }
+    }
+
+    switchPack(packId) {
+        // Show brief loading state
+        if (this.promptTitle) {
+            const originalText = this.promptTitle.textContent;
+            this.promptTitle.textContent = 'Switching prompts...';
+            
+            setTimeout(() => {
+                this.promptTitle.textContent = originalText;
+            }, 500);
+        }
+
+        // Clear form data
+        const textarea = this.form.querySelector('textarea');
+        if (textarea) {
+            textarea.value = '';
+            textarea.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        
+        // Clear emotion tags and city
+        this.selectedEmotions = [];
+        this.selectedCity = null;
+        this.customCity = null;
+        this.isCustomCity = false;
+        this.updateSelectedTags();
+        this.updateSelectedCity();
+        
+        // Clear draft
+        this.clearDraft();
+        
+        // Switch pack
+        this.premiumPacks.setCurrentPack(packId);
+        
+        // Update UI
+        this.updatePromptUI();
+        this.updatePackSelector();
+        
+        // Close dropdown
+        if (this.packDropdown) {
+            this.packDropdown.classList.remove('show');
+            this.packBtn.classList.remove('open');
+        }
+
+        // Save current state
+        this.saveDraft();
+    }
+
+    updatePackSelector() {
+        if (!this.packSelector) return;
+        
+        const currentPack = this.premiumPacks.getCurrentPackData();
+        const packTitle = currentPack.id === 'starter' ? currentPack.title : `${currentPack.title} · Level 1`;
+        
+        this.packBtn.innerHTML = `
+            ${packTitle}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        `;
+        
+        this.renderPackDropdown(this.packDropdown);
+    }
+
+    openPremiumPacksModal() {
+        // Remove any existing modal
+        const existing = document.querySelector('.premium-packs-modal-overlay');
+        if (existing) {
+            existing.remove();
+        }
+
+        const overlay = document.createElement('div');
+        overlay.className = 'premium-packs-modal-overlay';
+        
+        const modal = document.createElement('div');
+        modal.className = 'premium-packs-modal';
+        modal.innerHTML = `
+            <button class="premium-packs-modal-close">&times;</button>
+            <div class="premium-packs-modal-title">Unlock Healing Journal Packs</div>
+            <div class="premium-packs-modal-subtitle">Each healing pack includes 10 therapist-inspired journal prompts to help you feel it, write it, and let it out to heal.</div>
+            <div class="premium-packs-level">Level 1</div>
+            <div class="premium-packs-grid"></div>
+        `;
+
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+
+        // Render pack cards
+        this.renderPremiumPackCards(modal.querySelector('.premium-packs-grid'));
+
+        // Add event listeners
+        modal.querySelector('.premium-packs-modal-close').onclick = () => {
+            overlay.classList.remove('visible');
+            setTimeout(() => overlay.remove(), 300);
+        };
+
+        overlay.onclick = (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('visible');
+                setTimeout(() => overlay.remove(), 300);
+            }
+        };
+
+        // Show modal
+        setTimeout(() => overlay.classList.add('visible'), 10);
+    }
+
+    renderPremiumPackCards(grid) {
+        const allPacks = this.premiumPacks.getAllPacks();
+        const unlockedPacks = this.premiumPacks.getUnlockedPacks();
+
+        Object.values(allPacks).forEach(pack => {
+            if (pack.id === 'starter') return; // Skip starter pack in modal
+
+            const isUnlocked = unlockedPacks.includes(pack.id);
+            const card = document.createElement('div');
+            card.className = `premium-pack-card ${isUnlocked ? 'unlocked' : 'locked'}`;
+            
+            card.innerHTML = `
+                <div class="premium-pack-header">
+                    <div>
+                        <div class="premium-pack-title">${pack.title} · Level 1</div>
+                        <div class="premium-pack-subtitle">${pack.subtitle}</div>
+                    </div>
+                    <div class="premium-pack-status ${isUnlocked ? 'unlocked' : 'locked'}">
+                        ${isUnlocked ? 
+                            '<span style="display:inline-flex;align-items:center;"><svg class="premium-pack-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right:4px;"><polyline points="4 11 9 16 16 5"></polyline></svg>Unlocked</span>' :
+                            '<svg class="premium-pack-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><circle cx="12" cy="16" r="1"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+                        }
+                        ${!isUnlocked ? '<span class="premium-pack-price">$2.99</span>' : ''}
+                    </div>
+                </div>
+            `;
+
+            card.onclick = () => {
+                if (isUnlocked) {
+                    this.selectUnlockedPack(pack.id);
+                } else {
+                    this.purchasePack(pack);
+                }
+            };
+
+            grid.appendChild(card);
+        });
+    }
+
+    selectUnlockedPack(packId) {
+        // Close modal
+        const overlay = document.querySelector('.premium-packs-modal-overlay');
+        if (overlay) {
+            overlay.classList.remove('visible');
+            setTimeout(() => overlay.remove(), 300);
+        }
+
+        // Switch to the pack
+        this.switchPack(packId);
+    }
+
+    async purchasePack(pack) {
+        try {
+            // Check if Stripe is available
+            if (typeof Stripe === 'undefined') {
+                throw new Error('Stripe is not available');
+            }
+
+            // Show loading state
+            const card = event.target.closest('.premium-pack-card');
+            if (card) {
+                card.innerHTML = `
+                    <div class="premium-pack-loading">
+                        <div class="spinner"></div>
+                        Processing payment...
+                    </div>
+                `;
+            }
+
+            const stripePublicKey = 'pk_test_51RaP4RQ1hjqBwoa0ZnOuoRygvmNsfrRQmGG5wXIjcVhyKebi1CFfcG00pIQCceYu8pqlzFhAuJeNGz2dw5wlAcbD00wooUWDOR';
+            const stripe = Stripe(stripePublicKey);
+            
+            // Create a Checkout Session for pack purchase
+            const response = await fetch('/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    packId: pack.id,
+                    priceId: pack.stripePriceId,
+                    priceAmount: 299, // $2.99 in cents
+                    successUrl: window.location.origin + window.location.pathname + `?pack_unlocked=${pack.id}`,
+                    cancelUrl: window.location.origin + window.location.pathname,
+                    type: 'pack_purchase'
+                }),
+            });
+
+            const session = await response.json();
+
+            if (session.error) {
+                throw new Error(session.error);
+            }
+
+            // Redirect to Checkout
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id
+            });
+
+            if (result.error) {
+                throw new Error(result.error.message);
+            }
+        } catch (error) {
+            console.error('Pack purchase error:', error);
+            
+            // Restore card to original state
+            if (card) {
+                this.renderPremiumPackCards(document.querySelector('.premium-packs-grid'));
+            }
+            
+            // Show error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'premium-pack-error';
+            errorDiv.textContent = '⚠ Payment failed. Please try again.';
+            
+            const modal = document.querySelector('.premium-packs-modal');
+            if (modal) {
+                modal.appendChild(errorDiv);
+                setTimeout(() => errorDiv.remove(), 5000);
+            }
+        }
     }
 }
 

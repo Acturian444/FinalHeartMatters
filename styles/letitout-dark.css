@@ -988,4 +988,103 @@ DARK MODE - FIXES & ADDITIONS
 /* Dark mode: make the replies header (x Message) label white in Inbox/Messages modal */
 .dark-mode .letitout-my-posts-modal .replies-header {
   color: #fff !important;
+}
+
+/* --- Premium Packs Dark Mode Styles --- */
+
+.dark-mode .premium-packs-cta {
+    border-color: #444;
+    color: #aaa;
+}
+
+.dark-mode .premium-packs-cta:hover {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+.dark-mode .pack-selector-btn {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+.dark-mode .pack-selector-btn:hover {
+    background: #444;
+    border-color: #666;
+}
+
+.dark-mode .pack-dropdown {
+    background: #252526;
+    border-color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .pack-dropdown-item {
+    border-bottom-color: #333;
+    color: #D4D4D4;
+}
+
+.dark-mode .pack-dropdown-item:hover {
+    background: #3a3a3a;
+}
+
+.dark-mode .pack-dropdown-item.selected {
+    background: #c10016;
+    color: white;
+}
+
+.dark-mode .premium-packs-modal {
+    background: #252526;
+    color: #D4D4D4;
+}
+
+.dark-mode .premium-packs-modal-title {
+    color: #ffffff;
+}
+
+.dark-mode .premium-packs-modal-subtitle {
+    color: #aaa;
+}
+
+.dark-mode .premium-packs-modal-close:hover {
+    background: #3a3a3a;
+}
+
+.dark-mode .premium-pack-card {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #D4D4D4;
+}
+
+.dark-mode .premium-pack-card:hover {
+    background: #333;
+    border-color: #555;
+}
+
+.dark-mode .premium-pack-title {
+    color: #ffffff;
+}
+
+.dark-mode .premium-pack-subtitle {
+    color: #aaa;
+}
+
+.dark-mode .premium-pack-status.locked {
+    color: #666;
+}
+
+.dark-mode .premium-pack-loading {
+    color: #aaa;
+}
+
+.dark-mode .premium-pack-loading .spinner {
+    border-color: #333;
+    border-top-color: #c10016;
+}
+
+.dark-mode .premium-pack-error {
+    background: #2a1a1a;
+    border-color: #4a2a2a;
+    color: #f56565;
 } 
