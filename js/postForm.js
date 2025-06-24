@@ -197,7 +197,13 @@ class PostForm {
         const emotionBtn = document.createElement('button');
         emotionBtn.type = 'button';
         emotionBtn.className = 'letitout-emotion-btn';
-        emotionBtn.innerHTML = '+ Add Feeling';
+        emotionBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Feeling
+        `;
         emotionBtn.onclick = () => {
             this.openEmotionModal();
             this.saveDraft(); // Save draft when opening modal
@@ -210,7 +216,13 @@ class PostForm {
         const cityBtn = document.createElement('button');
         cityBtn.type = 'button';
         cityBtn.className = 'letitout-city-btn';
-        cityBtn.innerHTML = '+ Tag City';
+        cityBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Tag City
+        `;
         cityBtn.onclick = () => this.openCityModal();
 
         // Selected tags display
@@ -1381,7 +1393,7 @@ class PostForm {
         packSelector.className = 'pack-selector';
 
         const currentPack = this.premiumPacks.getCurrentPackData();
-        const packTitle = currentPack.id === 'starter' ? currentPack.title : `${currentPack.title} · Level 1`;
+        const packTitle = currentPack.title;
 
         const packBtn = document.createElement('button');
         packBtn.type = 'button';
@@ -1427,7 +1439,7 @@ class PostForm {
                 if (pack) {
                     const packItem = document.createElement('div');
                     packItem.className = 'pack-dropdown-item';
-                    packItem.textContent = `${pack.title} · Level 1`;
+                    packItem.textContent = pack.title;
                     packItem.onclick = () => this.switchPack(packId);
                     dropdown.appendChild(packItem);
                 }
@@ -1498,7 +1510,7 @@ class PostForm {
         if (!this.packSelector) return;
         
         const currentPack = this.premiumPacks.getCurrentPackData();
-        const packTitle = currentPack.id === 'starter' ? currentPack.title : `${currentPack.title} · Level 1`;
+        const packTitle = currentPack.title;
         
         this.packBtn.innerHTML = `
             ${packTitle}
@@ -1567,7 +1579,7 @@ class PostForm {
             card.innerHTML = `
                 <div class="premium-pack-header">
                     <div>
-                        <div class="premium-pack-title">${pack.title} · Level 1</div>
+                        <div class="premium-pack-title">${pack.title}</div>
                         <div class="premium-pack-subtitle">${pack.subtitle}</div>
                     </div>
                     <div class="premium-pack-status ${isUnlocked ? 'unlocked' : 'locked'}">
