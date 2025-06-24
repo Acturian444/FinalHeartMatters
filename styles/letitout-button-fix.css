@@ -1,0 +1,158 @@
+/* Button State Fixes for Add Feeling and Tag City Buttons */
+
+/* Reduce spacing above the buttons */
+.letitout-form-content .textarea-wrapper {
+    margin-bottom: 0.25rem !important;
+}
+
+/* Ensure button row container maintains consistent alignment */
+.emotion-btn-row {
+    align-items: center !important;
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+    justify-content: center !important;
+}
+
+/* COMPLETELY OVERRIDE conflicting hover rules that cause layout changes */
+.letitout-emotion-btn:hover,
+.letitout-city-btn:hover {
+    background: #ffe6ea !important;
+    color: #000 !important;
+    border-color: #ffb3c1 !important;
+    outline: none !important;
+    
+    /* PREVENT layout changes that cause lifting */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-grow: 0 !important;
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    width: auto !important;
+    min-width: fit-content !important;
+    box-sizing: border-box !important;
+}
+
+/* Ensure proper transitions */
+.letitout-emotion-btn,
+.letitout-city-btn {
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+/* Active state - maintain original layout */
+.letitout-emotion-btn:active,
+.letitout-city-btn:active {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #e0e0e0 !important;
+    
+    /* Maintain original layout */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-grow: 0 !important;
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    width: auto !important;
+    min-width: fit-content !important;
+    box-sizing: border-box !important;
+}
+
+/* Focus state - maintain original layout */
+.letitout-emotion-btn:focus,
+.letitout-city-btn:focus {
+    background: #ffe6ea !important;
+    color: #000 !important;
+    border-color: #ffb3c1 !important;
+    outline: none !important;
+    
+    /* Maintain original layout */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-grow: 0 !important;
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    width: auto !important;
+    min-width: fit-content !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 768px) {
+  .letitout-form textarea {
+    height: 130px !important;
+  }
+}
+
+.char-counter {
+    margin-top: -2rem !important;
+}
+
+.reply-modal .char-counter {
+    margin-top: -0.5rem !important;
+}
+
+.wall-controls {
+    padding-top: 0.5rem !important;
+}
+
+.letitout-prompt-bar > *:first-child {
+    margin-bottom: 1.5rem !important;
+}
+
+@media (max-width: 600px) {
+  .emotion-tags .emotion-tag,
+  .emotion-tags .city-tag {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    border-radius: 999px !important;
+    font-weight: 400 !important;
+    height: auto !important;
+    min-width: 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  .letitout-selected-tags .emotion-tag,
+  .letitout-selected-tags .city-tag {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    border-radius: 999px !important;
+    font-weight: 400 !important;
+    height: auto !important;
+    min-width: 0 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.3em !important;
+    display: inline-block !important;
+  }
+
+  .letitout-selected-city .city-tag {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    border-radius: 999px !important;
+    font-weight: 400 !important;
+    height: auto !important;
+    min-width: 0 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.3em !important;
+    display: inline-block !important;
+  }
+}
+
+.letitout-selected-tags,
+.letitout-selected-city {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    flex-wrap: wrap;
+} 

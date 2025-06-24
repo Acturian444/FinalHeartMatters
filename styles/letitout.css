@@ -459,6 +459,7 @@
     box-shadow: none;
     width: auto;
     min-width: fit-content;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .letitout-emotion-btn:hover,
@@ -849,6 +850,7 @@
     box-shadow: none;
     width: auto;
     min-width: fit-content;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .letitout-city-btn:hover,

@@ -329,17 +329,17 @@ class PostForm {
     handleNextClick() {
         if (!this.premiumPacks) {
             // Fallback to original logic
-            this.currentHistoryIndex++;
+        this.currentHistoryIndex++;
 
-            if (this.currentHistoryIndex >= this.promptHistory.length) {
-                if (this.availablePrompts.length === 0) {
-                    this.initializePrompts();
-                    return;
-                }
+        if (this.currentHistoryIndex >= this.promptHistory.length) {
+            if (this.availablePrompts.length === 0) {
+                this.initializePrompts();
+                return;
+            }
 
-                const randomIndex = Math.floor(Math.random() * this.availablePrompts.length);
-                const newPromptIndex = this.availablePrompts.splice(randomIndex, 1)[0];
-                this.promptHistory.push(newPromptIndex);
+            const randomIndex = Math.floor(Math.random() * this.availablePrompts.length);
+            const newPromptIndex = this.availablePrompts.splice(randomIndex, 1)[0];
+            this.promptHistory.push(newPromptIndex);
             }
             
             this.updatePromptUI();
@@ -376,8 +376,8 @@ class PostForm {
     handleBackClick() {
         if (!this.premiumPacks) {
             // Fallback to original logic
-            if (this.currentHistoryIndex > -1) {
-                this.currentHistoryIndex--;
+        if (this.currentHistoryIndex > -1) {
+            this.currentHistoryIndex--;
             }
             this.updatePromptUI();
             return;
