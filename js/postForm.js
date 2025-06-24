@@ -598,16 +598,16 @@ class PostForm {
         
         for (const post of posts) {
             let replyLine = '';
-            if (post.replies && post.replies.length) {
-                const unreadReplies = post.replies.filter(r => !r.viewed).length;
-                const replyLineClass = unreadReplies > 0 ? 'my-post-reply-line unread' : 'my-post-reply-line';
+            let hasReplies = post.replies && post.replies.length;
+            let unreadReplies = hasReplies ? post.replies.filter(r => !r.viewed).length : 0;
+            const replyLineClass = hasReplies && unreadReplies > 0 ? 'my-post-reply-line unread' : 'my-post-reply-line';
+            let buttonHtml = '';
+            if (hasReplies) {
                 const buttonText = unreadReplies > 0 ? 'View New Messages' : 'View Messages';
-
-                if (unreadReplies > 0) {
-                    hasUnreadReplies = true;
-                }
                 const replyWord = post.replies.length === 1 ? 'reply' : 'replies';
                 replyLine = `<div class="${replyLineClass}">${post.replies.length} ${replyWord} received – <button class="view-messages-btn" data-post-id="${post.id}">${buttonText}</button></div>`;
+            } else {
+                replyLine = `<div class="${replyLineClass}"><button class="view-messages-btn" data-post-id="${post.id}" disabled style="opacity:0.6;cursor:not-allowed;">No replies yet</button></div>`;
             }
             
             // Format timestamp
