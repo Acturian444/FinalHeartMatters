@@ -439,28 +439,7 @@ class PostForm {
             }
 
             // Show confirmation modal
-            window.LetItOutIncognito().then(isIncognito => {
-                this.showConfirmationModal(isIncognito);
-                setTimeout(() => {
-                    this.hideConfirmationModal();
-                    // Switch to Wall tab (simulate click)
-                    const wallTab = document.getElementById('wall-tab');
-                    if (wallTab) wallTab.click();
-                    // Wait for wall to render, then scroll to top and highlight post
-                    setTimeout(() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        // Highlight the new post if possible
-                        const wallFeed = document.querySelector('.wall-feed');
-                        if (wallFeed && newPostId) {
-                            const postCard = wallFeed.querySelector(`[data-post-id="${newPostId}"]`);
-                            if (postCard) {
-                                postCard.classList.add('letitout-highlight-post');
-                                setTimeout(() => postCard.classList.remove('letitout-highlight-post'), 1600);
-                            }
-                        }
-                    }, 500);
-                }, 1700);
-            });
+            this.showConfirmationModal();
         } catch (error) {
             window.LetItOutUtils.showError('Error posting. Please try again.');
             if (submitButton) {
@@ -470,7 +449,7 @@ class PostForm {
         }
     }
 
-    showConfirmationModal(isIncognito) {
+    showConfirmationModal() {
         // Remove any existing overlay
         this.hideConfirmationModal();
         const overlay = document.createElement('div');
@@ -490,11 +469,10 @@ class PostForm {
               </svg>
             </div>
             <div class="letitout-confirmation-text">
-              <span class="confirmation-line">Your post is live.</span>
+              <span class="confirmation-line">Your journal was saved.</span>
               <span class="confirmation-line">You let it out.</span>
-              <span class="confirmation-line">You're not alone.</span>
+              <span class="confirmation-line">You're not alone here.</span>
             </div>
-            ${isIncognito ? '<div class="letitout-confirmation-note">Your post won\'t be saved to "My Posts" in this session.</div>' : ''}
           </div>
         `;
         document.body.appendChild(overlay);
@@ -1431,25 +1409,28 @@ class PostForm {
 
     renderPackDropdown(dropdown) {
         dropdown.innerHTML = '';
-        
-        // Add starter pack
+        const currentPackId = this.premiumPacks.getCurrentPack();
+        // Add starter pack if not current
         const starterPack = this.premiumPacks.starterPack;
-        const starterItem = document.createElement('div');
-        starterItem.className = 'pack-dropdown-item';
-        starterItem.textContent = starterPack.title;
-        starterItem.onclick = () => this.switchPack('starter');
-        dropdown.appendChild(starterItem);
-
-        // Add unlocked premium packs
+        if (currentPackId !== 'starter') {
+            const starterItem = document.createElement('div');
+            starterItem.className = 'pack-dropdown-item';
+            starterItem.textContent = starterPack.title;
+            starterItem.onclick = () => this.switchPack('starter');
+            dropdown.appendChild(starterItem);
+        }
+        // Add unlocked premium packs except current
         const unlockedPacks = this.premiumPacks.getUnlockedPacks();
         unlockedPacks.forEach(packId => {
-            const pack = this.premiumPacks.premiumPacks[packId];
-            if (pack) {
-                const packItem = document.createElement('div');
-                packItem.className = 'pack-dropdown-item';
-                packItem.textContent = `${pack.title} · Level 1`;
-                packItem.onclick = () => this.switchPack(packId);
-                dropdown.appendChild(packItem);
+            if (packId !== currentPackId) {
+                const pack = this.premiumPacks.premiumPacks[packId];
+                if (pack) {
+                    const packItem = document.createElement('div');
+                    packItem.className = 'pack-dropdown-item';
+                    packItem.textContent = `${pack.title} · Level 1`;
+                    packItem.onclick = () => this.switchPack(packId);
+                    dropdown.appendChild(packItem);
+                }
             }
         });
     }

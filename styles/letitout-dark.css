@@ -520,7 +520,7 @@ DARK MODE - FIXES & ADDITIONS
     color: #D4D4D4;
 }
 .dark-mode .letitout-my-posts-close {
-    color: #ffffff;
+    color: #fff !important;
 }
 .dark-mode .letitout-my-posts-tabs {
     background-color: #1E1E1E;
@@ -1087,4 +1087,19 @@ DARK MODE - FIXES & ADDITIONS
     background: #2a1a1a;
     border-color: #4a2a2a;
     color: #f56565;
+}
+
+.dark-mode .letitout-confirmation-modal {
+  background: #252526;
+  color: #D4D4D4;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.45), 0 1.5px 8px rgba(0,0,0,0.18);
+}
+.dark-mode .letitout-confirmation-text {
+  color: #D4D4D4;
+}
+.dark-mode .letitout-confirmation-heart svg {
+  filter: drop-shadow(0 2px 8px #c1001680);
+}
+.dark-mode .letitout-confirmation-note {
+  color: #aaa;
 } 
