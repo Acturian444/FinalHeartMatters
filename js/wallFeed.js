@@ -260,9 +260,6 @@ class WallFeed {
         // Add feed
         container.appendChild(this.feed);
         
-        // Add My Posts button to global container
-        this.addMyPostsButton();
-        
         // Subscribe to posts
         this.subscribeToPosts();
     }
@@ -1017,88 +1014,6 @@ class WallFeed {
             ]
         };
         return emotions[category] || [];
-    }
-
-    addMyPostsButton() {
-        const globalContainer = document.getElementById('letitout-my-posts-container');
-        if (globalContainer) {
-            // Create My Posts button if it doesn't exist
-            let myPostsBtn = globalContainer.querySelector('.letitout-my-posts-btn-global');
-            if (!myPostsBtn) {
-                myPostsBtn = document.createElement('button');
-                myPostsBtn.className = 'letitout-my-posts-btn letitout-my-posts-btn-global';
-                myPostsBtn.innerHTML = `
-                  <span class="my-posts-icon" style="display:inline-flex;align-items:center;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="3" width="18" height="4" rx="2"/>
-                      <path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/>
-                      <path d="M9 12h6"/>
-                    </svg>
-                  </span>
-                `;
-                myPostsBtn.setAttribute('aria-label', 'My Posts & Inbox');
-                myPostsBtn.onclick = () => this.openMyPostsModal();
-            }
-            
-            // Clear existing content and add the button
-            globalContainer.innerHTML = '';
-            globalContainer.appendChild(myPostsBtn);
-            
-            // Update unread badge
-            if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
-                window.LetItOutUtils.updateUnreadBadge();
-            }
-        }
-    }
-
-    openMyPostsModal() {
-        // Remove any existing modal
-        this.closeMyPostsModal();
-        const modal = document.createElement('div');
-        modal.className = 'letitout-my-posts-modal-overlay';
-        modal.innerHTML = `
-          <div class="letitout-my-posts-modal">
-            <button class="letitout-my-posts-close">&times;</button>
-            <div class="letitout-my-posts-tabs">
-              <button class="my-posts-tab active">My Journals <span class="my-posts-notification-dot" style="display:none;"></span></button>
-            </div>
-            <div class="letitout-my-posts-content"></div>
-          </div>
-        `;
-        document.body.appendChild(modal);
-        // Close logic
-        modal.querySelector('.letitout-my-posts-close').onclick = () => this.closeMyPostsModal();
-        // Render default
-        this.renderMyPosts(modal.querySelector('.letitout-my-posts-content'), modal);
-    }
-
-    closeMyPostsModal() {
-        const modal = document.querySelector('.letitout-my-posts-modal-overlay');
-        if (modal) modal.remove();
-    }
-
-    async renderMyPosts(container, modal) {
-        const localId = window.LocalIdManager.getId();
-        const posts = await window.PostService.getPostsByUser(localId, 'localId');
-        let html = '';
-        let hasUnreadReplies = false;
-        
-        for (const post of posts) {
-            let replyLine = '';
-            if (post.replies && post.replies.length) {
-                const unreadReplies = post.replies.filter(r => !r.viewed).length;
-                const replyLineClass = unreadReplies > 0 ? 'my-post-reply-line unread' : 'my-post-reply-line';
-                const linkText = unreadReplies > 0 ? 'View New Messages' : 'View Messages';
-
-                if (unreadReplies > 0) {
-                    hasUnreadReplies = true;
-                }
-                const replyWord = post.replies.length === 1 ? 'reply' : 'replies';
-                replyLine = `<div class="${replyLineClass}">${post.replies.length} ${replyWord} received – <span class="view-messages" data-post-id="${post.id}">${linkText}</span></div>`;
-            }
-            html += `<div class="my-post-card">${post.content}${replyLine}</div>`;
-        }
-        container.innerHTML = html;
     }
 }
 

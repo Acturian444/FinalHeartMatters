@@ -25,25 +25,30 @@ class PostForm {
         // --- DRAFT LOGIC ---
         this.draftKey = 'letitout_draft';
 
-        // Restore prompt bank and default prompt
-        this.prompts = [
-            "What's something you've never said out loud until now?",
-            "What did you need, but never received?",
-            "What emotion do you suppress the most and why?",
-            "What boundary did someone cross that changed you?",
-            "What story have you never told until now?",
-            "What do you need to release before it consumes you?",
-            "What's something you wish you could erase from your past?",
-            "What memory do you keep revisiting?",
-            "What old version of yourself are you ready to leave behind?",
-            "What would your younger self say to you today?",
-            "What guilt have you never forgiven yourself for?",
-            "What do you carry that no one sees?",
-            "What's the truth you're afraid to admit?",
-            "What do you wish someone had said to you when you needed it?",
-            "What do you want to let go of but can't?",
-        ];
-        this.defaultPrompt = "What's on your heart today?";
+        // Prompt bank for all packs
+        this.promptBank = {
+            starter: [
+                "What's on your heart today?",
+                "What's something you've never said out loud until now?",
+                "What did you need, but never received?",
+                "What emotion do you suppress the most and why?",
+                "What boundary did someone cross that changed you?",
+                "What story have you never told until now?",
+                "What do you need to release before it consumes you?",
+                "What's something you wish you could erase from your past?",
+                "What memory do you keep revisiting?",
+                "What old version of yourself are you ready to leave behind?",
+                "What would your younger self say to you today?",
+                "What guilt have you never forgiven yourself for?",
+                "What do you carry that no one sees?",
+                "What's the truth you're afraid to admit?",
+                "What do you wish someone had said to you when you needed it?",
+                "What do you want to let go of but can't?",
+            ]
+            // Premium pack prompts are managed by premiumPacks module
+        };
+        // Use promptBank for starter pack
+        this.prompts = this.promptBank.starter;
 
         // Create the form content
         const formContent = document.createElement('div');
@@ -268,12 +273,11 @@ class PostForm {
         `;
         document.body.appendChild(this.emotionModal);
 
-        // My Posts button
-        this.myPostsBtn = document.createElement('button');
-        this.myPostsBtn.className = 'letitout-my-posts-btn';
-        this.myPostsBtn.innerHTML = '<span class="my-posts-icon" style="display:inline-flex;align-items:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="4" rx="2"/><path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/><path d="M9 12h6"/></svg></span>';
-        this.myPostsBtn.setAttribute('aria-label', 'My Posts & Inbox');
-        this.myPostsBtn.onclick = () => this.openMyPostsModal();
+        // My Posts button - use existing button from HTML
+        this.myPostsBtn = document.getElementById('my-posts-btn');
+        if (this.myPostsBtn) {
+            this.myPostsBtn.onclick = () => this.openMyPostsModal();
+        }
 
         // Initialize the prompt system
         this.initializePrompts();
@@ -290,7 +294,7 @@ class PostForm {
         if (!this.premiumPacks) {
             // Fallback to original logic
             if (this.currentHistoryIndex === -1) {
-                this.promptTitle.textContent = this.defaultPrompt;
+                this.promptTitle.textContent = this.prompts[0];
                 this.backBtn.style.visibility = 'hidden';
             } else {
                 const promptIndex = this.promptHistory[this.currentHistoryIndex];
@@ -300,13 +304,12 @@ class PostForm {
             this.nextBtn.style.visibility = 'visible';
             return;
         }
-
         const currentPack = this.premiumPacks.getCurrentPackData();
-        
         if (currentPack.id === 'starter') {
-            // Use existing logic for starter pack
+            // Use prompt bank for starter pack
+            this.prompts = this.promptBank.starter;
             if (this.currentHistoryIndex === -1) {
-                this.promptTitle.textContent = this.defaultPrompt;
+                this.promptTitle.textContent = this.prompts[0];
                 this.backBtn.style.visibility = 'hidden';
             } else {
                 const promptIndex = this.promptHistory[this.currentHistoryIndex];
@@ -315,12 +318,10 @@ class PostForm {
             }
             this.nextBtn.style.visibility = 'visible';
         } else {
-            // Use sequential logic for premium packs
+            // Only use premium pack state
             const currentIndex = this.premiumPacks.getCurrentPromptIndex();
             const prompts = currentPack.prompts;
             this.promptTitle.textContent = prompts[currentIndex] || prompts[0];
-            
-            // Show/hide navigation buttons based on position
             this.backBtn.style.visibility = currentIndex > 0 ? 'visible' : 'hidden';
             this.nextBtn.style.visibility = currentIndex < prompts.length - 1 ? 'visible' : 'hidden';
         }
@@ -525,18 +526,7 @@ class PostForm {
         this.loadDraft();
         
         // Add My Posts button to global container
-        const globalContainer = document.getElementById('letitout-my-posts-container');
-        if (globalContainer && this.myPostsBtn) {
-            this.myPostsBtn.classList.add('letitout-my-posts-btn-global');
-            // Clear existing content and add the button
-            globalContainer.innerHTML = '';
-            globalContainer.appendChild(this.myPostsBtn);
-            
-            // Update unread badge
-            if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
-                window.LetItOutUtils.updateUnreadBadge();
-            }
-        }
+        this.renderMyPostsButton();
         
         // Add the button container after the form
         if (!this.buttonContainer) {
@@ -918,6 +908,14 @@ class PostForm {
                     setTimeout(() => banner.remove(), 300);
                 };
             }
+            // Auto-dismiss after 4 seconds
+            setTimeout(() => {
+                if (banner.parentNode) {
+                    banner.style.opacity = '0';
+                    banner.style.transform = 'translateY(-20px)';
+                    setTimeout(() => banner.remove(), 300);
+                }
+            }, 4000);
         }
     }
 
@@ -1109,6 +1107,9 @@ class PostForm {
                 this.updateSelectedTags();
                 doneBtn.disabled = true;
                 renderEmotions(searchInput.value);
+                // Also unselect any .selected emotion-subtag buttons in the modal
+                const selectedTags = modal.querySelectorAll('.emotion-subtag.selected');
+                selectedTags.forEach(tag => tag.classList.remove('selected'));
             };
             // Insert as the first button in the modal footer
             const footer = modal.querySelector('.letitout-emotion-modal-footer');
@@ -1169,8 +1170,8 @@ class PostForm {
     }
 
     showRandomPrompt() {
-        if (!this.prompts || !this.defaultPrompt) return;
-        const prompt = this.getRandomPrompt();
+        if (!this.prompts || !this.prompts[0]) return;
+        const prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
         // Find the prompt display element
         const promptDisplay = this.form.querySelector('.letitout-prompt-display');
         if (promptDisplay) {
@@ -1179,7 +1180,7 @@ class PostForm {
         // Show the reset button if not default
         const resetButton = this.form.querySelector('.letitout-reset-btn');
         if (resetButton) {
-            resetButton.style.display = (prompt !== this.defaultPrompt) ? 'inline-flex' : 'none';
+            resetButton.style.display = (prompt !== this.prompts[0]) ? 'inline-flex' : 'none';
         }
     }
 
@@ -1474,12 +1475,7 @@ class PostForm {
     switchPack(packId) {
         // Show brief loading state
         if (this.promptTitle) {
-            const originalText = this.promptTitle.textContent;
             this.promptTitle.textContent = 'Switching prompts...';
-            
-            setTimeout(() => {
-                this.promptTitle.textContent = originalText;
-            }, 500);
         }
 
         // Clear form data
@@ -1488,7 +1484,6 @@ class PostForm {
             textarea.value = '';
             textarea.dispatchEvent(new Event('input', { bubbles: true }));
         }
-        
         // Clear emotion tags and city
         this.selectedEmotions = [];
         this.selectedCity = null;
@@ -1496,24 +1491,35 @@ class PostForm {
         this.isCustomCity = false;
         this.updateSelectedTags();
         this.updateSelectedCity();
-        
         // Clear draft
         this.clearDraft();
-        
+
         // Switch pack
         this.premiumPacks.setCurrentPack(packId);
-        
-        // Update UI
+
+        // --- STRICT STATE RESET FOR SELECTED PACK ---
+        const currentPack = this.premiumPacks.getCurrentPackData();
+        if (currentPack.id === 'starter') {
+            // Reset all starter pack state, never reference premium state/localStorage
+            this.prompts = this.promptBank.starter;
+            this.currentHistoryIndex = -1;
+            this.promptHistory = [];
+            this.availablePrompts = [...Array(this.prompts.length).keys()];
+        } else {
+            // For premium packs, set prompt index in localStorage and clear starter state
+            this.premiumPacks.setCurrentPromptIndex(0);
+            this.currentHistoryIndex = null;
+            this.promptHistory = null;
+            this.availablePrompts = null;
+        }
+
+        // Only call updatePromptUI after all state is set
         this.updatePromptUI();
         this.updatePackSelector();
-        
-        // Close dropdown
         if (this.packDropdown) {
             this.packDropdown.classList.remove('show');
             this.packBtn.classList.remove('open');
         }
-
-        // Save current state
         this.saveDraft();
     }
 
@@ -1696,6 +1702,21 @@ class PostForm {
                 modal.appendChild(errorDiv);
                 setTimeout(() => errorDiv.remove(), 5000);
             }
+        }
+    }
+
+    renderMyPostsButton() {
+        // Ensure the button exists and has the event handler
+        if (!this.myPostsBtn) {
+            this.myPostsBtn = document.getElementById('my-posts-btn');
+            if (this.myPostsBtn) {
+                this.myPostsBtn.onclick = () => this.openMyPostsModal();
+            }
+        }
+        
+        // Update unread badge
+        if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
+            window.LetItOutUtils.updateUnreadBadge();
         }
     }
 }

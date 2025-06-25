@@ -1110,4 +1110,14 @@ DARK MODE - FIXES & ADDITIONS
 }
 .dark-mode .letitout-confirmation-note {
   color: #aaa;
+}
+
+.dark-mode .letitout-emotion-btn:hover,
+.dark-mode .letitout-emotion-btn:focus,
+.dark-mode .letitout-city-btn:hover,
+.dark-mode .letitout-city-btn:focus {
+  background: #232325 !important;
+  color: #fff !important;
+  border-color: #444 !important;
+  outline: none !important;
 } 

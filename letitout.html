@@ -299,7 +299,17 @@
         </div>
         <div id="letitout-tab-content"></div>
         <!-- Global My Posts Button Container -->
-        <div id="letitout-my-posts-container" class="letitout-my-posts-container"></div>
+        <div id="letitout-my-posts-container" class="letitout-my-posts-container">
+            <button class="letitout-my-posts-btn letitout-my-posts-btn-global" id="my-posts-btn" aria-label="My Posts & Inbox">
+                <span class="my-posts-icon" style="display:inline-flex;align-items:center;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="4" rx="2"/>
+                        <path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/>
+                        <path d="M9 12h6"/>
+                    </svg>
+                </span>
+            </button>
+        </div>
     </main>
 
     <footer id="footer">
@@ -363,6 +373,16 @@
             return;
         }
 
+        // Initialize My Posts button
+        const myPostsBtn = document.getElementById('my-posts-btn');
+        if (myPostsBtn && !window.postFormInstance) {
+            // Create a temporary PostForm instance just for the button
+            if (window.PostForm) {
+                const tempForm = new window.PostForm();
+                window.postFormInstance = tempForm;
+            }
+        }
+
         const writeTab = document.getElementById('write-tab');
         const wallTab = document.getElementById('wall-tab');
         const tabContent = document.getElementById('letitout-tab-content');
@@ -377,6 +397,10 @@
                 window.postFormInstance = form; // Store instance globally
                 form.render(tabContent);
             }
+            // Ensure My Posts button is properly initialized
+            if (window.postFormInstance && typeof window.postFormInstance.renderMyPostsButton === 'function') {
+                window.postFormInstance.renderMyPostsButton();
+            }
             // Update badge when switching tabs
             if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
                 window.LetItOutUtils.updateUnreadBadge();
@@ -390,6 +414,10 @@
             if (window.WallFeed) {
                 const wall = new window.WallFeed();
                 wall.render(tabContent);
+            }
+            // Ensure My Posts button is properly initialized
+            if (window.postFormInstance && typeof window.postFormInstance.renderMyPostsButton === 'function') {
+                window.postFormInstance.renderMyPostsButton();
             }
             // Update badge when switching tabs
             if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
@@ -461,20 +489,14 @@
                     // Show success message
                     window.LetItOutUtils.showSuccess(`✓ You unlocked "${postForm.premiumPacks.premiumPacks[unlockedPackId]?.title}". First journal prompt ready.`);
                     
-                    // 3. Wait 5 seconds then switch to the new pack
-                    setTimeout(() => {
-                        postForm.switchPack(unlockedPackId);
-                        
-                        // Update UI to show pack selector if this is the first pack
-                        if (!postForm.packSelector && postForm.premiumPacks.hasUnlockedPacks()) {
-                            postForm.createPackSelector(postForm.form.querySelector('.letitout-prompt-bar'));
+                    // 3. Fully re-render the Write segment to update UI
+                    if (typeof showWrite === 'function') {
+                        showWrite();
+                        // After re-render, switch to the new pack
+                        if (window.postFormInstance && typeof window.postFormInstance.switchPack === 'function') {
+                            window.postFormInstance.switchPack(unlockedPackId);
                         }
-                        
-                        // Update CTA button text
-                        if (postForm.premiumCtaBtn) {
-                            postForm.premiumCtaBtn.textContent = 'Explore More Prompts';
-                        }
-                    }, 5000);
+                    }
                 }
             })();
         }
