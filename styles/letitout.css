@@ -256,7 +256,7 @@
     position: relative;
     background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: none;
     transition: box-shadow 0.3s ease;
     max-width: 600px;
     width: 100%;
@@ -271,9 +271,13 @@
     overflow: hidden;
 }
 
-.post-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
+/* Remove hover/focus effect for wall feed post cards */
+.post-card:hover,
+.post-card:focus {
+  box-shadow: none !important;
+  transform: none !important;
+  background: #fff !important;
+  border: 1px solid #f2f2f2 !important;
 }
 
 .post-content-area {
@@ -4625,4 +4629,17 @@
 .dark-mode .premium-pack-status.unlocked .premium-pack-icon {
     stroke: #fff;
     color: #fff;
+}
+
+/* Highlight glow for new post card */
+.post-card.highlight-glow {
+  box-shadow: 0 0 0 0 #fff0f2, 0 0 32px 8px #fff0f2;
+  animation: highlightFade 2.5s ease;
+  z-index: 1;
+  position: relative;
+}
+@keyframes highlightFade {
+  0%   { box-shadow: 0 0 0 0 #fff0f2, 0 0 32px 8px #fff0f2; }
+  80%  { box-shadow: 0 0 0 0 #fff0f2, 0 0 0 0 #fff0f2; }
+  100% { box-shadow: none; }
 }

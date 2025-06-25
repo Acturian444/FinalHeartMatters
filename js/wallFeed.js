@@ -727,11 +727,14 @@ class WallFeed {
         const postCard = this.feed.querySelector(`.post-card[data-post-id="${postIdFromUrl}"]`);
         if (postCard) {
             postCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            postCard.style.transition = 'box-shadow 0.3s ease, background-color 0.5s ease';
-            postCard.style.backgroundColor = '#fff9e5'; // A soft yellow highlight
+            postCard.classList.add('highlight-glow');
             setTimeout(() => {
-                postCard.style.backgroundColor = ''; // Revert to default
+                postCard.classList.remove('highlight-glow');
             }, 2500);
+            // Remove the post param so the highlight only happens once
+            const url = new URL(window.location);
+            url.searchParams.delete('post');
+            window.history.replaceState({}, document.title, url.pathname + url.search + url.hash);
         }
     }
 

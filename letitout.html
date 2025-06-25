@@ -400,9 +400,13 @@
         wallTab.addEventListener('click', showWall);
 
         // --- Initial Page Render ---
-        // Always render the default "Write" tab view first.
-        // This ensures the page is in a correct state, especially after a Stripe redirect.
-        showWrite();
+        // If there's a ?post=... param, show the Wall tab, otherwise default to Write.
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('post')) {
+            showWall();
+        } else {
+            showWrite();
+        }
 
         // --- Stripe Success Handling ---
         // Now, check if we need to show the success modal flow over the top.

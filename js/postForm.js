@@ -450,8 +450,8 @@ class PostForm {
                 submitButton.disabled = false;
             }
 
-            // Show confirmation modal
-            this.showConfirmationModal();
+            // Show confirmation modal and redirect to wall
+            this.showConfirmationAndRedirect(newPostId);
         } catch (error) {
             window.LetItOutUtils.showError('Error posting. Please try again.');
             if (submitButton) {
@@ -459,6 +459,15 @@ class PostForm {
                 submitButton.textContent = 'Let It Out';
             }
         }
+    }
+
+    showConfirmationAndRedirect(newPostId) {
+        this.showConfirmationModal();
+        setTimeout(() => {
+            this.hideConfirmationModal();
+            // Redirect to Let It Out wall page with post highlight
+            window.location.href = 'letitout.html?post=' + encodeURIComponent(newPostId) + '#wall';
+        }, 1500);
     }
 
     showConfirmationModal() {
@@ -971,7 +980,9 @@ class PostForm {
                     },
                     body: JSON.stringify({
                         postId: postId,
-                        priceAmount: 499, // $4.99 in cents
+                        priceId: 'price_1RaPPMQ1hjqBwoa0vVLHNXO1', // $4.99 one-off unlock
+                        type: 'post_unlock',
+                        priceAmount: 499, // $4.99 in cents (optional, for backend validation)
                         successUrl: window.location.origin + window.location.pathname + `?unlocked=${postId}`,
                         cancelUrl: window.location.origin + window.location.pathname,
                     }),

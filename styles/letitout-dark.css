@@ -147,9 +147,13 @@ LET IT OUT - DARK MODE STYLES
     color: #ffffff !important;
     border-color: transparent !important;
 }
-.dark-mode .post-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    border-color: #444;
+.dark-mode .post-card:hover,
+.dark-mode .post-card:focus {
+    box-shadow: none !important;
+    transform: none !important;
+    background: #252526 !important;
+    border: 1px solid #333 !important;
+    cursor: default !important;
 }
 
 .dark-mode .post-card-content {
@@ -235,9 +239,13 @@ DARK MODE - FIXES & ADDITIONS
     color: #D4D4D4;
 }
 
-.dark-mode .post-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    border-color: #444;
+.dark-mode .post-card:hover,
+.dark-mode .post-card:focus {
+    box-shadow: none !important;
+    transform: none !important;
+    background: #252526 !important;
+    border: 1px solid #333 !important;
+    cursor: default !important;
 }
 
 /* --- Post Card & Form Elements --- */
