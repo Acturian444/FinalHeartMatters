@@ -652,8 +652,8 @@ DARK MODE - FIXES & ADDITIONS
 }
 
 .dark-mode .wall-location-modal .wall-location-modal-content {
-    background-color: #252526;
-    border: 1px solid #555;
+    background: #252526;
+    border: none;
     color: #D4D4D4;
 }
 .dark-mode .wall-location-modal .wall-location-modal-header {
@@ -856,7 +856,7 @@ DARK MODE - FIXES & ADDITIONS
 /* --- Location Modal --- */
 .dark-mode .wall-location-modal-content {
     background: #252526;
-    border: 1px solid #555;
+    border: none;
     color: #D4D4D4;
 }
 

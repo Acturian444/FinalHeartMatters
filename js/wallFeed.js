@@ -970,10 +970,11 @@ class WallFeed {
 
     getCityList() {
         return [
-            'Los Angeles, CA', 'New York, NY', 'Chicago, IL', 'Miami, FL', 'Atlanta, GA', 'Houston, TX',
-            'San Francisco, CA', 'San Jose, CA', 'Bay Area, CA', 'Phoenix, AZ', 'Austin, TX', 'Seattle, WA',
-            'Denver, CO', 'Las Vegas, NV', 'San Diego, CA', 'Philadelphia, PA', 'Washington, DC', 'Portland, OR',
-            'Orlando, FL', 'Minneapolis, MN', 'Nashville, TN', 'Boston, MA', 'Tampa, FL', 'Salt Lake City, UT', 'New Orleans, LA'
+            'Atlanta, GA', 'Austin, TX', 'Bay Area, CA', 'Boston, MA', 'Chicago, IL', 'Denver, CO',
+            'Houston, TX', 'Las Vegas, NV', 'Los Angeles, CA', 'Miami, FL', 'Minneapolis, MN',
+            'Nashville, TN', 'New Orleans, LA', 'New York, NY', 'Orlando, FL', 'Philadelphia, PA',
+            'Phoenix, AZ', 'Portland, OR', 'Salt Lake City, UT', 'San Diego, CA', 'San Francisco, CA',
+            'San Jose, CA', 'Seattle, WA', 'Tampa, FL', 'Washington, DC'
         ];
     }
 
@@ -992,25 +993,25 @@ class WallFeed {
     getSubEmotions(category) {
         const emotions = {
             'Pain & Pressure': [
-                'Grief', 'Shame', 'Guilt', 'Anger', 'Loneliness', 'Anxiety', 'Fear', 'Depression', 'Jealousy', 'Resentment', 'Emptiness', 'Heartbreak', 'Regret', 'Hopelessness', 'Insecurity', 'Sadness', 'Frustration', 'Bitterness', 'Confusion', 'Panic', 'Overwhelm', 'Embarrassment', 'Rejection', 'Envy', 'Abandonment', 'Self-hate', 'Powerlessness', 'Exhausted', 'Alone', 'Stuck'
+                'Abandonment', 'Alone', 'Anger', 'Anxiety', 'Bitterness', 'Confusion', 'Depression', 'Embarrassment', 'Emptiness', 'Envy', 'Exhausted', 'Fear', 'Frustration', 'Grief', 'Guilt', 'Heartbreak', 'Hopelessness', 'Insecurity', 'Jealousy', 'Loneliness', 'Overwhelm', 'Panic', 'Powerlessness', 'Rejection', 'Regret', 'Resentment', 'Sadness', 'Self-hate', 'Shame', 'Stuck'
             ],
             'Unspoken & Unsaid': [
-                "What I've never said", "What I never got to say", "What I'm afraid to admit", "What I wish I could take back", "What I carry in silence", "What I want to scream", "What I can't tell anyone", "What I hide behind my smile", "What I still don't understand", "What I miss", "What I can't forgive", "What's been eating me alive", "What I needed to hear", "What I never believed I deserved"
+                "What I can't forgive", "What I can't tell anyone", "What I carry in silence", "What I hide behind my smile", "What I miss", "What I needed to hear", "What I never believed I deserved", "What I never got to say", "What I still don't understand", "What I want to scream", "What I wish I could take back", "What I'm afraid to admit", "What I've never said", "What's been eating me alive"
             ],
             'Hope & Healing': [
-                'Faith', 'Forgiveness', 'Gratitude', 'Relief', 'Acceptance', 'Letting go', 'Joy', 'Healing', 'Clarity', 'Compassion', 'Surrender', 'Presence', 'Trust', 'Peace', 'Closure', 'Stillness', 'Lightness', 'Courage'
+                'Acceptance', 'Clarity', 'Closure', 'Compassion', 'Courage', 'Faith', 'Forgiveness', 'Gratitude', 'Healing', 'Joy', 'Letting go', 'Lightness', 'Peace', 'Presence', 'Relief', 'Stillness', 'Surrender', 'Trust'
             ],
             'Longing & Love': [
-                'Missed Connection', 'Desire', 'I miss someone', 'I want to feel loved', 'I need connection', 'I feel unloved', "I'm falling for someone", "I still love them", "I never said I loved them", "I loved them more than they knew", "I'm scared to love again", "I don't feel lovable"
+                'Desire', 'I don\'t feel lovable', 'I loved them more than they knew', 'I miss someone', 'I need connection', 'I never said I loved them', 'I still love them', 'I want to feel loved', 'I\'m falling for someone', 'I\'m scared to love again', 'I feel unloved', 'Missed Connection'
             ],
             'Identity & Self': [
-                "I don't know who I am", "I feel too much", "I feel like not enough", "I'm trying to change", "I'm tired of pretending", "I hate who I used to be", "I want to start over", "I want to be seen", "I'm not okay", "I'm learning to love myself", "I'm ashamed of who I am", "I feel invisible", "I want to love myself", "I crave touch", "I want to feel chosen", "I'm learning who I am", "I want to be authentic", "I feel misunderstood"
+                'I crave touch', 'I don\'t know who I am', 'I feel invisible', 'I feel like not enough', 'I feel misunderstood', 'I feel too much', 'I hate who I used to be', 'I want to be authentic', 'I want to be seen', 'I want to feel chosen', 'I want to love myself', 'I want to start over', 'I\'m ashamed of who I am', 'I\'m learning to love myself', 'I\'m learning who I am', 'I\'m not okay', 'I\'m tired of pretending', 'I\'m trying to change'
             ],
             'Transformation & Release': [
-                "It's time to let go", "I'm ready to grow", "This is my turning point", "I've been holding this too long", "I want to begin again", "I want to heal", "I forgive myself", "I'm finally saying it", "I'm letting it out", "I'm still here", "I'm ready to move on", "I'm not who I was", "I'm becoming someone new", "I've been carrying this but I'm ready to be free"
+                'I forgive myself', 'I made it through', 'I want to begin again', 'I want to heal', 'I\'m becoming someone new', 'I\'m finally saying it', 'I\'m letting it out', 'I\'m not who I was', 'I\'m ready to grow', 'I\'m ready to move on', 'I\'m still here', 'I\'ve been carrying this but I\'m ready to be free', 'I\'ve been holding this too long', 'It\'s time to let go', 'This is my turning point'
             ],
             'Light & Alive': [
-                'Freedom', 'Excitement', 'Pride', 'Celebration', 'Breakthrough', 'I made it through', 'Hope returned', 'Becoming me', 'Safe now', 'Self-love', 'Adventurous', 'Energized', 'Peaceful inside'
+                'Adventurous', 'Becoming me', 'Breakthrough', 'Celebration', 'Energized', 'Excitement', 'Freedom', 'Hope returned', 'I made it through', 'Peaceful inside', 'Pride', 'Safe now', 'Self-love'
             ]
         };
         return emotions[category] || [];
