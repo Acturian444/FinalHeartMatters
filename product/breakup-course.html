@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fffcf1">
+    <title>Breakup Recovery Course - Heal Your Heart, Rebuild Your Life | Heart Matters</title>
+    <meta name="description" content="A comprehensive digital course to help you heal from heartbreak, rebuild your confidence, and create a life you love. Guided journaling, emotional support, and practical tools for your healing journey.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Breakup Recovery Course - Heal Your Heart, Rebuild Your Life | Heart Matters">
+    <meta property="og:description" content="A comprehensive digital course to help you heal from heartbreak, rebuild your confidence, and create a life you love.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://heartmatters.com/product/breakup-course.html">
+    <meta property="og:image" content="https://heartmatters.com/images/shop/course-placeholder.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap&font-display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="../shop/shop.css?v=1">
+    <link rel="stylesheet" href="product.css?v=1">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav-centered">
+                <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links nav-left">
+                    <li><a href="../letitout.html">LET IT OUT</a></li>
+                    <li><a href="../theheartroom.html">THE HEART ROOM</a></li>
+                </ul>
+                <a href="../index.html" class="logo-text center-logo">Heart Matters</a>
+                <ul class="nav-links nav-right">
+                    <li class="nav-dropdown">
+                        <a href="#" class="nav-dropdown-trigger">SHOP</a>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="../shop/index.html">SHOP ALL</a></li>
+                            <li><a href="breakup-course.html">DIGITAL COURSE</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../info.html">JOIN THE MOVEMENT</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="menu-overlay" id="menuOverlay">
+            <nav>
+                <a href="../shop/index.html">SHOP</a>
+                <a href="../letitout.html">LET IT OUT</a>
+                <a href="../theheartroom.html">THE HEART ROOM</a>
+                <a href="../info.html">JOIN THE MOVEMENT</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Product Hero -->
+        <section class="product-hero">
+            <div class="container">
+                <div class="product-hero-content">
+                    <div class="product-hero-text">
+                        <h1>Breakup Recovery Course</h1>
+                        <p class="product-subtitle">Heal Your Heart, Rebuild Your Life</p>
+                        <div class="product-price">
+                            <span class="price">$49.99</span>
+                            <span class="price-note">One-time purchase, lifetime access</span>
+                        </div>
+                        <button class="btn btn-primary btn-large" onclick="purchaseCourse()">
+                            <i class="fas fa-heart"></i>
+                            Start Your Healing Journey
+                        </button>
+                    </div>
+                    <div class="product-hero-image">
+                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Breakup Recovery Course" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Description -->
+        <section class="product-description">
+            <div class="container">
+                <div class="description-content">
+                    <h2>What You'll Get</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3>10 Guided Modules</h3>
+                            <p>Step-by-step healing journey with expert guidance and emotional support.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-pen-fancy"></i>
+                            </div>
+                            <h3>50+ Journal Prompts</h3>
+                            <p>Deep, healing prompts designed to help you process and release your emotions.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Community Support</h3>
+                            <p>Access to a private community of others on their healing journey.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-infinity"></i>
+                            </div>
+                            <h3>Lifetime Access</h3>
+                            <p>Take your time, revisit modules, and continue your healing at your own pace.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emotional Storytelling -->
+        <section class="emotional-story">
+            <div class="container">
+                <div class="story-content">
+                    <h2>Your Heart Deserves to Heal</h2>
+                    <p class="story-text">
+                        I know what it feels like to carry the weight of a broken heart. To wake up every morning and remember that they're not there. To scroll through old photos and wonder where it all went wrong. To feel like you'll never be whole again.
+                    </p>
+                    <p class="story-text">
+                        But here's what I've learned: healing isn't about forgetting or pretending it didn't hurt. It's about honoring your pain, learning from it, and slowly rebuilding yourself into someone stronger, wiser, and more whole than before.
+                    </p>
+                    <p class="story-text">
+                        This course is everything I wish I had when I was healing from my own heartbreak. It's the gentle guidance, the tough love, the practical tools, and the emotional support that will help you not just survive this pain, but emerge from it transformed.
+                    </p>
+                    <div class="story-cta">
+                        <h3>You're Not Alone in This</h3>
+                        <p>Join thousands of others who have used this course to heal, grow, and create lives they love.</p>
+                        <button class="btn btn-primary" onclick="purchaseCourse()">
+                            Begin Your Healing Journey
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Modules Preview -->
+        <section class="course-modules">
+            <div class="container">
+                <h2>Your Healing Journey</h2>
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-number">01</div>
+                        <h3>Acknowledging Your Pain</h3>
+                        <p>Give yourself permission to feel everything. This is where healing begins.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-number">02</div>
+                        <h3>Understanding Your Story</h3>
+                        <p>Reframe your experience and see the lessons hidden in your pain.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-number">03</div>
+                        <h3>Releasing What No Longer Serves You</h3>
+                        <p>Let go of blame, guilt, and the stories that keep you stuck.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-number">04</div>
+                        <h3>Rebuilding Your Confidence</h3>
+                        <p>Rediscover your worth and rebuild your sense of self.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-number">05</div>
+                        <h3>Setting Boundaries</h3>
+                        <p>Learn to protect your heart and create healthy relationships.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-number">06</div>
+                        <h3>Creating Your New Life</h3>
+                        <p>Design a future that excites you and aligns with your values.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="testimonial-section">
+            <div class="container">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">
+                            "This course helped me understand that my pain wasn't a sign of weakness, but a sign that I was capable of deep love. I'm now in a place where I can look back with gratitude for the lessons learned."
+                        </p>
+                        <div class="testimonial-author">
+                            <span class="author-name">— Sarah M.</span>
+                            <span class="author-note">Course Graduate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Heal Your Heart?</h2>
+                    <p>Your future self is waiting for you to make this choice. Start your healing journey today.</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary btn-large" onclick="purchaseCourse()">
+                            <i class="fas fa-heart"></i>
+                            Get Started Now - $49.99
+                        </button>
+                        <p class="guarantee">30-day money-back guarantee • Lifetime access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="newsletter">
+                <h3>WANT TO BE PART OF THE MOVEMENT?</h3>
+                <p class="newsletter-subtext">Get drops, stories, and reminders that speak to your heart.</p>
+                <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
+                    <div class="form-group">
+                        <input type="email" name="entry.649844771" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="entry.673635167" placeholder="Phone (optional)">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Join Us</button>
+                </form>
+                <iframe name="hidden-iframe" style="display:none;"></iframe>
+                <div id="form-success" class="form-success">Thank you for signing up!</div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Heart Matters. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/utils.js?v=2"></script>
+    <script>
+        // Mobile menu functionality
+        function openMenu() {
+            document.getElementById('menuOverlay').classList.add('open');
+        }
+
+        // Close menu when clicking outside
+        document.getElementById('menuOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('open');
+            }
+        });
+
+        // Course purchase function
+        async function purchaseCourse() {
+            try {
+                // Check if Stripe is available
+                if (typeof Stripe === 'undefined') {
+                    throw new Error('Stripe is not available');
+                }
+
+                const stripePublicKey = 'pk_test_51RaP4RQ1hjqBwoa0ZnOuoRygvmNsfrRQmGG5wXIjcVhyKebi1CFfcG00pIQCceYu8pqlzFhAuJeNGz2dw5wlAcbD00wooUWDOR';
+                const stripe = Stripe(stripePublicKey);
+                
+                // Create a Checkout Session for course purchase
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type: 'course_purchase',
+                        priceId: 'price_YOUR_NEW_PRICE_ID_HERE', // Replace with your new Stripe price ID
+                        successUrl: window.location.origin + '/product/course-success.html',
+                        cancelUrl: window.location.href,
+                    }),
+                });
+
+                const session = await response.json();
+
+                if (session.error) {
+                    throw new Error(session.error);
+                }
+
+                // Redirect to Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
+            } catch (error) {
+                console.error('Course purchase error:', error);
+                alert('Payment setup failed. Please try again.');
+            }
+        }
+
+        // Newsletter form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            var form = this;
+            var submitButton = form.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            setTimeout(function() {
+                form.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = 'Join Us';
+                document.getElementById('form-success').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('form-success').style.display = 'none';
+                }, 3000);
+            }, 1200);
+        });
+    </script>
+</body>
+</html> 

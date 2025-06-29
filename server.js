@@ -27,6 +27,12 @@ app.post('/create-checkout-session', async (req, res) => {
                 price: priceId,
                 quantity: 1,
             }];
+        } else if (type === 'course_purchase' && priceId) {
+            // Digital Course Purchase: Use the Stripe Price ID
+            sessionConfig.line_items = [{
+                price: priceId,
+                quantity: 1,
+            }];
         } else if (type === 'post_unlock') {
             // Let It Out – Unlock Replies: Use the Stripe Price ID for $4.99
             sessionConfig.line_items = [{

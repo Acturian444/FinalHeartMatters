@@ -151,6 +151,72 @@ nav {
     color: #c10016;
 }
 
+/* Navigation Dropdown */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-trigger {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-dropdown-trigger::after {
+    content: '▼';
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-trigger::after {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 0.5rem 0;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-dropdown-menu li {
+    list-style: none;
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #000;
+    text-decoration: none;
+    font-family: 'Anton', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+}
+
+.nav-dropdown-menu a:hover {
+    background: #fffcf1;
+    color: #c10016;
+}
+
 /* Remove any conflicting styles */
 .nav-links a[href="info.html"],
 .nav-links a[href="theheartroom.html"],
@@ -992,6 +1058,27 @@ footer {
         display: block;
     }
     .nav-links, .nav-left, .nav-right {
+        display: none;
+    }
+    
+    /* Mobile dropdown styles */
+    .nav-dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
+        margin-top: 0.5rem;
+    }
+    
+    .nav-dropdown-menu a {
+        padding: 0.5rem 0;
+        font-size: 0.85rem;
+    }
+    
+    .nav-dropdown-trigger::after {
         display: none;
     }
 }
