@@ -2,14 +2,18 @@
 
 /* Shop Hero Section */
 .shop-hero {
-    background: linear-gradient(135deg, #c10016 0%, #7a0010 100%);
+    background: url('../images/Shop-Hero Image.jpg');
+    background-size: cover;
+    background-position: left bottom;
+    background-repeat: no-repeat;
     color: #fff;
-    padding: 4rem 1rem;
+    padding: 4rem 1rem 0 1rem;
     text-align: center;
-    min-height: 60vh;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0;
 }
 
 .shop-hero-content h1 {
@@ -19,6 +23,7 @@
     letter-spacing: 2px;
     margin-bottom: 1rem;
     text-transform: uppercase;
+    color: #c10016;
 }
 
 .shop-hero-subtitle {
@@ -28,6 +33,7 @@
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
+    color: #000;
 }
 
 /* Shop Sections */
@@ -162,9 +168,7 @@
 }
 
 .nav-dropdown-trigger::after {
-    content: '▼';
-    font-size: 0.8rem;
-    transition: transform 0.2s ease;
+    display: none;
 }
 
 .nav-dropdown:hover .nav-dropdown-trigger::after {
@@ -259,14 +263,13 @@
         padding: 0.5rem 0;
         font-size: 0.85rem;
     }
+    
+    .shop-hero {
+        height: 350px;
+    }
 }
 
 @media (max-width: 600px) {
-    .shop-hero {
-        padding: 3rem 1rem;
-        min-height: 50vh;
-    }
-    
     .shop-hero-content h1 {
         font-size: 2rem;
         letter-spacing: 1px;
@@ -316,6 +319,10 @@
     
     .nav-dropdown-trigger::after {
         display: none;
+    }
+    
+    .shop-hero {
+        height: 220px;
     }
 }
 

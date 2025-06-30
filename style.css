@@ -161,12 +161,11 @@ nav {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    display: none;
 }
 
 .nav-dropdown-trigger::after {
-    content: '▼';
-    font-size: 0.8rem;
-    transition: transform 0.2s ease;
+    display: none;
 }
 
 .nav-dropdown:hover .nav-dropdown-trigger::after {
