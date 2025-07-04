@@ -481,14 +481,14 @@ class PostForm {
           <div class="letitout-confirmation-modal">
             <div class="letitout-confirmation-heart">
               <svg viewBox="0 0 8 7" width="54" height="48" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                <rect x="1" y="1" width="2" height="1" fill="#c10016"/>
-                <rect x="5" y="1" width="2" height="1" fill="#c10016"/>
-                <rect x="0" y="2" width="4" height="1" fill="#c10016"/>
-                <rect x="4" y="2" width="4" height="1" fill="#c10016"/>
-                <rect x="0" y="3" width="8" height="1" fill="#c10016"/>
-                <rect x="1" y="4" width="6" height="1" fill="#c10016"/>
-                <rect x="2" y="5" width="4" height="1" fill="#c10016"/>
-                <rect x="3" y="6" width="2" height="1" fill="#c10016"/>
+                <rect x="1" y="1" width="2" height="1" fill="#ca0013"/>
+                <rect x="5" y="1" width="2" height="1" fill="#ca0013"/>
+                <rect x="0" y="2" width="4" height="1" fill="#ca0013"/>
+                <rect x="4" y="2" width="4" height="1" fill="#ca0013"/>
+                <rect x="0" y="3" width="8" height="1" fill="#ca0013"/>
+                <rect x="1" y="4" width="6" height="1" fill="#ca0013"/>
+                <rect x="2" y="5" width="4" height="1" fill="#ca0013"/>
+                <rect x="3" y="6" width="2" height="1" fill="#ca0013"/>
               </svg>
             </div>
             <div class="letitout-confirmation-text">
@@ -894,7 +894,7 @@ class PostForm {
         banner.className = 'free-unlock-banner';
         banner.innerHTML = `
             You've unlocked replies for this post! You have <b>${left}</b> free reply view${left === 1 ? '' : 's'} left.
-            <button class="close-btn" style="position: absolute; right: 1.2rem; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.2rem; color: #c10016; cursor: pointer; padding: 0.5rem; line-height: 1;">&times;</button>
+            <button class="close-btn" style="position: absolute; right: 1.2rem; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.2rem; color: #ca0013; cursor: pointer; padding: 0.5rem; line-height: 1;">&times;</button>
         `;
         const modalContent = document.querySelector('.letitout-my-posts-modal');
         if (modalContent) {

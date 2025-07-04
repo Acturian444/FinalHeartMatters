@@ -27,7 +27,7 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .center-logo {
-    color: #c10016; /* Brand red */
+    color: #ca0013; /* Brand red */
 }
 
 .dark-mode .letitout-my-posts-btn-global .my-posts-icon svg {
@@ -49,7 +49,7 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .menu-overlay a.active {
-    color: #c10016; /* Keep brand red for active link */
+    color: #ca0013; /* Keep brand red for active link */
 }
 
 .dark-mode .menu-overlay a:hover,
@@ -76,7 +76,7 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .segment-btn.active {
-    background: #c10016; /* Keep brand red */
+    background: #ca0013; /* Keep brand red */
     color: #fff !important;
 }
 
@@ -91,7 +91,7 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .letitout-post-card-header .new-question-btn {
-    color: #c10016; /* Keep brand red */
+    color: #ca0013; /* Keep brand red */
 }
 
 .dark-mode .letitout-post-card-body textarea {
@@ -115,7 +115,7 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .letitout-post-card-submit .submit-btn {
-    background-color: #c10016; /* Keep brand red */
+    background-color: #ca0013; /* Keep brand red */
     color: #fff;
 }
 
@@ -143,7 +143,7 @@ LET IT OUT - DARK MODE STYLES
     color: #D4D4D4;
 }
 .dark-mode .post-card .post-content-area .emotion-tag.emotion-tag-small {
-    background-color: #c10016 !important;
+    background-color: #ca0013 !important;
     color: #ffffff !important;
     border-color: transparent !important;
 }
@@ -175,7 +175,7 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .post-card-footer .post-actions .action-icon.felt {
-    color: #c10016; /* Keep brand red */
+    color: #ca0013; /* Keep brand red */
 }
 
 /* --- Modals --- */
@@ -203,12 +203,12 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .report-reasons-container .reason-btn.selected {
-    background-color: #c10016;
+    background-color: #ca0013;
     color: #fff;
 }
 
 .dark-mode .letitout-emotion-modal-btn.done {
-    background-color: #c10016;
+    background-color: #ca0013;
 }
 
 .dark-mode .letitout-emotion-modal-btn.done:disabled {
@@ -217,7 +217,7 @@ LET IT OUT - DARK MODE STYLES
 }
 
 .dark-mode .filter-actions .btn-primary {
-    background-color: #c10016;
+    background-color: #ca0013;
 }
 
 .dark-mode .filter-actions .btn-secondary {
@@ -288,7 +288,7 @@ DARK MODE - FIXES & ADDITIONS
 }
 
 .dark-mode .letitout-shuffle-btn {
-    color: #c10016;
+    color: #ca0013;
 }
 .dark-mode .letitout-reset-btn {
     color: #D4D4D4;
@@ -300,19 +300,19 @@ DARK MODE - FIXES & ADDITIONS
 .dark-mode .city-tag {
     background-color: #3a3a3a;
     border-color: #555;
-    color: #c10016;
+    color: #ca0013;
 }
 .dark-mode .emotion-tag.selected {
-    background: #c10016;
+    background: #ca0013;
     color: #fff;
-    border-color: #c10016;
+    border-color: #ca0013;
 }
 
 .dark-mode .letitout-selected-tags .emotion-tag,
 .dark-mode .letitout-selected-city .city-tag {
-    background-color: #c10016;
+    background-color: #ca0013;
     color: #fff;
-    border-color: #c10016;
+    border-color: #ca0013;
 }
 
 .dark-mode .letitout-selected-tags .emotion-tag .remove-tag,
@@ -337,8 +337,8 @@ DARK MODE - FIXES & ADDITIONS
     border-color: #666;
 }
 .dark-mode .felt-it-btn.felt {
-    background-color: #c10016;
-    border-color: #c10016;
+    background-color: #ca0013;
+    border-color: #ca0013;
     color: #fff;
 }
 .dark-mode .share-love-btn {
@@ -350,7 +350,7 @@ DARK MODE - FIXES & ADDITIONS
     background-color: #4a4a4a;
 }
 .dark-mode .letitout-submit {
-    background-color: #c10016;
+    background-color: #ca0013;
 }
 
 /* --- Context Menu --- */
@@ -406,7 +406,7 @@ DARK MODE - FIXES & ADDITIONS
     background: #3a3a3a;
 }
 .dark-mode .wall-sort-option.selected {
-    color: #c10016;
+    color: #ca0013;
     background: #2f2f2f;
 }
 
@@ -468,9 +468,9 @@ DARK MODE - FIXES & ADDITIONS
 .dark-mode .emotion-subtag:hover,
 .dark-mode .city-suggestion-btn.selected,
 .dark-mode .city-suggestion-btn:hover {
-    background-color: #c10016;
+    background-color: #ca0013;
     color: #fff;
-    border-color: #c10016;
+    border-color: #ca0013;
 }
 
 .dark-mode .letitout-emotion-modal-footer,
@@ -543,16 +543,16 @@ DARK MODE - FIXES & ADDITIONS
     color: #D4D4D4;
 }
 .dark-mode .my-post-card .emotion-tag {
-    background-color: #c10016;
+    background-color: #ca0013;
     color: #fff;
-    border-color: #c10016;
+    border-color: #ca0013;
 }
 .dark-mode .my-post-reply-line {
     background-color: #3a3a3a;
     color: #D4D4D4;
 }
 .dark-mode .my-post-reply-line button {
-    color: #c10016;
+    color: #ca0013;
 }
 .dark-mode .my-post-reply-line.unread {
     background-color: #5a1e26;
@@ -617,7 +617,7 @@ DARK MODE - FIXES & ADDITIONS
     background-color: #3a3a3a;
 }
 .dark-mode .location-filter-modal .location-option.selected {
-    background-color: #c10016;
+    background-color: #ca0013;
     color: #ffffff;
 }
 
@@ -694,9 +694,9 @@ DARK MODE - FIXES & ADDITIONS
     background-color: #4a4a4a !important;
 }
 .dark-mode .wall-location-modal .location-option.selected {
-    background-color: #c10016 !important;
+    background-color: #ca0013 !important;
     color: #ffffff !important;
-    border-color: #c10016 !important;
+    border-color: #ca0013 !important;
 }
 
 /* --- Report Post Modal --- */
@@ -723,7 +723,7 @@ DARK MODE - FIXES & ADDITIONS
     background-color: #3a3a3a;
 }
 .dark-mode #report-modal .report-reasons-container .report-reason.selected {
-    border-color: #c10016;
+    border-color: #ca0013;
     background-color: #3a1a20;
 }
 .dark-mode #report-modal .report-reason-title {
@@ -758,14 +758,14 @@ DARK MODE - FIXES & ADDITIONS
 }
 
 .dark-mode .post-card .felt-it-btn.felt svg {
-    stroke: #c10016;
-    fill: #c10016;
+    stroke: #ca0013;
+    fill: #ca0013;
 }
 
 .dark-mode .post-card .share-love-btn {
-    background-color: #c10016;
+    background-color: #ca0013;
     color: #ffffff;
-    border: 1px solid #c10016;
+    border: 1px solid #ca0013;
 }
 .dark-mode .post-card .share-love-btn:hover {
     background-color: #a00012;
@@ -819,9 +819,9 @@ DARK MODE - FIXES & ADDITIONS
     border: 1px solid #555;
 }
 .dark-mode .reply-modal .send-btn {
-    background-color: #c10016;
+    background-color: #ca0013;
     color: #ffffff;
-    border: 1px solid #c10016;
+    border: 1px solid #ca0013;
 }
 .dark-mode .reply-modal .send-btn:disabled {
     background-color: #5a1e26;
@@ -1038,7 +1038,7 @@ DARK MODE - FIXES & ADDITIONS
 }
 
 .dark-mode .pack-dropdown-item.selected {
-    background: #c10016;
+    background: #ca0013;
     color: white;
 }
 
@@ -1088,7 +1088,7 @@ DARK MODE - FIXES & ADDITIONS
 
 .dark-mode .premium-pack-loading .spinner {
     border-color: #333;
-    border-top-color: #c10016;
+    border-top-color: #ca0013;
 }
 
 .dark-mode .premium-pack-error {
@@ -1106,7 +1106,7 @@ DARK MODE - FIXES & ADDITIONS
   color: #D4D4D4;
 }
 .dark-mode .letitout-confirmation-heart svg {
-  filter: drop-shadow(0 2px 8px #c1001680);
+  filter: drop-shadow(0 2px 8px #ca001380);
 }
 .dark-mode .letitout-confirmation-note {
   color: #aaa;

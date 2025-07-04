@@ -67,7 +67,7 @@
 .price {
     font-family: 'Anton', sans-serif;
     font-size: 2.5rem;
-    color: #c10016;
+    color: #ca0013;
     font-weight: 900;
     display: block;
 }
@@ -141,7 +141,7 @@
 .feature-icon {
     width: 60px;
     height: 60px;
-    background: #c10016;
+    background: #ca0013;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -307,7 +307,7 @@
     background: #fffcf1;
     padding: 2rem;
     border-radius: 12px;
-    border-left: 4px solid #c10016;
+    border-left: 4px solid #ca0013;
     transition: transform 0.3s ease;
 }
 
@@ -318,7 +318,7 @@
 .module-number {
     font-family: 'Anton', sans-serif;
     font-size: 2rem;
-    color: #c10016;
+    color: #ca0013;
     font-weight: 900;
     margin-bottom: 1rem;
 }
@@ -342,7 +342,7 @@
 /* Testimonial */
 .testimonial-section {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #c10016 0%, #7a0010 100%);
+    background: linear-gradient(135deg, #ca0013 0%, #7a0010 100%);
     color: #fff;
 }
 
@@ -581,14 +581,14 @@
 .product-hero-text h1:focus,
 .product-subtitle:focus,
 .price:focus {
-    outline: 2px solid #c10016;
+    outline: 2px solid #ca0013;
     outline-offset: 2px;
 }
 
 .feature-item:focus-within,
 .module-card:focus-within,
 .feature-detail:focus-within {
-    outline: 2px solid #c10016;
+    outline: 2px solid #ca0013;
     outline-offset: 2px;
 }
 

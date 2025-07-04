@@ -53,7 +53,7 @@
         }
 
         .contact-email {
-            color: #c10016;
+            color: #ca0013;
             text-decoration: none;
             font-weight: 600;
             transition: opacity 0.3s ease;
@@ -97,7 +97,7 @@
         .whatsapp-group {
             margin-top: 1.2rem;
             padding: 0.5rem 1rem;
-            background-color: #c10016;
+            background-color: #ca0013;
             border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
@@ -246,30 +246,26 @@
             padding-left: 1.5rem;
             padding-right: 0;
         }
-        .movement-title, .pledge-title {
+        .movement-title, .pledge-title, .contact-title, .start-here-title {
             font-family: 'Anton', sans-serif;
-            color: #c10016;
             font-size: 2.7rem;
-            margin-top: 2.5rem;
-            margin-bottom: 2rem;
+            font-weight: 900;
+            color: #ca0013;
+            text-transform: uppercase;
             text-align: center;
             letter-spacing: 1.5px;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.12;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            max-width: 700px;
+            margin-top: 2.5rem;
+            margin-bottom: 2rem;
         }
-        .movement-title::after {
-            content: "";
-            display: block;
-            margin: 1.1rem auto 0 auto;
-            width: 60px;
-            height: 5px;
-            background: linear-gradient(90deg, #c10016 60%, #fffcf1 100%);
-            border-radius: 3px;
+        .pledge-title {
+            color: #fffcf1;
+        }
+        @media (max-width: 600px) {
+            .movement-title, .pledge-title, .contact-title, .start-here-title {
+                font-size: 2.2rem !important;
+                margin-top: 2rem;
+                margin-bottom: 1.5rem;
+            }
         }
         .movement-subtitle {
             font-family: 'DM Sans', sans-serif;
@@ -283,13 +279,14 @@
         .movement-letter-body {
             font-family: 'DM Sans', sans-serif;
             color: #000;
-            font-size: 1.18rem;
-            line-height: 1.8;
+            font-size: 1.08rem;
+            line-height: 1.6;
             text-align: center;
-            margin-top: 0.5rem;
+            max-width: 500px;
+            margin: 0 auto;
         }
         .movement-letter-body p {
-            margin-bottom: 1.1rem;
+            margin-bottom: 0.9rem;
         }
         .movement-cta {
             margin-top: 2rem;
@@ -326,7 +323,24 @@
         }
         @media (max-width: 600px) {
             .movement-letter-container {
-                padding: 0 1rem !important;
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+            section[style*='min-height: 60vh'] {
+                padding-top: 1.2rem !important;
+                padding-bottom: 2.2rem !important;
+            }
+            .movement-letter-body {
+                font-size: 1.08rem !important;
+                line-height: 1.6 !important;
+            }
+            .movement-letter-body p {
+                margin-bottom: 0 !important;
+            }
+            .movement-title {
+                margin-bottom: 1rem !important;
+            }
+            .movement-letter-container {
                 max-width: 98vw !important;
                 margin: 0 auto !important;
                 display: flex;
@@ -344,16 +358,11 @@
                 height: 3px;
             }
             .movement-letter-body {
-                font-size: 1rem;
-            }
-            .movement-letter-body p {
-                margin-bottom: 0.7rem !important;
+                font-size: 1.08rem !important;
+                line-height: 1.6 !important;
             }
             .movement-letter-body p:last-child {
-                margin-bottom: 0 !important;
-            }
-            section[style*='min-height: 100vh'] {
-                padding: 3rem 0.5rem 2rem 0.5rem !important;
+                margin-bottom: 2.2rem !important;
             }
         }
         .pledge-form-block input[type="email"]::placeholder {
@@ -365,7 +374,7 @@
             background: rgba(255,255,255,0.04);
         }
         .confirmation-section {
-            background: linear-gradient(180deg, #c10016 0%, #b8001a 100%);
+            background: linear-gradient(180deg, #ca0013 0%, #b8001a 100%);
             min-height: 100vh;
             width: 100vw;
             display: flex;
@@ -465,7 +474,7 @@
         .confirmation-heart svg {
             width: 64px;
             height: 64px;
-            filter: drop-shadow(0 2px 12px #c10016aa);
+            filter: drop-shadow(0 2px 12px #ca0013aa);
             animation: heartBeat 1.8s infinite;
         }
         @keyframes heartBeat {
@@ -652,10 +661,10 @@
         .start-here-subtext {
             font-family: 'DM Sans', sans-serif;
             font-size: 1.25rem;
-            color: #000;
-            margin-bottom: 2.5rem;
-            text-align: center;
             font-weight: 600;
+            color: #000;
+            text-align: center;
+            margin-bottom: 2.5rem;
         }
         .start-here-card-grid {
             display: flex;
@@ -668,7 +677,7 @@
         }
         .start-here-card {
             background: transparent;
-            border: 2px solid #c10016;
+            border: 2px solid #ca0013;
             border-radius: 10px;
             box-shadow: none;
             padding: 2.5rem 2rem 2rem 2rem;
@@ -690,7 +699,7 @@
         .start-here-card.card-red {
             background: transparent;
             color: #000;
-            border: 2px solid #c10016;
+            border: 2px solid #ca0013;
         }
         .start-here-card.card-red h3,
         .start-here-card.card-red p {
@@ -699,17 +708,18 @@
         .start-here-card h3 {
             font-family: 'Anton', sans-serif;
             font-size: 1.4rem;
-            margin-bottom: 1.1rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            color: #000;
             text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1.1rem;
         }
         .start-here-card p {
             font-family: 'DM Sans', sans-serif;
             font-size: 1.08rem;
+            font-weight: 400;
+            color: #000;
             margin-bottom: 2rem;
-            font-weight: 500;
-            color: #222;
         }
         .start-here-card.card-red p {
             color: #000 !important;
@@ -733,13 +743,13 @@
             max-width: 85%;
         }
         .start-here-card.card-red .btn {
-            background: #c10016;
+            background: #ca0013;
             color: #fff;
             border: none;
             font-weight: bold;
         }
         .start-here-card.card-red .btn[style*="pointer-events: none"] {
-            background: #c10016;
+            background: #ca0013;
             color: #fff;
             opacity: 0.5;
         }
@@ -773,7 +783,7 @@
                 font-size: 2.5rem !important;
             }
             .start-here-subtext {
-                font-size: 1.05rem;
+                font-size: 1.1rem;
                 margin-bottom: 1.5rem;
             }
             .start-here-card {
@@ -782,22 +792,35 @@
                 margin-bottom: 0;
                 padding: 1.2rem 0.7rem 2rem 0.7rem;
                 min-height: 300px;
+                padding-bottom: 3.5rem !important;
             }
             .start-here-card p {
-                margin-bottom: 2.2rem;
+                font-size: 1.08rem !important;
+                font-weight: 400 !important;
+                line-height: 1.6 !important;
             }
             .start-here-card .btn {
                 margin-top: 0;
             }
+            .start-here-card p:last-of-type {
+                margin-bottom: 1.5rem !important;
+            }
         }
         /* Override for movement-title only */
         .movement-title {
-            color: #000 !important;
+            color: #ca0013 !important;
         }
         .letitout-link {
             font-family: 'Anton', sans-serif !important;
             font-weight: bold !important;
             letter-spacing: 1.5px;
+        }
+        @media (max-width: 600px) {
+            .card-spacer {
+                height: 1.5rem;
+                width: 100%;
+                display: block;
+            }
         }
     </style>
 </head>
@@ -842,14 +865,18 @@
     <main>
         <section style="background-color: #fffcf1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 2.5rem 1rem 4.5rem 1rem; min-height: 60vh; margin-bottom: 0;">
             <div class="movement-letter-container">
-                <h1 class="movement-title" style="margin-bottom: 1.5rem;">This Is the Movement</h1>
+                <h1 class="movement-title" style="margin-bottom: 1.5rem; color: #ca0013;">THE #HEALINGINPUBLIC MANIFESTO</h1>
                 <div class="movement-letter-body">
-                    <p>We carry so much. Shame. Grief. Fear. Heartbreak. Anger. Feelings we've had to hide just to survive.</p>
-                    <p>We've been told to stay strong. Stay quiet. But silence weighs heavy—and over time, it starts to hurt. It becomes something else: addiction, anxiety, depression, isolation.</p>
-                    <p>If you're tired of pretending you're fine—this is your space. To speak your truth. To feel seen. To finally let it out.</p>
-                    <p>You don't have to carry it alone. You don't have to fix it to be worthy of healing. You just have to feel it. Say it. Let it out.</p>
-                    <p>This is where healing begins. This is where we remember:</p>
-                    <p>Your voice matters. Your story matters. Your heart matters.</p>
+                    <p><strong>A Heart Matters Movement</strong></p>
+                    <p>We live in a world that tells us to hide our pain. To only share what's polished. To bury what hurts and smile through the silence.</p>
+                    <p>But we believe the truth deserves a voice. We believe healing doesn't happen in isolation. It happens when we're seen exactly as we are.</p>
+                    <p>This is a space for emotional honesty. For the quiet heaviness you carry. For the words you never said. For the version of you that's still healing and still showing up.</p>
+                    <p>This isn't about being fixed. This is about being real.</p>
+                    <p><strong>Messy. Brave. Honest.</strong></p>
+                    <p>We're not here to impress. We're here to release. To feel it. To say it. To let it out.</p>
+                    <p>This is healing in public. This is where truth becomes wearable. Where pain is not shameful. Where emotions belong in the open.</p>
+                    <p>You don't have to carry it alone anymore. You don't have to hide anymore.</p>
+                    <p><strong>Your heart matters. Your story matters. Welcome home.</strong></p>
                 </div>
             </div>
         </section>
@@ -930,9 +957,9 @@
             }
         </style>
 
-        <section id="sign-the-pledge" style="min-height: 40vh; background-color: #c10016; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 2rem 2.5rem 2rem; margin-bottom: 0;">
+        <section id="sign-the-pledge" style="min-height: 40vh; background-color: #ca0013; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 2rem 2.5rem 2rem; margin-bottom: 0;">
             <div class="pledge-form-block" style="background: none; box-shadow: none; border-radius: 0; padding: 0; max-width: 420px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
-                <div class="pledge-title" style="font-family: 'Anton', sans-serif; color: #fffcf1; margin-bottom: 1.2rem; text-align: center; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; line-height: 1.1;">THE PLEDGE</div>
+                <div class="pledge-title" style="font-family: 'Anton', sans-serif; color: #fffcf1; margin-bottom: 1.2rem; text-align: center; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; line-height: 1.1;">THE HEALING PLEDGE</div>
                 <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 1.08rem; margin-bottom: 1.5rem; text-align: center; line-height: 1.6; max-width: 420px; padding-left: 0;">
                     I'm done hiding.<br>
                     I'm done pretending I'm fine.<br>
@@ -940,13 +967,13 @@
                     My feelings matter. My truth is valid.<br>
                     I'm letting go of what's been weighing me down.<br>
                     I'm opening my heart. I'm ready to be seen.<br>
-                    To connect—honestly and fully.<br>
-                    I'm choosing to live—not just survive.<br>
-                    To feel. To heal. To love—starting with me.
+                    To connect honestly and fully.<br>
+                    I'm choosing to live, not just survive.<br>
+                    To feel. To heal. To love. Starting with me.
                 </div>
                 <form class="signup-form" id="pledgeInlineForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe" style="width: 100%; display: flex; flex-direction: column; gap: 1.1rem; align-items: stretch;">
                     <input type="email" name="entry.649844771" placeholder="Enter your email..." required style="padding: 0.65rem 1rem; border-radius: 4px; border: 2px solid #fffcf1; background: transparent; color: #fffcf1; font-size: 1.08rem; font-family: 'DM Sans', sans-serif; outline: none; margin-bottom: 0; transition: border-color 0.2s; box-shadow: none; width: 100%;" />
-                    <button type="submit" class="btn btn-primary" style="background: #fffcf1; color: #c10016; padding: 0.65rem 0; border-radius: 4px; font-family: 'Anton', sans-serif; font-size: 1.1rem; font-weight: bold; border: none; margin-bottom: 0; transition: background 0.2s, color 0.2s; box-shadow: none; letter-spacing: 0.5px;">Sign the Pledge &rarr;</button>
+                    <button type="submit" class="btn btn-primary" style="background: #fffcf1; color: #ca0013; padding: 0.65rem 0; border-radius: 4px; font-family: 'Anton', sans-serif; font-size: 1.1rem; font-weight: bold; border: none; margin-bottom: 0; transition: background 0.2s, color 0.2s; box-shadow: none; letter-spacing: 0.5px;">Sign the Pledge &rarr;</button>
                 </form>
                 <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 0.98rem; margin-top: 1.1rem; text-align: center; opacity: 0.85;">We'll send reminders you're not alone and first access to what's next.</div>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
@@ -964,34 +991,36 @@
                     <div class="start-here-card">
                         <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
                           <!-- Pen/Writing Icon -->
-                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#c10016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 6l4 4L10 26H6v-4L22 6z"/>
                             <path d="M20 8l4 4"/>
                           </svg>
                         </div>
-                        <h3>Anonymous Confessional</h3>
-                        <p>Let it out in writing.<br>Say what you can't.<br>Unfiltered. Real. Yours.</p>
+                        <h3>LET IT OUT</h3>
+                        <p>Your public journal<br>Write what you're holding in<br>Anonymous. No judgment</p>
+                        <div class="card-spacer"></div>
                         <a href="letitout.html" class="btn btn-primary">LET IT OUT &rarr;</a>
                     </div>
                     <!-- Card 2 -->
                     <div class="start-here-card card-red">
                         <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
                           <!-- Shopping Bag Icon -->
-                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#c10016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M10 10V8a6 6 0 1 1 12 0v2"/>
                             <rect x="5" y="10" width="22" height="16" rx="3"/>
                             <path d="M21 16a5 5 0 0 1-10 0"/>
                           </svg>
                         </div>
-                        <h3>Shop the Drop</h3>
-                        <p>Wear what you feel.<br>This isn't just merch.<br>It's a mirror.</p>
-                        <a href="#" class="btn btn-primary">Shop Now &rarr;</a>
+                        <h3>Shop Still Healing</h3>
+                        <p>Wear what you feel<br>This isn't just merch<br>It's healing in public.</p>
+                        <div class="card-spacer"></div>
+                        <a href="shop/index.html" class="btn btn-primary">View Collection &rarr;</a>
                     </div>
                     <!-- Card 3 -->
                     <div class="start-here-card card-red">
                         <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
                           <!-- Microphone Icon -->
-                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#c10016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="13" y="5" width="6" height="14" rx="3"/>
                             <path d="M8 15v2a8 8 0 0 0 16 0v-2"/>
                             <line x1="16" y1="27" x2="16" y2="30"/>
@@ -999,7 +1028,8 @@
                           </svg>
                         </div>
                         <h3>The Heart Room</h3>
-                        <p>Live confessional show.<br>Real people. Raw stories.<br>Join us on TikTok Live</p>
+                        <p>Live confessional show<br>Real people. Raw stories<br>Join us on TikTok Live</p>
+                        <div class="card-spacer"></div>
                         <a href="theheartroom.html" class="btn btn-primary">Enter the Room &rarr;</a>
                     </div>
                 </div>
@@ -1022,13 +1052,6 @@
                     <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer" class="social-link">
                         <i class="fab fa-tiktok"></i>
                         <span>TikTok</span>
-                    </a>
-                </div>
-
-                <div class="whatsapp-group">
-                    <a href="https://chat.whatsapp.com/Ehbe4jbYSm230EQK9263lh" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Join The Heart Circle Chat</span>
                     </a>
                 </div>
             </div>

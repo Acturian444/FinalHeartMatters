@@ -774,7 +774,7 @@ class WallFeed {
         title.textContent = 'LET IT OUT';
         Object.assign(title.style, {
             fontFamily: '"Anton", sans-serif',
-            color: isDarkMode ? '#D4D4D4' : '#c10016', // THEME AWARE
+            color: isDarkMode ? '#D4D4D4' : '#ca0013', // THEME AWARE
             fontSize: '96px',
             fontWeight: 'bold',
             letterSpacing: '2px',
@@ -840,8 +840,8 @@ class WallFeed {
                 const tag = document.createElement('span');
                 tag.textContent = e;
                 Object.assign(tag.style, {
-                    backgroundColor: isDarkMode ? '#c10016' : '#fff0f2', // THEME AWARE
-                    color: isDarkMode ? '#ffffff' : '#c10016', // THEME AWARE
+                    backgroundColor: isDarkMode ? '#ca0013' : '#fff0f2', // THEME AWARE
+                                          color: isDarkMode ? '#ffffff' : '#ca0013', // THEME AWARE
                     borderRadius: '30px',
                     padding: '12px 24px',
                     fontSize: '24px',
