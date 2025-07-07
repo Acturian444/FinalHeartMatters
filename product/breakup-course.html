@@ -177,6 +177,63 @@
             </button>
         </div>
 
+        <!-- This Is for You If Section -->
+        <section class="for-you-section">
+            <div class="container">
+                <h2 class="for-you-title">This Is for You If…</h2>
+                <p class="for-you-subtitle">This isn't just a healing course. It's your comeback.</p>
+                <div class="for-you-list">
+                    <!-- Mental spiral group -->
+                    <div class="for-you-item">
+                        <div class="checkmark-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span><strong>You're stuck</strong> in your head replaying what went wrong</span>
+                    </div>
+                    <div class="for-you-item">
+                        <div class="checkmark-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span><strong>You're spiraling</strong> and need a way to calm your mind</span>
+                    </div>
+                    
+                    <!-- Emotional loss group -->
+                    <div class="for-you-item">
+                        <div class="checkmark-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span><strong>You can't stop</strong> thinking about someone who's no longer in your life</span>
+                    </div>
+                    <div class="for-you-item">
+                        <div class="checkmark-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span><strong>You feel like</strong> you lost yourself in the relationship</span>
+                    </div>
+                    
+                    <!-- Desire for change group -->
+                    <div class="for-you-item">
+                        <div class="checkmark-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span><strong>You're tired</strong> of advice and just want something that actually works</span>
+                    </div>
+                    <div class="for-you-item">
+                        <div class="checkmark-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span><strong>You want to</strong> come out of this heartbreak stronger, wiser, and more confident</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-cta" style="text-align:center; margin: 2.5rem 0;">
+            <button class="btn btn-primary" onclick="purchaseCourse()">
+                Start Healing for $33
+            </button>
+        </div>
+
         <!-- Transformation Table Section -->
         <section class="transformation-section">
             <div class="container">
@@ -245,17 +302,23 @@
                         <div class="transformation-arrow">&rarr;</div>
                         <div class="transformation-col after">
                             <i class="fas fa-star"></i>
-                            Ready for whatever comes next
+                            Back to yourself. Feeling whole again
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <div class="section-cta" style="text-align:center; margin: 2.5rem 0;">
+            <button class="btn btn-primary" onclick="purchaseCourse()">
+                Start Healing for $33
+            </button>
+        </div>
+
         <!-- COURSE OUTLINE Accordion Section -->
         <section class="course-outline-section">
             <h2 class="course-outline-title">COURSE OUTLINE</h2>
-            <p class="course-outline-subtitle">Your 22-Day Healing Journey</p>
+            <p class="course-outline-subtitle cta-subtitle">Your 22-Day Healing Journey</p>
             <div class="accordion" id="courseAccordion">
                 <!-- Week One -->
                 <div class="accordion-item">
@@ -322,11 +385,10 @@
                 <div class="testimonial">
                     <div class="testimonial-content">
                         <p class="testimonial-text">
-                            "This course helped me understand that my pain wasn't a sign of weakness, but a sign that I was capable of deep love. I'm now in a place where I can look back with gratitude for the lessons learned."
+                            "I didn't think anything could help. I felt lost, angry, and exhausted from pretending I was fine. This course didn't fix me. It helped me find myself. I finally feel clear, calm, and like I can breathe again."
                         </p>
                         <div class="testimonial-author">
-                            <span class="author-name">— Sarah M.</span>
-                            <span class="author-note">Course Graduate</span>
+                            <span class="author-name">— Future You</span>
                         </div>
                     </div>
                 </div>
@@ -338,7 +400,7 @@
             <div class="container">
                 <div class="cta-content">
                     <h2>Ready to Heal Your Heart?</h2>
-                    <p>Your future self is waiting. Start healing today.</p>
+                    <p class="cta-subtitle">Your future self will thank you.</p>
                     <div class="cta-buttons">
                         <button class="btn btn-primary btn-large" onclick="purchaseCourse()">
                             <i class="fas fa-heart"></i>
@@ -367,8 +429,8 @@
             </div>
             
             <div class="newsletter">
-                <h3>WANT TO BE PART OF THE MOVEMENT?</h3>
-                <p class="newsletter-subtext">Get drops, stories, and reminders that speak to your heart.</p>
+                <h3>Not ready yet? Stay close.</h3>
+                <p class="newsletter-subtext">We'll send you stories, reminders, and drops that speak to your heart. You're not alone in this.</p>
                 <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
                     <div class="form-group">
                         <input type="email" name="entry.649844771" placeholder="Email" required>
@@ -376,7 +438,7 @@
                     <div class="form-group">
                         <input type="tel" name="entry.673635167" placeholder="Phone (optional)">
                     </div>
-                    <button type="submit" class="btn btn-primary">Join Us</button>
+                    <button type="submit" class="btn btn-primary">Keep Me In The Loop</button>
                 </form>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
                 <div id="form-success" class="form-success">Thank you for signing up!</div>

@@ -375,9 +375,9 @@
 
 .testimonial-text {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-style: italic;
-    line-height: 1.8;
+    line-height: 1.7;
     margin-bottom: 2rem;
     position: relative;
 }
@@ -397,6 +397,8 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    font-size: 1.1rem;
+    margin-top: 1.2rem;
 }
 
 .author-name {
@@ -417,6 +419,7 @@
     padding: 4rem 0;
     background: #fffcf1;
     text-align: center;
+    margin-bottom: 1.2rem !important;
 }
 
 .cta-content {
@@ -451,9 +454,21 @@
 
 .guarantee {
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.75rem !important;
     color: #666;
-    margin-top: 1rem;
+    margin-top: 0 !important;
+    margin-bottom: 0;
+    display: block;
+    letter-spacing: 0.01em;
+}
+
+.cta-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 500;
 }
 
 /* Responsive Design */
@@ -583,7 +598,7 @@
     }
     
     .testimonial-text {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
     
     .testimonial-text::before {
@@ -605,6 +620,19 @@
     
     .emotional-story {
         padding-bottom: 1rem;
+    }
+    
+    .testimonial-author {
+        font-size: 1rem;
+    }
+    
+    .transformation-title {
+        font-size: 2rem;
+    }
+    
+    .cta-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -702,7 +730,6 @@
 }
 .course-outline-subtitle {
   font-family: 'DM Sans', sans-serif;
-  color: #222;
   font-size: 1.15rem;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -1029,4 +1056,137 @@
 .transformation-header .transformation-col.before, .transformation-header .transformation-col.after {
   justify-content: flex-start;
   text-align: left;
+}
+
+/* This Is for You If Section */
+.for-you-section {
+    padding: 4rem 0;
+    background: transparent;
+}
+
+.for-you-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    color: #000;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.for-you-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.for-you-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.for-you-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(202, 0, 19, 0.05);
+    border: 2px solid rgba(202, 0, 19, 0.1);
+    border-radius: 8px;
+    transition: none;
+    text-align: left;
+}
+
+.for-you-item:hover {
+    transform: none;
+}
+
+.for-you-item:last-child {
+    margin-bottom: 0;
+}
+
+.for-you-section + .section-cta {
+    margin-top: 0.5rem !important;
+}
+
+.checkmark-circle {
+    width: 24px;
+    height: 24px;
+    background: #ca0013;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.checkmark-circle i {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.for-you-item span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #000;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.for-you-item strong {
+    font-weight: 600;
+    color: #000;
+}
+
+@media (max-width: 600px) {
+    .for-you-section {
+        padding: 3rem 0;
+    }
+    
+    .for-you-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .for-you-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .for-you-list {
+        padding: 0 0.5rem;
+    }
+    
+    .for-you-item {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .for-you-item span {
+        font-size: 1rem;
+    }
+    
+    .checkmark-circle {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .checkmark-circle i {
+        font-size: 0.8rem;
+    }
+    
+    .transformation-title {
+        font-size: 2rem;
+    }
+}
+
+.final-cta + #footer .newsletter {
+    margin-top: 1.2rem !important;
 } 
