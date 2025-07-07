@@ -387,8 +387,7 @@
 
 /* Accessibility */
 .product-card:focus-within {
-    outline: 2px solid #ca0013;
-    outline-offset: 2px;
+    outline: none;
 }
 
 .nav-dropdown-menu a:focus {

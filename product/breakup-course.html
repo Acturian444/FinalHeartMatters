@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="../shop/shop.css?v=1">
     <link rel="stylesheet" href="product.css?v=1">
 </head>
-<body>
+<body class="breakup-course-page">
     <header>
         <div class="container">
             <nav class="nav-centered">
@@ -73,25 +73,64 @@
         <!-- Product Hero -->
         <section class="product-hero">
             <div class="container">
-                <div class="product-hero-content">
-                    <div class="product-hero-text">
-                        <h1>Breakup Recovery Course</h1>
-                        <p class="product-subtitle">Heal Your Heart, Rebuild Your Life</p>
+                <div class="product-hero-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <div class="product-hero-text" style="color: #fffcf1;">
+                        <h1 style="color: #fffcf1;">How to Heal Your Heart<span class="mobile-br"></span> in 22 Days</h1>
+                        <p class="product-subtitle" style="color: #fffcf1; margin-bottom: 2.5rem;">A Breakup Recovery Course<span class="mobile-br"></span> for Heartbreak, Loss, and Letting Go</p>
                         <div class="product-price">
-                            <span class="price">$49.99</span>
-                            <span class="price-note">One-time purchase, lifetime access</span>
+                            <button class="btn btn-primary btn-large" onclick="purchaseCourse()" style="background: #fffcf1; color: #ca0013; border: none;">
+                                <i class="fas fa-heart"></i>
+                                Start Healing for $33
+                            </button>
+                            <span class="price-note" style="color: #fffcf1; display: block; margin-top: 1rem;">Just $1.50 a day to feel like you again.</span>
                         </div>
-                        <button class="btn btn-primary btn-large" onclick="purchaseCourse()">
-                            <i class="fas fa-heart"></i>
-                            Start Your Healing Journey
-                        </button>
-                    </div>
-                    <div class="product-hero-image">
-                        <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80" alt="Breakup Recovery Course" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Emotional Storytelling -->
+        <section class="emotional-story">
+            <div class="container">
+                <div class="story-content">
+                    <h2>What I Wish I Had After the Breakup</h2>
+                    <p class="story-text">
+                        I know what heartbreak really feels like. The kind that sits in your chest like a weight, that keeps you awake at night questioning everything.
+                    </p>
+                    <p class="story-text">
+                        I created this because I needed it once. When I was broken, when I felt lost, when I didn't know how to begin again. No one gave me a roadmap for how to get through it <strong>— so I built one.</strong>
+                    </p>
+                    <p class="story-text">
+                        This course isn't theory. It's real. It's the words I needed to hear, the actions that actually helped, the truth that pulled me out.
+                    </p>
+                    <p class="story-text">
+                        If you're struggling to let go, if you feel like you've lost yourself, this 22-day healing journey will walk you through it. You won't just process the breakup <strong>— you'll remember your worth, rebuild your peace, and come back to yourself.</strong>
+                    </p>
+                    <p class="story-text">
+                        You don't need to do it alone. This is the support I wish someone gave me when I was at my lowest. Now it's yours.
+                    </p>
+                    <div class="story-cta">
+                        <button class="btn btn-primary" onclick="purchaseCourse()">
+                            Start Healing for $33
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scrolling Value Proposition Bar -->
+        <div class="scrolling-quotes-bar">
+            <div class="scrolling-quotes-track">
+                <span class="scrolling-quote">This isn't just a course. It's a reset for your mind, body, and soul.</span>
+                <span class="scrolling-quote">Heal one day at a time with daily guidance.</span>
+                <span class="scrolling-quote">Daily guidance to help you heal and grow.</span>
+                <span class="scrolling-quote">You're not alone in this journey.</span>
+                <span class="scrolling-quote">Start feeling like yourself again.</span>
+                <span class="scrolling-quote">Transform heartbreak into self-love.</span>
+                <span class="scrolling-quote">Real tools. Real healing. Real change.</span>
+                <span class="scrolling-quote">This isn't just a course. It's a reset for your mind, body, and soul.</span>
+            </div>
+        </div>
 
         <!-- Product Description -->
         <section class="product-description">
@@ -103,94 +142,133 @@
                             <div class="feature-icon">
                                 <i class="fas fa-book-open"></i>
                             </div>
-                            <h3>10 Guided Modules</h3>
-                            <p>Step-by-step healing journey with expert guidance and emotional support.</p>
+                            <h3>22 Guided Lessons</h3>
+                            <p>3 weeks of daily healing. Each day brings reflection, guidance, and a step forward.</p>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fas fa-pen-fancy"></i>
                             </div>
-                            <h3>50+ Journal Prompts</h3>
-                            <p>Deep, healing prompts designed to help you process and release your emotions.</p>
+                            <h3>22 Journal Prompts</h3>
+                            <p>Therapist-inspired prompts to help you feel it, write it, and let it out.</p>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <h3>Community Support</h3>
-                            <p>Access to a private community of others on their healing journey.</p>
+                            <h3>Let It Out Wall</h3>
+                            <p>Share what you feel anonymously and connect through our healing wall.</p>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fas fa-infinity"></i>
                             </div>
                             <h3>Lifetime Access</h3>
-                            <p>Take your time, revisit modules, and continue your healing at your own pace.</p>
+                            <p>Unlimited access to revisit lessons whenever you need them.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Emotional Storytelling -->
-        <section class="emotional-story">
+        <div class="section-cta" style="text-align:center; margin: 2.5rem 0;">
+            <button class="btn btn-primary" onclick="purchaseCourse()">
+                Start Healing for $33
+            </button>
+        </div>
+
+        <!-- Transformation Table Section -->
+        <section class="transformation-section">
             <div class="container">
-                <div class="story-content">
-                    <h2>Your Heart Deserves to Heal</h2>
-                    <p class="story-text">
-                        I know what it feels like to carry the weight of a broken heart. To wake up every morning and remember that they're not there. To scroll through old photos and wonder where it all went wrong. To feel like you'll never be whole again.
-                    </p>
-                    <p class="story-text">
-                        But here's what I've learned: healing isn't about forgetting or pretending it didn't hurt. It's about honoring your pain, learning from it, and slowly rebuilding yourself into someone stronger, wiser, and more whole than before.
-                    </p>
-                    <p class="story-text">
-                        This course is everything I wish I had when I was healing from my own heartbreak. It's the gentle guidance, the tough love, the practical tools, and the emotional support that will help you not just survive this pain, but emerge from it transformed.
-                    </p>
-                    <div class="story-cta">
-                        <h3>You're Not Alone in This</h3>
-                        <p>Join thousands of others who have used this course to heal, grow, and create lives they love.</p>
-                        <button class="btn btn-primary" onclick="purchaseCourse()">
-                            Begin Your Healing Journey
-                        </button>
+                <h2 class="transformation-title">From Heartbreak to Healing</h2>
+                <div class="transformation-table">
+                    <div class="transformation-header">
+                        <div class="transformation-col before">Before the Course</div>
+                        <div class="transformation-col after">After 22 Days of Healing</div>
+                    </div>
+                    <div class="transformation-row">
+                        <div class="transformation-col before">Overwhelmed by grief and loss</div>
+                        <div class="transformation-col after">Able to process and accept your pain</div>
+                    </div>
+                    <div class="transformation-row">
+                        <div class="transformation-col before">Replaying the relationship on a loop</div>
+                        <div class="transformation-col after">Focused on your own growth and future</div>
+                    </div>
+                    <div class="transformation-row">
+                        <div class="transformation-col before">Self-worth tied to your ex</div>
+                        <div class="transformation-col after">Reconnected with your inherent value</div>
+                    </div>
+                    <div class="transformation-row">
+                        <div class="transformation-col before">Trapped in cycles of blame and regret</div>
+                        <div class="transformation-col after">At peace with the past</div>
+                    </div>
+                    <div class="transformation-row">
+                        <div class="transformation-col before">Anxious and uncertain about moving on</div>
+                        <div class="transformation-col after">Feeling hopeful, empowered, and resilient</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Course Modules Preview -->
-        <section class="course-modules">
-            <div class="container">
-                <h2>Your Healing Journey</h2>
-                <div class="modules-grid">
-                    <div class="module-card">
-                        <div class="module-number">01</div>
-                        <h3>Acknowledging Your Pain</h3>
-                        <p>Give yourself permission to feel everything. This is where healing begins.</p>
+        <!-- COURSE OUTLINE Accordion Section -->
+        <section class="course-outline-section">
+            <h2 class="course-outline-title">COURSE OUTLINE</h2>
+            <p class="course-outline-subtitle">Your 22-Day Healing Journey</p>
+            <div class="accordion" id="courseAccordion">
+                <!-- Week One -->
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="accordion-title">Week One: Face Your New Reality</span>
+                        <span class="chevron">˅</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Day 0: Introduction</li>
+                            <li>Day 1: Acceptance</li>
+                            <li>Day 2: Create Distance</li>
+                            <li>Day 3: Nurture Yourself</li>
+                            <li>Day 4: Release Your Pain</li>
+                            <li>Day 5: Let Go of the Past</li>
+                            <li>Day 6: Face Your Fears</li>
+                            <li>Day 7: Forgiveness</li>
+                        </ul>
                     </div>
-                    <div class="module-card">
-                        <div class="module-number">02</div>
-                        <h3>Understanding Your Story</h3>
-                        <p>Reframe your experience and see the lessons hidden in your pain.</p>
+                </div>
+                <!-- Week Two -->
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="accordion-title">Week Two: Reclaim Your Power</span>
+                        <span class="chevron">˅</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Day 8: Love Detox</li>
+                            <li>Day 9: Date Yourself</li>
+                            <li>Day 10: Self-Love</li>
+                            <li>Day 11: Sex & Intimacy</li>
+                            <li>Day 12: Boost Your Confidence</li>
+                            <li>Day 13: Self Talk</li>
+                            <li>Day 14: Reclaim Yourself</li>
+                            <li>Day 15: Self-Reflection</li>
+                        </ul>
                     </div>
-                    <div class="module-card">
-                        <div class="module-number">03</div>
-                        <h3>Releasing What No Longer Serves You</h3>
-                        <p>Let go of blame, guilt, and the stories that keep you stuck.</p>
-                    </div>
-                    <div class="module-card">
-                        <div class="module-number">04</div>
-                        <h3>Rebuilding Your Confidence</h3>
-                        <p>Rediscover your worth and rebuild your sense of self.</p>
-                    </div>
-                    <div class="module-card">
-                        <div class="module-number">05</div>
-                        <h3>Setting Boundaries</h3>
-                        <p>Learn to protect your heart and create healthy relationships.</p>
-                    </div>
-                    <div class="module-card">
-                        <div class="module-number">06</div>
-                        <h3>Creating Your New Life</h3>
-                        <p>Design a future that excites you and aligns with your values.</p>
+                </div>
+                <!-- Week Three -->
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="accordion-title">Week Three: Rewrite Your Future</span>
+                        <span class="chevron">˅</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Day 16: Cut the Cord</li>
+                            <li>Day 17: Accountability</li>
+                            <li>Day 18: Get Unstuck</li>
+                            <li>Day 19: Reinvent Yourself</li>
+                            <li>Day 20: Break the Cycle</li>
+                            <li>Day 21: Your Ideal Partner</li>
+                            <li>Day 22: Grow & Glow</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -218,13 +296,13 @@
             <div class="container">
                 <div class="cta-content">
                     <h2>Ready to Heal Your Heart?</h2>
-                    <p>Your future self is waiting for you to make this choice. Start your healing journey today.</p>
+                    <p>Your future self is waiting. Start healing today.</p>
                     <div class="cta-buttons">
                         <button class="btn btn-primary btn-large" onclick="purchaseCourse()">
                             <i class="fas fa-heart"></i>
-                            Get Started Now - $49.99
+                            Start Healing for $33
                         </button>
-                        <p class="guarantee">30-day money-back guarantee • Lifetime access</p>
+                        <p class="guarantee">One-time purchase • Lifetime access.</p>
                     </div>
                 </div>
             </div>
@@ -342,6 +420,35 @@
                     document.getElementById('form-success').style.display = 'none';
                 }, 3000);
             }, 1200);
+        });
+
+        // Minimal accordion logic: only one open at a time
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const open = this.getAttribute('aria-expanded') === 'true';
+                // Close all
+                accordionHeaders.forEach(h => {
+                    h.setAttribute('aria-expanded', 'false');
+                    h.parentElement.querySelector('.accordion-content').style.maxHeight = null;
+                    h.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                });
+                // Open this one if it was closed
+                if (!open) {
+                    this.setAttribute('aria-expanded', 'true');
+                    const content = this.parentElement.querySelector('.accordion-content');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    this.querySelector('.chevron').style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+        // On load, collapse all
+        window.addEventListener('DOMContentLoaded', () => {
+            accordionHeaders.forEach(h => {
+                h.setAttribute('aria-expanded', 'false');
+                h.parentElement.querySelector('.accordion-content').style.maxHeight = null;
+                h.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            });
         });
     </script>
 </body>

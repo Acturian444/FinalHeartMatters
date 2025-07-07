@@ -1711,7 +1711,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
   border-top: 2px solid #ca0013;
   border-bottom: 2px solid #ca0013;
   border-radius: 0;
-  padding: 0.3rem 0;
+  padding: 0;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -1724,7 +1724,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
   display: flex;
   align-items: center;
   white-space: nowrap;
-  animation: marquee-scroll 38s linear infinite;
+  animation: marquee-scroll 18s linear infinite;
   will-change: transform;
   min-width: 200%;
 }
@@ -1750,7 +1750,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 @media (max-width: 900px) {
   .scrolling-quotes-bar {
     width: 100vw;
-    padding: 0.2rem 0;
+    padding: 0;
     border-radius: 0;
     font-size: 0.95rem;
   }
@@ -1763,7 +1763,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 @media (max-width: 600px) {
   .scrolling-quotes-bar {
     width: 100vw;
-    padding: 0.07rem 0;
+    padding: 0;
     border-radius: 0;
     font-size: 0.85rem;
     top: 0;
