@@ -178,44 +178,41 @@
     const progress = getProgress();
     const isDay0Completed = progress.completedDays.includes(0);
     html += `
-      <div class=\"course-week-accordion\">
-        <div class=\"week-header\" onclick=\"toggleIntroAccordion()\">
-          <div class=\"week-title\">${intro.title}${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
-          <div class=\"week-chevron ${introAccordionOpen ? 'expanded' : ''}\" id=\"intro-chevron\">˅</div>
+      <div class="course-week-accordion">
+        <div class="week-header" onclick="toggleIntroAccordion()">
+          <div class="week-title">${intro.title}${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
+          <div class="week-chevron ${introAccordionOpen ? 'expanded' : ''}" id="intro-chevron">˅</div>
         </div>
-        <div class=\"week-content ${introAccordionOpen ? 'expanded' : ''}\" id=\"intro-content\">
-          <div class=\"day-content-inner\">
-            <div class=\"course-day-item\">
-              <div class=\"day-header unlocked\" onclick=\"toggleIntroSection('before');event.stopPropagation()\">
-                <div class=\"day-icon\">${ICONS.book}</div>
-                <div class=\"day-title\">Before You Begin</div>
-                <div class=\"day-chevron ${introOpen.before ? 'expanded' : ''}\">˅</div>
-              </div>
-              <div class=\"day-content ${introOpen.before ? 'expanded' : ''}\">
-                <div class=\"day-content-inner\">
-                  <div class=\"day-section\">
-                    <div class=\"day-section-label\">${intro.label}</div>
-                    <div class=\"day-section-content\">${intro.beforeBegin}</div>
-                  </div>
+        <div class="week-content ${introAccordionOpen ? 'expanded' : ''}" id="intro-content">
+          <div class="course-day-item">
+            <div class="day-header unlocked" onclick="toggleIntroSection('before');event.stopPropagation()">
+              <div class="day-icon">${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ICONS.book}</div>
+              <div class="day-title">Before You Begin</div>
+              <div class="day-chevron ${introOpen.before ? 'expanded' : ''}">˅</div>
+            </div>
+            <div class="day-content ${introOpen.before ? 'expanded' : ''}">
+              <div class="day-content-inner">
+                <div class="day-section">
+                  <div class="day-section-label">${intro.label}</div>
+                  <div class="day-section-content">${intro.beforeBegin}</div>
                 </div>
               </div>
             </div>
-            <div style=\"height:1.2rem;\"></div>
-            <div class=\"course-day-item\">
-              <div class=\"day-header unlocked\" onclick=\"toggleIntroSection('day0');event.stopPropagation()\">
-                <div class=\"day-icon\">${ICONS.book}</div>
-                <div class=\"day-title\">${intro.day0.title}</div>
-                <div class=\"day-chevron ${introOpen.day0 ? 'expanded' : ''}\">˅</div>
-              </div>
-              <div class=\"day-content ${introOpen.day0 ? 'expanded' : ''}\">
-                <div class=\"day-content-inner\">
-                  <div class=\"day-section\"><div class=\"day-section-label\">TODAY'S READING</div><div class=\"day-section-content\">${intro.day0.reading}</div></div>
-                  <div class=\"day-section\"><div class=\"day-section-label\">YOUR TASK</div><div class=\"day-section-content\">${intro.day0.task}</div></div>
-                  <div class=\"day-section\"><div class=\"day-section-label\">MORNING RITUAL</div><div class=\"day-section-content\">${intro.day0.ritualMorning}</div></div>
-                  <div class=\"day-section\"><div class=\"day-section-label\">EVENING RITUAL</div><div class=\"day-section-content\">${intro.day0.ritualEvening}</div></div>
-                  <div class=\"day-section\"><div class=\"day-section-label\">JOURNALING PROMPT</div><div class=\"day-section-prompt\">${intro.day0.prompt}</div></div>
-                  ${!isDay0Completed ? `<button class=\"day-complete-btn\" onclick=\"completeDay(0)\">Mark as Complete</button>` : ''}
-                </div>
+          </div>
+          <div class="course-day-item">
+            <div class="day-header unlocked" onclick="toggleIntroSection('day0');event.stopPropagation()">
+              <div class="day-icon">${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ICONS.book}</div>
+              <div class="day-title">${intro.day0.title}</div>
+              <div class="day-chevron ${introOpen.day0 ? 'expanded' : ''}">˅</div>
+            </div>
+            <div class="day-content ${introOpen.day0 ? 'expanded' : ''}">
+              <div class="day-content-inner">
+                <div class="day-section"><div class="day-section-label">TODAY'S READING</div><div class="day-section-content">${intro.day0.reading}</div></div>
+                <div class="day-section"><div class="day-section-label">YOUR TASK</div><div class="day-section-content">${intro.day0.task}</div></div>
+                <div class="day-section"><div class="day-section-label">MORNING RITUAL</div><div class="day-section-content">${intro.day0.ritualMorning}</div></div>
+                <div class="day-section"><div class="day-section-label">EVENING RITUAL</div><div class="day-section-content">${intro.day0.ritualEvening}</div></div>
+                <div class="day-section"><div class="day-section-label">JOURNALING PROMPT</div><div class="day-section-prompt">${intro.day0.prompt}</div></div>
+                ${!isDay0Completed ? `<button class=\"day-complete-btn\" onclick=\"completeDay(0)\">Mark as Complete</button>` : ''}
               </div>
             </div>
           </div>
@@ -227,14 +224,16 @@
     course.weeks.forEach((week, weekIndex) => {
       const isUnlocked = isWeekUnlocked(weekIndex);
       const isCurrentWeek = weekIndex === currentWeek;
-      const shouldShow = isUnlocked || isCurrentWeek;
       const isExpanded = isUnlocked || isCurrentWeek;
       const lockedClass = isUnlocked ? '' : 'locked';
       const lockIcon = isUnlocked ? '' : `<span class=\"lock-icon\">${ICONS.lock}</span>`;
+      // Check if all days in the week are completed
+      const allDaysCompleted = Array.from({length: week.endDay - week.startDay + 1}, (_, i) => week.startDay + i)
+        .every(day => isDayCompleted(day));
       html += `
         <div class=\"course-week-accordion\">
           <div class=\"week-header ${lockedClass}\" onclick=\"${isUnlocked ? `toggleWeek(${weekIndex})` : ''}\">
-            ${lockIcon}<div class=\"week-title\">${week.title}</div>
+            ${lockIcon}<div class=\"week-title\">${week.title}${allDaysCompleted ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
             <div class=\"week-chevron ${isExpanded ? 'expanded' : ''}\" id=\"week-${weekIndex}-chevron\">˅</div>
           </div>
           <div class=\"week-content ${isExpanded ? 'expanded' : ''}\" id=\"week-${weekIndex}-content\">
@@ -246,10 +245,11 @@
         const isUnlocked = isDayUnlocked(day);
         const isCompleted = isDayCompleted(day);
         const statusClass = isUnlocked ? '' : 'locked';
-        const statusIcon = isUnlocked ? (isCompleted ? ICONS.check : ICONS.book) : ICONS.lock;
+        // Always use the same checkmark icon as Introduction
+        const statusIcon = isUnlocked ? (isCompleted ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ICONS.book) : ICONS.lock;
         const clickHandler = isUnlocked ? `onclick=\"toggleDay(${day})\"` : '';
         html += `
-          <div class=\"course-day-item\">
+          <div class=\"course-day-item\" data-day=\"${day}\">
             <div class=\"day-header ${statusClass}\" ${clickHandler}>
               <div class=\"day-icon\">${statusIcon}</div>
               <div class=\"day-title\">${dayData.title}</div>
@@ -329,6 +329,13 @@
     } else {
       content.classList.add('expanded');
       chevron.classList.add('expanded');
+      // Scroll to the top of the newly opened day
+      setTimeout(() => {
+        const dayItem = document.querySelector(`.course-day-item[data-day='${day}']`);
+        if (dayItem) {
+          dayItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   }
 
