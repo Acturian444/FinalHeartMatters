@@ -48,7 +48,8 @@
                         <a href="index.html" class="nav-dropdown-trigger">SHOP</a>
                         <ul class="nav-dropdown-menu">
                             <li><a href="index.html">STILL HEALING COLLECTION</a></li>
-                            <li><a href="../product/breakup-course.html">DIGITAL COURSE</a></li>
+                            <li><a href="../product/breakup-course.html">Breakup Recovery Course</a></li>
+                            <li id="myCourseLink" style="display: none;"><a href="../course/breakup-course.html">My Breakup Recovery Course</a></li>
                         </ul>
                     </li>
                     <li><a href="../info.html">JOIN THE MOVEMENT</a></li>
@@ -61,6 +62,7 @@
                 <a href="../letitout.html">LET IT OUT</a>
                 <a href="../theheartroom.html">THE HEART ROOM</a>
                 <a href="../info.html">JOIN THE MOVEMENT</a>
+                <a id="mobileCourseLink" href="../course/breakup-course.html" style="display: none;">Continue Course</a>
             </nav>
         </div>
     </header>
@@ -197,7 +199,7 @@
                         </div>
                         <div class="product-content">
                             <h3>Breakup Recovery Course</h3>
-                            <p class="product-tagline">Heal Your Heart in 22 Days<br>$22.00 USD</p>
+                            <p class="product-tagline">Heal Your Heart in 22 Days<br>$33.00 USD</p>
                             <a href="../product/breakup-course.html" class="btn btn-primary">Start Healing</a>
                         </div>
                     </article>
@@ -244,6 +246,7 @@
     </footer>
 
     <script src="../js/utils.js?v=2"></script>
+    <script src="../js/menu.js"></script>
     <script>
         // Mobile menu functionality
         function openMenu() {
@@ -273,6 +276,21 @@
                 }, 3000);
             }, 1200);
         });
+
+        // Update navigation to show course links when unlocked
+        function updateNavigation() {
+            const isUnlocked = localStorage.getItem('courseUnlocked_breakup') === 'true';
+            const myCourseLink = document.getElementById('myCourseLink');
+            const mobileCourseLink = document.getElementById('mobileCourseLink');
+            
+            if (isUnlocked) {
+                if (myCourseLink) myCourseLink.style.display = 'block';
+                if (mobileCourseLink) mobileCourseLink.style.display = 'block';
+            }
+        }
+        
+        // Update navigation on page load
+        document.addEventListener('DOMContentLoaded', updateNavigation);
     </script>
 </body>
 </html> 

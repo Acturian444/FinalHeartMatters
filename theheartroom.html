@@ -267,7 +267,8 @@
                         <a href="shop/index.html" class="nav-dropdown-trigger">SHOP</a>
                         <ul class="nav-dropdown-menu">
                             <li><a href="shop/index.html">STILL HEALING COLLECTION</a></li>
-                            <li><a href="product/breakup-course.html">DIGITAL COURSE</a></li>
+                            <li><a href="product/breakup-course.html">Breakup Recovery Course</a></li>
+                            <li id="myCourseLink" style="display: none;"><a href="course/breakup-course.html">My Breakup Recovery Course</a></li>
                         </ul>
                     </li>
                     <li><a href="info.html">JOIN THE MOVEMENT</a></li>
@@ -280,6 +281,7 @@
                 <a href="letitout.html">LET IT OUT</a>
                 <a href="theheartroom.html" class="active">THE HEART ROOM</a>
                 <a href="info.html">JOIN THE MOVEMENT</a>
+                <a id="mobileCourseLink" href="course/breakup-course.html" style="display: none;">Continue Course</a>
             </nav>
         </div>
     </header>
@@ -399,5 +401,21 @@
     <script src="js/config/firebase-config.js?v=2"></script>
     <script src="js/components/post-card.js?v=2"></script>
     <script src="js/services/post-service.js?v=2"></script>
+    <script>
+        // Update navigation to show course links when unlocked
+        function updateNavigation() {
+            const isUnlocked = localStorage.getItem('courseUnlocked_breakup') === 'true';
+            const myCourseLink = document.getElementById('myCourseLink');
+            const mobileCourseLink = document.getElementById('mobileCourseLink');
+            
+            if (isUnlocked) {
+                if (myCourseLink) myCourseLink.style.display = 'block';
+                if (mobileCourseLink) mobileCourseLink.style.display = 'block';
+            }
+        }
+        
+        // Update navigation on page load
+        document.addEventListener('DOMContentLoaded', updateNavigation);
+    </script>
 </body>
 </html> 

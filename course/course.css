@@ -1,0 +1,537 @@
+/* course/course.css - Styles for Breakup Recovery Course page */
+
+body {
+  background: #fffcf1;
+  font-family: 'DM Sans', sans-serif;
+  color: #222;
+}
+
+.course-app-container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3.5rem 2.2rem 5rem 2.2rem;
+}
+
+/* Sticky Progress Bar */
+#courseProgressBar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fffcf1;
+  padding: 1.1rem 0 0.5rem 0;
+  text-align: center;
+}
+.progress-bar-inner {
+  font-family: 'Anton', sans-serif;
+  color: #ca0013;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+/* Info/Reminder Message */
+#courseInfoMessage {
+  font-size: 0.98rem;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.info-icon {
+  font-size: 1.1em;
+  color: #bbb;
+}
+#courseReminder {
+  font-size: 1.08rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+/* Compact Mode Toggle */
+.course-view-toggle {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.toggle-btn {
+  background: none;
+  border: 2px solid #ca0013;
+  color: #ca0013;
+  border-radius: 20px;
+  padding: 0.5rem 1.2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.toggle-btn.active {
+  background: #ca0013;
+  color: #fff;
+}
+
+/* Week Accordions */
+.course-week-accordion {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(202,0,19,0.04);
+}
+.week-header {
+  background: #fff;
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s;
+}
+.week-header:hover {
+  background: #fafafa;
+}
+.week-title {
+  font-family: 'Anton', sans-serif;
+  color: #ca0013;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+.week-chevron {
+  font-size: 1.2rem;
+  color: #ca0013;
+  transition: transform 0.2s;
+}
+.week-chevron.expanded {
+  transform: rotate(180deg);
+}
+.week-content {
+  background: #fff;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.week-content.expanded {
+  max-height: 4000px;
+}
+
+/* Day Cards */
+.course-day-item {
+  border-bottom: 1px solid #f0f0f0;
+}
+.course-day-item:last-child {
+  border-bottom: none;
+}
+.day-header {
+  padding: 1.1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: background 0.2s;
+}
+.day-header:hover {
+  background: #fafafa;
+}
+.day-header.locked {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.day-header.locked:hover {
+  background: none;
+}
+.day-icon {
+  font-size: 1.2em;
+  width: 1.5rem;
+  text-align: center;
+}
+.day-icon svg {
+  width: 1.25em;
+  height: 1.25em;
+  display: block;
+  vertical-align: middle;
+}
+.day-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 500;
+  flex: 1;
+}
+.day-chevron {
+  font-size: 1.1rem;
+  color: #ca0013;
+  transition: transform 0.2s;
+}
+.day-chevron.expanded {
+  transform: rotate(180deg);
+}
+
+/* Day Content */
+.day-content {
+  background: #fffcf1;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.day-content.expanded {
+  max-height: 4000px;
+}
+.day-content-inner {
+  background: #fff;
+  padding: 1.5rem;
+  padding-bottom: 2.8rem;
+  min-height: 180px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.day-section {
+  margin-bottom: 1.5rem;
+}
+.day-section:last-child {
+  margin-bottom: 0;
+}
+.day-section-label {
+  font-family: 'Anton', sans-serif;
+  color: #888;
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+.day-section-content {
+  margin-bottom: 1.3em;
+  line-height: 1.8;
+  font-size: 1.13rem;
+  color: #232323;
+}
+.day-section-content p {
+  margin: 0 0 1.3em 0;
+}
+.day-section-content ul {
+  padding-left: 1.5em;
+  margin: 1.1em 0 1.3em 0;
+  font-size: 1.08rem;
+  color: #232323;
+}
+.day-section-content li {
+  margin-bottom: 0.7em;
+  line-height: 1.7;
+}
+.day-section-content strong {
+  display: block;
+  margin: 1.2em 0 0.7em 0;
+  font-size: 1.08em;
+  color: #ca0013;
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 0.5px;
+}
+.day-section-prompt {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #ca0013;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+  border-left: 3px solid #ca0013;
+}
+.day-complete-btn {
+  background: #ca0013;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+.day-complete-btn:active,
+.day-complete-btn:focus {
+  background: #a00012;
+}
+.day-complete-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Locked State */
+.locked .day-icon {
+  color: #bbb;
+}
+.locked .day-title {
+  color: #aaa;
+}
+
+/* Let it out CTA */
+.course-cta {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 20;
+  background: #fffcf1;
+  padding: 1.1rem 0.5rem 1.3rem 0.5rem;
+  text-align: center;
+  box-shadow: 0 -2px 12px rgba(202,0,19,0.04);
+}
+.course-cta-btn {
+  background: transparent;
+  color: #ca0013;
+  border: 2px solid #ca0013;
+  border-radius: 6px;
+  padding: 0.65rem 1.3rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.course-cta-btn:active,
+.course-cta-btn:focus,
+.course-cta-btn:hover {
+  background: #ca0013;
+  color: #fff;
+}
+
+/* Progress Meter */
+#courseProgressMeter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.08rem;
+}
+.progress-week-dot {
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 0.13em;
+  background: #eee;
+  border: 2px solid #ca0013;
+  vertical-align: middle;
+}
+.progress-week-dot.filled {
+  background: #ca0013;
+  border-color: #ca0013;
+}
+.progress-week-dot.current {
+  background: #fff;
+  border-color: #ca0013;
+  box-shadow: 0 0 0 2px #ca0013;
+}
+
+/* Locked Week Header */
+.week-header.locked {
+  color: #bbb;
+  background: #f7f7f7;
+  cursor: not-allowed;
+}
+.week-header.locked .week-title {
+  color: #bbb;
+}
+.week-header.locked .week-chevron {
+  color: #bbb;
+}
+.week-header.locked .lock-icon {
+  margin-right: 0.5em;
+  color: #bbb;
+  font-size: 1.1em;
+}
+.lock-icon svg {
+  width: 1.25em;
+  height: 1.25em;
+  display: block;
+  vertical-align: middle;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .course-app-container {
+    max-width: 98vw;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .course-app-container {
+    padding: 2.2rem 0.2rem 5.5rem 0.2rem;
+  }
+  .week-header {
+    padding: 1rem 1.2rem;
+  }
+  .week-title {
+    font-size: 1.05rem;
+  }
+  .day-header {
+    padding: 0.8rem 1.2rem;
+  }
+  .day-title {
+    font-size: 0.98rem;
+  }
+  .day-content-inner {
+    padding-bottom: 2.5rem;
+    min-height: 120px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  .day-content.expanded,
+  .week-content.expanded {
+    max-height: 4000px;
+  }
+  .day-section-content {
+    font-size: 1rem;
+  }
+}
+
+/* --- End of course.css --- */
+
+.intro-checkmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  width: 1.1em;
+  height: 1.1em;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+.intro-checkmark svg {
+  display: block;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+#courseLinearProgress {
+  width: 100%;
+  margin: 0.7rem 0 1.2rem 0;
+  height: 12px;
+  background: #f3eaea;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(202,0,19,0.04);
+}
+.course-linear-bar {
+  height: 100%;
+  background: #ca0013;
+  border-radius: 8px 0 0 8px;
+  width: 0%;
+  transition: width 0.7s cubic-bezier(.4,1.4,.6,1);
+}
+
+.course-main-title {
+  font-family: 'Anton', sans-serif;
+  color: #111;
+  font-size: 2.7rem;
+  text-align: center;
+  margin: 2.2rem 0 1.2rem 0;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .course-main-title {
+    margin-top: 1.3rem;
+    font-size: 1.7rem;
+  }
+}
+
+.progress-info-popover {
+  position: absolute;
+  top: 2.2em;
+  right: 0.5em;
+  left: auto;
+  z-index: 100;
+  background: #fff;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 32px rgba(40,16,16,0.10), 0 1.5px 8px rgba(202,0,19,0.06);
+  padding: 1em 1.1em 1em 1.1em;
+  max-width: 320px;
+  min-width: 220px;
+  font-size: 1.01rem;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: popover-fade-in 0.18s cubic-bezier(.4,1.4,.6,1);
+}
+@keyframes popover-fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.popover-close {
+  position: absolute;
+  top: 0.4em;
+  right: 0.7em;
+  background: #f7f7f7;
+  border: none;
+  color: #ca0013;
+  border-radius: 50%;
+  width: 1.3em;
+  height: 1.3em;
+  font-size: 1.05em;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(202,0,19,0.06);
+  transition: background 0.15s;
+}
+.popover-close:hover {
+  background: #ffeaea;
+}
+.popover-content {
+  margin-top: 0.2em;
+  line-height: 1.5;
+  color: #222;
+}
+@media (max-width: 600px) {
+  .progress-info-popover {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    min-width: 0;
+    max-width: 95vw;
+    padding: 0.9em 0.7em 0.9em 0.9em;
+  }
+  .popover-close {
+    top: 0.3em;
+    right: 0.5em;
+    width: 1.1em;
+    height: 1.1em;
+    font-size: 1em;
+  }
+}
+
+.course-subtitle {
+  text-align: center;
+  color: #666;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.13rem;
+  font-weight: 400;
+  margin: 0 0 1.2rem 0;
+  font-style: normal;
+  letter-spacing: 0.1px;
+}
+@media (max-width: 600px) {
+  .course-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.cta-label {
+  display: block;
+  text-align: center;
+  color: #888;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.1px;
+} 

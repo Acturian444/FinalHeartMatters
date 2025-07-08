@@ -52,7 +52,8 @@
                         <a href="../shop/index.html" class="nav-dropdown-trigger">SHOP</a>
                         <ul class="nav-dropdown-menu">
                             <li><a href="../shop/index.html">STILL HEALING COLLECTION</a></li>
-                            <li><a href="breakup-course.html">DIGITAL COURSE</a></li>
+                            <li><a href="breakup-course.html">Breakup Recovery Course</a></li>
+                            <li id="myCourseLink" style="display: none;"><a href="../course/breakup-course.html">My Breakup Recovery Course</a></li>
                         </ul>
                     </li>
                     <li><a href="../info.html">JOIN THE MOVEMENT</a></li>
@@ -65,6 +66,7 @@
                 <a href="../letitout.html">LET IT OUT</a>
                 <a href="../theheartroom.html">THE HEART ROOM</a>
                 <a href="../info.html">JOIN THE MOVEMENT</a>
+                <a id="mobileCourseLink" href="../course/breakup-course.html" style="display: none;">Continue Course</a>
             </nav>
         </div>
     </header>
@@ -483,8 +485,8 @@
                     },
                     body: JSON.stringify({
                         type: 'course_purchase',
-                        priceId: 'price_YOUR_NEW_PRICE_ID_HERE', // Replace with your new Stripe price ID
-                        successUrl: window.location.origin + '/product/course-success.html',
+                        priceId: 'price_1RiJYoQ1hjqBwoa0rGn93X9K',
+                        successUrl: window.location.origin + '/course/breakup-course.html?unlocked=true',
                         cancelUrl: window.location.href,
                     }),
                 });
@@ -554,6 +556,21 @@
                 h.querySelector('.chevron').style.transform = 'rotate(0deg)';
             });
         });
+
+        // Update navigation to show course links when unlocked
+        function updateNavigation() {
+            const isUnlocked = localStorage.getItem('courseUnlocked_breakup') === 'true';
+            const myCourseLink = document.getElementById('myCourseLink');
+            const mobileCourseLink = document.getElementById('mobileCourseLink');
+            
+            if (isUnlocked) {
+                if (myCourseLink) myCourseLink.style.display = 'block';
+                if (mobileCourseLink) mobileCourseLink.style.display = 'block';
+            }
+        }
+        
+        // Update navigation on page load
+        document.addEventListener('DOMContentLoaded', updateNavigation);
     </script>
 </body>
 </html> 

@@ -88,10 +88,6 @@
     background: #fffcf1;
 }
 
-.shop-section:nth-child(even) {
-    background: #fff;
-}
-
 .shop-section-header {
     text-align: center;
     margin-bottom: 3rem;
