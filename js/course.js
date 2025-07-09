@@ -155,10 +155,16 @@
   }
 
   // State for intro accordion and sub-accordions
-  let introAccordionOpen = window.__introAccordionOpen !== undefined ? window.__introAccordionOpen : true;
+  const INTRO_ACCORDION_KEY = `introAccordionOpen_${COURSE_ID}`;
+  let introAccordionOpen = (function() {
+    const stored = localStorage.getItem(INTRO_ACCORDION_KEY);
+    if (stored === null) return true; // default open
+    return stored === 'true';
+  })();
   let introOpen = window.__introOpen || { before: true, day0: true };
   function toggleIntroAccordion() {
     introAccordionOpen = !introAccordionOpen;
+    localStorage.setItem(INTRO_ACCORDION_KEY, introAccordionOpen);
     window.__introAccordionOpen = introAccordionOpen;
     renderWeeksAndDays();
   }
@@ -293,16 +299,99 @@
     weeksContainer.innerHTML = html;
   }
 
+  // 1. Helper for localStorage key
+  const LAST_OPENED_DAY_KEY = `lastOpenedDay_${COURSE_ID}`;
+
+  // 2. Helper to find next unlocked/incomplete day
+  function getNextUnlockedDay() {
+    for (let i = 0; i < course.days.length; i++) {
+      const day = course.days[i].day;
+      if (isDayUnlocked(day) && !isDayCompleted(day)) {
+        return day;
+      }
+    }
+    return null;
+  }
+
+  // 3. Update toggleDay to save last opened day
+  function toggleDay(day) {
+    const content = document.getElementById(`day-${day}-content`);
+    const chevron = document.getElementById(`day-${day}-chevron`);
+    if (content.classList.contains('expanded')) {
+      content.classList.remove('expanded');
+      chevron.classList.remove('expanded');
+    } else {
+      content.classList.add('expanded');
+      chevron.classList.add('expanded');
+      // Save last opened day
+      localStorage.setItem(LAST_OPENED_DAY_KEY, day);
+      setTimeout(() => {
+        const dayItem = document.querySelector(`.course-day-item[data-day='${day}']`);
+        if (dayItem) {
+          dayItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }
+
+  // 4. Update renderLetItOutCTA to flex row with Continue button
   function renderLetItOutCTA() {
-    const ctaContainer = document.createElement('div');
-    ctaContainer.className = 'course-cta';
+    let ctaContainer = document.querySelector('.course-cta');
+    if (!ctaContainer) {
+      ctaContainer = document.createElement('div');
+      ctaContainer.className = 'course-cta';
+      document.body.appendChild(ctaContainer);
+    }
     ctaContainer.innerHTML = `
-      <span class="cta-label">Need to vent?</span>
-      <button class="course-cta-btn" onclick="window.location.href='../letitout.html'">
-        Let It Out
-      </button>
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <span class="cta-side-text">Say what you feel.</span>
+        <div style="display: flex; gap: 1.2rem;">
+          <button class="course-cta-btn" onclick="window.location.href='../letitout.html'">
+            Let It Out
+          </button>
+          <button class="course-cta-btn" id="continueBtn" style="background:#ca0013;color:#fff;">
+            Continue
+          </button>
+        </div>
+      </div>
     `;
-    document.body.appendChild(ctaContainer);
+    // Attach event for Continue button
+    setTimeout(() => {
+      const btn = document.getElementById('continueBtn');
+      if (btn) {
+        btn.onclick = function() {
+          const nextDay = getNextUnlockedDay();
+          if (nextDay !== null) {
+            // Expand and scroll to next unlocked/incomplete day
+            toggleDay(nextDay);
+          }
+        };
+      }
+    }, 0);
+  }
+
+  // 5. On page load, auto-resume last opened day
+  function autoResumeLastOpenedDay() {
+    const progress = getProgress();
+    const isDay0Completed = progress.completedDays.includes(0);
+    const lastOpened = localStorage.getItem(LAST_OPENED_DAY_KEY);
+
+    if (!isDay0Completed && (lastOpened === null || isNaN(Number(lastOpened)))) {
+      // First-time user: let default UI auto-expand Introduction
+      return;
+    }
+
+    if (isDay0Completed && (lastOpened === null || isNaN(Number(lastOpened)))) {
+      // Returning user, all collapsed: do NOT auto-expand anything
+      return;
+    }
+
+    // If there is a last opened day, auto-expand it
+    if (lastOpened !== null && !isNaN(Number(lastOpened))) {
+      setTimeout(() => {
+        toggleDay(Number(lastOpened));
+      }, 300);
+    }
   }
 
   // --- 7. Accordion interaction functions ---
@@ -319,28 +408,10 @@
     }
   }
 
-  function toggleDay(day) {
-    const content = document.getElementById(`day-${day}-content`);
-    const chevron = document.getElementById(`day-${day}-chevron`);
-    
-    if (content.classList.contains('expanded')) {
-      content.classList.remove('expanded');
-      chevron.classList.remove('expanded');
-    } else {
-      content.classList.add('expanded');
-      chevron.classList.add('expanded');
-      // Scroll to the top of the newly opened day
-      setTimeout(() => {
-        const dayItem = document.querySelector(`.course-day-item[data-day='${day}']`);
-        if (dayItem) {
-          dayItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    }
-  }
-
   function completeDay(day) {
     markDayComplete(day);
+    // Save last opened day as the one just completed
+    localStorage.setItem(LAST_OPENED_DAY_KEY, day);
     renderProgressBar();
     renderWeeksAndDays();
   }
@@ -368,6 +439,7 @@
     renderReminder();
     renderWeeksAndDays();
     renderLetItOutCTA();
+    autoResumeLastOpenedDay();
 
     // Tooltip popover logic
     const infoIcon = document.getElementById('progressInfoIcon');

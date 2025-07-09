@@ -340,6 +340,8 @@ body {
   margin-right: 0.5em;
   color: #bbb;
   font-size: 1.1em;
+  display: flex;
+  align-items: center;
 }
 .lock-icon svg {
   width: 1.25em;
@@ -348,12 +350,31 @@ body {
   vertical-align: middle;
 }
 
+/* Locked week header layout - make lock icon and title left-aligned */
+.week-header.locked {
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+.week-header.locked .week-title {
+  color: #bbb;
+  flex: 1;
+}
+.week-header.locked .week-chevron {
+  color: #bbb;
+  margin-left: auto;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .course-app-container {
     max-width: 98vw;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+}
+@media (min-width: 900px) {
+  .course-app-container {
+    padding-bottom: 120px !important;
   }
 }
 @media (max-width: 600px) {

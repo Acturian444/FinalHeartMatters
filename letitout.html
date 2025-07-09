@@ -280,9 +280,9 @@
                     <li class="nav-dropdown">
                         <a href="shop/index.html" class="nav-dropdown-trigger">SHOP</a>
                         <ul class="nav-dropdown-menu">
-                            <li><a href="shop/index.html">STILL HEALING COLLECTION</a></li>
+                            <li><a href="shop/index.html">Still Healing Collection</a></li>
                             <li><a href="product/breakup-course.html">Breakup Recovery Course</a></li>
-                            <li id="myCourseLink" style="display: none;"><a href="course/breakup-course.html">My Breakup Recovery Course</a></li>
+                            <li id="myCourseLink" style="display: none;"><a href="course/breakup-course.html">Continue Course</a></li>
                         </ul>
                     </li>
                     <li><a href="info.html">JOIN THE MOVEMENT</a></li>
@@ -547,15 +547,13 @@
             const isUnlocked = localStorage.getItem('courseUnlocked_breakup') === 'true';
             const myCourseLink = document.getElementById('myCourseLink');
             const mobileCourseLink = document.getElementById('mobileCourseLink');
-            
             if (isUnlocked) {
                 if (myCourseLink) myCourseLink.style.display = 'block';
                 if (mobileCourseLink) mobileCourseLink.style.display = 'block';
             }
         }
-        
         // Update navigation on page load
-        document.addEventListener('DOMContentLoaded', updateNavigation);
+        updateNavigation();
     });
     </script>
 </body>

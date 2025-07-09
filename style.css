@@ -216,6 +216,10 @@ nav {
     color: #ca0013;
 }
 
+.nav-dropdown-menu a {
+    text-transform: none !important;
+}
+
 /* Remove any conflicting styles */
 .nav-links a[href="info.html"],
 .nav-links a[href="theheartroom.html"],
@@ -2011,4 +2015,28 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
     margin-bottom: 0 !important;
     color: #fffcf1 !important;
   }
+} 
+
+.course-cta {
+  margin: 1.2rem auto 0 auto;
+  max-width: 820px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+} 
+
+.day-title {
+  font-weight: 700 !important;
+} 
+
+.cta-side-text {
+  color: #888;
+  font-size: 1rem;
+  margin-left: 1.2rem;
+  align-self: center;
+} 
+
+.dark-mode .hamburger svg * {
+  fill: #fff !important;
 } 
