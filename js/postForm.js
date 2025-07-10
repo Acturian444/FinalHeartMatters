@@ -104,7 +104,7 @@ class PostForm {
         if (window.MVP_CONFIG && window.MVP_CONFIG.MANUAL_UNLOCK_MODE) {
             this.premiumCtaBtn.textContent = 'Unlock More Prompts';
         } else {
-            this.premiumCtaBtn.textContent = this.premiumPacks ? (this.premiumPacks.hasUnlockedPacks() ? 'Explore More Prompts' : 'Unlock Healing Prompts') : 'Unlock Healing Prompts';
+        this.premiumCtaBtn.textContent = this.premiumPacks ? (this.premiumPacks.hasUnlockedPacks() ? 'Explore More Prompts' : 'Unlock Healing Prompts') : 'Unlock Healing Prompts';
         }
         this.premiumCtaBtn.onclick = () => this.openPremiumPacksModal();
         promptBar.appendChild(this.premiumCtaBtn);
@@ -801,17 +801,17 @@ class PostForm {
                 // Continue to show replies without any unlock logic
             } else {
                 // Check unlock status (original logic)
-                if (isFreeUnlocked || isPaidUnlocked) {
-                    console.log('Post already unlocked, continuing...');
-                    // Already unlocked, continue to show replies
-                } else if (freeUnlocked.length < 3) {
-                    console.log('Adding free unlock for post:', postId);
-                    window.LetItOutUtils.addFreeUnlockedPost(postId);
-                    this.showFreeUnlockBanner(2 - freeUnlocked.length);
-                } else {
-                    console.log('Showing paywall for post:', postId);
-                    this.showPaywallModal(postId);
-                    return;
+            if (isFreeUnlocked || isPaidUnlocked) {
+                console.log('Post already unlocked, continuing...');
+                // Already unlocked, continue to show replies
+            } else if (freeUnlocked.length < 3) {
+                console.log('Adding free unlock for post:', postId);
+                window.LetItOutUtils.addFreeUnlockedPost(postId);
+                this.showFreeUnlockBanner(2 - freeUnlocked.length);
+            } else {
+                console.log('Showing paywall for post:', postId);
+                this.showPaywallModal(postId);
+                return;
                 }
             }
 
@@ -1630,8 +1630,8 @@ class PostForm {
                     // MVP Mode: Free unlock for engagement
                     if (window.MVP_CONFIG && window.MVP_CONFIG.MANUAL_UNLOCK_MODE) {
                         this.unlockPackForFree(pack.id);
-                    } else {
-                        this.purchasePack(pack);
+                } else {
+                    this.purchasePack(pack);
                     }
                 }
             };

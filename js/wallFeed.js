@@ -731,9 +731,9 @@ class WallFeed {
             
             // Remove the post param after a delay to ensure highlighting is complete
             setTimeout(() => {
-                const url = new URL(window.location);
-                url.searchParams.delete('post');
-                window.history.replaceState({}, document.title, url.pathname + url.search + url.hash);
+            const url = new URL(window.location);
+            url.searchParams.delete('post');
+            window.history.replaceState({}, document.title, url.pathname + url.search + url.hash);
             }, 3000);
         }
     }
