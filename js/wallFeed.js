@@ -728,10 +728,13 @@ class WallFeed {
             setTimeout(() => {
                 postCard.classList.remove('highlight-glow');
             }, 2500);
-            // Remove the post param so the highlight only happens once
-            const url = new URL(window.location);
-            url.searchParams.delete('post');
-            window.history.replaceState({}, document.title, url.pathname + url.search + url.hash);
+            
+            // Remove the post param after a delay to ensure highlighting is complete
+            setTimeout(() => {
+                const url = new URL(window.location);
+                url.searchParams.delete('post');
+                window.history.replaceState({}, document.title, url.pathname + url.search + url.hash);
+            }, 3000);
         }
     }
 
@@ -966,6 +969,15 @@ class WallFeed {
         if (this.unsubscribe) {
             this.unsubscribe();
         }
+    }
+
+    destroy() {
+        this.cleanup();
+        // Remove event listeners
+        if (this.feed) {
+            this.feed.removeEventListener('click', this.handleFeedClick.bind(this));
+        }
+        document.removeEventListener('click', this.handleDocumentClick.bind(this));
     }
 
     getCityList() {

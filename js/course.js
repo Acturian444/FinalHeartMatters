@@ -117,8 +117,9 @@
   // --- 6. Render functions ---
   function renderProgressBar() {
     const progress = getProgress();
-    const completedCount = progress.completedDays.length;
-    const totalDays = course.days.length;
+    // Only count days > 0 (exclude Day 0 introduction)
+    const completedCount = progress.completedDays.filter(day => day > 0).length;
+    const totalDays = course.days.filter(d => d.day > 0).length;
     
     document.getElementById('courseProgressBar').innerHTML = `
       <div class="progress-bar-inner">
@@ -129,8 +130,9 @@
 
   function renderLinearProgress() {
     const progress = getProgress();
-    const completedCount = progress.completedDays.length;
-    const totalDays = course.days.length;
+    // Only count days > 0 (exclude Day 0 introduction)
+    const completedCount = progress.completedDays.filter(day => day > 0).length;
+    const totalDays = course.days.filter(d => d.day > 0).length;
     const percent = Math.round((completedCount / totalDays) * 100);
     document.getElementById('courseLinearProgress').innerHTML = `
       <div class="course-linear-bar" style="width: ${percent}%;"></div>
@@ -183,10 +185,15 @@
     const intro = course.introduction;
     const progress = getProgress();
     const isDay0Completed = progress.completedDays.includes(0);
+    // Split the introduction title into "Introduction:" and the actual title
+    const introTitleParts = intro.title.split(': ');
+    const introLabel = introTitleParts[0] + ':';
+    const introName = introTitleParts[1];
+    
     html += `
       <div class="course-week-accordion">
         <div class="week-header" onclick="toggleIntroAccordion()">
-          <div class="week-title">${intro.title}${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
+          <div class="week-title"><span style="color: #000;">${introLabel}</span> <span style="color: #ca0013;">${introName}</span>${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
           <div class="week-chevron ${introAccordionOpen ? 'expanded' : ''}" id="intro-chevron">˅</div>
         </div>
         <div class="week-content ${introAccordionOpen ? 'expanded' : ''}" id="intro-content">
@@ -217,7 +224,22 @@
                 <div class="day-section"><div class="day-section-label">YOUR TASK</div><div class="day-section-content">${intro.day0.task}</div></div>
                 <div class="day-section"><div class="day-section-label">MORNING RITUAL</div><div class="day-section-content">${intro.day0.ritualMorning}</div></div>
                 <div class="day-section"><div class="day-section-label">EVENING RITUAL</div><div class="day-section-content">${intro.day0.ritualEvening}</div></div>
-                <div class="day-section"><div class="day-section-label">JOURNALING PROMPT</div><div class="day-section-prompt">${intro.day0.prompt}</div></div>
+                <div class="day-section"><div class="day-section-label">JOURNALING PROMPT</div><div class="day-section-prompt">${intro.day0.prompt}</div>
+                  <div class="journal-textarea-container">
+                    <button class="journal-toggle-btn" onclick="toggleJournalTextarea(0)">
+                      <span class="journal-toggle-text">Write your response</span>
+                      <span class="journal-toggle-icon">˅</span>
+                    </button>
+                    <div class="journal-textarea-wrapper" id="journal-wrapper-0" style="display: none;">
+                      <textarea 
+                        class="journal-textarea" 
+                        id="journal-textarea-0" 
+                        placeholder="Let it out..."
+                        oninput="saveJournalEntry(0, this.value)"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
                 ${!isDay0Completed ? `<button class=\"day-complete-btn\" onclick=\"completeDay(0)\">Mark as Complete</button>` : ''}
               </div>
             </div>
@@ -236,10 +258,19 @@
       // Check if all days in the week are completed
       const allDaysCompleted = Array.from({length: week.endDay - week.startDay + 1}, (_, i) => week.startDay + i)
         .every(day => isDayCompleted(day));
+      // Split the week title into "Week X:" and the actual title
+      const weekTitleParts = week.title.split(': ');
+      const weekNumber = weekTitleParts[0] + ':';
+      const weekName = weekTitleParts[1];
+      
+      // Apply locked styling if week is locked
+      const weekNumberColor = isUnlocked ? '#000' : '#bbb';
+      const weekNameColor = isUnlocked ? '#ca0013' : '#bbb';
+      
       html += `
         <div class=\"course-week-accordion\">
           <div class=\"week-header ${lockedClass}\" onclick=\"${isUnlocked ? `toggleWeek(${weekIndex})` : ''}\">
-            ${lockIcon}<div class=\"week-title\">${week.title}${allDaysCompleted ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
+            ${lockIcon}<div class=\"week-title\"><span style=\"color: ${weekNumberColor};\">${weekNumber}</span> <span style=\"color: ${weekNameColor};\">${weekName}</span>${allDaysCompleted ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
             <div class=\"week-chevron ${isExpanded ? 'expanded' : ''}\" id=\"week-${weekIndex}-chevron\">˅</div>
           </div>
           <div class=\"week-content ${isExpanded ? 'expanded' : ''}\" id=\"week-${weekIndex}-content\">
@@ -283,6 +314,20 @@
                   <div class=\"day-section\">
                     <div class=\"day-section-label\">JOURNALING PROMPT</div>
                     <div class=\"day-section-prompt\">${dayData.prompt}</div>
+                    <div class=\"journal-textarea-container\">
+                      <button class=\"journal-toggle-btn\" onclick=\"toggleJournalTextarea(${day})\">
+                        <span class=\"journal-toggle-text\">Write your response</span>
+                        <span class=\"journal-toggle-icon\">˅</span>
+                      </button>
+                      <div class=\"journal-textarea-wrapper\" id=\"journal-wrapper-${day}\" style=\"display: none;\">
+                        <textarea 
+                          class=\"journal-textarea\" 
+                          id=\"journal-textarea-${day}\" 
+                          placeholder=\"Let it out...\"
+                          oninput=\"saveJournalEntry(${day}, this.value)\"
+                        ></textarea>
+                      </div>
+                    </div>
                   </div>
                   ${!isCompleted ? `<button class=\"day-complete-btn\" onclick=\"completeDay(${day})\">Mark as Complete</button>` : ''}
                 </div>
@@ -343,13 +388,13 @@
       document.body.appendChild(ctaContainer);
     }
     ctaContainer.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <span class="cta-side-text">Say what you feel.</span>
-        <div style="display: flex; gap: 1.2rem;">
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <div style="display: flex; align-items: center; gap: 1.2rem;">
+          <span class="cta-side-text">Say what you feel.</span>
           <button class="course-cta-btn" onclick="window.location.href='../letitout.html'">
             Let It Out
           </button>
-          <button class="course-cta-btn" id="continueBtn" style="background:#ca0013;color:#fff;">
+          <button class="course-cta-btn" id="continueBtn" style="background:#000;color:#fffcf1;border:2px solid #000;">
             Continue
           </button>
         </div>
@@ -413,16 +458,67 @@
     // Save last opened day as the one just completed
     localStorage.setItem(LAST_OPENED_DAY_KEY, day);
     renderProgressBar();
+    renderLinearProgress();
     renderWeeksAndDays();
   }
 
-  // --- 8. Global functions for event handlers ---
+  // --- 8. Journal functionality ---
+  const JOURNAL_KEY = `courseJournal_${COURSE_ID}`;
+  
+  function getJournalEntries() {
+    try {
+      return JSON.parse(localStorage.getItem(JOURNAL_KEY)) || {};
+    } catch {
+      return {};
+    }
+  }
+  
+  function saveJournalEntry(day, content) {
+    const entries = getJournalEntries();
+    entries[day] = content;
+    try {
+      localStorage.setItem(JOURNAL_KEY, JSON.stringify(entries));
+    } catch (e) {
+      console.warn('Could not save journal entry to localStorage:', e);
+    }
+  }
+  
+  function loadJournalEntry(day) {
+    const entries = getJournalEntries();
+    return entries[day] || '';
+  }
+  
+  function toggleJournalTextarea(day) {
+    const wrapper = document.getElementById(`journal-wrapper-${day}`);
+    const textarea = document.getElementById(`journal-textarea-${day}`);
+    const toggleBtn = wrapper.previousElementSibling;
+    const toggleText = toggleBtn.querySelector('.journal-toggle-text');
+    const toggleIcon = toggleBtn.querySelector('.journal-toggle-icon');
+    
+    if (wrapper.style.display === 'none') {
+      wrapper.style.display = 'block';
+      toggleText.textContent = 'Hide response';
+      toggleIcon.textContent = '˄';
+      textarea.focus();
+      
+      // Load saved content
+      textarea.value = loadJournalEntry(day);
+    } else {
+      wrapper.style.display = 'none';
+      toggleText.textContent = 'Write your response';
+      toggleIcon.textContent = '˅';
+    }
+  }
+
+  // --- 9. Global functions for event handlers ---
   window.toggleWeek = toggleWeek;
   window.toggleDay = toggleDay;
   window.completeDay = completeDay;
   window.toggleViewMode = toggleViewMode;
   window.toggleIntroAccordion = toggleIntroAccordion;
   window.toggleIntroSection = toggleIntroSection;
+  window.toggleJournalTextarea = toggleJournalTextarea;
+  window.saveJournalEntry = saveJournalEntry;
 
   // --- 9. Main init ---
   function init() {

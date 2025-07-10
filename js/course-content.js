@@ -10,18 +10,16 @@ const courseContent = {
 <p>If you're here, it means something cracked open. And now, you get to decide what comes next. Right now, it probably feels like your world just fell apart. But what if this moment—the one that feels like the end—is actually the beginning of everything you've been needing?</p>
 <p>That's the crazy thing about pain. It doesn't feel like transformation when you're in it — it just feels like chaos. But when we look back, the moments that shaped us were always the darkest ones. They pushed us to change, to shift, to do things we never would've done otherwise.</p>
 <p>You might not see it yet, but you're exactly where you need to be. This course is your roadmap back to yourself.</p>
-<hr>
 <p>Here's what you need to know:</p>
 <p>This is a 22-day journey. Each day builds on the last. You'll get daily readings, healing activities, and journaling prompts designed to help you move through the pain and come out stronger on the other side.</p>
 <p>The course is designed to be done in order. Each day unlocks the next, so you can't skip ahead. This isn't about rushing through — it's about giving yourself the time and space to heal properly.</p>
 <p>Your progress is saved locally on your device. No one else can see it. This is your private healing space.</p>
-<hr>
 <p>Ready to begin?</p>`,
     day0: {
       title: 'Day 0: Welcome',
-      reading: `<p>If you're here, it probably means you're going through a breakup you didn't fully want. Maybe they ended it. Maybe it was mutual but still painful. Or maybe you walked away because you had no other choice, even though your heart wasn't ready.</p>
-<p>Either way, we're honored to walk this healing journey with you. Over the next 22 days, we'll help you move through the pain, reconnect with yourself, and open your heart again.</p>
-<p><strong>Intentions</strong></p>
+      reading: `<p>Healing happens when you show up consistently, even on the hard days. This isn't a magic fix. Healing is a choice you'll make again and again. But you won't be doing it alone. Every part of this program is designed to help you feel supported, motivated, and stronger each day. By the end, we hope this becomes a turning point that helps you remember your power and walk forward as the fullest, freest version of yourself.</p>
+<p>You're already whole. You're already enough. Healing starts with self-acceptance. From there, you grow. You evolve. Take it one day at a time. Trust the process. And remember: you're not alone.</p>
+<p>Over the next 22 days, we'll help you move through the pain, reconnect with yourself, and open your heart again.</p>
 <p>This course is here to help you:</p>
 <ul style="margin-left:1.2em; margin-bottom:1.2em;">
   <li>Find calm and clarity in the chaos</li>
@@ -30,16 +28,18 @@ const courseContent = {
   <li>Build new habits that support your healing</li>
   <li>Create space for joy and peace again</li>
 </ul>
-<p><strong>How It Works</strong></p>
 <p>Each day includes three parts:</p>
+<p><strong>Reading (5-10 mins)</strong><br>
+A short, powerful message to ground you. It gently leads you into healing through reflection and action.</p>
 <p><strong>Morning Ritual (5–10 mins)</strong><br>
 Start your day with intention. This sets the tone for your healing.</p>
-<p><strong>Daily Task (5–20 mins)</strong><br>
-A healing activity based on the day's theme. This is where the transformation deepens.</p>
+<p><strong>Daily Healing Task (5–20 mins)</strong><br>
+One focused action based on the day's theme. This is where your transformation deepens and begins to shift you.</p>
 <p><strong>Evening Ritual (5-10 mins)</strong><br>
-End your day with reflection and gratitude. This helps integrate your healing.</p>
-<p>Plus, you'll get a journaling prompt each day to help you process your thoughts and feelings.</p>
-<p>Take it one day at a time. Trust the process. And remember: you're not alone.</p>`,
+End your day with reflection and gratitude. It helps you integrate what you're learning and feeling.</p>
+<p><strong>Journaling Prompt (5-10 mins)</strong><br>
+A prompt to help you process, reflect, and release your thoughts and feelings.</p>
+<p>This course is designed to fit into your real life, even when nothing feels normal. You can make small adjustments if needed, but we recommend sticking with it as closely as you can.</p>`,
       task: 'A healing activity based on the day\'s theme. This is where the transformation deepens. Show up fully for yourself here.',
       ritualMorning: 'Don\'t reach for your phone right away. Sit in silence for a few minutes. Just breathe and be with yourself. Say your "I AM" affirmations — bold, powerful reminders of who you are (e.g., "I am strong," "I am powerful," "I am amazing," "I am incredible," "I am unstoppable"). Think or write down 1–3 things you\'re grateful for.',
       ritualEvening: 'Say your "I CHOOSE" intentions (e.g., "I choose peace," "I choose to let go," "I choose happiness," "I choose abundance," "I choose myself," "I choose to heal," "I choose freedom"). Reflect or journal on: "I let go of…" and "I am grateful for…" Optional: Do a short calming meditation before sleep.',
@@ -72,7 +72,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Because the truth is: you have to feel it to heal it. The only way out is through. Every time you cry, you’re processing. Every ache in your chest means your heart is adjusting. Every tear is a step forward.</p>
 <p>Let yourself fall apart today, if you need to. Cry your heart out to release all the stress, anxiety, and anger you may be feeling. Scream into a pillow. Give yourself space to release. You don’t need to fix anything today — just feel.</p>
 <p>Healing happens moment by moment, day by day. Your only job right now is to trust the process and take it one breath at a time.</p>`,
-      task: `<p><strong>Day 1 Task — Digital Detox & No Contact</strong></p>
+      task: `<p><strong>"Digital Detox & No Contact"</strong></p>
 <p>In addition to your daily routine from the habit journal, today’s task is a big one — and it’s essential: <strong>Cut all contact and start a digital detox.</strong></p>
 <p>Here’s how:</p>
 <ul>
@@ -115,7 +115,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p><strong>If you can’t move out right now:</strong> Take a short solo trip or weekend away — a new environment can help reset your nervous system and give you perspective. Spend a night or two at a friend’s place — somewhere you feel safe and cared for. A familiar face and space can work wonders. Set clear boundaries in the shared space — separate bedrooms, divided routines, and only calm, necessary communication. Limit emotional conversations — your ex is no longer your support system.</p>
 <p>The longer you stay emotionally entangled, the longer it hurts. Re-engaging with them again and again is like reopening a healing wound. It delays the scarring. It keeps you stuck.</p>
 <p>Lean on the people who show up for you. Ask for help. Text your sister. Call that one friend who gets you. You’re not meant to do this alone — human connection is one of the strongest medicines for a broken heart.</p>`,
-      task: `<p><strong>Day 2 Task — Create Space</strong></p>
+      task: `<p><strong>"Create Space"</strong></p>
 <p>Today’s task (along with your habit journal) is to find your home and create distance — emotionally, physically, or both.</p>
 <ul>
   <li><strong>If you can move out:</strong>
@@ -159,7 +159,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Take a moment to think about what you need. It might be a warm bath, a good book, a walk in the park, or a nap. Whatever it is, make it a priority. You can’t heal if you’re not taking care of yourself.</p>
 <p>If you’re struggling to eat, try small, nourishing meals. If you’re struggling to sleep, try a sleep meditation or a guided relaxation. If you’re struggling to move, try a gentle yoga session or a walk. Whatever it takes to feel better, do it.</p>
 <p>Remember: you are not your pain. You are not your breakup. You are not your ex. You are a whole person deserving of love and care.</p>`,
-      task: `<p><strong>Day 3 Task — Nurture Yourself</strong></p>
+      task: `<p><strong>"Nurture Yourself"</strong></p>
 <p>Today’s task is to nurture yourself. This means taking care of your physical, emotional, and spiritual needs.</p>
 <ul>
   <li>Physical:
@@ -202,7 +202,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>If you’re feeling angry, write down the source of your anger. If you’re feeling sad, write down the memories that bring up sadness. If you’re feeling anxious, write down the triggers. Write it all down. Let it out.</p>
 <p>Then, let it go. Release it. Don’t carry it with you. It’s not yours to keep. It’s yours to let go.</p>
 <p>Remember: pain is temporary. Healing is permanent. You can’t control the past, but you can control how you respond to it.</p>`,
-      task: `<p><strong>Day 4 Task — Release Your Pain</strong></p>
+      task: `<p><strong>"Release Your Pain"</strong></p>
 <p>Today’s task is to release your pain. This means acknowledging and accepting the pain you’re feeling, and then letting it go.</p>
 <ul>
   <li>Write down the source of your pain. What triggered it? What emotion was it? What memory?</li>
@@ -228,7 +228,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Write down the stories you keep replaying. What are they? The breakup, the memories of them, the memories of you together, the memories of you before the breakup?</p>
 <p>Then, let them go. Release them. Don’t carry them with you. It’s not yours to keep. It’s yours to let go.</p>
 <p>Remember: the past is a story. The present is a gift. The future is a mystery. You can’t control the past, but you can control how you respond to it.</p>`,
-      task: `<p><strong>Day 5 Task — Let Go of the Past</strong></p>
+      task: `<p><strong>"Let Go of the Past"</strong></p>
 <p>Today’s task is to let go of the past. This means acknowledging and accepting the stories you’ve been telling yourself about the breakup, and then letting them go.</p>
 <ul>
   <li>Write down the stories you keep replaying. What are they? The breakup, the memories of them, the memories of you together, the memories of you before the breakup?</li>
@@ -251,7 +251,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Write down the fears you keep replaying. What are they? The breakup, the memories of them, the memories of you together, the memories of you before the breakup?</p>
 <p>Then, let them go. Release them. Don’t carry them with you. It’s not yours to keep. It’s yours to let go.</p>
 <p>Remember: fear is temporary. Healing is permanent. You can’t control the past, but you can control how you respond to it.</p>`,
-      task: `<p><strong>Day 6 Task — Face Your Fears</strong></p>
+      task: `<p><strong>"Face Your Fears"</strong></p>
 <p>Today’s task is to face your fears. This means acknowledging and accepting the fears you’re feeling, and then letting them go.</p>
 <ul>
   <li>Write down the fears you keep replaying. What are they? The breakup, the memories of them, the memories of you together, the memories of you before the breakup?</li>
@@ -274,7 +274,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Write down the people you need to forgive. Who are they? Your ex, yourself, or both? What are they doing that hurts you? What are you doing that hurts them?</p>
 <p>Then, forgive them. Let them go. Don’t carry them with you. It’s not yours to keep. It’s yours to let go.</p>
 <p>Remember: forgiveness is temporary. Healing is permanent. You can’t control the past, but you can control how you respond to it.</p>`,
-      task: `<p><strong>Day 7 Task — Forgiveness</strong></p>
+      task: `<p><strong>"Forgiveness"</strong></p>
 <p>Today’s task is to forgive. This means forgiving yourself and others. It’s not about forgetting — it’s about letting go of the emotional baggage.</p>
 <ul>
   <li>Write down the people you need to forgive. Who are they? Your ex, yourself, or both? What are they doing that hurts you? What are you doing that hurts them?</li>
@@ -299,7 +299,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Be patient. Be consistent. Be committed.</p>
 <p>When we're high on love, we often isolate. We shrink our world down to one person. Now is your chance to reconnect with the people you love and maybe neglected. Round up your circle. Get outside. Try new things. Rebuild the parts of yourself that felt forgotten.</p>
 <p>This is where you start coming back to you.</p>`,
-      task: `<p><strong>Task – Day 8: Love Detox</strong></p>
+      task: `<p><strong>"Love Detox"</strong></p>
 <p>Along with your habit journal today, you're going to do a simple grounding ritual. Nature has a way of softening pain, calming anxiety, and helping your nervous system reset.</p>
 <ul>
   <li>Go outside — to a park, your yard, or anywhere green.</li>
@@ -325,7 +325,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>By putting your time and energy into yourself, you're learning how to love yourself—not just as an idea, but through action. You're learning how to take up space again, how to enjoy your own company, and how to stop waiting for someone else to give you what you can give yourself right now.</p>
 <p>Today is about reconnecting with that version of you. Step back from dating and turn your energy inward. Treat yourself the way you'd want a partner to treat you. Buy yourself flowers. Dress up. Take yourself out. Do the things that make you feel seen, wanted, and appreciated—not for anyone else, but for you.</p>
 <p>Turn down the voice of your inner critic and turn up the voice of your inner lover. Be as kind to yourself as you'd want a partner to be. Little by little, you'll start to feel a shift, not just in how you see yourself, but in the kind of people you attract and the way your relationships begin to reflect that.</p>`,
-      task: `<p><strong>Task – Day 9: Date Yourself</strong></p>
+      task: `<p><strong>"Date Yourself"</strong></p>
 <p>Along with your habit journal today, you're going to detox from dating apps and take yourself on a real date — just you, no distractions, no waiting for someone else.</p>
 <ul>
   <li>Delete all dating apps from your phone. Clear the space.</li>
@@ -351,7 +351,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>If you choose the path of self-love, you'll slowly come home to your most authentic self. Embrace this time alone. Get curious. Learn what lights you up, what brings you joy, what actually fulfills you.</p>
 <p>When you truly start loving yourself, your standards shift. You stop giving your time and energy to people who don't value them. You protect your peace. You realize your heart is sacred, not something to hand over to just anyone who shows interest. Be the kind of lover you wish you had, and you'll start attracting that energy back. But it only happens when you show yourself the kind of love you expect from someone else.</p>
 <p>When you feel whole within yourself, you stop chasing love, and that's when it starts coming to you. People are drawn to you because they can feel your self-worth. When you shine from the inside, when you're grounded and happy on your own, you become magnetic. That kind of energy doesn't beg or settle. It attracts your perfect partner naturally.</p>`,
-      task: `<p><strong>Task – Day 10</strong></p>
+      task: `<p><strong>"Self-Love Ritual"</strong></p>
 <p>Today, along with your habit journal, you'll do a simple but powerful self-love ritual. This is about reconnecting with yourself in a quiet, intentional way and showing the kind of care you may have been waiting to receive from someone else.</p>
 <ul>
   <li><strong>Before you begin, go out and buy yourself a gift.</strong>
@@ -415,7 +415,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>When you start to feel safe, sensual, and grounded in your own body again, you begin to heal.</p>
 <p>You remember your beauty, your worth, your power.</p>
 <p>You don't have to wait for someone else to make you feel wanted. You can start now. Reclaim your desire, your body, your power. Come home to yourself.</p>`,
-      task: `<p><strong>Task – Day 11: Sex & Intimacy</strong></p>
+      task: `<p><strong>"Sex & Intimacy"</strong></p>
 <p>Along with your habit journal today, you're going to reconnect with your sensuality in a way that feels healing, empowering, and real.</p>
 <p>The goal of today is to feel sexy and beautiful, love yourself fully, and explore your sexual energy. This is your invitation to make love to yourself — not as an escape, but as a ritual. It's best done at night, when you can relax and be fully present.</p>
 <p>We encourage you to begin with intentional masturbation. This isn't about quick release — it's about slowing down, breathing deeply, and honoring your body.</p>
@@ -451,7 +451,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Stop listening to your doubts. Stop letting the opinions of your ex or anyone else dictate your worth. Stand tall. Power pose. Look in the mirror and say, "I am confident, and I trust myself."</p>
 <p>You might not feel like doing any of this yet, and that's okay. But start anyway. You don't need to wait until you feel confident to act like someone who is. Confidence isn't something you wait for. It's something you build. Even pretending to feel strong can shift your energy. Dress up. Move your body. Try something new. Eat well. Sleep enough. Take one small action, then another. Little by little, it starts to feel real.</p>
 <p>You are the one who makes you feel beautiful, valued, and worthy. A partner may have made it easier to feel those things, but they were always coming from within you. So buy yourself flowers. Decorate your space in a way that makes you smile. Create your own sense of safety and stability. When you learn to give yourself what you were seeking in someone else, your confidence rises—and so do your standards.</p>`,
-      task: `<p><strong>Task – Day 12: Boost Your Confidence</strong></p>
+      task: `<p><strong>"Boost Your Confidence"</strong></p>
 <p>Along with your habit journal today, do one thing that helps you feel more confident by changing something about your appearance in a way that feels fresh and exciting.</p>
 <ul>
   <li>Pick out an outfit that makes you feel bold — or buy something you've always wanted to wear.</li>
@@ -502,7 +502,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Practice being present with yourself, and don't let the past dim your inner light. Your breakup doesn't exist in the present, so don't let it define you or dictate your reality.</p>
 <p>Don't isolate yourself with your thoughts. Lean into connection. Spend time with friends and family to pull yourself out of the loop of overanalyzing and self-punishing. If your mind starts to spiral, do something that brings you back to the present. Move your body — go for a walk, dance, stretch. Or shift your focus with something creative or calming, like drawing or reading.</p>
 <p>Don't ignore your thoughts or push them away. Just notice them, accept them, and let them pass. That's how you make space for something new to come.</p>`,
-      task: `<p><strong>Task day 13 Rewrite Your Self Talk</strong></p>
+      task: `<p><strong>"Rewrite Your Self Talk"</strong></p>
 <p>Along with your habit journal today, you're going to practice praising yourself. This is your self-love exercise.</p>
 <p>This might feel silly at first, especially if you're not used to saying kind things to yourself. But the more you practice it, the quicker you may start falling back in love with yourself again. This isn't about fake positivity. It's about slowly rewiring the way you speak to yourself. Even if you don't believe the words right away, saying them every day can start to change how you see yourself.</p>
 <p>Feel free to do this practice daily. You can use the examples below or come up with your own. Think of a personal phrase or mantra — something you can repeat to yourself each morning that helps shift your mindset. Keep it in present or past tense, as if it's already true.</p>
@@ -554,7 +554,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>They might lead you back to things you used to love, or toward something totally new.</p>
 <p>Say yes to trying things again. Pick up that hobby you dropped. Sign up for a class. Learn a new language. Commit to reading one book a week or month. Start the project you've been dreaming about. It doesn't have to be big or perfect, it just has to be you.</p>
 <p>It can be whatever, but just getting out of the house and out of your routine is the best way to feel like you're taking control of your life. It might be scary at first. But it can also be incredibly rewarding.</p>`,
-      task: `<p><strong>Task – Day 14: Visualize the Life You're Calling In</strong></p>
+      task: `<p><strong>"Visualize the Life You're Calling In"</strong></p>
 <p>On top of your habit journal today, you're going to do a simple but powerful practice: visualization.</p>
 <p>We've already talked about the power of your words and self-talk, but the pictures you create in your mind are just as powerful.</p>
 <p>Visualization is like conscious daydreaming. You already do it all the time, imagining things you want or sometimes things you fear. This time, you're going to do it with intention.</p>
@@ -590,7 +590,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>You can't always see it now, but some of the hardest moments are the ones that shape us most. Breakups can feel like destruction, but they often spark transformation. When everything falls apart, you're forced to look at yourself, shift, and change. It might feel like chaos now. But if you zoom out, you'll see — the darkest moments often lead to the brightest breakthroughs.</p>
 <p>Sometimes it takes heartbreak to reroute you toward something better. That song that went viral, the book that finally got written, the move across the world — those moments were born from pain. Maybe this is yours. You've already survived more than you give yourself credit for.</p>
 <p>This might be the turning point that changes your whole life, even if you can't see it yet.</p>`,
-      task: `<p><strong>Task – Day 15: Self-Reflection</strong></p>
+      task: `<p><strong>"Self-Reflection"</strong></p>
 <p>On top of your habit journal today, set aside time for a relationship reflection.</p>
 <p>This isn't about judging yourself or rehashing everything that went wrong. It's about looking at the patterns so you can break the ones that don't serve you and carry forward what you've learned.</p>
 <p>Answer these reflection questions in your journal. Be as honest as you can. You're not writing this to share with anyone else, just to get clear with yourself.</p>
@@ -629,7 +629,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Every thought and emotion is energy. If thinking of your ex still makes you feel anxious, drained, angry, or resentful — that's a sign there's still a cord. And sometimes, holding onto that energy can even manifest as physical tension or illness.</p>
 <p>Cord-cutting doesn't mean you'll never speak again. It just means you're no longer energetically hooked. You stop obsessing. You stop leaking energy. You get your power back.</p>
 <p>If you still want to be friends with your ex, it's best to wait. Right after a breakup, staying in contact usually causes more harm than good. If you truly want to reconnect someday, you need to heal and reset first. Cord-cutting helps you do that.</p>`,
-      task: `<p><strong>Task</strong></p>
+      task: `<p><strong>"Cut the Cord"</strong></p>
 <p>On top of your habit journal today, do a cord-cutting visualization. This is a simple but powerful practice that helps you reclaim your energy and release what no longer serves you. You can repeat this ritual daily until you feel the shift.</p>
 <p><strong>Step-by-step:</strong></p>
 <ul>
@@ -660,7 +660,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Sometimes we think, "If only my ex had done this or that, I wouldn't be in pain." But that gives them all the power and makes your healing dependent on their actions. The truth is: your pain belongs to you. And the only way to move forward is to own it.</p>
 <p>When you take responsibility, you take your power back. You stop repeating old stories. You gain the clarity to choose new beliefs, healthier habits, and better relationships. That's what this is about — not blame, but ownership. Not shame, but growth.</p>
 <p>You are the architect of your reality. You choose your thoughts, your perceptions, and your reactions. You create your happiness, and you have everything you need to build the life you deserve.</p>`,
-      task: `<p><strong>Task – Day 17: Accountability</strong></p>
+      task: `<p><strong>"Accountability"</strong></p>
 <p>On top of your habit journal today, hold yourself accountable — gently but honestly.</p>
 <p><strong>Morning:</strong></p>
 <ul>
@@ -697,7 +697,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Interrupting anxiety, sadness, depression with gratitude. Use your thoughts wisely. Your thoughts have the power to transform your present and shape your future.</p>
 <p>Realize no one is coming to save you. You will want a great support system around you, but never someone to rescue you. Happiness and freedom come when you love yourself, turn adversity into your advantage, have a growth mindset, develop strong habits, and live in service to something bigger than your past.</p>
 <p>What you call heartbreak today… might be the lesson that changes everything. And one day, you'll call it a gift.</p>`,
-      task: `<p><strong>Task – Day 18: Release Old Energy & Shake It Off</strong></p>
+      task: `<p><strong>"Release Old Energy & Shake It Off"</strong></p>
 <p>Along with your habit journal, today is about releasing stagnant energy and making space for something better. Let this be a reset — a chance to clear what's been weighing you down and invite in the energy of self-love, self-acceptance, and self-worth.</p>
 <p>The goal isn't to force anything. Just to move, and to let go.</p>
 <p>Hopefully you've already been dancing each day, but today, you're turning it all the way up.</p>
@@ -729,7 +729,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Let's say you want to move on from your ex. Don't focus on attracting someone new right away. Instead, focus on becoming the happiest, healthiest version of yourself. When you feel content being alone, and no longer need someone to fill the void, that's when you become magnetic. That's when you attract a partner who's aligned with your worth — not your wounds.</p>
 <p>If you're unhappy with an area of your life, don't wait around for it to shift. Make a plan. Get specific. You can love yourself as you are and still want to evolve.</p>
 <p>One day, you'll look back and feel grateful for the breakup. You'll see how it prepared you for something better. Every ex is a stepping stone. Each one taught you something you needed to learn. When the right relationship arrives, you'll be ready for it — because you took the time to become the version of yourself who could truly receive it.</p>`,
-      task: `<p><strong>Task – Day 19: Write Your Future Into Reality</strong></p>
+      task: `<p><strong>"Write Your Future Into Reality"</strong></p>
 <p>Along with your habit journal, today you're going to write a letter describing everything you want to accomplish this year — as if it already happened.</p>
 <p>This is how you shift from hoping to embodying.</p>
 <ul>
@@ -770,7 +770,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>The greatest strength you'll ever have is the ability to love and believe in yourself, especially when things are hard. There will be moments when the road feels unclear, and you'll question whether you can keep going. But belief in yourself is what carries you forward. You've made it this far. You'll make it through the rest, too.</p>
 <p>If someone treats you like you're just one of many options, help them narrow it down — remove yourself. Sometimes you have to act like you don't care, even when you do. Because some people will mean everything to you, while you'll mean almost nothing to them.</p>
 <p>That's not pride, that's self-respect. Don't give part-time people full-time access to your life. Know your value. Know what you bring. And never settle for anything less than what you deserve.</p>`,
-      task: `<p><strong>Task Day 20: Do Something New, and Do It Often</strong></p>
+      task: `<p><strong>"Do Something New, and Do It Often"</strong></p>
 <p>Along with your habit journal, today is about interrupting the cycle by stepping into something new — consistently.</p>
 <ul>
   <li>Choose one new thing you've always wanted to try.</li>
@@ -810,7 +810,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
   <li>Know your worth. Never lower your standards.</li>
 </ul>
 <p>If something isn't right in the beginning, it typically doesn't get better. It stays the same or gets worse. And the longer you don't speak up and make a change, the more you lose yourself.</p>`,
-      task: `<p><strong>Task day 21</strong></p>
+      task: `<p><strong>"Your Ideal Partner"</strong></p>
 <p>Today, along with your habit journal, write a list of qualities you want in your ideal partner.</p>
 <ul>
   <li>Be as detailed as possible. Write 20, 50, even 100 qualities — there are no limits.</li>
@@ -835,7 +835,7 @@ End your day with reflection and gratitude. This helps integrate your healing.</
 <p>Everything comes down to how you think. From the moment you wake up to the moment you fall asleep — your thoughts, your attitude, your mindset — they shape your entire experience. Every present moment is a choice.</p>
 <p>You're stronger than you think. The pain you went through didn't break you. It built you. It cracked you open so the light could get in. Yes, it was hard. Probably you wouldn't wish it on anyone else. But one day, you'll look back and know you wouldn't change a thing.</p>
 <p><strong>CONGRATULATIONS ON YOUR BREAKUP!</strong></p>`,
-      task: `<p><strong>Task day 22</strong></p>
+      task: `<p><strong>"Grow & Glow"</strong></p>
 <p>On top of your habit journal today, throw yourself a breakup party. You've left behind a relationship that no longer served you. That's something to celebrate. So is all the work you've done over the past 3 weeks.</p>
 <ul>
   <li>Get together with your closest friends and toast to your freedom.</li>

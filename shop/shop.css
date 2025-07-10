@@ -248,10 +248,6 @@
     padding: 0.75rem 1.5rem;
     color: #000;
     text-decoration: none;
-    font-family: 'Anton', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
     text-transform: uppercase;
     transition: background-color 0.2s ease;
 }

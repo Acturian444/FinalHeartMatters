@@ -90,7 +90,7 @@ class PostForm {
         promptControls.appendChild(this.nextBtn);
 
         // --- PACK SELECTOR DROPDOWN ---
-        if (this.premiumPacks && this.premiumPacks.hasUnlockedPacks()) {
+        if (this.premiumPacks) {
             this.createPackSelector(promptBar);
         }
 
@@ -100,7 +100,12 @@ class PostForm {
         this.premiumCtaBtn = document.createElement('button');
         this.premiumCtaBtn.type = 'button';
         this.premiumCtaBtn.className = 'premium-packs-cta';
-        this.premiumCtaBtn.textContent = this.premiumPacks ? (this.premiumPacks.hasUnlockedPacks() ? 'Explore More Prompts' : 'Unlock Healing Prompts') : 'Unlock Healing Prompts';
+        // MVP Mode: Update button text based on MVP configuration
+        if (window.MVP_CONFIG && window.MVP_CONFIG.MANUAL_UNLOCK_MODE) {
+            this.premiumCtaBtn.textContent = 'Unlock More Prompts';
+        } else {
+            this.premiumCtaBtn.textContent = this.premiumPacks ? (this.premiumPacks.hasUnlockedPacks() ? 'Explore More Prompts' : 'Unlock Healing Prompts') : 'Unlock Healing Prompts';
+        }
         this.premiumCtaBtn.onclick = () => this.openPremiumPacksModal();
         promptBar.appendChild(this.premiumCtaBtn);
 
@@ -468,7 +473,7 @@ class PostForm {
         setTimeout(() => {
             this.hideConfirmationModal();
             // Redirect to Let It Out wall page with post highlight
-            window.location.href = 'letitout.html?post=' + encodeURIComponent(newPostId) + '#wall';
+            window.location.replace('letitout.html?post=' + encodeURIComponent(newPostId) + '#wall');
         }, 1500);
     }
 
@@ -790,18 +795,24 @@ class PostForm {
                 freeUnlockedLength: freeUnlocked.length
             });
 
-            // Check unlock status
-            if (isFreeUnlocked || isPaidUnlocked) {
-                console.log('Post already unlocked, continuing...');
-                // Already unlocked, continue to show replies
-            } else if (freeUnlocked.length < 3) {
-                console.log('Adding free unlock for post:', postId);
-                window.LetItOutUtils.addFreeUnlockedPost(postId);
-                this.showFreeUnlockBanner(2 - freeUnlocked.length);
+            // MVP Mode: Skip unlock checks if MVP mode is enabled
+            if (window.MVP_CONFIG && window.MVP_CONFIG.FREE_POST_UNLOCKS) {
+                console.log('MVP Mode: Skipping unlock checks, showing replies immediately');
+                // Continue to show replies without any unlock logic
             } else {
-                console.log('Showing paywall for post:', postId);
-                this.showPaywallModal(postId);
-                return;
+                // Check unlock status (original logic)
+                if (isFreeUnlocked || isPaidUnlocked) {
+                    console.log('Post already unlocked, continuing...');
+                    // Already unlocked, continue to show replies
+                } else if (freeUnlocked.length < 3) {
+                    console.log('Adding free unlock for post:', postId);
+                    window.LetItOutUtils.addFreeUnlockedPost(postId);
+                    this.showFreeUnlockBanner(2 - freeUnlocked.length);
+                } else {
+                    console.log('Showing paywall for post:', postId);
+                    this.showPaywallModal(postId);
+                    return;
+                }
             }
 
             // Mark replies as read
@@ -1555,8 +1566,8 @@ class PostForm {
         modal.className = 'premium-packs-modal';
         modal.innerHTML = `
             <button class="premium-packs-modal-close">&times;</button>
-            <div class="premium-packs-modal-title">Unlock Healing Journal Packs</div>
-            <div class="premium-packs-modal-subtitle">Each healing pack includes 10 therapist-inspired journal prompts to help you feel it, write it, and let it out to heal.</div>
+            <div class="premium-packs-modal-title">Choose Your Prompt Pack</div>
+            <div class="premium-packs-modal-subtitle">Each pack includes 10 therapist-inspired prompts to help you explore different aspects of healing.</div>
             <div class="premium-packs-level">Level 1</div>
             <div class="premium-packs-grid"></div>
         `;
@@ -1591,6 +1602,7 @@ class PostForm {
         Object.values(allPacks).forEach(pack => {
             if (pack.id === 'starter') return; // Skip starter pack in modal
 
+            // MVP Mode: Manual unlock mode - check actual unlock status
             const isUnlocked = unlockedPacks.includes(pack.id);
             const card = document.createElement('div');
             card.className = `premium-pack-card ${isUnlocked ? 'unlocked' : 'locked'}`;
@@ -1606,7 +1618,7 @@ class PostForm {
                             '<span style="display:inline-flex;align-items:center;"><svg class="premium-pack-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right:4px;"><polyline points="4 11 9 16 16 5"></polyline></svg>Unlocked</span>' :
                             '<svg class="premium-pack-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><circle cx="12" cy="16" r="1"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
                         }
-                        ${!isUnlocked ? '<span class="premium-pack-price">$2.99</span>' : ''}
+                        ${!isUnlocked && !(window.MVP_CONFIG && window.MVP_CONFIG.MANUAL_UNLOCK_MODE) ? '<span class="premium-pack-price">$2.99</span>' : ''}
                     </div>
                 </div>
             `;
@@ -1615,7 +1627,12 @@ class PostForm {
                 if (isUnlocked) {
                     this.selectUnlockedPack(pack.id);
                 } else {
-                    this.purchasePack(pack);
+                    // MVP Mode: Free unlock for engagement
+                    if (window.MVP_CONFIG && window.MVP_CONFIG.MANUAL_UNLOCK_MODE) {
+                        this.unlockPackForFree(pack.id);
+                    } else {
+                        this.purchasePack(pack);
+                    }
                 }
             };
 
@@ -1633,6 +1650,24 @@ class PostForm {
 
         // Switch to the pack
         this.switchPack(packId);
+    }
+
+    unlockPackForFree(packId) {
+        // Unlock the pack for free
+        this.premiumPacks.unlockPack(packId);
+        
+        // Close modal
+        const overlay = document.querySelector('.premium-packs-modal-overlay');
+        if (overlay) {
+            overlay.classList.remove('visible');
+            setTimeout(() => overlay.remove(), 300);
+        }
+
+        // Switch to the newly unlocked pack
+        this.switchPack(packId);
+        
+        // Update dropdown to show new pack
+        this.updatePackSelector();
     }
 
     async purchasePack(pack) {
@@ -1719,6 +1754,22 @@ class PostForm {
         // Update unread badge
         if (window.LetItOutUtils && window.LetItOutUtils.updateUnreadBadge) {
             window.LetItOutUtils.updateUnreadBadge();
+        }
+    }
+
+    cleanup() {
+        // Close any open modals
+        this.closeMyPostsModal();
+        
+        // Remove event listeners from form
+        if (this.form && this.form._submitHandlerSet) {
+            this.form.removeEventListener('submit', this.form._submitHandler);
+            this.form._submitHandlerSet = false;
+        }
+        
+        // Clear any timers or intervals
+        if (this.confirmationTimer) {
+            clearTimeout(this.confirmationTimer);
         }
     }
 }

@@ -366,6 +366,7 @@
 
     <!-- Application Scripts -->
     <script src="js/config/firebase-config.js?v=2"></script>
+    <script src="js/config/mvp-config.js?v=1"></script>
     <script src="js/localId.js?v=2"></script>
     <script src="js/utils.js?v=3"></script>
     <script src="js/menu.js"></script>
@@ -405,6 +406,13 @@
             writeTab.classList.add('active');
             wallTab.classList.remove('active');
             tabContent.innerHTML = '';
+            
+            // Clean up existing wall feed instance if it exists
+            if (window.wallFeedInstance) {
+                window.wallFeedInstance.destroy();
+                window.wallFeedInstance = null;
+            }
+            
             // Render the post form
             if (window.PostForm) {
                 const form = new window.PostForm();
@@ -424,11 +432,33 @@
             wallTab.classList.add('active');
             writeTab.classList.remove('active');
             tabContent.innerHTML = '';
+            
+            // Clean up existing instances if they exist
+            if (window.wallFeedInstance) {
+                window.wallFeedInstance.destroy();
+            }
+            if (window.postFormInstance) {
+                // Clean up post form instance if it has a cleanup method
+                if (typeof window.postFormInstance.cleanup === 'function') {
+                    window.postFormInstance.cleanup();
+                }
+                window.postFormInstance = null;
+            }
+            
             // Render the wall feed
             if (window.WallFeed) {
                 const wall = new window.WallFeed();
+                window.wallFeedInstance = wall; // Store instance globally
                 wall.render(tabContent);
+                
+                // Add a small delay to ensure subscription is established before highlighting
+                setTimeout(() => {
+                    if (window.wallFeedInstance && window.wallFeedInstance.highlightPostFromUrl) {
+                        window.wallFeedInstance.highlightPostFromUrl();
+                    }
+                }, 100);
             }
+            
             // Ensure My Posts button is properly initialized
             if (window.postFormInstance && typeof window.postFormInstance.renderMyPostsButton === 'function') {
                 window.postFormInstance.renderMyPostsButton();

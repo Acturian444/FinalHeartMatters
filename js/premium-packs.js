@@ -87,6 +87,11 @@ class PremiumPacks {
             ],
             defaultPrompt: "What's on your heart today?"
         };
+
+        // MVP Mode: Manual unlock mode - packs unlock one by one
+        if (window.MVP_CONFIG && window.MVP_CONFIG.MANUAL_UNLOCK_MODE) {
+            // Don't auto-unlock - let users unlock manually for engagement
+        }
     }
 
     // Get all unlocked packs
@@ -252,6 +257,26 @@ class PremiumPacks {
             return true;
         } catch (error) {
             console.error('Error clearing premium pack data:', error);
+            return false;
+        }
+    }
+
+    // MVP Mode: Unlock all premium packs
+    unlockAllPacks() {
+        try {
+            const allPackIds = Object.keys(this.premiumPacks);
+            const unlockedPacks = this.getUnlockedPacks();
+            
+            allPackIds.forEach(packId => {
+                if (!unlockedPacks.includes(packId)) {
+                    unlockedPacks.push(packId);
+                }
+            });
+            
+            localStorage.setItem(this.storageKeys.unlockedPacks, JSON.stringify(unlockedPacks));
+            return true;
+        } catch (error) {
+            console.error('Error unlocking all packs:', error);
             return false;
         }
     }

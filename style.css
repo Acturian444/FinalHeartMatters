@@ -2040,3 +2040,59 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 .dark-mode .hamburger svg * {
   fill: #fff !important;
 } 
+
+/* Font smoothing for headers and nav for cross-browser consistency */
+header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+} 
+
+.nav-links a,
+.nav-dropdown-menu a {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400 !important; /* Use 400 for regular weight */
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  transition: color 0.3s;
+}
+
+.nav-dropdown-menu a {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400 !important;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+  color: #ca0013;
+} 
+
+/* Highly specific override to guarantee correct weight */
+.nav-links a.nav-dropdown-trigger,
+.nav-dropdown-menu a {
+    font-family: 'Anton', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+}
+.nav-dropdown-menu a {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+} 
