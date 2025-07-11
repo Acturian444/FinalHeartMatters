@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Earrings - Heart Matters</title>
+    <meta name="description" content="Power Earrings – Wear your strength with this meaningful, handmade jewelry from Heart Matters.">
+    <meta property="og:title" content="Power Earrings - Heart Matters">
+    <meta property="og:description" content="Power Earrings – Wear your strength with this meaningful, handmade jewelry from Heart Matters.">
+    <meta property="og:type" content="product">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80">
+    <meta property="og:url" content="https://heartmatters.com/product/power-earrings.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="stylesheet" href="../shop/shop.css?v=1">
+    <link rel="stylesheet" href="product.css?v=1">
+</head>
+<body class="power-earrings-page">
+    <header>
+        <div class="container">
+            <nav class="nav-centered">
+                <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links nav-left">
+                    <li><a href="../letitout.html">LET IT OUT</a></li>
+                    <li><a href="../theheartroom.html">THE HEART ROOM</a></li>
+                </ul>
+                <a href="../index.html" class="logo-text center-logo">Heart Matters</a>
+                <ul class="nav-links nav-right">
+                    <li class="nav-dropdown">
+                        <a href="../shop/index.html" class="nav-dropdown-trigger">SHOP</a>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="../shop/index.html">Still Healing Collection</a></li>
+                            <li><a href="breakup-course.html">Breakup Recovery Course</a></li>
+                            <li><a href="../course/breakup-course.html">Continue Course</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../info.html">JOIN THE MOVEMENT</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="menu-overlay" id="menuOverlay">
+            <nav>
+                <a href="../shop/index.html">SHOP</a>
+                <a href="../letitout.html">LET IT OUT</a>
+                <a href="../theheartroom.html">THE HEART ROOM</a>
+                <a href="../info.html">JOIN THE MOVEMENT</a>
+                <a id="mobileCourseLink" href="../course/breakup-course.html">Continue Course</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="product-hero">
+            <div class="container">
+                <div class="product-hero-content">
+                    <div class="product-hero-text">
+                        <h1>Power Earrings</h1>
+                        <p class="product-subtitle">Embrace your strength</p>
+                        <div class="product-price">
+                            <span class="price" style="font-size:1.5rem;">$55.00</span>
+                        </div>
+                        <ul class="details-list">
+                            <li>Handmade with care and intention</li>
+                            <li>Features empowering design elements</li>
+                            <li>Made with ethically sourced materials</li>
+                            <li>Perfect for daily wear</li>
+                            <li>Symbolizes inner strength and resilience</li>
+                            <li>Gift boxed with care instructions</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-large">
+                            <i class="fas fa-shopping-bag"></i>
+                            Shop Now
+                        </a>
+                    </div>
+                    <div class="product-image-gallery">
+                        <div class="main-image-container">
+                            <img src="../images/Power Earrings.jpg" alt="Power Earrings" loading="lazy" id="mainImage" style="cursor: zoom-in;">
+                        </div>
+                        <div class="thumbnail-container">
+                            <div class="thumbnail active" data-image="1">
+                                <img src="../images/Power Earrings.jpg" alt="Power Earrings - View 1" loading="lazy">
+                            </div>
+                            <div class="thumbnail" data-image="2">
+                                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Power Earrings - View 2" loading="lazy">
+                            </div>
+                            <div class="thumbnail" data-image="3">
+                                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Power Earrings - View 3" loading="lazy">
+                            </div>
+                            <div class="thumbnail" data-image="4">
+                                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Power Earrings - View 4" loading="lazy">
+                            </div>
+                            <div class="thumbnail" data-image="5">
+                                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Power Earrings - View 5" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="mobile-indicators">
+                            <div class="indicator active" data-image="1"></div>
+                            <div class="indicator" data-image="2"></div>
+                            <div class="indicator" data-image="3"></div>
+                            <div class="indicator" data-image="4"></div>
+                            <div class="indicator" data-image="5"></div>
+                        </div>
+                    </div>
+                    <div id="imageLightbox" class="image-lightbox" style="display:none;">
+                        <div class="lightbox-overlay"></div>
+                        <div class="lightbox-content">
+                            <img id="lightboxImg" src="" alt="" />
+                            <div class="lightbox-controls">
+                                <button class="lightbox-arrow lightbox-prev" aria-label="Previous image">&#8592;</button>
+                                <button class="lightbox-close" aria-label="Close">&times;</button>
+                                <button class="lightbox-arrow lightbox-next" aria-label="Next image">&#8594;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Product Details & Story -->
+        <section class="product-details-story">
+            <div class="container">
+                <div class="details-story-content">
+                    
+                    <div class="product-story">
+                        <h2>Embrace Your Power</h2>
+                        <p>The Power Earrings are a daily reminder of your inner strength and resilience. Wear them as a symbol of your power.</p>
+                        <p>Each pair is crafted with intention, featuring design elements that symbolize strength and empowerment. These earrings serve as a gentle reminder that you carry your power within you.</p>
+                        <p>Perfect for daily wear, they're made with ethically sourced materials and designed to be both beautiful and meaningful. A gift of strength for yourself or someone you love.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- You May Also Like -->
+        <section class="you-may-also-like">
+            <div class="container">
+                <div class="section-header">
+                    <h2>You May Also Like</h2>
+                </div>
+                <div class="related-products">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../images/Balance Earrings.jpg" alt="Balance Earrings" loading="lazy">
+                        </div>
+                        <div class="product-content">
+                            <h3>Balance Earrings</h3>
+                            <p class="product-tagline">Celebrate your progress</p>
+                            <a href="balance-earrings.html" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../images/Power Earrings.jpg" alt="Power Earrings" loading="lazy">
+                        </div>
+                        <div class="product-content">
+                            <h3>Power Earrings</h3>
+                            <p class="product-tagline">Embrace your strength</p>
+                            <a href="self-love-bracelet.html" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../images/The Reminder-Tee.jpg" alt="The Reminder T-Shirt" loading="lazy">
+                        </div>
+                        <div class="product-content">
+                            <h3>The Reminder T-Shirt</h3>
+                            <p class="product-tagline">Wear your truth</p>
+                            <a href="reminder-tshirt.html" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
+            </div>
+            <div class="newsletter">
+                <h3>WANT TO BE PART OF THE MOVEMENT?</h3>
+                <p class="newsletter-subtext">Get drops, stories, and reminders that speak to your heart.</p>
+                <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
+                    <div class="form-group">
+                        <input type="email" name="entry.649844771" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="entry.673635167" placeholder="Phone (optional)">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Join Us</button>
+                </form>
+                <iframe name="hidden-iframe" style="display:none;"></iframe>
+                <div id="form-success" class="form-success">Thank you for signing up!</div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Heart Matters. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/utils.js?v=2"></script>
+    <script>
+        function openMenu() {
+            document.getElementById('menuOverlay').classList.add('open');
+        }
+        document.getElementById('menuOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('open');
+            }
+        });
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            var form = this;
+            var submitButton = form.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            setTimeout(function() {
+                form.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = 'Join Us';
+                document.getElementById('form-success').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('form-success').style.display = 'none';
+                }, 3000);
+            }, 1200);
+        });
+    </script>
+    <script>
+// Product Image Gallery Functionality (copied from Reminder T-Shirt)
+document.addEventListener('DOMContentLoaded', function() {
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const indicators = document.querySelectorAll('.indicator');
+    let currentImage = 1;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function() {
+            const imageNumber = this.getAttribute('data-image');
+            updateMainImage(imageNumber);
+        });
+    });
+    indicators.forEach(indicator => {
+        indicator.addEventListener('click', function() {
+            const imageNumber = this.getAttribute('data-image');
+            updateMainImage(imageNumber);
+        });
+    });
+    const mainImageContainer = document.querySelector('.main-image-container');
+    mainImageContainer.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    mainImageContainer.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) nextImage();
+            else previousImage();
+        }
+    }
+    function nextImage() {
+        const nextImageNumber = currentImage === thumbnails.length ? 1 : currentImage + 1;
+        updateMainImage(nextImageNumber);
+    }
+    function previousImage() {
+        const prevImageNumber = currentImage === 1 ? thumbnails.length : currentImage - 1;
+        updateMainImage(prevImageNumber);
+    }
+    function updateMainImage(imageNumber) {
+        currentImage = parseInt(imageNumber);
+        const selectedThumb = document.querySelector('.thumbnail[data-image="' + imageNumber + '"] img');
+        if (selectedThumb) {
+            mainImage.src = selectedThumb.src;
+            mainImage.alt = selectedThumb.alt;
+        }
+        thumbnails.forEach(thumb => {
+            thumb.classList.remove('active');
+            if (thumb.getAttribute('data-image') === imageNumber.toString()) {
+                thumb.classList.add('active');
+            }
+        });
+        indicators.forEach(indicator => {
+            indicator.classList.remove('active');
+            if (indicator.getAttribute('data-image') === imageNumber.toString()) {
+                indicator.classList.add('active');
+            }
+        });
+    }
+});
+// Lightbox functionality with gallery navigation (copied from Reminder T-Shirt)
+const mainImage = document.getElementById('mainImage');
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxOverlay = document.querySelector('.lightbox-overlay');
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+const thumbnails = document.querySelectorAll('.thumbnail');
+let currentImageIndex = 0;
+function openLightbox(index) {
+    const thumbImg = thumbnails[index].querySelector('img');
+    lightboxImg.src = thumbImg.src;
+    lightboxImg.alt = thumbImg.alt;
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    currentImageIndex = index;
+}
+function closeLightbox() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = '';
+}
+function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + thumbnails.length) % thumbnails.length;
+    updateLightboxImage();
+}
+function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % thumbnails.length;
+    updateLightboxImage();
+}
+function updateLightboxImage() {
+    const thumbImg = thumbnails[currentImageIndex].querySelector('img');
+    lightboxImg.src = thumbImg.src;
+    lightboxImg.alt = thumbImg.alt;
+    thumbnails.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === currentImageIndex);
+    });
+}
+if (mainImage && lightbox && lightboxImg) {
+    mainImage.addEventListener('click', function() {
+        let activeIndex = 0;
+        thumbnails.forEach((thumb, i) => {
+            if (thumb.classList.contains('active')) activeIndex = i;
+        });
+        openLightbox(activeIndex);
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxOverlay.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', showPrevImage);
+    lightboxNext.addEventListener('click', showNextImage);
+    document.addEventListener('keydown', function(e) {
+        if (lightbox.style.display === 'flex') {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrevImage();
+            if (e.key === 'ArrowRight') showNextImage();
+        }
+    });
+    lightboxImg.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    lightboxImg.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) showNextImage();
+            else showPrevImage();
+        }
+    });
+}
+</script>
+</body>
+</html> 

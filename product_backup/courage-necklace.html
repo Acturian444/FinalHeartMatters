@@ -58,17 +58,26 @@
         <section class="product-hero">
             <div class="container">
                 <div class="product-hero-content">
+                    <div class="product-image-gallery">
+                        <div class="main-image-container">
+                            <img id="mainProductImage" src="../images/Self Love Bracelet.jpg" alt="Courage Necklace" loading="lazy" onclick="openLightbox()">
+                        </div>
+                        <div class="thumbnail-container">
+                            <img class="thumbnail active" src="../images/Self Love Bracelet.jpg" alt="Courage Necklace Thumbnail 1" onclick="setMainImage(this)">
+                            <img class="thumbnail" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Placeholder 2" onclick="setMainImage(this)">
+                            <img class="thumbnail" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Placeholder 3" onclick="setMainImage(this)">
+                            <img class="thumbnail" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Placeholder 4" onclick="setMainImage(this)">
+                            <img class="thumbnail" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Placeholder 5" onclick="setMainImage(this)">
+                        </div>
+                    </div>
                     <div class="product-hero-text">
-                        <h1>Self Love Bracelet</h1>
+                        <h1>Courage Necklace</h1>
                         <p class="product-subtitle">Carry your courage</p>
                         <div class="product-price">
                             <span class="price">$33.00 USD</span>
                             <span class="price-note">Handmade with love</span>
                         </div>
                         <a href="#" class="btn btn-primary btn-large">Shop Now</a>
-                    </div>
-                    <div class="product-hero-image">
-                        <img src="../images/Self Love Bracelet.jpg" alt="Self Love Bracelet" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -222,6 +231,59 @@
                     document.getElementById('form-success').style.display = 'none';
                 }, 3000);
             }, 1200);
+        });
+        const galleryImages = [
+            "../images/Self Love Bracelet.jpg",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+            "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+        ];
+        let currentImageIndex = 0;
+        function setMainImage(img) {
+            document.getElementById('mainProductImage').src = img.src;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            img.classList.add('active');
+            currentImageIndex = Array.from(document.querySelectorAll('.thumbnail')).indexOf(img);
+        }
+        function openLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImage');
+            lightboxImg.src = galleryImages[currentImageIndex];
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('imageLightbox').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function changeLightboxImage(direction) {
+            currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
+            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex];
+            // Also update main image and thumbnail highlight
+            document.getElementById('mainProductImage').src = galleryImages[currentImageIndex];
+            document.querySelectorAll('.thumbnail').forEach((t, i) => t.classList.toggle('active', i === currentImageIndex));
+        }
+        // Keyboard navigation
+        window.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('imageLightbox');
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+                if (e.key === 'ArrowRight') changeLightboxImage(1);
+                if (e.key === 'Escape') closeLightbox();
+            }
+        });
+        // Swipe support for mobile
+        let startX = null;
+        document.getElementById('lightboxImage').addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+        document.getElementById('lightboxImage').addEventListener('touchend', function(e) {
+            if (startX === null) return;
+            let endX = e.changedTouches[0].clientX;
+            if (endX - startX > 50) changeLightboxImage(-1);
+            if (startX - endX > 50) changeLightboxImage(1);
+            startX = null;
         });
     </script>
 </body>
