@@ -88,6 +88,11 @@
     background: #fffcf1;
 }
 
+/* Reduce spacing below 'What You Wear Matters' section */
+.shop-section:first-of-type {
+    padding-bottom: 2rem !important;
+}
+
 .shop-section-header {
     text-align: center;
     margin-bottom: 3rem;

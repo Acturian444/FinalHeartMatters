@@ -67,25 +67,36 @@
 
     <main>
         <section id="home-hero" class="hero">
+            <video class="hero-bg-video" autoplay loop muted playsinline>
+                <source src="images/Hero Section background video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>YOUR HEART MATTERS</h1>
-                    <p class="subtitle">Feel it. Say it. Let it out.</p>
-                    <a href="info.html" class="btn btn-primary">Join the Movement</a>
+                    <!-- Removed h1 and subtitle from hero section -->
                 </div>
                 <div class="hero-image">
-                    <!-- Image removed: now using background image in CSS -->
+                    <!-- Image removed: now using background video in CSS -->
                 </div>
+            </div>
+            <div class="hero-scroll-cue">
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 22L28 36L42 22" stroke="#fffcf1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
         </section>
 
         <section id="about" class="mission-modern">
             <h2 class="mission-modern-title">
-              <span class="highlight">What You Carry Matters</span>
+              <span class="highlight">Healing isn't a luxury. It's a right</span>
             </h2>
             <p class="mission-modern-text">
-              We're making space for the feelings we hide and the truths we carry. Because healing begins when we stop pretending. This is a movement for feeling everything—a space to be vulnerable, honest, and real.<br><br>Come as you are.<br>You're enough.<br>You're not alone in what you feel.
+              Most people carry hidden pain with no safe space to release it. Heart Matters is a movement to make healing visible, shared, and supported. When you choose to heal out loud, you help others feel seen, safe, and less alone. Every product helps fund healing spaces, tools, and support for those who need it most. Your heart matters. And when you heal, others can too. #HealingInPublic
             </p>
+            <div class="mission-buttons">
+                <a href="info.html" class="btn btn-mission btn-mission-primary">Join the Movement</a>
+                <a href="shop/index.html" class="btn btn-mission">Shop the Collection</a>
+            </div>
         </section>
 
         <!-- BEGIN: Horizontal Scrolling Quotes Bar -->
@@ -109,40 +120,17 @@
           </div>
         </div>
         <!-- END: Horizontal Scrolling Quotes Bar -->
-
-        <section id="feature-show" class="feature modern-section">
-            <div class="feature-above-door">
-                A safe room to release what you carry and say what you've never said out loud.
-            </div>
-            <div class="feature-grid">
-                <div class="feature-title">
-                    <!-- other content here -->
-                </div>
-                <div class="feature-action">
-                    <a href="theheartroom.html" class="btn btn-primary">Enter the room</a>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer id="footer">
         <div class="footer-content">
             <div class="footer-main">
-                <div class="social-links">
-                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-tiktok"></i>
-                        <span>TikTok</span>
-                    </a>
-                </div>
+                <!-- Removed social-links div from here -->
             </div>
             
             <div class="newsletter">
-                <h3>WANT TO BE PART OF THE MOVEMENT?</h3>
-                <p class="newsletter-subtext">Get drops, stories, and reminders that speak to your heart.</p>
+                <h3>Ready to Be Part of the Movement?</h3>
+                <p class="newsletter-subtext">Gentle reminders, heartfelt drops, and honest reflections — sent with love.</p>
                 <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
                     <div class="form-group">
                         <input type="email" name="entry.649844771" placeholder="Email" required>
@@ -154,6 +142,16 @@
                 </form>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
                 <div id="form-success" class="form-success">Thank you for signing up!</div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
             </div>
             
             <div class="copyright">

@@ -65,14 +65,17 @@ p {
     color: var(--white);
     text-decoration: none;
     border-radius: 4px;
-    font-weight: 500;
+    font-weight: 700;
     transition: background-color 0.3s ease;
     border: none;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
     background-color: #a00012;
+    outline: none;
 }
 
 /* Header and Navigation */
@@ -250,26 +253,31 @@ section {
 
 /* Hero Section - Fixed 1920x1080 size */
 .hero {
-    width: 1920px;
-    height: 1080px;
+    position: relative;
+    width: 100vw;
     min-width: 320px;
-    min-height: 400px;
     max-width: 100vw;
-    max-height: 100vh;
     margin: 0 auto 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    background: url('images/Hero Section Image.png') center center/cover no-repeat;
+    min-height: 90vh;
+    padding: 6rem 2rem;
+    background: none;
     border-radius: 0;
     box-sizing: border-box;
     overflow: hidden;
-    position: relative;
 }
 
-.hero::before {
-    content: none !important;
+.hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .hero-content {
@@ -291,8 +299,9 @@ section {
     font-size: 3.5rem;
     margin-bottom: 0.25rem;
     line-height: 1.1;
-    color: #000000;
+    color: #fffcf1;
     text-align: center;
+    text-transform: uppercase;
 }
 
 /* Hero Section - Subtitle Styles */
@@ -305,10 +314,58 @@ section {
     font-weight: 700 !important;
     color: var(--accent-text) !important;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .hero .btn {
     margin: 0 auto;
+    text-transform: uppercase;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.hero-buttons .btn {
+    width: 265px;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: inherit;
+    line-height: inherit;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.85rem 1.5rem;
+    height: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .btn-secondary {
+        padding: 0.85rem 1.2rem;
+    }
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--primary-color);
+    color: var(--white);
+    outline: none;
 }
 
 .hero-main-image {
@@ -330,19 +387,35 @@ section {
 
 @media (min-width: 601px) and (max-width: 900px) {
     .hero {
-        background: url('images/Hero Section Image Tablet.png') center center/cover no-repeat;
+        min-height: 80vh;
+        padding: 5rem 1.5rem;
     }
 }
 
 @media (max-width: 600px) {
     .hero {
-        background: url('images/Hero Section Image Mobile.png') center center/cover no-repeat;
+        min-height: 80vh;
+        padding: 3.5rem 1rem;
+    }
+    .hero-bg-video {
+        object-position: center top;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 290px;
+        padding: 0.85rem 1.2rem;
+        font-size: 1rem;
     }
 }
 
 /* Modern Mission Section */
 .mission-modern {
-    background: url('images/For What We Carry Desktop.png') center center/cover no-repeat;
+    background: #fffcf1;
+    color: #ca0013;
     min-height: 100vh;
     width: 100vw;
     display: flex;
@@ -359,9 +432,7 @@ section {
 
 .mission-modern-title,
 .mission-modern-text {
-    position: relative;
-    z-index: 2;
-    color: #fffcf1;
+    color: #ca0013;
 }
 
 .mission-modern-title {
@@ -391,14 +462,67 @@ section {
     font-family: 'DM Sans', sans-serif;
 }
 
+.mission-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btn-mission {
+    background: transparent;
+    border: 2px solid #ca0013;
+    color: #ca0013;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.85rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 265px;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.btn-mission:hover,
+.btn-mission:focus {
+    border-width: 3px;
+    outline: none;
+    background: #ca0013;
+    color: #fffcf1;
+}
+
+.btn-mission-primary {
+    background: #ca0013;
+    color: #fffcf1;
+    border: 2px solid #ca0013;
+    transition: all 0.3s ease;
+}
+
+.btn-mission-primary:hover,
+.btn-mission-primary:focus {
+    background: #a00012;
+    color: #fffcf1;
+    border-width: 3px;
+    outline: none;
+}
+
 @media (min-width: 601px) and (max-width: 900px) {
     .mission-modern {
-        background: url('images/For What We Carry Tablet.png') center center/cover no-repeat;
+        background: #fffcf1;
+        color: #ca0013;
         padding: 2rem 1.5rem;
     }
     .mission-modern-title,
     .mission-modern-text {
-        color: #fffcf1;
+        color: #ca0013;
     }
     .mission-modern-title {
         font-size: 2.2rem;
@@ -411,13 +535,14 @@ section {
 
 @media (max-width: 600px) {
     .mission-modern {
-        background: url('images/For What We Carry Mobile.png') center center/cover no-repeat;
+        background: #fffcf1;
+        color: #ca0013;
         padding: 1.5rem 1rem;
         min-height: 80vh;
     }
     .mission-modern-title,
     .mission-modern-text {
-        color: #fffcf1;
+        color: #ca0013;
     }
     .mission-modern-title {
         font-size: 2rem;
@@ -427,6 +552,16 @@ section {
     .mission-modern-text {
         font-size: 1rem;
         max-width: 98vw;
+    }
+    .mission-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .btn-mission {
+        width: 100%;
+        max-width: 290px;
+        padding: 0.85rem 1.2rem;
+        font-size: 1rem;
     }
 }
 
@@ -530,7 +665,12 @@ footer {
 
 .newsletter h3 {
     margin-bottom: 1.5rem;
-    color: #000000;
+    color: #ca0013;
+    text-transform: none !important;
+}
+
+.newsletter .social-links {
+    margin-top: 2rem;
 }
 
 .signup-form {
@@ -1463,6 +1603,11 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
     color: var(--accent-text) !important;
 }
 
+.hero .subtitle {
+    color: #fffcf1 !important;
+    text-transform: none !important;
+}
+
 /* Modal Popup Styles */
 .modal-popup {
     position: fixed;
@@ -2095,4 +2240,30 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
 .nav-dropdown-menu a {
     font-size: 0.9rem;
     letter-spacing: 1px;
+} 
+
+.hero-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 2.5rem;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.hero-scroll-cue svg {
+    display: block;
+    width: 56px;
+    height: 56px;
+    animation: hero-cue-bounce 1.6s infinite cubic-bezier(.68,-0.55,.27,1.55);
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
+}
+
+@keyframes hero-cue-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(12px); }
 } 
