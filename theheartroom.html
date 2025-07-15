@@ -331,7 +331,7 @@ a[href*="tally.so"]:active .envelope-anim {
     <main>
         <section id="show-hero" class="heartroom-hero" style="position: relative; width: 100vw; min-width: 320px; min-height: 400px; max-width: 100vw; margin: 0 auto; padding: 0; background: #ca0013; display: flex; align-items: center; justify-content: center;">
             <img class="heartroom-hero-img" src="images/The Heart Room Show.jpg" alt="The Heart Room Hero" style="width: 100vw; height: auto; display: block; margin: 0 auto; max-width: 100%; max-height: 100vh; object-fit: contain; background: #ca0013;" />
-            <h1 style="position: absolute; top: 8%; left: 50%; transform: translateX(-50%); width: 100%; text-align: center; color: #fffcf1; font-size: 2.5rem; text-shadow: 0 2px 8px rgba(0,0,0,0.2); padding: 0 2rem; max-width: 1000px; margin: 0 auto;">What's something you've kept behind closed doors?</h1>
+            <h1 style="position: absolute; top: 8%; left: 50%; transform: translateX(-50%); width: 100%; text-align: center; color: #fffcf1; font-size: 1.3rem; font-family: 'Anton', sans-serif; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 0 2rem; max-width: 1000px; margin: 0 auto; text-shadow: none;">WHAT'S SOMETHING YOU'VE KEPT BEHIND CLOSED DOORS?</h1>
             <a href="https://tally.so/r/mVypp6" target="_blank" rel="noopener noreferrer" style="position: absolute; top: 35%; left: 50%; transform: translateX(-50%); background: #a00012; color: #fffcf1; border: none; padding: 0.9rem 1.4rem; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; text-decoration: none; transition: all 0.2s ease;">ENTER THE ROOM</a>
         </section>
         <style>
@@ -352,14 +352,64 @@ a[href*="tally.so"]:active .envelope-anim {
             }
         }
         </style>
+        <style>
+@media (max-width: 600px) {
+  #show-hero h1 {
+    font-size: 1.6rem !important;
+  }
+}
+
+/* Responsive body text styling to match home page */
+@media (min-width: 601px) and (max-width: 900px) {
+  #show-description .content.section-body,
+  #schedule .content.section-body,
+  #join .section-body {
+    font-size: 1.1rem !important;
+    max-width: 95vw !important;
+  }
+  
+  #show-description .content.section-body p,
+  #schedule .content.section-body p,
+  #join .section-body {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    line-height: 1.7 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #show-description .content.section-body,
+  #schedule .content.section-body,
+  #join .section-body {
+    font-size: 1.3rem !important;
+    max-width: 98vw !important;
+  }
+  
+  #show-description .content.section-body p,
+  #schedule .content.section-body p,
+  #schedule .content.section-body #mailbox-text,
+  #join .section-body {
+    font-size: 1.3rem !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+  }
+  
+  /* Override inline styles for mobile */
+  #show-description .content.section-body[style*="font-size: 1.35rem"],
+  #schedule .content.section-body[style*="font-size: 1.35rem"],
+  #join .section-body[style*="font-size: 1.35rem"] {
+    font-size: 1.3rem !important;
+  }
+}
+</style>
 
         <section id="show-description" style="background-color: #fffcf1; padding: 6rem 0 4rem 0; margin-bottom: 0; text-align: center;">
             <h2 class="section-heading" style="margin-top: 2rem; font-size: 2.5rem; color: #ca0013;">About The Show</h2>
-            <div class="content section-body" style="max-width: 700px; margin: 0 auto; font-family: 'DM Sans', sans-serif; font-size: 1.25rem; color: #222; font-weight: 600; line-height: 1.7; padding: 0 1.5rem;">
+            <div class="content section-body" style="max-width: 700px; margin: 0 auto; font-family: 'DM Sans', sans-serif; font-size: 1.35rem; color: #222; font-weight: 700; line-height: 1.7; padding: 0 1rem;">
                 <p style="margin-bottom: 1.5rem;">The Heart Room is a live confessional talk show where strangers share the truths they've never said out loud.</p>
                 <p style="margin-bottom: 1.5rem;">Broadcast on TikTok, it invites people to walk through a virtual red door and speak what's been hidden — stories of heartbreak, shame, grief, and everything we carry but rarely share.</p>
                 <p style="margin-bottom: 1rem;">No scripts. No filters. Just truth.</p>
-                <p style="margin-bottom: 1rem;">Step inside. Say what you've never said.</p>
+                <p style="margin-bottom: 1rem;">Step inside. Let out what you've been holding in.</p>
                 <p style="color: #ca0013; margin-bottom: 0;">Because what's said here, heals here.</p>
             </div>
         </section>
@@ -381,7 +431,7 @@ a[href*="tally.so"]:active .envelope-anim {
                     </div>
                 </div>
             </div>
-            <div class="content section-body" style="background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: 8px; margin-top: 0 !important; padding-top: 0 !important;">
+            <div class="content section-body" style="background: transparent; padding: 2rem; border-radius: 8px; margin-top: 0 !important; padding-top: 0 !important;">
                 <!-- Episode list will be added here -->
             </div>
         </section>
@@ -413,7 +463,7 @@ a[href*="tally.so"]:active .envelope-anim {
                     }
                 }
             </style>
-            <div class="content section-body" style="position: relative; z-index: 2; max-width: 700px; margin: 0 auto; padding-top: 1.5rem; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 1.25rem; color: #222; font-weight: 600; line-height: 1.7; padding: 0 1.5rem;">
+            <div class="content section-body" style="position: relative; z-index: 2; max-width: 700px; margin: 0 auto; padding-top: 1.5rem; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 1.35rem; color: #222; font-weight: 700; line-height: 1.7; padding: 0 1rem;">
                 <h2 class="section-heading" style="margin-top: 4rem; font-size: 2.5rem; font-family: 'Anton', sans-serif; font-weight: 900; text-transform: uppercase; color: #ca0013; text-align: center; margin-bottom: 2rem; letter-spacing: 1px; line-height: 1;">The Confessional Mailbox</h2>
                 <div id="mailbox-text" style="text-align: center; margin-bottom: 2.5rem;">
                     Real stories. Raw truths. No judgment. Conversations kept behind closed doors — until now. Let something out. No name, no pressure. <span style="color: #ca0013;">Drop your truth.</span> Feel a little lighter.
@@ -458,7 +508,7 @@ a[href*="tally.so"]:active .envelope-anim {
 
         <section id="join" style="text-align: center; width: 100vw; min-width: 320px; min-height: 400px; max-width: 100vw; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 4rem 0 0 0; background-color: #fffcf1;">
             <h2 class="section-heading" style="margin-top: 2rem; color: #ca0013;">Be Part of the Room</h2>
-            <p class="section-body" style="font-family: 'DM Sans', sans-serif; font-size: 1.25rem; color: #222; font-weight: 600; margin: 0.5rem 0 2.5rem 0; line-height: 1.7; max-width: 700px;">
+            <p class="section-body" style="font-family: 'DM Sans', sans-serif; font-size: 1.35rem; color: #222; font-weight: 700; margin: 0.5rem 0 2.5rem 0; line-height: 1.7; max-width: 700px;">
                 Have something to let out? This is your space to speak your truth. Submit your story to join The Heart Room — our live confessional show where real voices are heard and hearts are held. You can stay anonymous or <span style="color: #ca0013;">speak your truth in your own words.</span>
             </p>
             <a href="https://tally.so/r/mVypp6" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.92rem; font-family: 'DM Sans', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; text-align: center; margin: 0 0 1.5rem 0; background: #ca0013; color: #fff; padding: 0.7rem 1.2rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.6rem; white-space: nowrap;">

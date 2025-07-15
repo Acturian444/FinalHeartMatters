@@ -573,7 +573,7 @@ section {
     .mission-modern {
         background: #fffcf1;
         color: #ca0013;
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 1rem 3rem 1rem;
         min-height: 80vh;
     }
     .mission-modern-title,
@@ -592,6 +592,7 @@ section {
     .mission-buttons {
         flex-direction: column;
         gap: 0.8rem;
+        margin-bottom: 2rem;
     }
     .btn-mission {
         width: 100%;
@@ -1236,6 +1237,16 @@ footer {
 .hamburger i {
     color: #000000;
     font-size: 1.5rem;
+}
+
+/* Hamburger menu icon color for light mode */
+.hamburger svg rect {
+    fill: #000 !important;
+}
+
+/* Hamburger menu icon color for dark mode */
+.dark-mode .hamburger svg rect {
+    fill: #fff !important;
 }
 
 @media (max-width: 900px) {
@@ -1952,7 +1963,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
     border-radius: 0;
     font-size: 0.85rem;
     top: 0;
-    margin-bottom: 0;
+    margin-bottom: 2rem;
   }
   .scrolling-quote {
     font-size: 0.85rem;
@@ -2287,8 +2298,14 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
+    pointer-events: auto;
     opacity: 0.85;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.hero-scroll-cue:hover {
+    opacity: 1;
 }
 
 .hero-scroll-cue svg {

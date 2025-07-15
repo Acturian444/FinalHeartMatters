@@ -59,22 +59,32 @@ that appears when clicking the location filter button in the wall controls.
 
 /* --- Wall Control Buttons - Remove Background --- */
 .dark-mode .wall-location-btn,
-.dark-mode .wall-sort-trigger,
 .dark-mode .wall-search-button,
 .dark-mode .wall-filter-btn {
     background-color: transparent !important;
 }
 
+/* Sort trigger should have transparent background to match light mode */
+.dark-mode .wall-sort-trigger {
+    background-color: transparent !important;
+    color: #D4D4D4 !important;
+    border: none !important;
+}
+
 /* --- Wall Control Buttons - Hover & Focus States --- */
 .dark-mode .wall-location-btn:hover,
 .dark-mode .wall-location-btn:focus,
-.dark-mode .wall-sort-trigger:hover,
-.dark-mode .wall-sort-trigger:focus,
 .dark-mode .wall-search-button:hover,
 .dark-mode .wall-search-button:focus,
 .dark-mode .wall-filter-btn:hover,
 .dark-mode .wall-filter-btn:focus {
     background-color: #3a3a3a !important;
+}
+
+/* Sort trigger hover state */
+.dark-mode .wall-sort-trigger:hover,
+.dark-mode .wall-sort-trigger:focus {
+    background-color: #4a4a4a !important;
 }
 
 /* --- Consistent Border Colors --- */

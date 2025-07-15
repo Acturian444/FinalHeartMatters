@@ -521,8 +521,8 @@
             .headline-line2 { font-size: 1.4rem; margin-bottom: 0.12em; }
         }
         @media (max-width: 600px) {
-            .headline-line1 { font-size: 1.05rem; margin-bottom: 0.13em; }
-            .headline-line2 { font-size: 0.85rem; margin-bottom: 0.09em; }
+            .headline-line1 { font-size: 2.4rem; margin-bottom: 0.13em; }
+            .headline-line2 { font-size: 1.6rem; margin-bottom: 0.09em; }
         }
         .confirmation-message p {
             color: #222;
@@ -624,179 +624,14 @@
                 margin-bottom: 0.15em;
             }
             .confirmation-heart svg {
-                width: 28px;
-                height: 28px;
+                width: 42px;
+                height: 42px;
                 margin-bottom: 0.5rem;
             }
             .octagon-bg {
                 /* mobile: even rounder, taller */
                 clip-path: polygon(18% 0%, 82% 0%, 100% 25%, 100% 75%, 82% 100%, 18% 100%, 0% 75%, 0% 25%);
                 height: 240px;
-            }
-        }
-        .start-here-section {
-            background: #fffcf1;
-            padding: 5rem 0 4rem 0;
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .start-here-content {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .start-here-title {
-            font-family: 'Anton', sans-serif;
-            font-size: 2.5rem;
-            color: #000;
-            margin-bottom: 0.7rem;
-            text-align: center;
-            letter-spacing: 1px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .start-here-subtext {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #000;
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-        .start-here-card-grid {
-            display: flex;
-            flex-direction: row;
-            gap: 1.5rem;
-            width: 100%;
-            justify-content: center;
-            align-items: stretch;
-            flex-wrap: wrap;
-        }
-        .start-here-card {
-            background: transparent;
-            border: 2px solid #ca0013;
-            border-radius: 10px;
-            box-shadow: none;
-            padding: 2.5rem 2rem 2rem 2rem;
-            min-width: 260px;
-            max-width: 340px;
-            flex: 1 1 320px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: center;
-            margin-bottom: 0;
-            transition: box-shadow 0.2s, transform 0.2s;
-            height: 100%;
-            min-height: 370px;
-            max-height: 340px;
-            position: relative;
-        }
-        .start-here-card.card-red {
-            background: transparent;
-            color: #000;
-            border: 2px solid #ca0013;
-        }
-        .start-here-card.card-red h3,
-        .start-here-card.card-red p {
-            color: #000;
-        }
-        .start-here-card p {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.08rem;
-            font-weight: 400;
-            color: #000;
-            margin-bottom: 2rem;
-        }
-        .start-here-card.card-red p {
-            color: #000 !important;
-        }
-        .start-here-card .btn {
-            margin-top: auto;
-            width: 100%;
-            font-size: 0.92rem;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 700;
-            border-radius: 4px;
-            padding: 0.7rem 1.2rem;
-            letter-spacing: 0.7px;
-            box-shadow: none;
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 1.5rem;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 85%;
-        }
-        .start-here-card.card-red .btn {
-            background: #ca0013;
-            color: #fff;
-            border: none;
-            font-weight: bold;
-        }
-        .start-here-card.card-red .btn[style*="pointer-events: none"] {
-            background: #ca0013;
-            color: #fff;
-            opacity: 0.5;
-        }
-        .start-here-card:hover {
-            box-shadow: 0 8px 48px rgba(193,0,22,0.18), 0 3px 16px rgba(0,0,0,0.10);
-            transform: translateY(-4px) scale(1.03);
-        }
-        @media (max-width: 1100px) {
-            .start-here-content {
-                max-width: 960px;
-            }
-            .start-here-card-grid {
-                gap: 1rem;
-            }
-            .start-here-card {
-                max-width: 280px;
-                padding: 2rem 1rem 2rem 1rem;
-                min-height: 340px;
-            }
-        }
-        @media (min-width: 601px) and (max-width: 900px) {
-            .start-here-card-grid {
-                gap: 1rem;
-            }
-        }
-        @media (max-width: 600px) {
-            .start-here-section {
-                padding: 2.2rem 0 1.5rem 0;
-            }
-            .start-here-title {
-                font-size: 2.5rem !important;
-            }
-            .start-here-subtext {
-                font-size: 1.1rem;
-                margin-bottom: 1.5rem;
-            }
-            .start-here-card {
-                max-width: 95vw;
-                min-width: 0;
-                margin-bottom: 0;
-                padding: 1.2rem 0.7rem 2rem 0.7rem;
-                min-height: 300px;
-                padding-bottom: 3.5rem !important;
-            }
-            .start-here-card p {
-                font-size: 1.08rem !important;
-                font-weight: 400 !important;
-                line-height: 1.6 !important;
-            }
-            .start-here-card .btn {
-                margin-top: 0;
-            }
-            .start-here-card p:last-of-type {
-                margin-bottom: 1.5rem !important;
             }
         }
         /* Override for movement-title only */
@@ -808,14 +643,36 @@
             font-weight: bold !important;
             letter-spacing: 1.5px;
         }
-        @media (max-width: 600px) {
-            .card-spacer {
-                height: 1.5rem;
-                width: 100%;
-                display: block;
-            }
-        }
     </style>
+    <style>
+  /* Confirmation message: prevent line breaks for headline and secondary lines */
+  .confirmation-headline .headline-line1,
+  .confirmation-headline .headline-line2,
+  .confirmation-message .confirmation-secondary {
+    white-space: nowrap;
+    display: block;
+    text-align: center;
+  }
+  .confirmation-message .confirmation-secondary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.35rem;
+    color: #fffcf1;
+    margin: 0.8rem 0 0.5rem 0;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  @media (max-width: 600px) {
+    .confirmation-message .confirmation-secondary {
+      font-size: 1.05rem;
+    }
+    .confirmation-headline .headline-line1 {
+      font-size: 2.4rem !important;
+    }
+    .confirmation-headline .headline-line2 {
+      font-size: 1.6rem !important;
+    }
+  }
+</style>
 </head>
 <body>
     <header>
@@ -955,7 +812,7 @@
             }
         </style>
 
-        <section id="sign-the-pledge" style="min-height: 40vh; background-color: #ca0013; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 2rem 2.5rem 2rem; margin-bottom: 0;">
+        <section id="sign-the-pledge" style="min-height: 40vh; background-color: #ca0013; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3.25rem 2rem 3.25rem 2rem; margin-bottom: 0;">
             <div class="pledge-form-block" style="background: none; box-shadow: none; border-radius: 0; padding: 0; max-width: 420px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
                 <div class="pledge-title" style="font-family: 'Anton', sans-serif; color: #fffcf1; margin-bottom: 1.2rem; text-align: center; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; line-height: 1.1;">THE HEALING PLEDGE</div>
                 <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 1.08rem; margin-bottom: 1.5rem; text-align: center; line-height: 1.6; max-width: 420px; padding-left: 0;">
@@ -978,61 +835,6 @@
                 <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 0.98rem; margin-top: 1.1rem; text-align: center; opacity: 0.85;">Join the movement. You’re not alone. Get what’s next.</div>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
                 <div id="pledge-inline-success" class="form-success" style="display:none; color: #fffcf1; margin-top: 1.2rem; text-align: center; font-weight: 600;">Thank you for signing the pledge!</div>
-            </div>
-        </section>
-
-        <!-- Start Here Section -->
-        <section class="start-here-section">
-            <div class="start-here-content">
-                <h2 class="start-here-title">Start Here</h2>
-                <div class="start-here-subtext">Write it. Wear it. Speak it. This is how we begin.</div>
-                <div class="start-here-card-grid">
-                    <!-- Card 1 -->
-                    <div class="start-here-card">
-                        <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
-                          <!-- Pen/Writing Icon -->
-                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 6l4 4L10 26H6v-4L22 6z"/>
-                            <path d="M20 8l4 4"/>
-                          </svg>
-                        </div>
-                        <h3>LET IT OUT</h3>
-                        <p>Your public journal<br>Write what you're holding in<br>Anonymous. No judgment</p>
-                        <div class="card-spacer"></div>
-                        <a href="letitout.html" class="btn btn-primary">LET IT OUT &rarr;</a>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="start-here-card card-red">
-                        <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
-                          <!-- Shopping Bag Icon -->
-                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M10 10V8a6 6 0 1 1 12 0v2"/>
-                            <rect x="5" y="10" width="22" height="16" rx="3"/>
-                            <path d="M21 16a5 5 0 0 1-10 0"/>
-                          </svg>
-                        </div>
-                        <h3>Shop Still Healing</h3>
-                        <p>Wear what you feel<br>This isn't just merch<br>It's healing in public.</p>
-                        <div class="card-spacer"></div>
-                        <a href="shop/index.html" class="btn btn-primary">VIEW COLLECTION &rarr;</a>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="start-here-card card-red">
-                        <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
-                          <!-- Microphone Icon -->
-                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="13" y="5" width="6" height="14" rx="3"/>
-                            <path d="M8 15v2a8 8 0 0 0 16 0v-2"/>
-                            <line x1="16" y1="27" x2="16" y2="30"/>
-                            <line x1="12" y1="30" x2="20" y2="30"/>
-                          </svg>
-                        </div>
-                        <h3>The Heart Room</h3>
-                        <p>Live confessional show<br>Real people. Raw stories<br>Join us on TikTok Live</p>
-                        <div class="card-spacer"></div>
-                        <a href="theheartroom.html" class="btn btn-primary">ENTER THE ROOM &rarr;</a>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -1065,42 +867,72 @@
         </div>
     </footer>
     <script>
-    // Pledge form confirmation logic
+    // Pledge form confirmation logic with localStorage tracking
     document.addEventListener('DOMContentLoaded', function() {
       var pledgeForm = document.getElementById('pledgeInlineForm');
-      if (pledgeForm) {
+      var formBlock = document.querySelector('.pledge-form-block');
+      
+      // Check if user has already signed the pledge
+      function hasSignedPledge() {
+        return localStorage.getItem('healingPledgeSigned') === 'true';
+      }
+      
+      // Save pledge status to localStorage
+      function savePledgeStatus() {
+        localStorage.setItem('healingPledgeSigned', 'true');
+      }
+      
+      // Create confirmation message HTML
+      function createConfirmationHTML() {
+        return `
+          <div class="confirmation-message text-center px-6 py-10 fade-in-octagon">
+            <div class="confirmation-heart">
+              <svg viewBox="0 0 8 7" width="64" height="56" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <rect x="1" y="1" width="2" height="1" fill="#fffcf1"/>
+                <rect x="5" y="1" width="2" height="1" fill="#fffcf1"/>
+                <rect x="0" y="2" width="4" height="1" fill="#fffcf1"/>
+                <rect x="4" y="2" width="4" height="1" fill="#fffcf1"/>
+                <rect x="0" y="3" width="8" height="1" fill="#fffcf1"/>
+                <rect x="1" y="4" width="6" height="1" fill="#fffcf1"/>
+                <rect x="2" y="5" width="4" height="1" fill="#fffcf1"/>
+                <rect x="3" y="6" width="2" height="1" fill="#fffcf1"/>
+              </svg>
+            </div>
+            <h1 class="confirmation-headline">
+              <span class="headline-line1">YOU'RE IN.</span>
+              <span class="headline-line2">You're healing in public.</span>
+            </h1>
+            <div class="confirmation-secondary">Feel → Express → Release → Heal → Love</div>
+            <div class="confirmation-secondary" style="font-style: italic; margin-top: 0.3rem;">When you do it, others can too.</div>
+            <p style="color: #fffcf1; font-size: 1.35rem; font-family: 'DM Sans', sans-serif; font-weight: 500; line-height: 1.5; margin: 0.5rem 0 0 0;">Check your inbox.</p>
+          </div>
+        `;
+      }
+      
+      // Show confirmation message
+      function showConfirmation() {
+        if (formBlock) {
+          formBlock.innerHTML = createConfirmationHTML();
+        }
+      }
+      
+      // Check on page load if user has already signed
+      if (hasSignedPledge()) {
+        showConfirmation();
+      } else if (pledgeForm) {
+        // Add submit event listener only if user hasn't signed yet
         pledgeForm.addEventListener('submit', function(e) {
           // Let the form submit to Google Forms in the hidden iframe
           setTimeout(function() {
-            var formBlock = pledgeForm.closest('.pledge-form-block');
             if (formBlock) {
-              // Create confirmation block
-              var confirmation = document.createElement('div');
-              confirmation.className = 'confirmation-message text-center px-6 py-10 fade-in-octagon';
-              confirmation.innerHTML = `
-                <div class="confirmation-heart">
-                  <svg viewBox="0 0 8 7" width="64" height="56" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                    <rect x="1" y="1" width="2" height="1" fill="#fffcf1"/>
-                    <rect x="5" y="1" width="2" height="1" fill="#fffcf1"/>
-                    <rect x="0" y="2" width="4" height="1" fill="#fffcf1"/>
-                    <rect x="4" y="2" width="4" height="1" fill="#fffcf1"/>
-                    <rect x="0" y="3" width="8" height="1" fill="#fffcf1"/>
-                    <rect x="1" y="4" width="6" height="1" fill="#fffcf1"/>
-                    <rect x="2" y="5" width="4" height="1" fill="#fffcf1"/>
-                    <rect x="3" y="6" width="2" height="1" fill="#fffcf1"/>
-                  </svg>
-                </div>
-                <h1 class="confirmation-headline">
-                  <span class="headline-line1">YOU'RE IN.</span>
-                  <span class="headline-line2">YOUR HEART MATTERS HERE.</span>
-                </h1>
-                <p style="color: #fffcf1;">
-                  Check your inbox for what's next.
-                </p>
-              `;
-              formBlock.parentNode.replaceChild(confirmation, formBlock);
+              // Save pledge status
+              savePledgeStatus();
+              
+              // Show confirmation
+              showConfirmation();
+              
               // Smooth scroll to confirmation
-              confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
           }, 900); // Wait for Google Forms to process
         });

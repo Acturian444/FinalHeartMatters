@@ -465,7 +465,10 @@ class WallFeed {
     }
 
     openLocationModal() {
-        // Create and show location modal
+        // Create and show location modal with proper overlay structure
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'wall-location-modal-overlay visible';
+        
         const modal = document.createElement('div');
         modal.className = 'wall-location-modal';
         modal.innerHTML = `
@@ -489,7 +492,9 @@ class WallFeed {
                 </div>
             </div>
         `;
-        document.body.appendChild(modal);
+        
+        modalOverlay.appendChild(modal);
+        document.body.appendChild(modalOverlay);
 
         // Handle city selection
         const cityButtons = modal.querySelectorAll('.wall-city-chip');
@@ -500,7 +505,7 @@ class WallFeed {
                 localStorage.setItem('selectedCity', city);
                 this.updateLocationButton();
                 this.updateFeed();
-                modal.remove();
+                modalOverlay.remove();
             };
         });
 
@@ -517,11 +522,11 @@ class WallFeed {
 
         // Handle close
         const closeBtn = modal.querySelector('.close-btn');
-        closeBtn.onclick = () => modal.remove();
+        closeBtn.onclick = () => modalOverlay.remove();
 
         // Close on outside click
-        modal.onclick = (e) => {
-            if (e.target === modal) modal.remove();
+        modalOverlay.onclick = (e) => {
+            if (e.target === modalOverlay) modalOverlay.remove();
         };
     }
 

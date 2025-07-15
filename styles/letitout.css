@@ -99,7 +99,7 @@
     border: 1px solid var(--letitout-border);
     border-radius: var(--letitout-radius-md);
     font-family: var(--letitout-font-family);
-    font-size: 1rem;
+    font-size: 16px; /* Increased from 1rem to prevent zoom */
     resize: none; /* Changed from vertical to none */
     box-sizing: border-box;
     background-color: var(--letitout-input-bg);
@@ -965,7 +965,7 @@
     padding: 10px 14px;
     border: 1px solid #eee;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 16px; /* Increased from 15px to prevent zoom */
     font-family: 'DM Sans', sans-serif;
     box-sizing: border-box;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -1031,7 +1031,7 @@
     padding: 8px 12px;
     border: 1px solid #eee;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 16px; /* Increased from 15px to prevent zoom */
     font-family: 'DM Sans', sans-serif;
     margin: 0;
     height: 40px;
@@ -1635,15 +1635,17 @@
 
 .reply-textarea {
     width: 100%;
-    min-height: 100px;
+    min-height: 120px;
     padding: 1rem;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
+    font-size: 16px; /* Increased from 1rem to prevent zoom */
     resize: none;
-    margin-bottom: 0.5rem;
-    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+    background: #fff;
+    color: #333;
+    line-height: 1.5;
 }
 
 .reply-textarea:focus {
@@ -2107,7 +2109,7 @@
     border: 1px solid var(--letitout-border);
     border-radius: var(--letitout-radius-md);
     font-family: var(--letitout-font-family);
-    font-size: 0.95rem;
+    font-size: 16px; /* Increased from 0.95rem to prevent zoom */
     background: #f8f8f8;
     transition: border-color 0.2s, box-shadow 0.2s;
     height: 44px;
@@ -2292,10 +2294,13 @@
     .wall-filter-options {
         max-height: 60vh;
     }
+    .wall-sort-trigger .dropdown-arrow {
+        font-size: 0.6em !important;
+    }
 }
 
 /* Location Modal */
-.wall-location-modal {
+.wall-location-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -2306,35 +2311,79 @@
     align-items: center;
     justify-content: center;
     z-index: 5000;
-}
-@media (max-width: 768px) {
-  .wall-location-modal {
-    align-items: flex-end;
-  }
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-.wall-location-modal-content {
-    background: #fff;
+.wall-location-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wall-location-modal {
+    background: white;
     width: 100%;
-    max-width: 500px;
-    min-width: 320px;
+    max-width: 600px;
+    height: 80vh;
     max-height: 80vh;
-    min-height: 40vh;
-    border-radius: var(--letitout-radius-md);
-    box-shadow: var(--letitout-shadow-sm);
-    border: 1px solid #f2f2f2;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    position: relative;
 }
+
+.wall-location-modal-overlay.visible .wall-location-modal {
+    transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+    .wall-location-modal {
+        border-radius: 20px;
+        max-height: 90vh;
+    }
+    .wall-location-modal-overlay {
+        align-items: center;
+    }
+    .wall-location-modal {
+        transform: translateY(20px);
+    }
+    .wall-location-modal-overlay.visible .wall-location-modal {
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 768px) {
-  .wall-location-modal-content {
-    border-radius: 1.5rem 1.5rem 0 0;
-    min-width: 0;
-    padding: 1.5rem 1rem 1rem 1rem;
-  }
+    .wall-location-modal-overlay {
+        align-items: flex-end;
+    }
+    .wall-location-modal {
+        height: 80vh;
+        max-height: 90vh;
+        width: 100vw;
+        border-radius: 20px 20px 0 0;
+        margin: 0;
+        box-shadow: 0 -4px 24px rgba(0,0,0,0.10);
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-end;
+    }
+    .wall-location-modal-content {
+        border-radius: 20px 20px 0 0;
+        border: none;
+        box-shadow: none;
+        min-width: 0;
+        width: 100%;
+        padding: 1.5rem 1rem 1rem 1rem;
+        margin: 0;
+        height: 100%;
+        max-height: 100%;
+        flex: 1 1 auto;
+    }
 }
 
 .wall-location-modal-header {
@@ -2381,7 +2430,7 @@
     border: 1px solid var(--letitout-border);
     border-radius: var(--letitout-radius-md);
     font-family: var(--letitout-font-family);
-    font-size: 1rem;
+    font-size: 16px; /* Increased from 1rem to prevent zoom */
     background: #fff;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -2396,7 +2445,7 @@
     flex-direction: column;
     gap: 0.5rem;
     overflow-y: auto;
-    max-height: 50vh;
+    height: 60vh; /* Fixed height instead of max-height */
     flex: 1 1 auto;
 }
 
@@ -2479,12 +2528,21 @@
     background: white;
     width: 100%;
     max-width: 500px;
-    max-height: 80vh;
+    height: 80vh; /* Fixed height instead of max-height */
+    min-height: 500px; /* Increased minimum height */
     border-radius: 1.5rem 1.5rem 0 0;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .wall-filter-modal-content {
+        height: 90vh; /* Fixed height for mobile */
+        min-height: 600px; /* Increased minimum height for mobile */
+        padding: 1rem;
+    }
 }
 
 .wall-filter-modal-header {
@@ -2511,7 +2569,7 @@
     border: 1px solid var(--letitout-border);
     border-radius: var(--letitout-radius-md);
     font-family: var(--letitout-font-family);
-    font-size: 0.95rem;
+    font-size: 16px; /* Increased from 0.95rem to prevent zoom */
 }
 
 .wall-filter-tabs {
@@ -2543,7 +2601,7 @@
     flex-direction: column;
     gap: 0.5rem;
     overflow-y: auto;
-    max-height: 40vh;
+    height: 60vh; /* Fixed height instead of max-height */
 }
 
 .filter-options {
@@ -2846,7 +2904,7 @@
     padding: 10px 14px;
     border: 1px solid #eee;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 16px; /* Increased from 15px to prevent zoom */
     font-family: 'DM Sans', sans-serif;
     box-sizing: border-box;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -4633,19 +4691,168 @@
     color: #fff;
 }
 
-/* Highlight glow for new post card */
-.post-card.highlight-glow {
-  box-shadow: 0 0 0 0 #fff0f2, 0 0 32px 8px #fff0f2;
-  animation: highlightFade 2.5s ease;
-  z-index: 1;
-  position: relative;
-}
-@keyframes highlightFade {
-  0%   { box-shadow: 0 0 0 0 #fff0f2, 0 0 32px 8px #fff0f2; }
-  80%  { box-shadow: 0 0 0 0 #fff0f2, 0 0 0 0 #fff0f2; }
-  100% { box-shadow: none; }
-}
+/* Highlight glow animation removed - no longer needed */
 
 .dark-mode .inbox-empty-state-title {
   color: #b0b0b0 !important;
+}
+
+/* Hide underline/border for pack dropdown if only one pack (no dropdown items) */
+.pack-dropdown:empty {
+    border: none !important;
+    box-shadow: none !important;
+    display: none !important;
+}
+
+/* Also, if the dropdown is shown but has no items, hide border/underline */
+.pack-dropdown.show:not(:has(.pack-dropdown-item)) {
+    border: none !important;
+    box-shadow: none !important;
+    display: none !important;
+}
+
+/* Optionally, ensure the dropdown arrow still toggles, but no underline appears if no items */
+.pack-selector-btn.open:only-child {
+    border-bottom: none !important;
+}
+
+/* Prevent zoom on mobile for all input fields */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    touch-action: manipulation; /* Improve touch response */
+}
+
+/* Ensure modal inputs don't cause zoom */
+.letitout-emotion-modal input,
+.letitout-city-modal input,
+.wall-location-modal input,
+.wall-filter-modal input,
+.reply-modal input,
+.reply-modal textarea {
+    font-size: 16px !important;
+    touch-action: manipulation;
+}
+
+.wall-location-modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    min-width: 320px;
+    height: 80vh; /* Fixed height instead of max-height */
+    min-height: 500px; /* Increased minimum height */
+    border-radius: var(--letitout-radius-md);
+    box-shadow: var(--letitout-shadow-sm);
+    border: 1px solid #f2f2f2;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .wall-location-modal-content {
+        border-radius: 0;
+        min-width: 0;
+        padding: 1.5rem 1rem 1rem 1rem;
+        height: 100%;
+        min-height: auto;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+/* Wall Sort Dropdown Fixes for Mobile and Light Mode */
+.wall-sort-trigger {
+    color: #222 !important;
+}
+.wall-sort-trigger .dropdown-arrow {
+    color: #222 !important;
+    font-size: 0.85em;
+}
+.wall-sort-list {
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+    background: #fff;
+    border: none;
+}
+.wall-sort-option.selected {
+    color: #ca0013 !important;
+    background: #f6f6f6 !important;
+    font-weight: 700;
+}
+.wall-sort-option {
+    color: #222 !important;
+    background: #fff !important;
+}
+.wall-sort-option:hover,
+.wall-sort-option:focus {
+    background: #f5f5f5 !important;
+    color: #222 !important;
+}
+@media (max-width: 768px) {
+    .wall-sort-list {
+        border-radius: 16px !important;
+        min-width: 220px;
+        max-width: 90vw;
+        left: 0;
+        right: auto;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        background: #fff;
+        border: none;
+    }
+    .wall-sort-trigger {
+        color: #222 !important;
+    }
+    .wall-sort-trigger .dropdown-arrow {
+        color: #222 !important;
+    }
+    .wall-sort-option.selected {
+        color: #ca0013 !important;
+        background: #f6f6f6 !important;
+    }
+    .wall-sort-option {
+        color: #222 !important;
+        background: #fff !important;
+    }
+    .wall-sort-option:hover,
+    .wall-sort-option:focus {
+        background: #f5f5f5 !important;
+        color: #222 !important;
+    }
+}
+
+@media (min-width: 768px) {
+  .wall-location-modal {
+    width: auto;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .wall-location-modal-content {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    border-radius: 20px;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    flex: unset;
+  }
 }

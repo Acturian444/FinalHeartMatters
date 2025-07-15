@@ -23,6 +23,184 @@
         font-weight: bold !important;
         letter-spacing: 1.5px;
     }
+    
+    /* Start Here Section Styles */
+    .start-here-section {
+        background: #fffcf1;
+        padding: 5rem 0 4rem 0;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .start-here-content {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .start-here-title {
+        font-family: 'Anton', sans-serif;
+        font-size: 2.7rem;
+        color: #000;
+        margin-bottom: 0.7rem;
+        text-align: center;
+        letter-spacing: 1px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    .start-here-subtext {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #ca0013;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+    }
+    .start-here-card-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        width: 100%;
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+    }
+    .start-here-card {
+        background: transparent;
+        border: 2px solid #ca0013;
+        border-radius: 10px;
+        box-shadow: none;
+        padding: 2.5rem 2rem 2rem 2rem;
+        min-width: 260px;
+        max-width: 340px;
+        flex: 1 1 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        margin-bottom: 0;
+
+        height: 100%;
+        min-height: 370px;
+        max-height: 340px;
+        position: relative;
+    }
+    .start-here-card.card-red {
+        background: transparent;
+        color: #000;
+        border: 2px solid #ca0013;
+    }
+    .start-here-card.card-red h3,
+    .start-here-card.card-red p {
+        color: #000;
+    }
+    .start-here-card p {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.08rem;
+        font-weight: 400;
+        color: #000;
+        margin-bottom: 2rem;
+    }
+    .start-here-card.card-red p {
+        color: #000 !important;
+    }
+    .start-here-card .btn {
+        margin-top: auto;
+        width: 100%;
+        font-size: 0.92rem;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 700;
+        border-radius: 4px;
+        padding: 0.7rem 1.2rem;
+        letter-spacing: 0.7px;
+        box-shadow: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 1.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 85%;
+    }
+    .start-here-card.card-red .btn {
+        background: #ca0013;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+    }
+    .start-here-card.card-red .btn[style*="pointer-events: none"] {
+        background: #ca0013;
+        color: #fff;
+        opacity: 0.5;
+    }
+
+    @media (max-width: 1100px) {
+        .start-here-content {
+            max-width: 960px;
+        }
+        .start-here-card-grid {
+            gap: 1rem;
+        }
+        .start-here-card {
+            max-width: 280px;
+            padding: 2rem 1rem 2rem 1rem;
+            min-height: 340px;
+        }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+        .start-here-title {
+            font-size: 2.2rem;
+        }
+        .start-here-subtext {
+            font-size: 1.1rem;
+        }
+        .start-here-card-grid {
+            gap: 1rem;
+        }
+    }
+    @media (max-width: 600px) {
+        .start-here-section {
+            padding: 2.2rem 0 1.5rem 0;
+        }
+        .start-here-title {
+            font-size: 2rem !important;
+        }
+        .start-here-subtext {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .start-here-card {
+            max-width: 95vw;
+            min-width: 0;
+            margin-bottom: 0;
+            padding: 1.2rem 0.7rem 2rem 0.7rem;
+            min-height: 300px;
+            padding-bottom: 3.5rem !important;
+        }
+        .start-here-card p {
+            font-size: 1.08rem !important;
+            font-weight: 400 !important;
+            line-height: 1.6 !important;
+        }
+        .start-here-card .btn {
+            margin-top: 0;
+        }
+        .start-here-card p:last-of-type {
+            margin-bottom: 1.5rem !important;
+        }
+    }
+    @media (max-width: 600px) {
+        .card-spacer {
+            height: 1.5rem;
+            width: 100%;
+            display: block;
+        }
+    }
     </style>
 </head>
 <body>
@@ -86,12 +264,12 @@
             </div>
         </section>
 
-        <section id="about" class="mission-modern">
+        <section id="mission-section" class="mission-modern">
             <h2 class="mission-modern-title">
-              <span class="highlight">Healing isn't a luxury.<span class="mobile-br"></span> It's a right</span>
+              <span class="highlight">When You Heal Out Loud, Others Heal Too</span>
             </h2>
             <p class="mission-modern-text">
-              Most people silently carry pain, heartbreak, and shame with no space to let it out. Heart Matters exists to make healing visible, shared, and supported. We create spaces where people can feel, say, and release what they carry together.</p>
+              We're building a public healing movement — with tools, products, and spaces that help people feel it, say it, and let it out together. Most people carry pain with nowhere to release it. We're here to change that. What you wear, write, or share helps someone else feel seen and less alone.</p>
             <p class="mission-modern-text"><strong>#HealingInPublic</strong></p>
             <div class="mission-buttons">
                 <a href="info.html" class="btn btn-mission btn-mission-primary">Join the Movement</a>
@@ -120,6 +298,61 @@
           </div>
         </div>
         <!-- END: Horizontal Scrolling Quotes Bar -->
+
+        <!-- Start Here Section -->
+        <section class="start-here-section">
+            <div class="start-here-content">
+                <h2 class="start-here-title" style="color: #ca0013;">BEGIN YOUR HEALING IN PUBLIC</h2>
+                <div class="start-here-subtext" style="color: #ca0013;">Feel it. Say it. Wear it. Let it out. When you heal, others can too.</div>
+                <div class="start-here-card-grid">
+                    <!-- Card 1 -->
+                    <div class="start-here-card">
+                        <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
+                          <!-- Pen/Writing Icon -->
+                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 6l4 4L10 26H6v-4L22 6z"/>
+                            <path d="M20 8l4 4"/>
+                          </svg>
+                        </div>
+                        <h3>LET IT OUT</h3>
+                        <p>Your public journal<br>Write what you're holding in<br>Anonymous. No judgment</p>
+                        <div class="card-spacer"></div>
+                        <a href="letitout.html" class="btn btn-primary">LET IT OUT &rarr;</a>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="start-here-card card-red">
+                        <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
+                          <!-- Shopping Bag Icon -->
+                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 10V8a6 6 0 1 1 12 0v2"/>
+                            <rect x="5" y="10" width="22" height="16" rx="3"/>
+                            <path d="M21 16a5 5 0 0 1-10 0"/>
+                          </svg>
+                        </div>
+                        <h3>Shop Still Healing</h3>
+                        <p>Wear what you feel<br>This isn't just merch<br>A mirror for what we carry</p>
+                        <div class="card-spacer"></div>
+                        <a href="shop/index.html" class="btn btn-primary">VIEW COLLECTION &rarr;</a>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="start-here-card card-red">
+                        <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
+                          <!-- Microphone Icon -->
+                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="13" y="5" width="6" height="14" rx="3"/>
+                            <path d="M8 15v2a8 8 0 0 0 16 0v-2"/>
+                            <line x1="16" y1="27" x2="16" y2="30"/>
+                            <line x1="12" y1="30" x2="20" y2="30"/>
+                          </svg>
+                        </div>
+                        <h3>The Heart Room</h3>
+                        <p>Live confessional show<br>Real people. Raw stories<br>Streaming on TikTok Live</p>
+                        <div class="card-spacer"></div>
+                        <a href="theheartroom.html" class="btn btn-primary">ENTER THE ROOM &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer id="footer">
@@ -270,6 +503,22 @@
     
     // Update navigation on page load
     document.addEventListener('DOMContentLoaded', updateNavigation);
+    
+    // Hero scroll cue functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const scrollCue = document.querySelector('.hero-scroll-cue');
+        if (scrollCue) {
+            scrollCue.addEventListener('click', function() {
+                const missionSection = document.getElementById('mission-section');
+                if (missionSection) {
+                    missionSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html> 
