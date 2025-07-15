@@ -121,7 +121,7 @@
 
 .product-hero-text h1 {
     font-family: 'Anton', sans-serif;
-    font-size: 2.2rem;
+    font-size: 3rem;
     color: #000;
     margin-bottom: 0.5rem; /* Reduced from 1rem */
     text-transform: uppercase;
@@ -159,9 +159,12 @@
 }
 
 .btn-large {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
     margin-top: 2rem; /* Added spacing above the CTA button */
 }
 
@@ -252,18 +255,18 @@
 
 .product-story .btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    font-family: 'Anton', sans-serif;
-    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.7px;
     text-decoration: none;
     background: #ca0013;
     color: #fff;
     border: none;
     border-radius: 4px;
     transition: all 0.3s ease;
-    font-weight: 400; /* Reduced from default bold weight */
+    font-weight: 700;
 }
 
 .product-story .btn:hover {
@@ -377,8 +380,12 @@
     margin-top: 0;
     align-self: center;
     min-width: 120px;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
 }
 
 .features-grid {
@@ -524,13 +531,16 @@
 }
 
 .story-cta .btn {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
     background: #ca0013;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     box-shadow: none;
 }
@@ -826,8 +836,12 @@
     }
     
     .btn-large {
-        padding: 0.875rem 1.5rem;
-        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.92rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
         width: 100%; /* Make button full width on mobile */
     }
     
@@ -1206,13 +1220,16 @@
 }
 
 .section-cta .btn {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
     background: #ca0013;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     box-shadow: none;
 }
@@ -1761,4 +1778,15 @@ main {
         padding-left: 1.25rem;
         margin-bottom: 0.75rem;
     }
+} 
+
+/* Override: Larger Product Page Buttons for Better Visibility */
+.btn, .btn-primary, .btn-large {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+    padding: 0.9rem 1.8rem !important;
+    border-radius: 4px !important;
 } 

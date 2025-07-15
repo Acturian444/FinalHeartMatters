@@ -6,9 +6,39 @@ class PostService {
         this.anonymousId = window.firebaseUserId;
     }
 
+    // Verify authentication before operations
+    async verifyAuth() {
+        return new Promise((resolve, reject) => {
+            const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+                unsubscribe();
+                if (user) {
+                    window.firebaseUserId = user.uid;
+                    resolve(user);
+                } else {
+                    reject(new Error('No authenticated user'));
+                }
+            });
+        });
+    }
+
     async createPost(content, emotion, city = null, isCustomCity = false) {
         try {
-            const userId = window.firebaseUserId;
+            // Try to ensure user is authenticated
+            let userId;
+            try {
+                await this.verifyAuth();
+                userId = window.firebaseUserId;
+            } catch (authError) {
+                console.warn('Authentication failed, using fallback user ID');
+                // Use a fallback user ID if authentication fails
+                userId = 'temp_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                window.firebaseUserId = userId;
+            }
+
+            if (!userId) {
+                throw new Error('No user ID available');
+            }
+
             const post = {
                 content: window.LetItOutUtils.sanitizeText(content),
                 emotion,
@@ -24,12 +54,26 @@ class PostService {
             return { id: docRef.id, ...post };
         } catch (error) {
             console.error('Error creating post:', error);
+            // Show user-friendly error
+            if (error.message.includes('permission')) {
+                window.LetItOutUtils.showError('Authentication issue. Please refresh the page and try again.');
+            } else {
+                window.LetItOutUtils.showError('Unable to create post. Please try again.');
+            }
             throw error;
         }
     }
 
     async getPosts(limit = 20) {
         try {
+            // Try to ensure user is authenticated for read operations
+            try {
+                await this.verifyAuth();
+            } catch (authError) {
+                console.warn('Authentication failed for getPosts, continuing with fallback');
+                // Continue without authentication for read operations
+            }
+            
             const snapshot = await this.collection
                 .orderBy('timestamp', 'desc')
                 .limit(limit)
@@ -41,6 +85,7 @@ class PostService {
             }));
         } catch (error) {
             console.error('Error getting posts:', error);
+            // Don't show error for read operations, just log
             throw error;
         }
     }
@@ -71,19 +116,31 @@ class PostService {
 
     // Real-time updates
     subscribeToPosts(callback) {
-        return this.collection
-            .orderBy('timestamp', 'desc')
-            .limit(100) // Increased limit for search/filter functionality
-            .onSnapshot(snapshot => {
-                const posts = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-                callback(posts);
-            }, error => {
-                console.error('Error in posts subscription:', error);
-                window.LetItOutUtils.showError('Error loading posts. Please refresh the page.');
-            });
+        // Verify auth before subscribing
+        this.verifyAuth().then(() => {
+            return this.collection
+                .orderBy('timestamp', 'desc')
+                .limit(100) // Increased limit for search/filter functionality
+                .onSnapshot(snapshot => {
+                    const posts = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    callback(posts);
+                }, error => {
+                    console.error('Error in posts subscription:', error);
+                    if (error.message.includes('permission')) {
+                        console.error('Permission denied - check Firebase security rules');
+                    }
+                    window.LetItOutUtils.showError('Error loading posts. Please refresh the page.');
+                });
+        }).catch(error => {
+            console.error('Authentication failed for subscription:', error);
+            // Retry after a delay
+            setTimeout(() => {
+                this.subscribeToPosts(callback);
+            }, 3000);
+        });
     }
 
     async getPost(postId) {

@@ -248,8 +248,8 @@
         }
         .movement-title, .pledge-title, .contact-title, .start-here-title {
             font-family: 'Anton', sans-serif;
-            font-size: 2.7rem;
-            font-weight: 900;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: #ca0013;
             text-transform: uppercase;
             text-align: center;
@@ -260,12 +260,14 @@
         .pledge-title {
             color: #fffcf1;
         }
-        @media (max-width: 600px) {
-            .movement-title, .pledge-title, .contact-title, .start-here-title {
-                font-size: 2.2rem !important;
-                margin-top: 2rem;
-                margin-bottom: 1.5rem;
-            }
+        .start-here-card h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #000;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1.1rem;
         }
         .movement-subtitle {
             font-family: 'DM Sans', sans-serif;
@@ -705,15 +707,6 @@
         .start-here-card.card-red p {
             color: #000;
         }
-        .start-here-card h3 {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #000;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 1.1rem;
-        }
         .start-here-card p {
             font-family: 'DM Sans', sans-serif;
             font-size: 1.08rem;
@@ -727,12 +720,12 @@
         .start-here-card .btn {
             margin-top: auto;
             width: 100%;
-            font-size: 1.08rem;
-            font-family: 'Anton', sans-serif;
-            font-weight: bold;
-            border-radius: 6px;
-            padding: 0.9rem 0;
-            letter-spacing: 0.5px;
+            font-size: 0.92rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            border-radius: 4px;
+            padding: 0.7rem 1.2rem;
+            letter-spacing: 0.7px;
             box-shadow: none;
             position: absolute;
             left: 0;
@@ -867,20 +860,23 @@
     <main>
         <section style="background-color: #fffcf1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 2.5rem 1rem 4.5rem 1rem; min-height: 60vh; margin-bottom: 0;">
             <div class="movement-letter-container">
-                <h1 class="movement-title" style="margin-bottom: 1.5rem; color: #ca0013;">THE #HEALINGINPUBLIC MANIFESTO</h1>
+                <h1 class="movement-title" style="margin-bottom: 1.5rem; color: #ca0013; white-space: nowrap;">#HEALINGINPUBLIC MANIFESTO</h1>
                 <div class="movement-letter-body">
-                    <p><strong>A Heart Matters Movement</strong></p>
-                    <p>We live in a world that tells us to hide our pain. To only share what's polished. To bury what hurts and smile through the silence.</p>
-                    <p>But we believe the truth deserves a voice. We believe healing doesn't happen in isolation. It happens when we're seen exactly as we are.</p>
-                    <p>This is a space for emotional honesty. For the quiet heaviness you carry. For the words you never said. For the version of you that's still healing and still showing up.</p>
-                    <p>This isn't about being fixed. It's about being real.</p>
-                    <p><strong>Raw. Brave. Honest.</strong></p>
-                    <p>We're not here to impress. We're here to release. To feel it. To say it. To let it out.</p>
-                    <p>This is healing in public. This is where truth becomes wearable. Where pain is not shameful. Where emotions belong in the open.</p>
-                    <p>You don't have to carry it alone anymore. You don't have to hide anymore.</p>
-                    <p><strong>Your heart matters. Your story matters. Welcome home.</strong></p>
+                    <p>We live in a world that tells us to hide our pain. To only show what’s polished. To bury what hurts and pretend we’re fine.</p>
+                    <p>Most people go through life silently carrying trauma, heartbreak, shame, and fear with no safe space to release it. No time. No support. No tools. Just pressure to “move on” and “stay positive” while suffering inside.</p>
+                    <p>But what happens when that pain goes unspoken? It festers. It breaks us down. It turns into addiction. Isolation. Sickness. Burnout. Even homelessness.</p>
+                    <p>Healing doesn’t happen in isolation. It happens when we’re seen. This isn’t about being fixed. It’s about expressing what we carry. <strong style="color: #ca0013;">Publicly. Imperfectly. Honestly.</strong></p>
+                    <p>Healing is treated like a luxury. That has to change. Everyone deserves space to be heard, tools to release what they carry, and support to begin again.</p>
+                    <p>To feel it. To say it. To let it out.</p>
+                    <p><strong>This is healing in public.<span class="mobile-br"></span> This is the movement.</strong></p>
                 </div>
             </div>
+            <!-- Red downward arrow cue -->
+            <a href="#sign-the-pledge" style="display: flex; justify-content: center; align-items: center; margin: 0.7rem 0; cursor: pointer;">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 22L28 36L42 22" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
         </section>
 
         <style>
@@ -971,13 +967,15 @@
                     I'm opening my heart. I'm ready to be seen.<br>
                     To connect honestly and fully.<br>
                     I'm choosing to live, not just survive.<br>
-                    To feel. To heal. To love. Starting with me.
+                    To feel. To speak. To let it out.<br>
+                    To heal. To love. Starting with me.<br>
+                    This is where I begin.
                 </div>
                 <form class="signup-form" id="pledgeInlineForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe" style="width: 100%; display: flex; flex-direction: column; gap: 1.1rem; align-items: stretch;">
                     <input type="email" name="entry.649844771" placeholder="Enter your email..." required style="padding: 0.65rem 1rem; border-radius: 4px; border: 2px solid #fffcf1; background: transparent; color: #fffcf1; font-size: 1.08rem; font-family: 'DM Sans', sans-serif; outline: none; margin-bottom: 0; transition: border-color 0.2s; box-shadow: none; width: 100%;" />
                     <button type="submit" class="btn btn-primary" style="background: #fffcf1; color: #ca0013; padding: 0.65rem 0; border-radius: 4px; font-family: 'Anton', sans-serif; font-size: 1.1rem; font-weight: bold; border: none; margin-bottom: 0; transition: background 0.2s, color 0.2s; box-shadow: none; letter-spacing: 0.5px;">Sign the Pledge &rarr;</button>
                 </form>
-                <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 0.98rem; margin-top: 1.1rem; text-align: center; opacity: 0.85;">We'll send reminders you're not alone and first access to what's next.</div>
+                <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 0.98rem; margin-top: 1.1rem; text-align: center; opacity: 0.85;">Join the movement. You’re not alone. Get what’s next.</div>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
                 <div id="pledge-inline-success" class="form-success" style="display:none; color: #fffcf1; margin-top: 1.2rem; text-align: center; font-weight: 600;">Thank you for signing the pledge!</div>
             </div>
@@ -1016,7 +1014,7 @@
                         <h3>Shop Still Healing</h3>
                         <p>Wear what you feel<br>This isn't just merch<br>It's healing in public.</p>
                         <div class="card-spacer"></div>
-                        <a href="shop/index.html" class="btn btn-primary">View Collection &rarr;</a>
+                        <a href="shop/index.html" class="btn btn-primary">VIEW COLLECTION &rarr;</a>
                     </div>
                     <!-- Card 3 -->
                     <div class="start-here-card card-red">
@@ -1032,7 +1030,7 @@
                         <h3>The Heart Room</h3>
                         <p>Live confessional show<br>Real people. Raw stories<br>Join us on TikTok Live</p>
                         <div class="card-spacer"></div>
-                        <a href="theheartroom.html" class="btn btn-primary">Enter the Room &rarr;</a>
+                        <a href="theheartroom.html" class="btn btn-primary">ENTER THE ROOM &rarr;</a>
                     </div>
                 </div>
             </div>
