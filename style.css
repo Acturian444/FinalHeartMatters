@@ -269,6 +269,11 @@ section {
     overflow: hidden;
 }
 
+/* Homepage-specific hero height adjustments */
+#home-hero.hero {
+    min-height: 85vh;
+}
+
 .hero-bg-video {
     position: absolute;
     top: 0;
@@ -390,6 +395,10 @@ section {
         min-height: 65vh;
         padding: 3.5rem 1.5rem;
     }
+    
+    #home-hero.hero {
+        min-height: 80vh;
+    }
 }
 
 @media (max-width: 600px) {
@@ -397,6 +406,11 @@ section {
         min-height: 65vh;
         padding: 2.5rem 1rem;
     }
+    
+    #home-hero.hero {
+        min-height: 75vh;
+    }
+    
     .hero-bg-video {
         object-position: 10% center !important;
     }
