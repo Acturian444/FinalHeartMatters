@@ -208,7 +208,7 @@ nav {
     text-decoration: none;
     font-family: 'Anton', sans-serif;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 400 !important;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: background-color 0.2s ease;
@@ -1968,14 +1968,14 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
     font-size: 1.6rem;
     display: flex;
     align-items: center;
-    background: #fffcf1;
-    color: #ca0013;
+    background: #ca0013;
+    color: #fffcf1;
     overflow: hidden;
     width: 100vw;
     border-radius: 0;
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #ca0013;
+    border-bottom: none;
     z-index: 10;
     position: relative;
 }
@@ -1995,7 +1995,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
     font-weight: 400;
     margin: 0 1.2rem;
     white-space: nowrap;
-    color: #ca0013;
+    color: #fffcf1;
     letter-spacing: 2px;
 }
 
@@ -2008,12 +2008,15 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
   .scrolling-quotes-bar {
     height: 2rem;
     font-size: 1.2rem;
-    border-bottom: 1px solid #ca0013;
+    border-bottom: none;
   }
   .scrolling-quote {
     font-size: 1.2rem;
     margin: 0 0.7rem;
     letter-spacing: 1.5px;
+  }
+  .scrolling-quotes-track {
+    animation: marquee-scroll 12s linear infinite;
   }
 }
 
@@ -2288,10 +2291,9 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
   font-smooth: always;
 } 
 
-.nav-links a,
-.nav-dropdown-menu a {
+.nav-links a {
   font-family: 'Anton', sans-serif;
-  font-weight: 400 !important; /* Use 400 for regular weight */
+  font-weight: 900;
   font-size: 1.1rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -2320,11 +2322,10 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
   color: #ca0013;
 } 
 
-/* Highly specific override to guarantee correct weight */
-.nav-links a.nav-dropdown-trigger,
-.nav-dropdown-menu a {
+/* Dropdown trigger specific styling */
+.nav-links a.nav-dropdown-trigger {
     font-family: 'Anton', sans-serif !important;
-    font-weight: 400 !important;
+    font-weight: 900 !important;
     font-size: 1.1rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -2332,9 +2333,16 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
     -moz-osx-font-smoothing: grayscale;
     font-smooth: always;
 }
-.nav-dropdown-menu a {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+
+/* Ensure dropdown menu items have consistent font weight across all pages */
+.nav-dropdown-menu a,
+.nav-dropdown-menu li a,
+header .nav-dropdown-menu a {
+    font-weight: 400 !important;
+    font-family: 'Anton', sans-serif !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
 } 
 
 .hero-scroll-cue {

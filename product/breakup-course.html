@@ -30,6 +30,40 @@
     <link rel="stylesheet" href="../style.css?v=2">
     <link rel="stylesheet" href="../shop/shop.css?v=1">
     <link rel="stylesheet" href="product.css?v=1">
+    
+    <style>
+        /* Mobile font size adjustments */
+        @media (max-width: 768px) {
+            .product-hero h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .product-hero .product-subtitle {
+                font-size: 1.1rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .product-hero .price-note {
+                font-size: 1rem !important;
+            }
+            
+            .btn-large {
+                font-size: 1.1rem !important;
+                padding: 1rem 2rem !important;
+            }
+            
+            /* Reduce hero section height on mobile */
+            .product-hero {
+                min-height: 70vh !important;
+            }
+            
+            /* Move hero content up more on mobile */
+            .product-hero-content {
+                margin-top: -6rem !important;
+            }
+        }
+    </style>
 </head>
 <body class="breakup-course-page">
     <header>
@@ -75,10 +109,10 @@
         <!-- Product Hero -->
         <section class="product-hero">
             <div class="container">
-                <div class="product-hero-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <div class="product-hero-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin-top: -5rem;">
                     <div class="product-hero-text" style="color: #fffcf1;">
-                        <h1 style="color: #fffcf1;">How to Heal Your Heart<span class="mobile-br"></span> in 22 Days</h1>
-                        <p class="product-subtitle" style="color: #fffcf1; margin-bottom: 2.5rem;">A Breakup Recovery Course<span class="mobile-br"></span> for Heartbreak, Loss, and Letting Go</p>
+                        <h1 style="color: #fffcf1;">How to Heal Your<span class="mobile-br"></span> Heart in 22 Days</h1>
+                        <p class="product-subtitle" style="color: #fffcf1; margin-bottom: 0.5rem;">A Breakup Recovery Course<span class="mobile-br"></span> for Heartbreak, Loss, and Letting Go</p>
                         <div class="product-price">
                             <button class="btn btn-primary btn-large" onclick="purchaseCourse()" style="background: #fffcf1; color: #ca0013; border: none;">
                                 <i class="fas fa-heart"></i>
@@ -91,25 +125,39 @@
             </div>
         </section>
 
+        <!-- Scrolling Value Proposition Bar -->
+        <div class="product-scrolling-quotes-bar">
+            <div class="product-scrolling-quotes-track">
+                <span class="product-scrolling-quote">This isn't just a course. It's your reset — mind, body, and soul.</span>
+                <span class="product-scrolling-quote">Heal your heart one day at a time with guided support.</span>
+                <span class="product-scrolling-quote">Daily healing rituals to help you grow stronger.</span>
+                <span class="product-scrolling-quote">You don't have to do this alone. We're with you.</span>
+                <span class="product-scrolling-quote">Start feeling like yourself again — and even better.</span>
+                <span class="product-scrolling-quote">Turn heartbreak into healing, clarity, and confidence.</span>
+                <span class="product-scrolling-quote">This is your comeback story. And it starts now.</span>
+                <span class="product-scrolling-quote">This isn't just a course. It's your reset — mind, body, and soul.</span>
+            </div>
+        </div>
+
         <!-- Emotional Storytelling -->
         <section class="emotional-story">
             <div class="container">
                 <div class="story-content">
-                    <h2>What I Wish I Had After the Breakup</h2>
+                    <h2 style="color: #ca0013;">What We Wish We Had After the Breakup</h2>
                     <p class="story-text">
-                        I know what heartbreak really feels like. The kind that sits in your chest like a weight, that keeps you awake at night questioning everything.
+                        We know what heartbreak really feels like. The kind that sits heavy in your chest and keeps you up at night questioning everything.
                     </p>
                     <p class="story-text">
-                        I created this because I needed it once. When I was broken, when I felt lost, when I didn't know how to begin again. No one gave me a roadmap for how to get through it <strong>— so I built one.</strong>
+                        We created this course because we needed it too. When we were lost and didn't know how to begin again, no one gave us a roadmap. <strong>So we built one.</strong>
                     </p>
                     <p class="story-text">
-                        This course isn't theory. It's real. It's the words I needed to hear, the actions that actually helped, the truth that pulled me out.
+                        This isn't theory. It's real. It's what helped us let go. It's what brought us back to ourselves.
                     </p>
                     <p class="story-text">
-                        If you're struggling to let go, if you feel like you've lost yourself, this 22-day healing journey will walk you through it. You won't just process the breakup <strong>— you'll remember your worth, rebuild your peace, and come back to yourself.</strong>
+                        If you're struggling to move on or feel like you've lost yourself, this 22-day healing journey will walk with you. You won't just process the pain. <strong>You'll remember your worth, rebuild your peace, and come home to yourself.</strong>
                     </p>
                     <p class="story-text">
-                        You don't need to do it alone. This is the support I wish someone gave me when I was at my lowest. Now it's yours.
+                        We made this for you. You don't have to do it alone. This is the support we wish someone had given us when we were at our lowest. <strong>Now it's yours.</strong>
                     </p>
                     <div class="story-cta">
                         <button class="btn btn-primary" onclick="purchaseCourse()">
@@ -119,20 +167,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Scrolling Value Proposition Bar -->
-        <div class="scrolling-quotes-bar">
-            <div class="scrolling-quotes-track">
-                <span class="scrolling-quote">This isn't just a course. It's a reset for your mind, body, and soul.</span>
-                <span class="scrolling-quote">Heal one day at a time with daily guidance.</span>
-                <span class="scrolling-quote">Daily guidance to help you heal and grow.</span>
-                <span class="scrolling-quote">You're not alone in this journey.</span>
-                <span class="scrolling-quote">Start feeling like yourself again.</span>
-                <span class="scrolling-quote">Transform heartbreak into self-love.</span>
-                <span class="scrolling-quote">Real tools. Real healing. Real change.</span>
-                <span class="scrolling-quote">This isn't just a course. It's a reset for your mind, body, and soul.</span>
-            </div>
-        </div>
 
         <!-- Product Description -->
         <section class="product-description">
@@ -239,7 +273,7 @@
         <!-- Transformation Table Section -->
         <section class="transformation-section">
             <div class="container">
-                <h2 class="transformation-title">From Heartbreak to Healing</h2>
+                <h2 class="transformation-title">From Heartbreak<br class="mobile-br"> to Healing</h2>
                 <div class="transformation-table">
                     <div class="transformation-header">
                         <div class="transformation-col before">
@@ -417,21 +451,8 @@
 
     <footer id="footer">
         <div class="footer-content">
-            <div class="footer-main">
-                <div class="social-links">
-                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-tiktok"></i>
-                        <span>TikTok</span>
-                    </a>
-                </div>
-            </div>
-            
             <div class="newsletter">
-                <h3>Not ready yet? Stay close.</h3>
+                <h2 style="font-family: 'Anton', sans-serif; font-size: 2.5rem; color: #ca0013; text-align: center; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Not ready yet? Stay close.</h2>
                 <p class="newsletter-subtext">We'll send you stories, reminders, and drops that speak to your heart. You're not alone in this.</p>
                 <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
                     <div class="form-group">
@@ -444,6 +465,17 @@
                 </form>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
                 <div id="form-success" class="form-success">Thank you for signing up!</div>
+                
+                <div class="social-links" style="margin-top: 2rem; text-align: center;">
+                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
             </div>
             
             <div class="copyright">

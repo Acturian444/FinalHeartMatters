@@ -3,11 +3,54 @@
 /* Product Hero */
 .product-hero {
     background: #fffcf1;
-    padding: 4rem 0;
-    min-height: 80vh;
+    padding: 5rem 0 0 0;
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0;
+}
+
+/* Product Page Scrolling Quotes Bar - Independent from Homepage */
+.product-scrolling-quotes-bar {
+    height: 3rem;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    background: #ca0013;
+    color: #fffcf1;
+    overflow: hidden;
+    width: 100vw;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+    z-index: 10;
+    position: relative;
+}
+
+.product-scrolling-quotes-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: product-marquee-scroll 18s linear infinite;
+    will-change: transform;
+    min-width: 200%;
+}
+
+.product-scrolling-quote {
+    font-size: 1.6rem;
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    margin: 0 1.2rem;
+    white-space: nowrap;
+    color: #fffcf1;
+    letter-spacing: 2px;
+}
+
+@keyframes product-marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .product-hero-content {
@@ -390,16 +433,20 @@
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .feature-item {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     background: #fffcf1;
     border-radius: 12px;
     transition: transform 0.3s ease;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .feature-item:hover {
@@ -440,7 +487,7 @@
 
 /* Product Features */
 .product-features {
-    padding: 4rem 0;
+    padding: 5rem 0;
     background: #fffcf1;
 }
 
@@ -493,7 +540,7 @@
 
 /* Emotional Story */
 .emotional-story {
-    padding: 4rem 0 1rem 0;
+    padding: 5rem 0 2rem 0;
     background: #fffcf1;
 }
 
@@ -570,7 +617,7 @@
 
 /* Course Modules */
 .course-modules {
-    padding: 4rem 0;
+    padding: 5rem 0;
     background: #fff;
 }
 
@@ -631,9 +678,9 @@
 
 /* Testimonial */
 .testimonial-section {
-    padding: 4rem 0;
+    padding: 5rem 0;
     background: #ca0013;
-    color: #fff;
+    color: #fffcf1;
 }
 
 .testimonial {
@@ -652,15 +699,7 @@
     position: relative;
 }
 
-.testimonial-text::before {
-    content: '"';
-    font-size: 4rem;
-    color: rgba(255, 255, 255, 0.3);
-    position: absolute;
-    top: -1rem;
-    left: -2rem;
-    font-family: serif;
-}
+/* Removed quote icon */
 
 .testimonial-author {
     display: flex;
@@ -686,7 +725,7 @@
 
 /* Final CTA */
 .final-cta {
-    padding: 4rem 0;
+    padding: 5rem 0;
     background: #fffcf1;
     text-align: center;
     margin-bottom: 1.2rem !important;
@@ -709,9 +748,9 @@
 
 .cta-content p {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     color: #666;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     line-height: 1.6;
 }
 
@@ -720,6 +759,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-top: -0.5rem;
 }
 
 .guarantee {
@@ -818,7 +858,7 @@
 
 @media (max-width: 600px) {
     .product-hero {
-        padding: 2rem 0;
+        padding: 3rem 0;
         min-height: auto;
     }
     
@@ -935,7 +975,7 @@
     .features-grid,
     .features-list {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 1.5rem;
     }
     
     .feature-item,
@@ -970,6 +1010,14 @@
         font-size: 1rem;
     }
     
+    .testimonial-section {
+        padding: 4rem 0;
+    }
+    
+    .final-cta {
+        padding: 4rem 0;
+    }
+    
     .breakup-course-page .product-hero {
         background: url('../images/Course Hero Mobile.jpg') center center/cover no-repeat;
         min-height: 80vh;
@@ -978,7 +1026,7 @@
     }
     
     .emotional-story {
-        padding-bottom: 1rem;
+        padding: 4rem 0 2rem 0;
     }
     
     .testimonial-author {
@@ -992,6 +1040,11 @@
     .cta-subtitle {
         font-size: 1.1rem;
         margin-bottom: 1.5rem;
+    }
+
+    /* Mobile font size for "Not ready yet? Stay close." title to match "What You'll Get" */
+    .newsletter h2 {
+        font-size: 1.75rem !important;
     }
 
     /* Left-align bullet points on mobile */
@@ -1073,7 +1126,7 @@
 }
 .breakup-course-page .feature-item {
   background: transparent;
-  border: 2px solid #ca0013;
+  border: 1px solid #ca0013;
   border-radius: 16px;
   box-shadow: none;
 }
@@ -1082,9 +1135,26 @@
 @media (max-width: 600px) {
   .breakup-course-page .product-hero {
     background: url('../images/Course Hero Mobile.jpg') center center/cover no-repeat;
-    min-height: 80vh;
+    height: 85vh;
     padding-top: 0;
-    padding-bottom: 4rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  
+  .product-scrolling-quotes-bar {
+    height: 2rem;
+    font-size: 1.2rem;
+    border-bottom: none;
+  }
+  
+  .product-scrolling-quote {
+    font-size: 1.2rem;
+    margin: 0 0.7rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .product-scrolling-quotes-track {
+    animation: product-marquee-scroll 12s linear infinite;
   }
 }
 
@@ -1096,7 +1166,7 @@
 /* Course Outline Accordion Styles */
 .course-outline-section {
   background: #fffcf1;
-  padding: 4rem 0 2.5rem 0;
+  padding: 5rem 0 3rem 0;
 }
 .course-outline-title {
   font-family: 'Anton', sans-serif;
@@ -1121,7 +1191,7 @@
   gap: 1.2rem;
 }
 .accordion-item {
-  border: 2px solid #ca0013;
+  border: 1px solid #ca0013;
   border-radius: 16px;
   background: transparent;
   overflow: hidden;
@@ -1243,11 +1313,11 @@
 /* Modern Minimal Transformation Table Section - Match 'What You'll Get' */
 .transformation-section {
   background: #fffcf1;
-  padding: 3.5rem 0 2.5rem 0;
+  padding: 5rem 0 3rem 0;
 }
 .transformation-title {
   font-family: 'Anton', sans-serif;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   color: #000;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -1260,7 +1330,7 @@
   border-radius: 16px;
   overflow: hidden;
   background: transparent;
-  border: 2px solid #ca0013;
+  border: 1px solid #ca0013;
   box-shadow: none;
 }
 .transformation-header {
@@ -1271,14 +1341,14 @@
   color: #ca0013;
   font-weight: 700;
   letter-spacing: 0.5px;
-  border-bottom: 2px solid #ca0013;
+  border-bottom: 1px solid #ca0013;
 }
 .transformation-col {
   flex: 1 1 0;
   padding: 1.1rem 1.2rem;
   text-align: left;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: #222;
   line-height: 1.5;
   display: flex;
@@ -1300,7 +1370,7 @@
 .transformation-header .transformation-col {
   justify-content: center;
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 1rem;
   background: none;
 }
 .transformation-col.after {
@@ -1324,7 +1394,7 @@
 }
 .transformation-row {
   display: flex;
-  border-bottom: 2px solid #ca0013;
+  border-bottom: 1px solid #ca0013;
   background: transparent;
 }
 .transformation-row:nth-child(even) {
@@ -1334,7 +1404,7 @@
   border-bottom: none;
 }
 .transformation-row .transformation-col {
-  border-right: 2px solid #ca0013;
+  border-right: 1px solid #ca0013;
   background: none;
 }
 .transformation-row .transformation-col.after {
@@ -1347,13 +1417,13 @@
     border-bottom: none;
   }
   .transformation-header .transformation-col {
-    border-bottom: 2px solid #ca0013;
-    font-size: 1.05rem;
+    border-bottom: 1px solid #ca0013;
+    font-size: 0.95rem;
     padding: 0.9rem 1rem;
-    border-right: 2px solid #ca0013;
+    border-right: 1px solid #ca0013;
   }
   .transformation-header .transformation-col.after {
-    border-right: 2px solid #ca0013;
+    border-right: 1px solid #ca0013;
   }
   .transformation-arrow, .transformation-arrow-header {
     min-width: 2rem;
@@ -1370,14 +1440,14 @@
     border-radius: 0;
     overflow: visible;
     box-shadow: none;
-    border-bottom: 2px solid #ca0013;
+    border-bottom: 1px solid #ca0013;
     background: transparent;
   }
   .transformation-row .transformation-col {
     padding: 1.1rem 1.1rem;
-    font-size: 1.08rem;
+    font-size: 0.98rem;
     border-bottom: none;
-    border-right: 2px solid #ca0013;
+    border-right: 1px solid #ca0013;
     background: none;
     gap: 0.6rem;
   }
@@ -1389,7 +1459,7 @@
     border-right: none;
   }
   .transformation-header .transformation-arrow-header {
-    border-bottom: 2px solid #ca0013 !important;
+    border-bottom: 1px solid #ca0013 !important;
     background: transparent !important;
     margin-right: 0;
     min-width: 2.2rem;
@@ -1400,11 +1470,21 @@
 }
 
 @media (max-width: 600px) {
-  .transformation-title {
-    font-size: 1.75rem;
-  }
+      .transformation-title {
+        font-size: 1.75rem;
+    }
+    
+    .transformation-section {
+        padding: 4rem 0 2.5rem 0;
+    }
+    
+    .transformation-table {
+        max-width: 95vw;
+        margin: 0 auto;
+    }
+    
   .transformation-col {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -1442,7 +1522,7 @@
 
 /* This Is for You If Section */
 .for-you-section {
-    padding: 4rem 0;
+    padding: 5rem 0;
     background: transparent;
 }
 
@@ -1479,7 +1559,7 @@
     margin-bottom: 1.5rem;
     padding: 1rem;
     background: rgba(202, 0, 19, 0.05);
-    border: 2px solid rgba(202, 0, 19, 0.1);
+    border: 1px solid rgba(202, 0, 19, 0.1);
     border-radius: 8px;
     transition: none;
     text-align: left;
@@ -1529,7 +1609,7 @@
 
 @media (max-width: 600px) {
     .for-you-section {
-        padding: 3rem 0;
+        padding: 4rem 0;
     }
     
     .for-you-title {
@@ -1790,3 +1870,26 @@ main {
     padding: 0.9rem 1.8rem !important;
     border-radius: 4px !important;
 } 
+
+/* Desktop: 4 columns for What You'll Get cards */
+@media (min-width: 900px) {
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .feature-item {
+    max-width: none;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 600px) and (max-width: 899px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column (already handled) */ 
