@@ -27,7 +27,7 @@
     /* Start Here Section Styles */
     .start-here-section {
         background: #fffcf1;
-        padding: 5rem 0 4rem 0;
+        padding: 3rem 0 2rem 0;
         width: 100vw;
         display: flex;
         flex-direction: column;
@@ -60,6 +60,9 @@
         margin-bottom: 2.5rem;
         line-height: 1.7;
     }
+    .mobile-break {
+        display: none;
+    }
     .start-here-card-grid {
         display: flex;
         flex-direction: row;
@@ -70,14 +73,14 @@
         flex-wrap: wrap;
     }
     .start-here-card {
-        background: transparent;
-        border: 2px solid #ca0013;
+        background: #252526;
+        border: 2px solid #333333;
         border-radius: 10px;
         box-shadow: none;
         padding: 2.5rem 2rem 2rem 2rem;
         min-width: 260px;
         max-width: 340px;
-        flex: 1 1 320px;
+        flex: 1 1 300px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -91,27 +94,30 @@
         position: relative;
     }
     .start-here-card.card-red {
-        background: transparent;
-        color: #000;
-        border: 2px solid #ca0013;
+        background: #252526;
+        color: #fffcf1;
+        border: 2px solid #333333;
     }
     .start-here-card.card-red h3,
     .start-here-card.card-red p {
-        color: #000;
+        color: #fffcf1;
+    }
+    .start-here-card h3 {
+        color: #fffcf1;
     }
     .start-here-card p {
         font-family: 'DM Sans', sans-serif;
         font-size: 1.08rem;
         font-weight: 400;
-        color: #000;
-        margin-bottom: 2rem;
+        color: #fffcf1;
+        margin-bottom: 1.5rem;
     }
     .start-here-card.card-red p {
-        color: #000 !important;
+        color: #fffcf1 !important;
     }
     .start-here-card .btn {
         margin-top: auto;
-        width: 100%;
+        width: 80%;
         font-size: 0.92rem;
         font-family: 'DM Sans', sans-serif;
         font-weight: 700;
@@ -122,10 +128,10 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 1.5rem;
+        bottom: 2.5rem;
         margin-left: auto;
         margin-right: auto;
-        max-width: 85%;
+        max-width: 70%;
     }
     .start-here-card.card-red .btn {
         background: #ca0013;
@@ -147,7 +153,7 @@
             gap: 1rem;
         }
         .start-here-card {
-            max-width: 280px;
+            max-width: 300px;
             padding: 2rem 1rem 2rem 1rem;
             min-height: 340px;
         }
@@ -165,30 +171,39 @@
     }
     @media (max-width: 600px) {
         .start-here-section {
-            padding: 2.2rem 0 1.5rem 0;
+            padding: 1rem 0 0rem 0;
         }
         .start-here-title {
             font-size: 2rem !important;
         }
+        .start-here-title .mobile-break {
+            display: block;
+        }
         .start-here-subtext {
-            font-size: 1rem;
+            font-size: 1.25rem;
             margin-bottom: 1.5rem;
         }
         .start-here-card {
-            max-width: 95vw;
+            max-width: 90vw;
             min-width: 0;
             margin-bottom: 0;
             padding: 1.2rem 0.7rem 2rem 0.7rem;
             min-height: 300px;
             padding-bottom: 3.5rem !important;
         }
+        .start-here-card h3 {
+            color: #fffcf1 !important;
+        }
         .start-here-card p {
             font-size: 1.08rem !important;
             font-weight: 400 !important;
             line-height: 1.6 !important;
+            color: #fffcf1 !important;
         }
         .start-here-card .btn {
             margin-top: 0;
+            width: 75%;
+            max-width: 65%;
         }
         .start-here-card p:last-of-type {
             margin-bottom: 1.5rem !important;
@@ -264,46 +279,45 @@
             </div>
         </section>
 
+        <!-- BEGIN: Horizontal Scrolling Quotes Bar -->
+        <div class="scrolling-quotes-bar">
+          <div class="scrolling-quotes-track">
+            <span class="scrolling-quote">I STILL CARRY THINGS I'VE NEVER SAID OUT LOUD.</span>
+            <span class="scrolling-quote">I'M STILL HEALING.</span>
+            <span class="scrolling-quote">I DESERVE TO BE LOVED EXACTLY AS I AM.</span>
+            <span class="scrolling-quote">I WANT TO BE SEEN FOR WHO I AM.</span>
+            <span class="scrolling-quote">I'M NOT ALONE.</span>
+            <span class="scrolling-quote">I'M ALLOWED TO FEEL THIS.</span>
+            <span class="scrolling-quote">I TRUST WHERE I'M HEADED, EVEN IF I'M NOT THERE YET.</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="scrolling-quote">I STILL CARRY THINGS I'VE NEVER SAID OUT LOUD.</span>
+            <span class="scrolling-quote">I'M STILL HEALING.</span>
+            <span class="scrolling-quote">I DESERVE TO BE LOVED EXACTLY AS I AM.</span>
+            <span class="scrolling-quote">I WANT TO BE SEEN FOR WHO I AM.</span>
+            <span class="scrolling-quote">I'M NOT ALONE.</span>
+            <span class="scrolling-quote">I'M ALLOWED TO FEEL THIS.</span>
+            <span class="scrolling-quote">I TRUST WHERE I'M HEADED, EVEN IF I'M NOT THERE YET.</span>
+          </div>
+        </div>
+        <!-- END: Horizontal Scrolling Quotes Bar -->
+
         <section id="mission-section" class="mission-modern">
             <h2 class="mission-modern-title">
-              <span class="highlight">When You Heal Out Loud, Others Heal Too</span>
+              <span class="highlight">Your Healing Sets Others Free</span>
             </h2>
             <p class="mission-modern-text">
-              We're building a public healing movement — with tools, products, and spaces that help people feel it, say it, and let it out together. Most people carry pain with nowhere to release it. We're here to change that. What you wear, write, or share helps someone else feel seen and less alone.</p>
-            <p class="mission-modern-text"><strong>#HealingInPublic</strong></p>
+              We're building a public healing movement — with tools, products, and spaces that help people feel it, say it, and let it out together. Most people carry pain with nowhere to release it. We're here to change that. <span style="color: #ca0013;">What you wear, write, or share helps someone else feel seen and less alone.</span></p>
             <div class="mission-buttons">
                 <a href="info.html" class="btn btn-mission btn-mission-primary">Join the Movement</a>
                 <a href="shop/index.html" class="btn btn-mission">Shop the Collection</a>
             </div>
         </section>
 
-        <!-- BEGIN: Horizontal Scrolling Quotes Bar -->
-        <div class="scrolling-quotes-bar">
-          <div class="scrolling-quotes-track">
-            <span class="scrolling-quote">I STILL CARRY THINGS I'VE NEVER SAID OUT LOUD.</span>
-            <span class="scrolling-quote">I'M LEARNING TO FEEL AGAIN.</span>
-            <span class="scrolling-quote">I WANT TO BE SEEN FOR WHO I AM.</span>
-            <span class="scrolling-quote">I DON'T WANT TO HIDE ANYMORE.</span>
-            <span class="scrolling-quote">I'M STILL HEALING.</span>
-            <span class="scrolling-quote">I'M NOT ALONE.</span>
-            <span class="scrolling-quote">I'M ALLOWED TO FEEL THIS.</span>
-            <!-- Duplicate for seamless loop -->
-            <span class="scrolling-quote">I STILL CARRY THINGS I'VE NEVER SAID OUT LOUD.</span>
-            <span class="scrolling-quote">I'M LEARNING TO FEEL AGAIN.</span>
-            <span class="scrolling-quote">I WANT TO BE SEEN FOR WHO I AM.</span>
-            <span class="scrolling-quote">I DON'T WANT TO HIDE ANYMORE.</span>
-            <span class="scrolling-quote">I'M STILL HEALING.</span>
-            <span class="scrolling-quote">I'M NOT ALONE.</span>
-            <span class="scrolling-quote">I'M ALLOWED TO FEEL THIS.</span>
-          </div>
-        </div>
-        <!-- END: Horizontal Scrolling Quotes Bar -->
-
         <!-- Start Here Section -->
         <section class="start-here-section">
             <div class="start-here-content">
-                <h2 class="start-here-title" style="color: #ca0013;">BEGIN YOUR HEALING IN PUBLIC</h2>
-                <div class="start-here-subtext" style="color: #ca0013;">Feel it. Say it. Wear it. Let it out. When you heal, others can too.</div>
+                <h2 class="start-here-title" style="color: #ca0013;">This Is Where<br class="mobile-break"> Healing Begins</h2>
+                <div class="start-here-subtext" style="color: #000000;">Feel it. Write it. Wear it. Say it.</div>
                 <div class="start-here-card-grid">
                     <!-- Card 1 -->
                     <div class="start-here-card">
@@ -315,7 +329,7 @@
                           </svg>
                         </div>
                         <h3>LET IT OUT</h3>
-                        <p>Your public journal<br>Write what you're holding in<br>Anonymous. No judgment</p>
+                        <p>Write what you're holding in<br>Release what you're carrying<br>Anonymous. No judgment</p>
                         <div class="card-spacer"></div>
                         <a href="letitout.html" class="btn btn-primary">LET IT OUT &rarr;</a>
                     </div>
@@ -330,7 +344,7 @@
                           </svg>
                         </div>
                         <h3>Shop Still Healing</h3>
-                        <p>Wear what you feel<br>This isn't just merch<br>A mirror for what we carry</p>
+                        <p>Wear what you feel<br>Every piece is a mirror<br>Truth you can carry</p>
                         <div class="card-spacer"></div>
                         <a href="shop/index.html" class="btn btn-primary">VIEW COLLECTION &rarr;</a>
                     </div>
@@ -346,7 +360,7 @@
                           </svg>
                         </div>
                         <h3>The Heart Room</h3>
-                        <p>Live confessional show<br>Real people. Raw stories<br>Streaming on TikTok Live</p>
+                        <p>Say what you never said<br>Watch or share your story<br>Streaming on TikTok Live</p>
                         <div class="card-spacer"></div>
                         <a href="theheartroom.html" class="btn btn-primary">ENTER THE ROOM &rarr;</a>
                     </div>
@@ -362,7 +376,7 @@
             </div>
             
             <div class="newsletter">
-                <h3>Ready to Be Part of the Movement?</h3>
+                <h3 class="newsletter-title">Join the Movement</h3>
                 <p class="newsletter-subtext">Gentle reminders, heartfelt drops, and honest reflections — sent with love.</p>
                 <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
                     <div class="form-group">
@@ -511,9 +525,12 @@
             scrollCue.addEventListener('click', function() {
                 const missionSection = document.getElementById('mission-section');
                 if (missionSection) {
+                    // Check if mobile
+                    const isMobile = window.innerWidth <= 600;
+                    
                     missionSection.scrollIntoView({ 
                         behavior: 'smooth',
-                        block: 'start'
+                        block: isMobile ? 'center' : 'start'
                     });
                 }
             });

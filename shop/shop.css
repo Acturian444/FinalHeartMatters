@@ -3,9 +3,9 @@
 /* Shop Hero Section */
 .shop-hero {
     color: #fff;
-    padding: 4rem 1rem 0 1rem;
+    padding: 3rem 1rem 0 1rem;
     text-align: center;
-    height: 600px;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,18 +84,18 @@
 
 /* Shop Sections */
 .shop-section {
-    padding: 4rem 0;
+    padding: 3rem 0;
     background: #fffcf1;
 }
 
 /* Reduce spacing below 'What You Wear Matters' section */
 .shop-section:first-of-type {
-    padding-bottom: 2rem !important;
+    padding-bottom: 1.5rem !important;
 }
 
 .shop-section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -121,7 +121,7 @@
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
@@ -292,7 +292,7 @@
     
     .product-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2.5rem;
+        gap: 2rem;
         padding: 0 0.5rem;
     }
     
@@ -322,7 +322,7 @@
     }
     
     .shop-hero {
-        height: 350px;
+        height: 300px;
     }
 }
 
@@ -343,11 +343,11 @@
     }
     
     .shop-section {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
     
     .shop-section-header {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         padding: 0 1rem;
     }
     
@@ -361,7 +361,7 @@
     
     .product-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
         padding: 0 1rem;
     }
     
@@ -385,7 +385,7 @@
     }
     
     .shop-hero {
-        height: 220px;
+        height: 200px;
     }
 }
 

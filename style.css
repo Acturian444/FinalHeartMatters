@@ -243,7 +243,7 @@ main {
 }
 
 section {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     width: 100%;
     padding: 0;
     background: none;
@@ -261,8 +261,8 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 90vh;
-    padding: 6rem 2rem;
+    min-height: 70vh;
+    padding: 4rem 2rem;
     background: none;
     border-radius: 0;
     box-sizing: border-box;
@@ -387,15 +387,15 @@ section {
 
 @media (min-width: 601px) and (max-width: 900px) {
     .hero {
-        min-height: 80vh;
-        padding: 5rem 1.5rem;
+        min-height: 65vh;
+        padding: 3.5rem 1.5rem;
     }
 }
 
 @media (max-width: 600px) {
     .hero {
-        min-height: 80vh;
-        padding: 3.5rem 1rem;
+        min-height: 65vh;
+        padding: 2.5rem 1rem;
     }
     .hero-bg-video {
         object-position: 10% center !important;
@@ -416,17 +416,18 @@ section {
 .mission-modern {
     background: #fffcf1;
     color: #ca0013;
-    min-height: 100vh;
+    min-height: 80vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 3rem;
+    padding: 0 3rem 0.5rem 3rem;
     gap: 2rem;
     position: relative;
     overflow: hidden;
     margin-bottom: 0;
+    margin-top: -0.5rem;
     z-index: 1;
 }
 
@@ -443,7 +444,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2.5rem 0 0.7rem 0;
+    margin: 2rem 0 0.5rem 0;
     background: none;
     text-transform: none;
     text-align: center;
@@ -460,6 +461,7 @@ section {
     max-width: 700px;
     padding: 0 1rem;
     font-family: 'DM Sans', sans-serif;
+    color: #000000;
 }
 
 .mission-buttons {
@@ -467,7 +469,8 @@ section {
     gap: 1rem;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 .btn-mission {
@@ -554,16 +557,22 @@ section {
     .mission-modern {
         background: #fffcf1;
         color: #ca0013;
-        padding: 2rem 1.5rem;
-    }
-    .mission-modern-title,
-    .mission-modern-text {
-        color: #ca0013;
+        padding: 2rem 1.5rem 1rem 1.5rem;
     }
     .mission-modern-title {
+        color: #ca0013;
         font-size: 2.2rem;
     }
     .mission-modern-text {
+        color: #000000;
+        font-size: 1.1rem;
+        max-width: 95vw;
+    }
+    
+    .newsletter-title {
+        font-size: 2.2rem;
+    }
+    .newsletter-subtext {
         font-size: 1.1rem;
         max-width: 95vw;
     }
@@ -573,32 +582,43 @@ section {
     .mission-modern {
         background: #fffcf1;
         color: #ca0013;
-        padding: 1.5rem 1rem 3rem 1rem;
-        min-height: 80vh;
-    }
-    .mission-modern-title,
-    .mission-modern-text {
-        color: #ca0013;
+        padding: 1rem 1rem 1rem 1rem;
+        min-height: 70vh;
+        margin-top: 3rem;
+        margin-bottom: 0.5rem;
     }
     .mission-modern-title {
+        color: #ca0013;
         font-size: 2rem;
         margin-top: 1.2rem;
         margin-bottom: 0.5rem;
     }
     .mission-modern-text {
+        color: #000000;
         font-size: 1rem;
         max-width: 98vw;
     }
     .mission-buttons {
         flex-direction: column;
         gap: 0.8rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     .btn-mission {
         width: 100%;
         max-width: 290px;
         padding: 0.85rem 1.2rem;
         font-size: 1rem;
+    }
+    
+    .newsletter-title {
+        font-size: 2rem !important;
+        margin-top: 1.2rem;
+        margin-bottom: 0.5rem;
+        white-space: nowrap;
+    }
+    .newsletter-subtext {
+        font-size: 1rem;
+        max-width: 98vw;
     }
 }
 
@@ -615,12 +635,12 @@ section {
 
 /* Feature Section */
 .feature {
-    min-height: 40vh;
+    min-height: 35vh;
     display: flex;
     align-items: center;
-    padding: 3rem 0;
+    padding: 2rem 0;
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
 }
 
 .feature .content {
@@ -697,13 +717,42 @@ footer {
 
 .newsletter {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .newsletter h3 {
     margin-bottom: 1.5rem;
     color: #ca0013;
     text-transform: uppercase !important;
+}
+
+.newsletter-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0 0.5rem 0;
+    background: none;
+    text-transform: none;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0 1rem;
+    color: #ca0013;
+}
+
+.newsletter-subtext {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.7;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 0 1rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #666666;
 }
 
 .newsletter .social-links {
@@ -725,7 +774,7 @@ footer {
 .form-group input {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 2px solid #000000;
+    border: 2px solid #999999;
     border-radius: 4px;
     background: transparent;
     color: #000000;
@@ -966,9 +1015,9 @@ footer {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: 100vh;
-    min-height: 600px;
-    max-height: 1080px;
+    height: 90vh;
+    min-height: 500px;
+    max-height: 900px;
     margin: 0 auto;
     padding: 0;
     background: url('images/The-Heart-Room Section.png') center center/cover no-repeat;
@@ -980,7 +1029,7 @@ footer {
     text-align: center;
     width: auto;
     max-width: 800px;
-    margin: 4rem auto 3rem auto;
+    margin: 3rem auto 2rem auto;
     padding: 0 2rem;
     color: #fff;
     font-size: 1.6rem;
@@ -1037,7 +1086,7 @@ footer {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .feature-action .btn {
@@ -1054,24 +1103,24 @@ footer {
 
 @media (max-width: 900px) {
     .feature.modern-section {
-        min-height: 500px;
+        min-height: 400px;
         background-position: center center;
     }
     .feature-above-door {
         font-size: 1.4rem;
         max-width: 90%;
         padding: 0 1.5rem;
-        margin: 3rem auto 2rem auto;
+        margin: 2rem auto 1.5rem auto;
         line-height: 1.5;
     }
 }
 
 @media (max-width: 600px) {
     .feature-action {
-        margin-top: 4rem !important;
+        margin-top: 3rem !important;
     }
     .feature.modern-section {
-        min-height: 400px;
+        min-height: 350px;
         padding-top: 0;
         margin-top: 0;
         display: flex;
@@ -1081,7 +1130,7 @@ footer {
         background-position: center center;
     }
     .feature-above-door {
-        margin-top: 2.5rem !important;
+        margin-top: 2rem !important;
     }
 }
 
@@ -1432,7 +1481,7 @@ footer {
 #join {
     text-align: center;
     width: 100vw;
-    padding: 6rem 0 4rem 0;
+    padding: 4rem 0 2rem 0;
     background-color: #fffcf1;
     margin-bottom: 0;
 }
@@ -1503,7 +1552,7 @@ footer {
 /* Mobile Responsive Adjustments */
 @media (max-width: 900px) {
     #join {
-        padding: 4rem 0 3rem 0;
+        padding: 3rem 0 2rem 0;
     }
     
     #join .section-heading {
@@ -1519,7 +1568,7 @@ footer {
 
 @media (max-width: 600px) {
     #join {
-        padding: 3rem 0 2rem 0;
+        padding: 2rem 0 1rem 0;
     }
     
     #join .content {
@@ -1901,19 +1950,20 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 
 /* --- Refined Scrolling Quotes Bar for Seamless Overlap --- */
 .scrolling-quotes-bar {
-  width: 100vw;
-  margin: 0;
-  background: #fffcf1;
-  border-top: 2px solid #ca0013;
-  border-bottom: 2px solid #ca0013;
-  border-radius: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  font-size: 1.05rem;
+    height: 3rem;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    background: #fffcf1;
+    color: #ca0013;
+    overflow: hidden;
+    width: 100vw;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ca0013;
+    z-index: 10;
+    position: relative;
 }
 
 .scrolling-quotes-track {
@@ -1926,16 +1976,13 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 }
 
 .scrolling-quote {
-  font-family: 'Anton', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #ca0013;
-  margin: 0 2rem;
-  letter-spacing: 1.5px;
-  display: inline-block;
-  white-space: nowrap;
-  padding: 0.1rem 0;
-  opacity: 0.95;
+    font-size: 1.6rem;
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    margin: 0 1.2rem;
+    white-space: nowrap;
+    color: #ca0013;
+    letter-spacing: 2px;
 }
 
 @keyframes marquee-scroll {
@@ -1943,33 +1990,20 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
   100% { transform: translateX(-50%); }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   .scrolling-quotes-bar {
-    width: 100vw;
-    padding: 0;
-    border-radius: 0;
-    font-size: 0.95rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ca0013;
   }
   .scrolling-quote {
-    font-size: 0.95rem;
-    margin: 0 1.2rem;
+    font-size: 1.2rem;
+    margin: 0 0.7rem;
+    letter-spacing: 1.5px;
   }
 }
 
-@media (max-width: 600px) {
-  .scrolling-quotes-bar {
-    width: 100vw;
-    padding: 0;
-    border-radius: 0;
-    font-size: 0.85rem;
-    top: 0;
-    margin-bottom: 2rem;
-  }
-  .scrolling-quote {
-    font-size: 0.85rem;
-    margin: 0 0.7rem;
-  }
-}
+
 
 @media (max-width: 600px) {
   .confirmation-message {
@@ -2391,4 +2425,19 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
 .show-title {
     font-size: 2rem !important;
 }
+} 
+
+.start-here-card h3 {
+    font-size: 1.55rem;
+    font-family: 'Anton', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .start-here-card h3 {
+        font-size: 1.25rem;
+    }
 } 
