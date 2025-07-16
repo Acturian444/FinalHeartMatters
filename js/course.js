@@ -390,7 +390,6 @@
     ctaContainer.innerHTML = `
       <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
         <div style="display: flex; align-items: center; gap: 1.2rem;">
-          <span class="cta-side-text">Say what you feel.</span>
           <button class="course-cta-btn" onclick="window.location.href='../letitout.html'">
             Let It Out
           </button>

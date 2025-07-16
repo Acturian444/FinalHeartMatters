@@ -1809,7 +1809,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 .form-success {
     display: none;
     margin-top: 1rem;
-    color: #4CAF50;
+    color: #ca0013;
     text-align: center;
 }
 
@@ -2442,7 +2442,7 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
 } 
 
 .start-here-card h3 {
-    font-size: 1.55rem;
+    font-size: 1.75rem;
     font-family: 'Anton', sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -2452,6 +2452,6 @@ header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5,
 
 @media (max-width: 600px) {
     .start-here-card h3 {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
     }
 } 

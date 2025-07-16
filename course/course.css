@@ -47,14 +47,37 @@ body {
   gap: 0.4em;
 }
 .info-icon {
-  font-size: 1.1em;
-  color: #bbb;
+  font-size: 1.2em;
+  color: #ca0013;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: rgba(202, 0, 19, 0.05);
+}
+
+.info-icon:hover {
+  color: #7a0010;
+  opacity: 1;
+  background: rgba(202, 0, 19, 0.1);
 }
 #courseReminder {
   font-size: 1.08rem;
   color: #555;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
   text-align: center;
+}
+
+/* Desktop-specific styling for course reminder */
+@media (min-width: 900px) {
+  #courseReminder {
+    font-size: 1.4rem;
+  }
 }
 
 /* Compact Mode Toggle */
@@ -106,7 +129,7 @@ body {
   letter-spacing: 0.5px;
 }
 .week-chevron {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #ca0013;
   transition: transform 0.2s;
 }
@@ -166,7 +189,7 @@ body {
   flex: 1;
 }
 .day-chevron {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: #ca0013;
   transition: transform 0.2s;
 }
@@ -310,6 +333,8 @@ body {
   margin-bottom: 0.7rem;
   font-family: 'DM Sans', sans-serif;
   font-size: 1.08rem;
+  text-align: center;
+  width: 100%;
 }
 .progress-week-dot {
   width: 1.1em;
@@ -439,10 +464,9 @@ body {
   width: 100%;
   margin: 0.7rem 0 1.2rem 0;
   height: 12px;
-  background: rgba(202, 0, 19, 0.05);
+  background: #f0f0f0;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(202,0,19,0.04);
 }
 .course-linear-bar {
   height: 100%;
@@ -457,7 +481,7 @@ body {
   color: #111;
   font-size: 2.7rem;
   text-align: center;
-  margin: 2.2rem 0 1.2rem 0;
+  margin: 2.2rem 0 0.5rem 0;
   letter-spacing: 1px;
   font-weight: 700;
 }
@@ -612,7 +636,6 @@ body {
 .journal-textarea:focus {
   outline: none;
   border-color: #ca0013;
-  box-shadow: 0 0 0 3px rgba(202, 0, 19, 0.1);
 }
 
 .journal-textarea::placeholder {
