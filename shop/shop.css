@@ -120,14 +120,14 @@
 /* Product Grid */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
 }
 
-/* Product Cards - Simplified Floating Design */
+/* Product Cards - Rounded Edge Design (matching "This Is Where Healing Begins" cards) */
 .product-card {
     display: flex;
     flex-direction: column;
@@ -137,7 +137,9 @@
     background: transparent;
     border: none;
     box-shadow: none;
+    border-radius: 10px;
     transition: transform 0.3s ease;
+    overflow: hidden;
 }
 
 .product-card:hover {
@@ -151,11 +153,12 @@
 .product-image {
     position: relative;
     width: 100%;
-    max-width: 300px;
-    height: 300px;
+    max-width: 380px;
+    height: 380px;
     overflow: hidden;
     background: transparent;
     margin-bottom: 1.5rem;
+    border-radius: 10px;
 }
 
 .product-image img {
@@ -163,6 +166,7 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    border-radius: 10px;
 }
 
 .product-card:hover .product-image img {
@@ -174,7 +178,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0;
-    max-width: 280px;
+    max-width: 360px;
 }
 
 .product-content h3 {
@@ -291,7 +295,7 @@
     }
     
     .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
         gap: 2rem;
         padding: 0 0.5rem;
     }
@@ -301,8 +305,9 @@
     }
     
     .product-image {
-        max-width: 280px;
-        height: 280px;
+        max-width: 360px;
+        height: 360px;
+        border-radius: 10px;
     }
     
     .nav-dropdown-menu {
@@ -366,9 +371,10 @@
     }
     
     .product-image {
-        max-width: 260px;
-        height: 260px;
+        max-width: 340px;
+        height: 340px;
         margin-bottom: 1.25rem;
+        border-radius: 10px;
     }
     
     .product-content h3 {

@@ -189,7 +189,7 @@
         <section class="shop-section">
             <div class="container">
                 <div class="shop-section-header">
-                    <h2>Healing Courses</h2>
+                    <h2 style="color: #ca0013;">Healing Courses</h2>
                     <p>Tools to help you heal and grow.</p>
                 </div>
                 <div class="product-grid">
@@ -210,19 +210,6 @@
 
     <footer id="footer">
         <div class="footer-content">
-            <div class="footer-main">
-                <div class="social-links">
-                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-tiktok"></i>
-                        <span>TikTok</span>
-                    </a>
-                </div>
-            </div>
-            
             <div class="newsletter">
                 <h3>WANT TO BE PART OF THE MOVEMENT?</h3>
                 <p class="newsletter-subtext">Get drops, stories, and reminders that speak to your heart.</p>
@@ -233,10 +220,21 @@
                     <div class="form-group">
                         <input type="tel" name="entry.673635167" placeholder="Phone (optional)">
                     </div>
-                    <button type="submit" class="btn btn-primary">Join Us</button>
+                    <button type="submit" class="btn-main">Join the Movement</button>
                 </form>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
                 <div id="form-success" class="form-success">Thank you for signing up!</div>
+                
+                <div class="social-links" style="margin-top: 2rem;">
+                    <a href="https://www.instagram.com/heartmatters__/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@heartmatters__?lang=en" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
             </div>
             
             <div class="copyright">
@@ -269,7 +267,7 @@
             setTimeout(function() {
                 form.reset();
                 submitButton.disabled = false;
-                submitButton.textContent = 'Join Us';
+                submitButton.textContent = 'Join the Movement';
                 document.getElementById('form-success').style.display = 'block';
                 setTimeout(function() {
                     document.getElementById('form-success').style.display = 'none';

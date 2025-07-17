@@ -3,7 +3,7 @@
 /* Product Hero */
 .product-hero {
     background: #fffcf1;
-    padding: 5rem 0 0 0;
+    padding: 8rem 0 0 0; /* Increased from 5rem for better separation from fixed header */
     height: 85vh;
     display: flex;
     align-items: center;
@@ -56,7 +56,7 @@
 .product-hero-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem; /* Increased from 3rem */
+    gap: 2.5rem; /* Reduced from 4rem for better balance */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -70,7 +70,7 @@
     order: 1;
     position: relative;
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem; /* Reduced from 1.5rem for tighter spacing */
     max-width: 900px;
     width: 100%;
 }
@@ -166,7 +166,7 @@
     font-family: 'Anton', sans-serif;
     font-size: 3rem;
     color: #000;
-    margin-bottom: 0.5rem; /* Reduced from 1rem */
+    margin-bottom: 1.5rem; /* Increased from 0.5rem for better spacing */
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.1;
@@ -176,12 +176,12 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 1.3rem; /* Increased from 1.1rem */
     color: #666;
-    margin-bottom: 0.75rem; /* Reduced from 2rem */
+    margin-bottom: 1.5rem; /* Increased from 0.75rem for better spacing */
     font-weight: 500;
 }
 
 .product-price {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced from 2rem for better balance */
     margin-top: 0; /* Ensure no extra space above */
 }
 
@@ -208,7 +208,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.7px;
-    margin-top: 2rem; /* Added spacing above the CTA button */
+    margin-top: 1.5rem; /* Reduced from 2rem for better balance */
 }
 
 .btn-large i {
@@ -225,7 +225,7 @@
 
 /* Product Details & Story */
 .product-details-story {
-    padding: 1.5rem 0 1.2rem 0; /* Further reduced for less space above and below */
+    padding: 12rem 0 4rem 0; /* Reduced bottom padding for better section separation */
     background: #fffcf1;
 }
 
@@ -270,7 +270,7 @@
     font-size: 1rem;
     color: #333;
     line-height: 1.6;
-    margin-bottom: 0.15rem; /* Reduced from 0.3rem */
+    margin-bottom: 0.5rem; /* Increased from 0.15rem for better readability */
     padding-left: 1.5rem;
     position: relative;
 }
@@ -322,13 +322,13 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 600px;
-    padding-top: 0.5rem; /* Further reduced */
-    padding-bottom: 0.5rem; /* Further reduced */
+    padding-top: 1rem; /* Increased from 0.5rem */
+    padding-bottom: 1rem; /* Increased from 0.5rem */
 }
 
 /* You May Also Like Section */
 .you-may-also-like {
-    padding: 4rem 0;
+    padding: 6rem 0 8rem 0; /* Reduced top padding for better section separation */
     background: #fffcf1;
 }
 
@@ -785,12 +785,12 @@
 @media (max-width: 900px) {
     .product-hero-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.5rem; /* Increased from 2rem for better mobile spacing */
         text-align: center;
         max-width: 100%;
     }
     .product-hero {
-        padding: 3rem 0;
+        padding: 6rem 0 0 0; /* Increased top padding for better mobile separation */
     }
     .product-hero-image {
         order: 1;
@@ -801,10 +801,12 @@
     
     .product-hero-text h1 {
         font-size: 2.5rem;
+        margin-bottom: 1.25rem; /* Added proper spacing for tablet */
     }
     
     .product-subtitle {
         font-size: 1.25rem;
+        margin-bottom: 1.25rem; /* Added proper spacing for tablet */
     }
     
     .price {
@@ -858,17 +860,19 @@
 
 @media (max-width: 600px) {
     .product-hero {
-        padding: 3rem 0;
+        padding: 5rem 0 0 0; /* Increased top padding for better mobile separation */
         min-height: auto;
     }
     
     .product-hero-text h1 {
         font-size: 2.2rem;
         letter-spacing: 0.5px;
+        margin-bottom: 1rem; /* Added proper spacing for mobile */
     }
     
     .product-subtitle {
         font-size: 1.15rem;
+        margin-bottom: 1rem; /* Added proper spacing for mobile */
     }
     
     .price {
@@ -886,7 +890,7 @@
     }
     
     .product-details-story {
-        padding: 1rem 0 0.7rem 0; /* Further reduced for mobile */
+        padding: 8rem 0 3rem 0; /* Reduced bottom padding for better mobile spacing */
     }
 
     .product-description,
@@ -895,7 +899,7 @@
     .testimonial-section,
     .final-cta,
     .product-features {
-        padding: 3rem 0;
+        padding: 4rem 0; /* Reduced from 8rem for better mobile section separation */
     }
     
     .product-details h2,
@@ -1657,7 +1661,7 @@
   .product-image-gallery {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.75rem; /* Reduced from 1.5rem for tighter spacing */
     max-width: 900px;
     width: 100%;
   }
@@ -1670,9 +1674,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem; /* Reduced from 1.25rem for tighter spacing */
     width: 100%;
-    margin-top: 1.5rem;
+    margin-top: 1rem; /* Reduced from 1.5rem for tighter spacing */
   }
   .thumbnail {
     width: 100px;
@@ -1830,11 +1834,11 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 main {
-    padding-top: 60px !important;
+    padding-top: 80px !important; /* Increased from 60px for better separation */
 }
 .product-hero {
     margin-top: 0 !important;
-    padding-top: 2rem !important;
+    padding-top: 4rem !important; /* Increased from 2rem for better separation */
 }
 
 @media (max-width: 600px) {
