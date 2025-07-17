@@ -62,7 +62,7 @@
     .start-here-card-grid {
         display: flex;
         flex-direction: row;
-        gap: 1.5rem;
+        gap: 1rem;
         width: 100%;
         justify-content: center;
         align-items: stretch;
@@ -73,10 +73,10 @@
         border: none;
         border-radius: 10px;
         box-shadow: none;
-        padding: 2.5rem 2rem 2rem 2rem;
-        min-width: 260px;
-        max-width: 340px;
-        flex: 1 1 300px;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        min-width: 220px;
+        max-width: 280px;
+        flex: 1 1 250px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -85,8 +85,8 @@
         margin-bottom: 0;
 
         height: 100%;
-        min-height: 370px;
-        max-height: 340px;
+        min-height: 320px;
+        max-height: 320px;
         position: relative;
     }
     .start-here-card.card-red {
@@ -148,7 +148,7 @@
         text-decoration: none !important;
         color: inherit !important;
         cursor: pointer !important;
-        transition: all 0.3s ease, background-size 0.3s ease !important;
+        transition: all 0.3s ease !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -191,7 +191,7 @@
     
     .start-here-clickable:hover,
     .start-here-clickable:focus {
-        background-size: 110% !important;
+        /* Removed background-size zoom to prevent grey bars */
     }
     
     .start-here-clickable:focus {
@@ -215,12 +215,12 @@
             max-width: 960px;
         }
         .start-here-card-grid {
-            gap: 1rem;
+            gap: 0.8rem;
         }
         .start-here-card {
-            max-width: 300px;
-            padding: 2rem 1rem 2rem 1rem;
-            min-height: 340px;
+            max-width: 240px;
+            padding: 1.8rem 1rem 1.5rem 1rem;
+            min-height: 300px;
         }
     }
     @media (min-width: 601px) and (max-width: 900px) {
@@ -247,6 +247,10 @@
         .start-here-subtext {
             font-size: 1.25rem;
             margin-bottom: 1.5rem;
+        }
+        .start-here-card-grid {
+            flex-direction: column;
+            gap: 1rem;
         }
         .start-here-card {
             max-width: 90vw;
@@ -382,7 +386,7 @@
         <section class="start-here-section">
             <div class="start-here-content">
                 <h2 class="start-here-title" style="color: #ca0013;">This Is Where<br class="mobile-break"> Healing Begins</h2>
-                <div class="start-here-subtext" style="color: #000000;">Feel it. Write it. Wear it. Say it.</div>
+                <div class="start-here-subtext" style="color: #000000;">Feel it. Write it. Wear it. Say it. Heal it.</div>
                 <div class="start-here-card-grid">
                     <!-- Card 1 -->
                     <a href="letitout.html" class="start-here-card start-here-clickable" style="background: url('images/letitoutcard.jpg') center center/cover no-repeat;">
@@ -422,6 +426,17 @@
                         </div>
                         <h3>The Heart Room</h3>
                         <p>Say what you never said<br>Watch or share your story<br>Streaming on TikTok Live</p>
+                    </a>
+                    <!-- Card 4 -->
+                    <a href="product/breakup-course.html" class="start-here-card card-red start-here-clickable" style="background: url('images/healfromhearkbreakcard.jpg') center center/cover no-repeat;">
+                        <div class="start-here-icon" aria-hidden="true" style="margin-bottom: 1rem;">
+                          <!-- Heart Icon -->
+                          <svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#fffcf1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                          </svg>
+                        </div>
+                        <h3>HEAL FROM HEARTBREAK</h3>
+                        <p>Breakup recovery course<br>22 days of tools to let go</p>
                     </a>
                 </div>
             </div>
