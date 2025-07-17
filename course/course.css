@@ -442,22 +442,36 @@ body {
 
 /* --- End of course.css --- */
 
-.intro-checkmark {
+/* Unify week and day checkmark icons */
+.week-checkmark, .intro-checkmark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-left: 0.5em;
   vertical-align: middle;
-  width: 1.1em;
-  height: 1.1em;
-  padding: 0;
-  background: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ca0013;
   box-shadow: none;
+  padding: 0;
+  overflow: hidden;
 }
-.intro-checkmark svg {
+.week-checkmark svg, .intro-checkmark svg {
   display: block;
   width: 1.1em;
   height: 1.1em;
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .week-checkmark, .intro-checkmark {
+    width: 20px;
+    height: 20px;
+  }
+  .week-checkmark svg, .intro-checkmark svg {
+    width: 1em;
+    height: 1em;
+  }
 }
 
 #courseLinearProgress {

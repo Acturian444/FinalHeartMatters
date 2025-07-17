@@ -5,6 +5,8 @@
   const UNLOCK_KEY = `courseUnlocked_${COURSE_ID}`;
   const PROGRESS_KEY = `courseProgress_${COURSE_ID}`;
   const VIEW_MODE_KEY = `courseViewMode_${COURSE_ID}`;
+  const LAST_OPENED_DAY_KEY = `lastOpenedDay_${COURSE_ID}`;
+  const ACCORDION_STATE_KEY = `accordionState_${COURSE_ID}`;
   const course = window.COURSES[COURSE_ID];
 
   // SVG icons
@@ -94,7 +96,44 @@
     renderWeeksAndDays();
   }
 
-  // --- 5. Week management ---
+  // --- 5. State management ---
+  function getAccordionState() {
+    try {
+      return JSON.parse(localStorage.getItem(ACCORDION_STATE_KEY)) || {
+        intro: { accordion: true, before: true, day0: true },
+        weeks: Array(course.weeks.length).fill(false), // Default to closed
+        days: Array(course.days.length).fill(false) // Default to closed
+      };
+    } catch {
+      return {
+        intro: { accordion: true, before: true, day0: true },
+        weeks: Array(course.weeks.length).fill(false),
+        days: Array(course.days.length).fill(false)
+      };
+    }
+  }
+
+  function setAccordionState(state) {
+    try {
+      localStorage.setItem(ACCORDION_STATE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn('Could not save accordion state to localStorage:', e);
+    }
+  }
+
+  function updateAccordionState(type, key, value) {
+    const state = getAccordionState();
+    if (type === 'intro') {
+      state.intro[key] = value;
+    } else if (type === 'week') {
+      state.weeks[key] = value;
+    } else if (type === 'day') {
+      state.days[key] = value;
+    }
+    setAccordionState(state);
+  }
+
+  // --- 6. Week management ---
   function getCurrentWeek() {
     const progress = getProgress();
     const lastCompleted = Math.max(...progress.completedDays, 0);
@@ -114,7 +153,7 @@
     return progress.lastUnlocked >= week.startDay;
   }
 
-  // --- 6. Render functions ---
+  // --- 7. Render functions ---
   function renderProgressBar() {
     const progress = getProgress();
     // Only count days > 0 (exclude Day 0 introduction)
@@ -140,8 +179,22 @@
   }
 
   function renderReminder() {
+    const progress = getProgress();
+    // Only count days > 0 (exclude Day 0 introduction)
+    const completedCount = progress.completedDays.filter(day => day > 0).length;
+    const totalDays = course.days.filter(d => d.day > 0).length;
+
+    let reminderText;
+    if (completedCount === totalDays) {
+      // All 22 days completed, with mobile line break after 'day.'
+      reminderText = "You made it to the last day.<span class=\"mobile-br\"></span> That says everything.";
+    } else {
+      // Default message with mobile line break after 'again.'
+      reminderText = "This is where you begin again.<span class=\"mobile-br\"></span> One day at a time.";
+    }
+
     document.getElementById('courseReminder').innerHTML = `
-      Your healing journey starts here.
+      ${reminderText}
     `;
   }
 
@@ -168,17 +221,20 @@
     introAccordionOpen = !introAccordionOpen;
     localStorage.setItem(INTRO_ACCORDION_KEY, introAccordionOpen);
     window.__introAccordionOpen = introAccordionOpen;
+    updateAccordionState('intro', 'accordion', introAccordionOpen);
     renderWeeksAndDays();
   }
   function toggleIntroSection(section) {
     introOpen[section] = !introOpen[section];
     window.__introOpen = introOpen;
+    updateAccordionState('intro', section, introOpen[section]);
     renderWeeksAndDays();
   }
 
   function renderWeeksAndDays() {
     const weeksContainer = document.getElementById('courseWeeks');
     const currentWeek = getCurrentWeek();
+    const accordionState = getAccordionState();
     let html = '';
 
     // Render Introduction (always visible)
@@ -190,20 +246,25 @@
     const introLabel = introTitleParts[0] + ':';
     const introName = introTitleParts[1];
     
+    // Use saved state or default
+    const introAccordionState = accordionState.intro.accordion !== undefined ? accordionState.intro.accordion : true;
+    const introBeforeState = accordionState.intro.before !== undefined ? accordionState.intro.before : true;
+    const introDay0State = accordionState.intro.day0 !== undefined ? accordionState.intro.day0 : true;
+    
     html += `
       <div class="course-week-accordion">
         <div class="week-header" onclick="toggleIntroAccordion()">
           <div class="week-title"><span style="color: #000;">${introLabel}</span> <span style="color: #ca0013;">${introName}</span>${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
-          <div class="week-chevron ${introAccordionOpen ? 'expanded' : ''}" id="intro-chevron">˅</div>
+          <div class="week-chevron ${introAccordionState ? 'expanded' : ''}" id="intro-chevron">˅</div>
         </div>
-        <div class="week-content ${introAccordionOpen ? 'expanded' : ''}" id="intro-content">
+        <div class="week-content ${introAccordionState ? 'expanded' : ''}" id="intro-content">
           <div class="course-day-item">
             <div class="day-header unlocked" onclick="toggleIntroSection('before');event.stopPropagation()">
               <div class="day-icon">${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ICONS.book}</div>
               <div class="day-title">Before You Begin</div>
-              <div class="day-chevron ${introOpen.before ? 'expanded' : ''}">˅</div>
+              <div class="day-chevron ${introBeforeState ? 'expanded' : ''}">˅</div>
             </div>
-            <div class="day-content ${introOpen.before ? 'expanded' : ''}">
+            <div class="day-content ${introBeforeState ? 'expanded' : ''}">
               <div class="day-content-inner">
                 <div class="day-section">
                   <div class="day-section-label">${intro.label}</div>
@@ -216,9 +277,9 @@
             <div class="day-header unlocked" onclick="toggleIntroSection('day0');event.stopPropagation()">
               <div class="day-icon">${isDay0Completed ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ICONS.book}</div>
               <div class="day-title">${intro.day0.title}</div>
-              <div class="day-chevron ${introOpen.day0 ? 'expanded' : ''}">˅</div>
+              <div class="day-chevron ${introDay0State ? 'expanded' : ''}">˅</div>
             </div>
-            <div class="day-content ${introOpen.day0 ? 'expanded' : ''}">
+            <div class="day-content ${introDay0State ? 'expanded' : ''}">
               <div class="day-content-inner">
                 <div class="day-section"><div class="day-section-label">TODAY'S READING</div><div class="day-section-content">${intro.day0.reading}</div></div>
                 <div class="day-section"><div class="day-section-label">YOUR TASK</div><div class="day-section-content">${intro.day0.task}</div></div>
@@ -267,13 +328,16 @@
       const weekNumberColor = isUnlocked ? '#000' : '#bbb';
       const weekNameColor = isUnlocked ? '#ca0013' : '#bbb';
       
+      // Use saved week state or default
+      const weekState = accordionState.weeks[weekIndex] !== undefined ? accordionState.weeks[weekIndex] : isExpanded;
+      
       html += `
         <div class=\"course-week-accordion\">
           <div class=\"week-header ${lockedClass}\" onclick=\"${isUnlocked ? `toggleWeek(${weekIndex})` : ''}\">
-            ${lockIcon}<div class=\"week-title\"><span style=\"color: ${weekNumberColor};\">${weekNumber}</span> <span style=\"color: ${weekNameColor};\">${weekName}</span>${allDaysCompleted ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ''}</div>
-            <div class=\"week-chevron ${isExpanded ? 'expanded' : ''}\" id=\"week-${weekIndex}-chevron\">˅</div>
+            ${lockIcon}<div class=\"week-title\"><span style=\"color: ${weekNumberColor};\">${weekNumber}</span> <span style=\"color: ${weekNameColor};\">${weekName}</span>${allDaysCompleted ? '<span class="week-checkmark">' + ICONS.check + '</span>' : ''}</div>
+            <div class=\"week-chevron ${weekState ? 'expanded' : ''}\" id=\"week-${weekIndex}-chevron\">˅</div>
           </div>
-          <div class=\"week-content ${isExpanded ? 'expanded' : ''}\" id=\"week-${weekIndex}-content\">
+          <div class=\"week-content ${weekState ? 'expanded' : ''}\" id=\"week-${weekIndex}-content\">
       `;
       // Render days in this week
       for (let day = week.startDay; day <= week.endDay; day++) {
@@ -281,16 +345,19 @@
         if (!dayData) continue;
         const isUnlocked = isDayUnlocked(day);
         const isCompleted = isDayCompleted(day);
-        const statusClass = isUnlocked ? '' : 'locked';
-        // Always use the same checkmark icon as Introduction
-        const statusIcon = isUnlocked ? (isCompleted ? '<span class=\"intro-checkmark\">' + ICONS.check + '</span>' : ICONS.book) : ICONS.lock;
-        const clickHandler = isUnlocked ? `onclick=\"toggleDay(${day})\"` : '';
+        const lockedClass = isUnlocked ? '' : 'locked';
+        const lockIcon = isUnlocked ? '' : `<span class=\"lock-icon\">${ICONS.lock}</span>`;
+        const checkIcon = isCompleted ? ICONS.check : ICONS.book;
+        
+        // Use saved day state or default to false (closed)
+        const dayState = accordionState.days[day] !== undefined ? accordionState.days[day] : false;
+        
         html += `
           <div class=\"course-day-item\" data-day=\"${day}\">
-            <div class=\"day-header ${statusClass}\" ${clickHandler}>
-              <div class=\"day-icon\">${statusIcon}</div>
-              <div class=\"day-title\">${dayData.title}</div>
-              ${isUnlocked ? '<div class=\"day-chevron\" id=\"day-' + day + '-chevron\">˅</div>' : ''}
+            <div class=\"day-header ${lockedClass}\" ${isUnlocked ? `onclick=\"toggleDay(${day})\"` : ''}>
+              <div class=\"day-icon\">${checkIcon}</div>
+              <div class=\"day-title\">Day ${day}</div>
+              <div class=\"day-chevron ${dayState ? 'expanded' : ''}\" id=\"day-${day}-chevron\">˅</div>
             </div>
             ${isUnlocked ? `
               <div class=\"day-content\" id=\"day-${day}-content\">
@@ -344,16 +411,14 @@
     weeksContainer.innerHTML = html;
   }
 
-  // 1. Helper for localStorage key
-  const LAST_OPENED_DAY_KEY = `lastOpenedDay_${COURSE_ID}`;
-
-  // 2. Helper to find next unlocked/incomplete day
+  // --- 8. Helper functions ---
   function getNextUnlockedDay() {
-    for (let i = 0; i < course.days.length; i++) {
-      const day = course.days[i].day;
-      if (isDayUnlocked(day) && !isDayCompleted(day)) {
-        return day;
-      }
+    const progress = getProgress();
+    const lastCompleted = Math.max(...progress.completedDays, 0);
+    const nextDay = lastCompleted + 1;
+    
+    if (nextDay < course.days.length && isDayUnlocked(nextDay)) {
+      return nextDay;
     }
     return null;
   }
@@ -362,12 +427,16 @@
   function toggleDay(day) {
     const content = document.getElementById(`day-${day}-content`);
     const chevron = document.getElementById(`day-${day}-chevron`);
-    if (content.classList.contains('expanded')) {
+    const isExpanded = content.classList.contains('expanded');
+    
+    if (isExpanded) {
       content.classList.remove('expanded');
       chevron.classList.remove('expanded');
+      updateAccordionState('day', day, false);
     } else {
       content.classList.add('expanded');
       chevron.classList.add('expanded');
+      updateAccordionState('day', day, true);
       // Save last opened day
       localStorage.setItem(LAST_OPENED_DAY_KEY, day);
       setTimeout(() => {
@@ -442,13 +511,16 @@
   function toggleWeek(weekIndex) {
     const content = document.getElementById(`week-${weekIndex}-content`);
     const chevron = document.getElementById(`week-${weekIndex}-chevron`);
+    const isExpanded = content.classList.contains('expanded');
     
-    if (content.classList.contains('expanded')) {
+    if (isExpanded) {
       content.classList.remove('expanded');
       chevron.classList.remove('expanded');
+      updateAccordionState('week', weekIndex, false);
     } else {
       content.classList.add('expanded');
       chevron.classList.add('expanded');
+      updateAccordionState('week', weekIndex, true);
     }
   }
 
@@ -459,6 +531,7 @@
     renderProgressBar();
     renderLinearProgress();
     renderWeeksAndDays();
+    renderReminder(); // Ensure reminder updates immediately
   }
 
   // --- 8. Journal functionality ---

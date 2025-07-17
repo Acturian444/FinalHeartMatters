@@ -127,32 +127,70 @@ nav {
 
 .logo-img, .logo span { display: none !important; }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
+/* ===== UNIFIED NAVIGATION STYLES ===== */
+/* All navigation links - desktop and mobile - use these rules only */
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--accent-text);
-    font-weight: 900;
+/* Desktop Navigation Links */
+.nav-links a,
+.nav-links a.nav-dropdown-trigger {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
     font-size: 1.1rem;
     letter-spacing: 1.5px;
-    font-family: 'Anton', sans-serif;
     text-transform: uppercase;
+    color: var(--accent-text);
+    text-decoration: none;
     transition: color 0.3s ease;
     display: inline-block;
     white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
 }
 
-.nav-links a:hover {
-    color: #ca0013;
+/* Mobile Menu Overlay Links */
+.menu-overlay a {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
 }
 
-.nav-links a.active {
-    color: #ca0013;
+/* Dropdown Menu Items */
+.nav-dropdown-menu a {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
 }
+
+/* Hover and Active States */
+.nav-links a:hover,
+.nav-links a.active,
+.menu-overlay a:hover,
+.menu-overlay a.active {
+    color: #ca13;
+}
+
+.nav-dropdown-menu a:hover {
+    background: #fffcf1;
+    color: #ca13;
+}
+/* ===== END UNIFIED NAVIGATION STYLES ===== */
 
 /* Navigation Dropdown */
 .nav-dropdown {
@@ -221,18 +259,6 @@ nav {
 
 .nav-dropdown-menu a {
     text-transform: none !important;
-}
-
-/* Remove any conflicting styles */
-.nav-links a[href="info.html"],
-.nav-links a[href="theheartroom.html"],
-.nav-links a[href="letitout.html"] {
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    font-family: 'Anton', sans-serif;
-    color: #000000;
 }
 
 /* Main Content */
@@ -1449,17 +1475,16 @@ footer {
 }
 
 .menu-overlay a {
-    font-family: 'Anton', sans-serif;
-    color: #333;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 1rem 0;
-    text-align: center;
-    width: 100%;
-    transition: background-color 0.2s ease;
-    text-transform: uppercase;
+    font-family: 'Anton', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1.1rem;
     letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+    transition: color 0.3s;
 }
 
 .menu-overlay a:hover,
@@ -1477,7 +1502,7 @@ footer {
         padding-left: 1.2rem;
     }
     .menu-overlay a {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         margin-bottom: 1.2rem;
     }
 }
@@ -1613,7 +1638,7 @@ footer {
     }
 }
 
-h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"], .nav-links a[href="theheartroom.html"], .nav-links a[href="letitout.html"], .nav-links a[href="https://tally.so/r/mVypp6"], .mission-modern-title, .feature-title h2, #join .section-heading, .menu-overlay a {
+h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section-heading {
     font-family: 'Anton', sans-serif;
     font-weight: 400 !important;
 }
@@ -1738,7 +1763,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
     max-width: 99vw;
     width: 100%;
     min-width: 320px;
-    max-width: 580px;
+    max-width: 480px;
     position: relative;
     text-align: center;
     box-sizing: border-box;
@@ -1747,7 +1772,7 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 .modal-title {
     font-family: 'Anton', sans-serif;
     font-size: 2rem;
-    color: #000000;
+    color: #ca0013;
     margin-bottom: 1rem;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -2285,64 +2310,17 @@ h1, h2, h3, h4, h5, h6, .logo-text, .center-logo, .nav-links a[href="info.html"]
 } 
 
 /* Font smoothing for headers and nav for cross-browser consistency */
-header, nav, .logo-text, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
+header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: always;
 } 
-
-.nav-links a {
-  font-family: 'Anton', sans-serif;
-  font-weight: 900;
-  font-size: 1.1rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--accent-text);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-smooth: always;
-  transition: color 0.3s;
-}
-
-.nav-dropdown-menu a {
-  font-family: 'Anton', sans-serif;
-  font-weight: 400 !important;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-smooth: always;
-}
 
 .nav-links a:hover,
 .nav-links a.active,
 .nav-dropdown-menu a:hover,
 .nav-dropdown-menu a.active {
   color: #ca0013;
-} 
-
-/* Dropdown trigger specific styling */
-.nav-links a.nav-dropdown-trigger {
-    font-family: 'Anton', sans-serif !important;
-    font-weight: 900 !important;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-smooth: always;
-}
-
-/* Ensure dropdown menu items have consistent font weight across all pages */
-.nav-dropdown-menu a,
-.nav-dropdown-menu li a,
-header .nav-dropdown-menu a {
-    font-weight: 400 !important;
-    font-family: 'Anton', sans-serif !important;
-    font-size: 0.9rem !important;
-    letter-spacing: 1px !important;
-    text-transform: uppercase !important;
 } 
 
 .hero-scroll-cue {

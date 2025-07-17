@@ -63,9 +63,158 @@
                 margin-top: -6rem !important;
             }
         }
+
+        /* Incognito Banner Styles */
+        .incognito-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            color: #fffcf1;
+            z-index: 9999;
+            padding: 0.8rem 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .banner-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .banner-close {
+            background: none;
+            border: none;
+            color: #fffcf1;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .banner-close:hover {
+            background: rgba(255, 252, 241, 0.1);
+        }
+
+        /* Adjust header position when banner is visible */
+        body.has-incognito-banner header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 9998 !important;
+            background: #fffcf1 !important;
+            margin-top: 0 !important;
+            width: 100vw !important;
+            transform: translateY(calc(0.8rem + 0.9rem * 1.4 + 0.8rem)) !important;
+        }
+
+        /* Ensure banner is always at the very top */
+        body.has-incognito-banner .incognito-banner {
+            top: 0 !important;
+            z-index: 9999 !important;
+        }
+
+        /* Add spacing for main content when header is fixed */
+        body.has-incognito-banner main {
+            padding-top: 120px; /* 60px banner + ~60px header */
+        }
+
+        /* Fix hamburger button positioning when banner is visible */
+        body.has-incognito-banner .hamburger {
+            z-index: 12001 !important; /* Higher than banner */
+        }
+
+        /* Ensure menu overlay covers banner when visible */
+        body.has-incognito-banner .menu-overlay {
+            z-index: 12002 !important; /* Higher than banner (9999) */
+            top: 0 !important; /* Start from very top */
+            height: 100% !important; /* Full height coverage */
+            width: 100% !important; /* Full width coverage */
+        }
+
+        body.has-incognito-banner .menu-overlay nav {
+            z-index: 12003 !important; /* Higher than banner (9999) */
+            top: 0 !important; /* Start from very top */
+            height: 100% !important; /* Full height */
+            width: 280px !important; /* Standard menu width */
+        }
+
+        /* Mobile-specific banner height calculation */
+        @media (max-width: 600px) {
+            /* Use fixed banner height for mobile to avoid calculation issues */
+            body.has-incognito-banner header {
+                transform: translateY(60px) !important; /* Fixed banner height */
+            }
+            
+            /* Ensure banner is properly positioned above header */
+            body.has-incognito-banner .incognito-banner {
+                top: 0 !important;
+                z-index: 9999 !important;
+            }
+            
+            /* Adjust main content padding for mobile */
+            body.has-incognito-banner main {
+                padding-top: 140px; /* Account for mobile banner + header height */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .incognito-banner {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+                /* Extend background to fill gap */
+                padding-bottom: 1.2rem;
+            }
+            
+            .banner-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .banner-text {
+                text-align: left;
+            }
+            
+            .banner-close {
+                align-self: flex-end;
+                margin-top: -0.5rem;
+                position: absolute;
+                top: 0.8rem;
+                right: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body class="breakup-course-page">
+    <!-- Incognito Warning Banner -->
+    <div id="incognitoBanner" class="incognito-banner" style="display: none;">
+        <div class="banner-content">
+            <span class="banner-text">⚠️ Private Browsing Detected: Use a regular browser window to purchase course and gain access.</span>
+            <button class="banner-close" onclick="dismissIncognitoBanner()">×</button>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <nav class="nav-centered">
@@ -87,23 +236,26 @@
                         <ul class="nav-dropdown-menu">
                             <li><a href="../shop/index.html">Still Healing Collection</a></li>
                             <li><a href="breakup-course.html">Breakup Recovery Course</a></li>
-                            <li id="myCourseLink"><a href="../course/breakup-course.html">Continue Course</a></li>
+                            <li id="myCourseLink" style="display: none;"><a href="../course/breakup-course.html">Continue Course</a></li>
                         </ul>
                     </li>
                     <li><a href="../info.html">JOIN THE MOVEMENT</a></li>
                 </ul>
             </nav>
         </div>
-        <div class="menu-overlay" id="menuOverlay">
-            <nav>
-                <a href="../shop/index.html">SHOP</a>
-                <a href="../letitout.html">LET IT OUT</a>
-                <a href="../theheartroom.html">THE HEART ROOM</a>
-                <a href="../info.html">JOIN THE MOVEMENT</a>
-                <a id="mobileCourseLink" href="../course/breakup-course.html" style="display: none;">Continue Course</a>
-            </nav>
         </div>
     </header>
+
+    <!-- Menu Overlay (moved outside header for proper banner coverage) -->
+    <div class="menu-overlay" id="menuOverlay">
+        <nav>
+            <a href="../shop/index.html">SHOP</a>
+            <a href="../letitout.html">LET IT OUT</a>
+            <a href="../theheartroom.html">THE HEART ROOM</a>
+            <a href="../info.html">JOIN THE MOVEMENT</a>
+            <a id="mobileCourseLink" href="../course/breakup-course.html" style="display: none;">Continue Course</a>
+        </nav>
+    </div>
 
     <main>
         <!-- Product Hero -->
@@ -603,6 +755,76 @@
         
         // Update navigation on page load
         document.addEventListener('DOMContentLoaded', updateNavigation);
+
+        // Incognito banner detection and dismissal
+        function checkIncognito() {
+            console.log('Checking incognito status...');
+            
+            // More reliable incognito detection
+            let isIncognito = false;
+            
+            // Method 1: Check localStorage quota (incognito has very limited storage)
+            try {
+                const testKey = 'incognito-test-' + Date.now();
+                const testValue = 'x'.repeat(1024 * 1024); // 1MB test
+                localStorage.setItem(testKey, testValue);
+                localStorage.removeItem(testKey);
+                isIncognito = false;
+            } catch (e) {
+                console.log('localStorage quota test failed:', e);
+                isIncognito = true;
+            }
+            
+            // Method 2: Check for incognito-specific browser features
+            if (window.navigator.webdriver || 
+                (window.chrome && !window.chrome.runtime) ||
+                (window.safari && !window.safari.pushNotification)) {
+                console.log('Browser-specific incognito indicators detected');
+                isIncognito = true;
+            }
+            
+            // Method 3: Check if we can write to localStorage at all
+            try {
+                const testKey = 'incognito-test';
+                localStorage.setItem(testKey, 'test');
+                const result = localStorage.getItem(testKey);
+                localStorage.removeItem(testKey);
+                
+                if (result !== 'test') {
+                    console.log('localStorage write/read test failed');
+                    isIncognito = true;
+                }
+            } catch (e) {
+                console.log('localStorage basic test failed:', e);
+                isIncognito = true;
+            }
+            
+            console.log('Is incognito detected:', isIncognito);
+            console.log('Banner dismissed:', window.sessionStorage.getItem('incognitoBannerDismissed') === 'true');
+            
+            // For testing: force show banner (remove this line after testing)
+            isIncognito = true;
+            
+            if (isIncognito && window.sessionStorage.getItem('incognitoBannerDismissed') !== 'true') {
+                console.log('Showing incognito banner');
+                document.getElementById('incognitoBanner').style.display = 'block';
+                document.body.classList.add('has-incognito-banner');
+            } else {
+                console.log('Hiding incognito banner');
+                document.getElementById('incognitoBanner').style.display = 'none';
+                document.body.classList.remove('has-incognito-banner');
+            }
+        }
+
+        function dismissIncognitoBanner() {
+            console.log('Dismissing incognito banner');
+            window.sessionStorage.setItem('incognitoBannerDismissed', 'true');
+            document.getElementById('incognitoBanner').style.display = 'none';
+            document.body.classList.remove('has-incognito-banner');
+        }
+
+        // Check incognito status on page load
+        document.addEventListener('DOMContentLoaded', checkIncognito);
     </script>
 </body>
 </html> 
