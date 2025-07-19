@@ -71,7 +71,7 @@
 
 .shop-hero-titles .shop-hero-subtitle {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     font-weight: 500;
     color: #fffcf1;
     opacity: 1;
@@ -80,6 +80,7 @@
     margin-bottom: 0;
     max-width: 350px;
     text-align: left;
+    line-height: 1.8;
 }
 
 /* Shop Sections */
@@ -113,8 +114,9 @@
 .shop-section-header p {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.125rem;
-    color: #333;
-    line-height: 1.6;
+    color: #000000;
+    line-height: 1.8;
+    font-weight: 500;
 }
 
 /* Product Grid */
@@ -193,11 +195,12 @@
 
 .product-tagline {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    color: #666;
+    font-size: 1.125rem;
+    color: #000000;
     margin-bottom: 1.5rem;
-    line-height: 1.4;
+    line-height: 1.8;
     max-width: 250px;
+    font-weight: 500;
 }
 
 .product-content .btn {
@@ -344,7 +347,9 @@
         font-size: 1.1rem;
     }
     .shop-hero-titles .shop-hero-subtitle {
-        font-size: 0.8rem;
+        font-size: 1.125rem !important;
+        font-weight: 500 !important;
+        line-height: 1.8 !important;
     }
     
     .shop-section {
@@ -357,11 +362,14 @@
     }
     
     .shop-section-header h2 {
-        font-size: 1.75rem;
+        font-size: 2rem;
+        font-weight: 700;
     }
     
     .shop-section-header p {
-        font-size: 1rem;
+        font-size: 1.125rem !important;
+        font-weight: 500 !important;
+        line-height: 1.8 !important;
     }
     
     .product-grid {
@@ -378,11 +386,13 @@
     }
     
     .product-content h3 {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
     
     .product-tagline {
-        font-size: 0.9rem;
+        font-size: 1.125rem !important;
+        font-weight: 500 !important;
+        line-height: 1.8 !important;
         margin-bottom: 1.25rem;
     }
     

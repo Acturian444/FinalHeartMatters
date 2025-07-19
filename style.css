@@ -462,12 +462,12 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 3rem 0.5rem 3rem;
-    gap: 2rem;
+    padding: 4rem 3rem 3rem 3rem;
+    gap: 3rem;
     position: relative;
     overflow: hidden;
-    margin-bottom: 0;
-    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
     z-index: 1;
 }
 
@@ -484,7 +484,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2rem 0 0.5rem 0;
+    margin: 2rem 0 0rem 0;
     background: none;
     text-transform: none;
     text-align: center;
@@ -602,19 +602,54 @@ section {
     .mission-modern-title {
         color: #ca0013;
         font-size: 2.2rem;
+        margin-bottom: 0rem;
     }
+    /* Unified tablet styling for all subtitle/subtext elements */
+    .mission-modern-text,
+    .newsletter-subtext,
+    .why-it-matters-text,
+    .why-it-matters-text p,
+    .hero .subtitle,
+    .shop-hero-subtitle,
+    .shop-section-header p,
+    .product-subtitle,
+    .product-story p,
+    .details-list li,
+    .story-text,
+    .testimonial-text,
+    .cta-content p,
+    .cta-subtitle,
+    .feature-item p,
+    .feature-detail p,
+    .module-card p,
+    .story-cta p,
+    .guarantee,
+    .newsletter-subtext {
+        font-size: 1.125rem !important;
+        font-weight: 500 !important;
+        line-height: 1.8 !important;
+        font-family: 'DM Sans', sans-serif !important;
+    }
+    
     .mission-modern-text {
         color: #000000;
-        font-size: 1.1rem;
         max-width: 95vw;
     }
     
     .newsletter-title {
-        font-size: 2.2rem;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        font-family: 'Anton', sans-serif !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
     }
-    .newsletter-subtext {
-        font-size: 1.1rem;
-        max-width: 95vw;
+    
+    .newsletter h3 {
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        font-family: 'Anton', sans-serif !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
     }
 }
 
@@ -622,21 +657,51 @@ section {
     .mission-modern {
         background: #fffcf1;
         color: #ca0013;
-        padding: 1rem 1rem 1rem 1rem;
+        padding: 3rem 1rem 2.5rem 1rem;
         min-height: 70vh;
-        margin-top: 3rem;
-        margin-bottom: 0.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+        gap: 2.5rem;
     }
     .mission-modern-title {
         color: #ca0013;
         font-size: 2rem;
-        margin-top: 1.2rem;
-        margin-bottom: 0.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0rem;
     }
+    /* Unified mobile styling for all subtitle/subtext elements */
+    .mission-modern-text,
+    .newsletter-subtext,
+    .why-it-matters-text,
+    .why-it-matters-text p,
+    .hero .subtitle,
+    .shop-hero-subtitle,
+    .shop-section-header p,
+    .product-subtitle,
+    .product-story p,
+    .details-list li,
+    .story-text,
+    .testimonial-text,
+    .cta-content p,
+    .cta-subtitle,
+    .feature-item p,
+    .feature-detail p,
+    .module-card p,
+    .story-cta p,
+    .guarantee,
+    .newsletter-subtext {
+        font-size: 1.125rem !important;
+        font-weight: 500 !important;
+        line-height: 1.8 !important;
+        font-family: 'DM Sans', sans-serif !important;
+    }
+    
     .mission-modern-text {
         color: #000000;
-        font-size: 1rem;
         max-width: 98vw;
+    }
+    .mission-modern-text br {
+        display: none;
     }
     .mission-buttons {
         flex-direction: column;
@@ -652,13 +717,21 @@ section {
     
     .newsletter-title {
         font-size: 2rem !important;
+        font-weight: 700 !important;
         margin-top: 1.2rem;
         margin-bottom: 0.5rem;
         white-space: nowrap;
+        font-family: 'Anton', sans-serif !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
     }
-    .newsletter-subtext {
-        font-size: 1rem;
-        max-width: 98vw;
+    
+    .newsletter h3 {
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        font-family: 'Anton', sans-serif !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
     }
 }
 
@@ -797,7 +870,7 @@ footer {
     max-width: 700px;
     padding: 0 1rem;
     font-family: 'DM Sans', sans-serif;
-    color: #666666;
+    color: #000000;
 }
 
 .newsletter .social-links {
@@ -1418,7 +1491,7 @@ footer {
     top: 1rem;
     right: 1.5rem;
     font-size: 2.5rem;
-    color: #333;
+    color: #000000;
     background: none;
     border: none;
     cursor: pointer;
@@ -1436,7 +1509,7 @@ footer {
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #333;
+    color: #000000;
     z-index: 1001;
     display: flex;
     align-items: center;
@@ -1729,7 +1802,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 .newsletter-subtext {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.2rem;
-    color: #666;
+    color: #000000;
     margin: 0.5rem auto 1.5rem auto;
     line-height: 1.5;
     font-weight: 500;
@@ -1787,7 +1860,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 .modal-subtext {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.3rem;
-    color: #666;
+    color: #000000;
     margin-bottom: 2rem;
     line-height: 1.6;
     font-weight: 500;
@@ -1848,6 +1921,17 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
     display: inline;
 }
 
+/* Desktop Break Styles */
+.desktop-break {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .desktop-break {
+        display: none;
+    }
+}
+
 /* Responsive Styles */
 @media (max-width: 900px) {
     .mobile-break {
@@ -1883,17 +1967,35 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         text-transform: none !important;
     }
     
-    .mission-modern-text {
-        font-size: 1.3rem;
-        line-height: 1.4;
-        padding: 0 0.25rem;
-        font-family: 'DM Sans', sans-serif;
-        font-weight: 500;
+    /* Unified tablet styling for all subtitle/subtext elements */
+    .mission-modern-text,
+    .newsletter-subtext,
+    .why-it-matters-text,
+    .why-it-matters-text p,
+    .hero .subtitle,
+    .shop-hero-subtitle,
+    .shop-section-header p,
+    .product-subtitle,
+    .product-story p,
+    .details-list li,
+    .story-text,
+    .testimonial-text,
+    .cta-content p,
+    .cta-subtitle,
+    .feature-item p,
+    .feature-detail p,
+    .module-card p,
+    .story-cta p,
+    .guarantee,
+    .newsletter-subtext {
+        font-size: 1.125rem !important;
+        font-weight: 500 !important;
+        line-height: 1.8 !important;
+        font-family: 'DM Sans', sans-serif !important;
     }
     
-    .newsletter-subtext {
-        font-size: 1.2rem;
-        line-height: 1.5;
+    .mission-modern-text {
+        padding: 0 0.25rem;
     }
     
     .modal-subtext {
@@ -1944,17 +2046,35 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         text-transform: none !important;
     }
     
-    .mission-modern-text {
-        font-size: 1.3rem;
-        line-height: 1.4;
-        padding: 0 0.25rem;
-        font-family: 'DM Sans', sans-serif;
-        font-weight: 500;
+    /* Unified mobile styling for all subtitle/subtext elements */
+    .mission-modern-text,
+    .newsletter-subtext,
+    .why-it-matters-text,
+    .why-it-matters-text p,
+    .hero .subtitle,
+    .shop-hero-subtitle,
+    .shop-section-header p,
+    .product-subtitle,
+    .product-story p,
+    .details-list li,
+    .story-text,
+    .testimonial-text,
+    .cta-content p,
+    .cta-subtitle,
+    .feature-item p,
+    .feature-detail p,
+    .module-card p,
+    .story-cta p,
+    .guarantee,
+    .newsletter-subtext {
+        font-size: 1.125rem !important;
+        font-weight: 500 !important;
+        line-height: 1.8 !important;
+        font-family: 'DM Sans', sans-serif !important;
     }
     
-    .newsletter-subtext {
-        font-size: 1.2rem;
-        line-height: 1.5;
+    .mission-modern-text {
+        padding: 0 0.25rem;
     }
     
     .modal-subtext {
@@ -2444,5 +2564,120 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
 @media (max-width: 600px) {
     .start-here-card h3 {
         font-size: 1.4rem;
+    }
+} 
+
+/* Why It Matters Section */
+.why-it-matters-section {
+    background: url('../images/WhyItMatters.jpg') center center/cover no-repeat;
+    min-height: 80vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    margin-top: 0;
+}
+
+.why-it-matters-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.why-it-matters-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #fffcf1;
+}
+
+.why-it-matters-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    color: #fffcf1;
+    line-height: 1.2;
+}
+
+.why-it-matters-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.7;
+    color: #fffcf1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.why-it-matters-text p {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.35rem;
+}
+
+.why-it-matters-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Desktop-specific override for WHY IT ALL MATTERS text */
+@media (min-width: 901px) {
+    .why-it-matters-text {
+        font-size: 1.35rem !important;
+    }
+    .why-it-matters-text p {
+        font-size: 1.35rem !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .why-it-matters-section {
+        min-height: 70vh;
+        margin-bottom: 3rem;
+    }
+    .why-it-matters-content {
+        padding: 3rem 1.5rem;
+    }
+    .why-it-matters-title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+    .why-it-matters-text {
+        font-size: 1.1rem;
+        max-width: 95vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .why-it-matters-section {
+        min-height: 80vh;
+        margin-bottom: 2.5rem;
+    }
+    .why-it-matters-content {
+        padding: 2.5rem 1rem;
+    }
+    .why-it-matters-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+    .why-it-matters-text {
+        max-width: 98vw;
+    }
+    .why-it-matters-text p {
+        margin-bottom: 1.2rem;
     }
 } 

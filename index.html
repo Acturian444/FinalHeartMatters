@@ -11,7 +11,7 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <style>
     .letitout-link {
         font-family: 'Anton', sans-serif !important;
@@ -23,7 +23,7 @@
     /* Start Here Section Styles */
     .start-here-section {
         background: #fffcf1;
-        padding: 3rem 0 2rem 0;
+        padding: 4rem 0 2rem 0;
         width: 100vw;
         display: flex;
         flex-direction: column;
@@ -41,7 +41,7 @@
         font-family: 'Anton', sans-serif;
         font-size: 2.7rem;
         color: #000;
-        margin-bottom: 0.7rem;
+        margin-bottom: 1.5rem;
         text-align: center;
         letter-spacing: 1px;
         font-weight: 700;
@@ -74,9 +74,9 @@
         border-radius: 10px;
         box-shadow: none;
         padding: 2rem 1.5rem 1.5rem 1.5rem;
-        min-width: 220px;
-        max-width: 280px;
-        flex: 1 1 250px;
+        min-width: 240px;
+        max-width: 300px;
+        flex: 1 1 260px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -218,7 +218,7 @@
             gap: 0.8rem;
         }
         .start-here-card {
-            max-width: 240px;
+            max-width: 250px;
             padding: 1.8rem 1rem 1.5rem 1rem;
             min-height: 300px;
         }
@@ -226,6 +226,7 @@
     @media (min-width: 601px) and (max-width: 900px) {
         .start-here-title {
             font-size: 2.2rem;
+            margin-bottom: 1.3rem;
         }
         .start-here-subtext {
             font-size: 1.1rem;
@@ -240,23 +241,30 @@
         }
         .start-here-title {
             font-size: 2rem !important;
+            margin-bottom: 1.2rem !important;
         }
         .start-here-title .mobile-break {
             display: block;
         }
         .start-here-subtext {
-            font-size: 1.25rem;
+            font-size: 1.125rem !important;
+            font-weight: 500 !important;
+            line-height: 1.8 !important;
             margin-bottom: 1.5rem;
         }
         .start-here-card-grid {
             flex-direction: column;
             gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
         .start-here-card {
-            max-width: 90vw;
+            max-width: 95vw;
+            width: 95vw;
             min-width: 0;
             margin-bottom: 0;
-            padding: 1.5rem 0.7rem !important;
+            padding: 1.5rem 1rem !important;
             min-height: 300px;
         }
         .start-here-card h3 {
@@ -372,20 +380,33 @@
 
         <section id="mission-section" class="mission-modern">
             <h2 class="mission-modern-title">
-              <span class="highlight">Your Healing Sets Others Free</span>
+              <span class="highlight">Healing Shouldn't Be a Luxury</span>
             </h2>
             <p class="mission-modern-text">
-              We're building a public healing movement — with tools, products, and spaces that help people feel it, say it, and let it out together. Most people carry pain with nowhere to release it. We're here to change that. <span style="color: #ca0013;">What you wear, write, or share helps someone else feel seen and less alone.</span></p>
+              We're building a public healing movement — with tools, products, and spaces that help people feel, say, and let it out together. Healing has become a luxury. But it should be a right.<br>
+              Most people live without access to support, safe spaces, or time to process pain. Our culture teaches us to suppress and keep moving. But emotional pain doesn't disappear. It compounds. <span style="color: #ca0013;">When you heal in public, you remind someone else<br class="desktop-break"> they're not alone.</span></p>
             <div class="mission-buttons">
                 <a href="info.html" class="btn btn-mission btn-mission-primary">Join the Movement</a>
                 <a href="shop/index.html" class="btn btn-mission">Shop the Collection</a>
             </div>
         </section>
 
+        <!-- Why It Matters Section -->
+        <section class="why-it-matters-section">
+            <div class="why-it-matters-overlay"></div>
+            <div class="why-it-matters-content">
+                <h2 class="why-it-matters-title">WHY IT ALL MATTERS</h2>
+                <div class="why-it-matters-text">
+                    <p>We're all one heartbreak, one loss, one moment away from falling apart. When people feel seen—when they're given space to feel, speak, and process—they begin to heal. But most don't get that chance. Pain builds. Disconnection grows. This is why we exist. Every product, every post, every shared story helps someone feel seen again.</p>
+                    <p><strong style="color: #fffcf1;">You matter. You're not alone.<br>Your healing helps others heal too.</strong></p>
+                </div>
+            </div>
+        </section>
+
         <!-- Start Here Section -->
         <section class="start-here-section">
             <div class="start-here-content">
-                <h2 class="start-here-title" style="color: #ca0013;">This Is Where<br class="mobile-break"> Healing Begins</h2>
+                <h2 class="start-here-title" style="color: #ca0013;">WHERE HEALING BEGINS</h2>
                 <div class="start-here-subtext" style="color: #000000;">Feel it. Write it. Wear it. Say it. Heal it.</div>
                 <div class="start-here-card-grid">
                     <!-- Card 1 -->
@@ -435,8 +456,8 @@
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                           </svg>
                         </div>
-                        <h3>HEAL FROM HEARTBREAK</h3>
-                        <p>Breakup recovery course<br>22 days of tools to let go</p>
+                        <h3 style="white-space: nowrap;">HEAL FROM HEARTBREAK</h3>
+                        <p>Breakup recovery course<br>22 days of tools to let go<br>Step-by-step healing journey</p>
                     </a>
                 </div>
             </div>
@@ -602,9 +623,17 @@
                     // Check if mobile
                     const isMobile = window.innerWidth <= 600;
                     
-                    missionSection.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: isMobile ? 'center' : 'start'
+                    // Get header height for offset
+                    const header = document.querySelector('header');
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    
+                    // Calculate scroll position with offset
+                    const sectionTop = missionSection.offsetTop;
+                    const scrollPosition = sectionTop - headerHeight - 20; // 20px additional padding
+                    
+                    window.scrollTo({
+                        top: scrollPosition,
+                        behavior: 'smooth'
                     });
                 }
             });

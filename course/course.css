@@ -39,7 +39,7 @@ body {
 /* Info/Reminder Message */
 #courseInfoMessage {
   font-size: 0.98rem;
-  color: #888;
+  color: #000000;
   font-style: italic;
   margin-bottom: 0.5rem;
   display: flex;
@@ -223,7 +223,7 @@ body {
 }
 .day-section-label {
   font-family: 'Anton', sans-serif;
-  color: #888;
+  color: #000000;
   font-size: 0.98rem;
   margin-bottom: 0.5rem;
   letter-spacing: 0.5px;
@@ -577,7 +577,7 @@ body {
 
 .course-subtitle {
   text-align: center;
-  color: #666;
+  color: #000000;
   font-family: 'DM Sans', sans-serif;
   font-size: 1.13rem;
   font-weight: 400;
@@ -666,7 +666,7 @@ body {
 .cta-label {
   display: block;
   text-align: center;
-  color: #888;
+  color: #000000;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.98rem;
   font-weight: 400;
