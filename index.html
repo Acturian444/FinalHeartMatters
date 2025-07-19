@@ -293,6 +293,260 @@
             display: block;
         }
     }
+
+    /* Healing With Purpose Section Styles */
+    .healing-purpose-section {
+        background: #fffcf1;
+        padding: 4rem 0;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .healing-purpose-content {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        padding: 0 1rem;
+    }
+
+    .healing-purpose-text {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .healing-purpose-title {
+        font-family: 'Anton', sans-serif;
+        font-size: 2.7rem;
+        font-weight: 700;
+        color: #ca0013;
+        margin-bottom: 1rem;
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .healing-purpose-subtitle {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+    }
+
+    .healing-purpose-body {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        line-height: 1.8;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .healing-purpose-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-healing-primary {
+        background: #ca0013;
+        color: #fffcf1;
+        border: 2px solid #ca0013;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 0.85rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-align: center;
+        box-sizing: border-box;
+        white-space: nowrap;
+        width: 265px;
+    }
+
+    .btn-healing-primary:hover,
+    .btn-healing-primary:focus {
+        background: #a00012;
+        color: #fffcf1;
+        border-color: #a00012;
+        outline: none;
+    }
+
+    .btn-healing-secondary {
+        background: transparent;
+        color: #ca0013;
+        border: 2px solid #ca0013;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 0.85rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-align: center;
+        box-sizing: border-box;
+        white-space: nowrap;
+        width: 265px;
+    }
+
+    .btn-healing-secondary:hover,
+    .btn-healing-secondary:focus {
+        background: #ca0013;
+        color: #fffcf1;
+        outline: none;
+    }
+
+    .healing-purpose-image {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .healing-purpose-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 1.5px 8px rgba(0,0,0,0.06);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .healing-purpose-image img:hover {
+        box-shadow: 0 16px 48px rgba(193,0,22,0.18), 0 3px 16px rgba(0,0,0,0.10);
+    }
+
+    /* Desktop Layout */
+    @media (min-width: 901px) {
+        .healing-purpose-content {
+            flex-direction: row;
+            align-items: center;
+            gap: 4rem;
+            text-align: left;
+        }
+
+        .healing-purpose-text {
+            flex: 1;
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .healing-purpose-title {
+            text-align: left;
+        }
+
+        .healing-purpose-subtitle {
+            text-align: left;
+        }
+
+        .healing-purpose-body {
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .healing-purpose-buttons {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .healing-purpose-image {
+            flex: 1;
+            max-width: 500px;
+        }
+    }
+
+    /* Tablet Layout */
+    @media (min-width: 601px) and (max-width: 900px) {
+        .healing-purpose-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .healing-purpose-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .healing-purpose-body {
+            font-size: 1rem;
+        }
+
+        .healing-purpose-content {
+            gap: 2.5rem;
+        }
+    }
+
+    /* Mobile Layout */
+    @media (max-width: 600px) {
+        .healing-purpose-section {
+            padding: 2rem 0;
+        }
+
+        .healing-purpose-content {
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .healing-purpose-title {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .healing-purpose-subtitle {
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .healing-purpose-body {
+            font-size: 1.125rem !important;
+            font-weight: 500 !important;
+            line-height: 1.8 !important;
+            margin-bottom: 2rem;
+        }
+
+        .healing-purpose-buttons {
+            gap: 0.8rem;
+        }
+
+        .btn-healing-primary,
+        .btn-healing-secondary {
+            width: 100%;
+            max-width: 290px;
+            padding: 0.85rem 1.2rem;
+            font-size: 1rem;
+        }
+
+        .healing-purpose-image {
+            max-width: 100%;
+        }
+    }
     </style>
 </head>
 <body>
@@ -459,6 +713,24 @@
                         <h3 style="white-space: nowrap;">HEAL FROM HEARTBREAK</h3>
                         <p>Breakup recovery course<br>22 days of tools to let go<br>Step-by-step healing journey</p>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Healing With Purpose Section -->
+        <section class="healing-purpose-section">
+            <div class="healing-purpose-content">
+                <div class="healing-purpose-text">
+                    <h2 class="healing-purpose-title">Made With Intention</h2>
+                    <p class="healing-purpose-subtitle">They heal by creating. You heal by supporting and wearing.</p>
+                    <p class="healing-purpose-body">Every piece in our limited drops is crafted by someone rebuilding their life — reclaiming income, dignity, and purpose through their hands. Your purchase creates real income, safe work, and a way to heal through creating. When you wear Heart Matters, you support healing for yourself and someone else.</p>
+                    <div class="healing-purpose-buttons">
+                        <a href="info.html" class="btn btn-healing-primary">Meet the Makers</a>
+                        <a href="shop/index.html" class="btn btn-healing-secondary">Shop the Collection</a>
+                    </div>
+                </div>
+                <div class="healing-purpose-image">
+                    <img src="images/impactimage.jpg" alt="Healing with purpose - supporting creators and communities" loading="lazy">
                 </div>
             </div>
         </section>
