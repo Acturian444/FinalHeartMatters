@@ -19,6 +19,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -66,6 +68,63 @@
             </nav>
         </div>
     </header>
+
+    <!-- Pre-Drop Landing Page Overlay -->
+    <div id="preDropOverlay" class="pre-drop-overlay">
+        <div class="pre-drop-background"></div>
+        <div class="pre-drop-content">
+            <div class="pre-drop-logo">
+                <img src="../images/StillHealingDrop.svg" alt="Still Healing Drop" loading="lazy">
+            </div>
+            <div class="countdown-container">
+                <div class="countdown-timer" id="countdownTimer">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">days</span>
+                    <span class="countdown-divider">•</span>
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                    <span class="countdown-divider">•</span>
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                    <span class="countdown-divider">•</span>
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+                <h1 class="shop-closed-title">SHOP IS CLOSED.</h1>
+            </div>
+            
+            <div class="waitlist-container" id="waitlistContainer">
+                <button class="btn-ghost" id="joinSmsBtn">GET EARLY ACCESS</button>
+            </div>
+            
+            <!-- Slide-up Modal -->
+            <div class="waitlist-modal" id="waitlistModal">
+                <div class="modal-backdrop" id="modalBackdrop"></div>
+                <div class="modal-content">
+                    <button class="modal-close" id="modalClose">&times;</button>
+                    <h2 class="waitlist-title">JOIN OUR WAITLIST</h2>
+                    <p class="waitlist-subtitle">JOIN TO GET THE ACCESS TO THE SHOP ON DROP DAY AND OUR EXCLUSIVE WAITLIST DISCOUNT</p>
+                    
+                    <form class="sms-signup-form" id="smsSignupForm" action="https://docs.google.com/forms/d/e/YOUR_NEW_FORM_ID/formResponse" method="POST" target="hidden-sms-iframe">
+                        <div class="form-group">
+                            <input type="tel" name="entry.PHONE_FIELD_ID" placeholder="Phone Number" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Tap to join</button>
+                    </form>
+                    
+                    <p class="legal-text">
+                        By submitting this form, you consent to receive informational (e.g., order updates) and/or marketing texts (e.g., cart reminders) from Tamed Psychotic including texts sent by autodialer. Consent is not a condition of purchase. Msg & data rates may apply. Msg frequency varies. Unsubscribe at any time by replying STOP or clicking the unsubscribe link (where available). Privacy Policy & Terms.
+                    </p>
+                    
+                    <div id="sms-form-success" class="form-success" style="display: none;">
+                        Welcome to our exclusive waitlist<br>Please check your text for a confirmation message.
+                    </div>
+                </div>
+            </div>
+            
+            <iframe name="hidden-sms-iframe" style="display:none;"></iframe>
+        </div>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -246,6 +305,145 @@
     <script src="../js/utils.js?v=2"></script>
     <script src="../js/menu.js"></script>
     <script>
+        // Pre-Drop Landing Page Functionality
+        const preDropOverlay = document.getElementById('preDropOverlay');
+        const countdownTimer = document.getElementById('countdownTimer');
+        const joinSmsBtn = document.getElementById('joinSmsBtn');
+        const waitlistModal = document.getElementById('waitlistModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalClose = document.getElementById('modalClose');
+        const smsSignupForm = document.getElementById('smsSignupForm');
+        const smsFormSuccess = document.getElementById('sms-form-success');
+        
+        // Countdown target date: August 28, 2025
+        const dropDate = new Date('August 28, 2025 00:00:00').getTime();
+        
+        // Testing override
+        const isOverrideEnabled = localStorage.getItem('drop_waitlist_override_enabled') === 'true';
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = dropDate - now;
+            
+            if (distance < 0) {
+                // Countdown finished - hide overlay
+                hidePreDropOverlay();
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        function hidePreDropOverlay() {
+            if (preDropOverlay) {
+                preDropOverlay.style.display = 'none';
+                // Show the main content and footer
+                const mainContent = document.querySelector('main');
+                const footer = document.querySelector('footer');
+                if (mainContent) {
+                    mainContent.style.display = 'block';
+                }
+                if (footer) {
+                    footer.style.display = 'block';
+                }
+                // Restore body scrolling
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function showWaitlistModal() {
+            if (waitlistModal) {
+                waitlistModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function hideWaitlistModal() {
+            if (waitlistModal) {
+                waitlistModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function showSuccessMessage() {
+            if (smsFormSuccess) {
+                smsFormSuccess.style.display = 'block';
+            }
+            if (smsSignupForm) {
+                smsSignupForm.style.display = 'none';
+            }
+        }
+        
+        // Initialize countdown
+        if (!isOverrideEnabled) {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            // Hide main content and footer initially
+            const mainContent = document.querySelector('main');
+            const footer = document.querySelector('footer');
+            if (mainContent) {
+                mainContent.style.display = 'none';
+            }
+            if (footer) {
+                footer.style.display = 'none';
+            }
+            // Prevent body scrolling when overlay is active
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Testing override - hide overlay and show content
+            hidePreDropOverlay();
+        }
+        
+        // Event listeners
+        if (joinSmsBtn) {
+            joinSmsBtn.addEventListener('click', showWaitlistModal);
+        }
+        
+        if (modalClose) {
+            modalClose.addEventListener('click', hideWaitlistModal);
+        }
+        
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', hideWaitlistModal);
+        }
+        
+        if (smsSignupForm) {
+            smsSignupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const form = this;
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+                
+                // Submit to Google Forms
+                setTimeout(function() {
+                    form.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                    showSuccessMessage();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(function() {
+                        if (smsFormSuccess) {
+                            smsFormSuccess.style.display = 'none';
+                        }
+                        hideWaitlistModal();
+                    }, 5000);
+                }, 1200);
+            });
+        }
+
         // Mobile menu functionality
         function openMenu() {
             document.getElementById('menuOverlay').classList.add('open');

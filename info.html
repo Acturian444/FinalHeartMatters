@@ -628,6 +628,366 @@
             font-weight: bold !important;
             letter-spacing: 1.5px;
         }
+
+        /* Healing Is a Shared Experience Section Styles */
+        .shared-healing-section {
+            background: #fffcf1;
+            padding: 4rem 0;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .shared-healing-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4rem;
+            padding: 0 1rem;
+        }
+
+        .shared-healing-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .shared-healing-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #ca0013;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .shared-healing-body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .shared-healing-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .shared-healing-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Healing Cycle Styles */
+        .healing-cycle-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .healing-cycle {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .cycle-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            background: transparent;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .cycle-center-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+        }
+
+        .cycle-center-subtitle {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ca0013;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .cycle-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-250px) rotate(calc(-1 * var(--angle)));
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .cycle-circle {
+            width: 200px;
+            height: 200px;
+            background: transparent;
+            border: 3px solid #ca0013;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.8rem;
+            box-sizing: border-box;
+        }
+
+        .cycle-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-240px) rotate(calc(-1 * var(--angle)));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
+        }
+
+        .cycle-connecting-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 360px;
+            height: 360px;
+            border: 2px dashed #cccccc;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .cycle-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-width: 180px;
+        }
+
+        .cycle-word {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ca0013;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cycle-description {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #000000;
+            line-height: 1.3;
+            max-height: 2.6em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .cycle-kindness-text {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cycle-kindness-text p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ca0013;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+
+
+        /* Tablet Layout */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .shared-healing-title {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .shared-healing-body {
+                font-size: 1rem;
+            }
+
+            .shared-healing-content {
+                gap: 2.5rem;
+            }
+
+            .healing-cycle {
+                width: 550px;
+                height: 550px;
+            }
+
+            .cycle-center {
+                width: 220px;
+                height: 220px;
+            }
+
+            .cycle-center-title {
+                font-size: 1.1rem;
+            }
+
+            .cycle-center-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .cycle-item {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
+                width: 180px;
+            }
+
+            .cycle-connecting-circle {
+                width: 310px;
+                height: 310px;
+            }
+
+            .cycle-word {
+                font-size: 1.2rem;
+            }
+
+            .cycle-description {
+                font-size: 0.9rem;
+                max-height: 2.2em;
+            }
+
+            .cycle-circle {
+                width: 120px;
+                height: 120px;
+                padding: 1rem;
+            }
+
+            .cycle-arrow {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-145px) rotate(calc(-1 * var(--angle)));
+            }
+
+            .cycle-kindness-text p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 600px) {
+            .shared-healing-section {
+                padding: 2rem 0;
+            }
+
+            .shared-healing-content {
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .shared-healing-title {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .shared-healing-body {
+                font-size: 1.125rem !important;
+                font-weight: 500 !important;
+                line-height: 1.8 !important;
+            }
+
+            .shared-healing-body p {
+                margin-bottom: 1.2rem;
+            }
+
+            .healing-cycle {
+                width: 350px;
+                height: 350px;
+            }
+
+            .cycle-center {
+                width: 140px;
+                height: 140px;
+            }
+
+            .cycle-center-title {
+                font-size: 0.9rem;
+            }
+
+            .cycle-center-subtitle {
+                font-size: 0.6rem;
+            }
+
+            .cycle-item {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
+                width: 120px;
+            }
+
+            .cycle-connecting-circle {
+                width: 260px;
+                height: 260px;
+            }
+
+            .cycle-word {
+                font-size: 1.1rem;
+            }
+
+            .cycle-description {
+                font-size: 0.85rem;
+                max-height: 2.1em;
+            }
+
+            .cycle-circle {
+                width: 100px;
+                height: 100px;
+                padding: 0.8rem;
+            }
+
+            .cycle-arrow {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-130px) rotate(calc(-1 * var(--angle)));
+            }
+
+            .cycle-circle {
+                width: 100px;
+                height: 100px;
+                padding: 0.8rem;
+            }
+
+            .cycle-arrow {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-125px) rotate(calc(-1 * var(--angle)));
+            }
+
+            .cycle-kindness-text p {
+                font-size: 1rem;
+            }
+        }
     </style>
     <style>
   /* Confirmation message: prevent line breaks for headline and secondary lines */
@@ -717,11 +1077,102 @@
                 </div>
             </div>
             <!-- Red downward arrow cue -->
-            <a href="#sign-the-pledge" style="display: flex; justify-content: center; align-items: center; margin: 0.7rem 0; cursor: pointer;">
+            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.7rem 0; cursor: pointer; width: 100vw;">
               <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 22L28 36L42 22" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
+        </section>
+
+        <!-- Healing Is a Shared Experience Section -->
+        <section id="healing-loop" class="shared-healing-section">
+            <div class="shared-healing-content">
+                <div class="shared-healing-text">
+                    <h2 class="shared-healing-title">THE HEALING LOOP</h2>
+                    <div class="shared-healing-body">
+                    </div>
+                </div>
+                <div class="healing-cycle-container">
+                    <div class="healing-cycle">
+                        <div class="cycle-center">
+                            <span class="cycle-center-subtitle">A CYCLE THAT CONNECTS US ALL</span>
+                        </div>
+                        <div class="cycle-item" data-step="feel" style="--angle: 0deg">
+                            <div class="cycle-circle">
+                                <div class="cycle-text">
+                                    <span class="cycle-word">FEEL</span>
+                                    <span class="cycle-description">The pain. The story. The truth</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cycle-item" data-step="express" style="--angle: 72deg">
+                            <div class="cycle-circle">
+                                <div class="cycle-text">
+                                    <span class="cycle-word">EXPRESS</span>
+                                    <span class="cycle-description">Through words, art, action</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cycle-item" data-step="release" style="--angle: 144deg">
+                            <div class="cycle-circle">
+                                <div class="cycle-text">
+                                    <span class="cycle-word">RELEASE</span>
+                                    <span class="cycle-description">Let it out.<br>Let it go</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cycle-item" data-step="heal" style="--angle: 216deg">
+                            <div class="cycle-circle">
+                                <div class="cycle-text">
+                                    <span class="cycle-word">HEAL</span>
+                                    <span class="cycle-description">Be seen.<br>Be supported</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cycle-item" data-step="love" style="--angle: 288deg">
+                            <div class="cycle-circle">
+                                <div class="cycle-text">
+                                    <span class="cycle-word">LOVE</span>
+                                    <span class="cycle-description">Yourself. Reflect it outward</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cycle-arrow" style="--angle: 36deg">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(45deg);">
+                                <path d="M5 15h20"/>
+                                <path d="m15 5 10 10-10 10"/>
+                            </svg>
+                        </div>
+                        <div class="cycle-arrow" style="--angle: 108deg">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(115deg);">
+                                <path d="M5 15h20"/>
+                                <path d="m15 5 10 10-10 10"/>
+                            </svg>
+                        </div>
+                        <div class="cycle-arrow" style="--angle: 180deg">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(195deg);">
+                                <path d="M5 15h20"/>
+                                <path d="m15 5 10 10-10 10"/>
+                            </svg>
+                        </div>
+                        <div class="cycle-arrow" style="--angle: 252deg">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(265deg);">
+                                <path d="M5 15h20"/>
+                                <path d="m15 5 10 10-10 10"/>
+                            </svg>
+                        </div>
+                        <div class="cycle-arrow" style="--angle: 324deg">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(335deg);">
+                                <path d="M5 15h20"/>
+                                <path d="m15 5 10 10-10 10"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="cycle-kindness-text">
+                    <p>Be kind. Everyone is healing from something.</p>
+                </div>
+            </div>
         </section>
 
         <style>

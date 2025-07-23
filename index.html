@@ -41,7 +41,7 @@
         font-family: 'Anton', sans-serif;
         font-size: 2.7rem;
         color: #000;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         text-align: center;
         letter-spacing: 1px;
         font-weight: 700;
@@ -53,7 +53,7 @@
         font-weight: 700;
         color: #ca0013;
         text-align: center;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.5rem;
         line-height: 1.7;
     }
     .mobile-break {
@@ -241,16 +241,16 @@
         }
         .start-here-title {
             font-size: 2rem !important;
-            margin-bottom: 1.2rem !important;
+            margin-bottom: 0.8rem !important;
         }
         .start-here-title .mobile-break {
             display: block;
         }
         .start-here-subtext {
             font-size: 1.125rem !important;
-            font-weight: 500 !important;
+            font-weight: 700 !important;
             line-height: 1.8 !important;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
         .start-here-card-grid {
             flex-direction: column;
@@ -603,6 +603,69 @@
                     <!-- Image removed: now using background video in CSS -->
                 </div>
             </div>
+            <div class="hero-tagline-cta" style="margin-bottom: 0.5rem;">
+              <a href="letitout.html" class="hero-letitout-btn">I'M READY TO LET IT OUT</a>
+            </div>
+            <style>
+            .hero-tagline-cta {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: flex-end;
+              margin-bottom: 2rem;
+              z-index: 2;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding-bottom: 2rem;
+            }
+            .hero-tagline {
+              color: #fffcf1;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 1.25rem;
+              font-weight: 700;
+              text-align: center;
+              margin-bottom: 0.7rem;
+              letter-spacing: 0.5px;
+              text-shadow: 0 2px 12px rgba(0,0,0,0.13);
+            }
+            .hero-letitout-btn {
+              color: #fffcf1;
+              background: transparent;
+              border: 2px solid #fffcf1;
+              border-radius: 4px;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 1rem;
+              font-weight: 700;
+              padding: 0.7rem 1.2rem;
+              text-decoration: none;
+              text-align: center;
+              margin-bottom: 0.2rem;
+              transition: background 0.2s, color 0.2s, border-color 0.2s;
+              box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+              letter-spacing: 1px;
+            }
+            .hero-letitout-btn:hover, .hero-letitout-btn:focus {
+              background: #ca0013;
+              color: #fffcf1;
+              border-color: #ca0013;
+              outline: none;
+            }
+            @media (max-width: 600px) {
+              .hero-tagline {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+              }
+              .hero-letitout-btn {
+                font-size: 0.95rem;
+                padding: 0.6rem 1rem;
+              }
+              .hero-tagline-cta {
+                margin-bottom: 0.3rem;
+              }
+            }
+            </style>
             <div class="hero-scroll-cue">
                 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14 22L28 36L42 22" stroke="#fffcf1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -634,11 +697,11 @@
 
         <section id="mission-section" class="mission-modern">
             <h2 class="mission-modern-title">
-              <span class="highlight">Healing Shouldn't Be a Luxury</span>
+              <span class="highlight">No One Should Have to Heal Alone</span>
             </h2>
             <p class="mission-modern-text">
-              We're building a public healing movement — with tools, products, and spaces that help people feel, say, and let it out together. Healing has become a luxury. But it should be a right.<br>
-              Most people live without access to support, safe spaces, or time to process pain. Our culture teaches us to suppress and keep moving. But emotional pain doesn't disappear. It compounds. <span style="color: #ca0013;">When you heal in public, you remind someone else<br class="desktop-break"> they're not alone.</span></p>
+              Most people don’t have access to the time, tools, or safe spaces they need to process pain. So they keep going — quietly hurting. We’re building a public healing movement: a space to feel it, say it, and let it out together. Because when pain is seen and supported, healing becomes possible. When you heal in public, you remind someone else they’re not alone.
+            </p>
             <div class="mission-buttons">
                 <a href="info.html" class="btn btn-mission btn-mission-primary">Join the Movement</a>
                 <a href="shop/index.html" class="btn btn-mission">Shop the Collection</a>
@@ -649,10 +712,10 @@
         <section class="why-it-matters-section">
             <div class="why-it-matters-overlay"></div>
             <div class="why-it-matters-content">
-                <h2 class="why-it-matters-title">WHY IT ALL MATTERS</h2>
+                <h2 class="why-it-matters-title">This Is Why We Exist</h2>
                 <div class="why-it-matters-text">
-                    <p>We're all one heartbreak, one loss, one moment away from falling apart. When people feel seen—when they're given space to feel, speak, and process—they begin to heal. But most don't get that chance. Pain builds. Disconnection grows. This is why we exist. Every product, every post, every shared story helps someone feel seen again.</p>
-                    <p><strong style="color: #fffcf1;">You matter. You're not alone.<br>Your healing helps others heal too.</strong></p>
+                    <p>We’re all one heartbreak, one loss, one moment away from falling apart. But most people don’t have the tools, the time, or the community to process it. So pain builds — until it breaks them. Unprocessed pain is often at the root of homelessness, addiction, depression, isolation, and suicide. This is why we exist. Every post. Every product. Every shared truth helps someone feel seen.</p>
+                    <p><strong>You matter. You’re not alone.<br>Your healing helps others heal too.</strong></p>
                 </div>
             </div>
         </section>
@@ -660,8 +723,12 @@
         <!-- Start Here Section -->
         <section class="start-here-section">
             <div class="start-here-content">
-                <h2 class="start-here-title" style="color: #ca0013;">WHERE HEALING BEGINS</h2>
-                <div class="start-here-subtext" style="color: #000000;">Feel it. Write it. Wear it. Say it. Heal it.</div>
+                <h2 class="start-here-title" style="color: #ca0013;">Start Healing</h2>
+                <div class="start-here-subtext" style="color: #000000;">4 ways to feel lighter: Write it. Wear it.<span class="mobile-break"><br></span> Say it. Heal it.</div>
+                <style>
+                  .mobile-break { display: none; }
+                  @media (max-width: 600px) { .mobile-break { display: inline; } }
+                </style>
                 <div class="start-here-card-grid">
                     <!-- Card 1 -->
                     <a href="letitout.html" class="start-here-card start-here-clickable" style="background: url('images/letitoutcard.jpg') center center/cover no-repeat;">
@@ -710,8 +777,8 @@
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                           </svg>
                         </div>
-                        <h3 style="white-space: nowrap;">HEAL FROM HEARTBREAK</h3>
-                        <p>Breakup recovery course<br>22 days of tools to let go<br>Step-by-step healing journey</p>
+                        <h3 style="white-space: nowrap;">The Breakup Reset</h3>
+                        <p>Heal after heartbreak<br>Tools to let go and process pain<br>Start the 22-day course</p>
                     </a>
                 </div>
             </div>
@@ -721,19 +788,311 @@
         <section class="healing-purpose-section">
             <div class="healing-purpose-content">
                 <div class="healing-purpose-text">
-                    <h2 class="healing-purpose-title">Made With Intention</h2>
-                    <p class="healing-purpose-subtitle">They heal by creating. You heal by supporting and wearing.</p>
-                    <p class="healing-purpose-body">Every piece in our limited drops is crafted by someone rebuilding their life — reclaiming income, dignity, and purpose through their hands. Your purchase creates real income, safe work, and a way to heal through creating. When you wear Heart Matters, you support healing for yourself and someone else.</p>
+                    <h2 class="healing-purpose-title">Crafted with Heart</h2>
+                    <p class="healing-purpose-subtitle">Not just handmade. Made to heal.</p>
+                    <p class="healing-purpose-body">Every piece is part of a limited, curated drop — created by someone rebuilding their life. From Indigenous women to overlooked makers, we partner with artisans who are often unseen and under-supported. We buy upfront to provide real income, dignity, and opportunity. They heal through creation. You heal by honoring their story — and sharing it.</p>
                     <div class="healing-purpose-buttons">
                         <a href="info.html" class="btn btn-healing-primary">Meet the Makers</a>
-                        <a href="shop/index.html" class="btn btn-healing-secondary">Shop the Collection</a>
+                        <a href="shop/index.html" class="btn btn-healing-secondary">Shop The Drop</a>
                     </div>
+                    <div class="create-with-us-link">
+                        <span class="create-with-us-question">Want to Create With Us?</span>
+                        <a href="#" class="create-with-us-text">Become a Maker</a>
+                    </div>
+                    <style>
+                        .create-with-us-link {
+                            text-align: center;
+                            margin-top: 20px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 8px;
+                        }
+                        .create-with-us-question {
+                            font-family: 'DM Sans', sans-serif;
+                            font-size: 16px;
+                            font-weight: 500;
+                            color: #000;
+                        }
+                        .create-with-us-text {
+                            color: #ca0013;
+                            text-decoration: none;
+                            font-family: 'DM Sans', sans-serif;
+                            font-size: 16px;
+                            font-weight: 500;
+                        }
+                        .create-with-us-text:hover {
+                            text-decoration: underline;
+                        }
+                    </style>
                 </div>
                 <div class="healing-purpose-image">
                     <img src="images/impactimage.jpg" alt="Healing with purpose - supporting creators and communities" loading="lazy">
                 </div>
             </div>
         </section>
+
+        <!-- Real Impact Section -->
+        <section class="real-impact-section">
+            <div class="real-impact-content">
+                <h2 class="real-impact-title">Buy What Matters</h2>
+                <p class="real-impact-subtitle">You're not just buying — you're backing real people, real stories, and real change.</p>
+                
+                <div class="impact-steps">
+                    <div class="impact-step">
+                        <div class="step-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Made With Intention</h3>
+                            <p class="step-description">We work with makers to design meaningful collections rooted in culture, care, and artistry.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-step">
+                        <div class="step-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Worn With Meaning</h3>
+                            <p class="step-description">You wear a story. Each piece becomes a mirror — a symbol of healing, identity, and connection.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-step">
+                        <div class="step-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">The Impact Ripples</h3>
+                            <p class="step-description">What you wear sends a message. Your support creates real change — for you, for them, for all of us.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <style>
+        .real-impact-section {
+            background: #fffcf1;
+            padding: 4rem 0;
+            width: 100vw;
+        }
+        
+        .real-impact-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .real-impact-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #ca0013;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .real-impact-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 4rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .impact-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            margin-bottom: 2rem;
+        }
+        
+        .impact-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f0f0f0;
+            min-height: 320px;
+            justify-content: center;
+        }
+        
+        .step-icon {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid #ca0013;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .step-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ca0013;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .step-description {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #000000;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        .ripple-map {
+            margin-top: 3rem;
+            padding: 2rem 0;
+        }
+        
+        .ripple-flow {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .ripple-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ripple-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ca0013;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 2px solid #ca0013;
+            box-shadow: 0 2px 8px rgba(202, 0, 19, 0.1);
+        }
+        
+        .ripple-arrow {
+            font-size: 1.5rem;
+            color: #ca0013;
+            margin-top: -10px; /* Adjust as needed */
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Desktop Layout */
+        @media (min-width: 768px) {
+            .impact-steps {
+                flex-direction: row;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+            
+            .impact-step {
+                flex: 1;
+                max-width: none;
+            }
+            
+            .ripple-flow {
+                gap: 2.5rem;
+            }
+            
+            .ripple-step {
+                gap: 1rem;
+            }
+            
+            .ripple-text {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+            }
+            
+            .ripple-arrow {
+                font-size: 2rem;
+                margin-top: -15px; /* Adjust as needed */
+            }
+        }
+        
+        /* Mobile Layout */
+        @media (max-width: 600px) {
+            .real-impact-section {
+                padding: 2rem 0;
+            }
+            
+            .real-impact-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .impact-steps {
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .step-title {
+                font-size: 1.4rem;
+            }
+            
+            .step-description {
+                font-size: 1rem;
+            }
+            
+            .ripple-text {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            .ripple-arrow {
+                font-size: 1.2rem;
+                margin-top: -5px; /* Adjust as needed */
+            }
+            
+            .ripple-flow {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        </style>
+
     </main>
 
     <footer id="footer">

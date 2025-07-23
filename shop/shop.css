@@ -1,4 +1,398 @@
-/* Shop Styles - Heart Matters Design System */
+/* Ensure header stays fixed at top */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    background: #fffcf1;
+}
+
+/* Pre-Drop Landing Page Overlay */
+.pre-drop-overlay {
+    position: fixed;
+    top: 0; /* Start from very top */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+    background: #000;
+    z-index: 10;
+    overflow: hidden; /* Prevent scrolling within overlay */
+    margin: 0; /* Remove any margin */
+}
+
+.pre-drop-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fffcf1; /* Solid color instead of background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    z-index: 1;
+}
+
+.pre-drop-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fffcf1;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed from center to flex-start */
+    flex: 1;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent content scrolling */
+    margin-top: 80px; /* Push content below header */
+    gap: 2rem; /* Consistent spacing between elements */
+    padding-top: 15vh; /* Push content down from the top */
+}
+
+.pre-drop-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0; /* Remove margin, use gap instead */
+    margin-top: -5vh; /* Move logo up from its current position */
+}
+
+.pre-drop-logo img {
+    width: 800px; /* Increased from 650px - massive size for desktop */
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .pre-drop-logo {
+        margin-bottom: 2rem;
+    }
+    .pre-drop-logo img {
+        width: 650px; /* Increased from 520px - massive size for tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .pre-drop-logo {
+        margin-bottom: 1.5rem;
+    }
+    .pre-drop-logo img {
+        width: 520px; /* Increased from 420px - massive size for mobile */
+    }
+}
+
+.countdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0; /* Remove margin, use gap instead */
+}
+
+.shop-closed-title {
+    font-family: 'Unica One', cursive;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    margin-top: 2rem;
+    color: #000000;
+    line-height: 1.1;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.countdown-number {
+    font-family: 'Unica One', cursive;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1;
+}
+
+.countdown-label {
+    font-family: 'Unica One', cursive;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #000000;
+    opacity: 0.8;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+.countdown-divider {
+    font-family: 'Unica One', cursive;
+    font-size: 1rem;
+    color: #000000;
+    opacity: 0.4;
+    margin: 0 0.25rem;
+}
+
+.waitlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: auto;
+    width: 100%;
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 2px solid #ca0013;
+    color: #ca0013;
+    padding: 1rem 2rem;
+    font-family: 'Unica One', cursive;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    margin-top: auto;
+}
+
+.btn-ghost:hover {
+    background: #ca0013;
+    color: #fffcf1;
+}
+
+.waitlist-form {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2.5rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    width: 100%;
+}
+
+.waitlist-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: #fffcf1;
+}
+
+.waitlist-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #fffcf1;
+    opacity: 0.9;
+}
+
+.sms-signup-form {
+    margin-bottom: 1.5rem;
+}
+
+.sms-signup-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.sms-signup-form input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #fffcf1;
+    background: transparent;
+    color: #fffcf1;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.sms-signup-form input:focus {
+    border-color: #ca0013;
+}
+
+.sms-signup-form input::placeholder {
+    color: #fffcf1;
+    opacity: 0.7;
+}
+
+.sms-signup-form .btn-primary {
+    background: #ca0013;
+    color: #fffcf1;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.sms-signup-form .btn-primary:hover {
+    background: #a0000f;
+}
+
+.legal-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: #fffcf1;
+    opacity: 0.7;
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.form-success {
+    background: rgba(202, 0, 19, 0.2);
+    border: 1px solid #ca0013;
+    color: #fffcf1;
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .pre-drop-overlay {
+        padding: 1rem;
+    }
+    
+    .pre-drop-logo {
+        margin-bottom: 2rem;
+    }
+    
+    .pre-drop-logo img {
+        width: 280px; /* Increased from 200px */
+    }
+    
+    .shop-closed-title {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        margin-bottom: 0;
+    }
+    
+    .countdown-timer {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .countdown-number {
+        font-size: 2rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.625rem;
+    }
+    
+    .waitlist-form {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+    
+    .waitlist-title {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .waitlist-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .btn-ghost {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pre-drop-content {
+        padding: 0;
+        padding-top: 10vh; /* Reduced padding for mobile */
+        gap: 1.5rem; /* Reduced gap for mobile */
+        height: calc(100vh - 80px); /* Account for header */
+    }
+    
+    .pre-drop-logo {
+        margin-bottom: 1rem;
+        margin-top: 0; /* Remove negative margin on mobile */
+    }
+    
+    .pre-drop-logo img {
+        width: 280px; /* Reasonable size for mobile */
+        max-width: 90vw; /* Ensure it doesn't overflow */
+    }
+    
+    .shop-closed-title {
+        font-size: 0.625rem;
+        letter-spacing: 1px;
+        margin-top: 1rem;
+    }
+    
+    .countdown-timer {
+        gap: 0.5rem;
+    }
+    
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.5rem;
+    }
+    
+    .waitlist-container {
+        margin-top: 2rem; /* Ensure CTA button is visible */
+    }
+    
+    .btn-ghost {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+    }
+    
+    .waitlist-form {
+        padding: 1.5rem;
+    }
+    
+    .waitlist-title {
+        font-size: 1.25rem;
+    }
+    
+    .waitlist-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .legal-text {
+        font-size: 0.625rem;
+    }
+}
 
 /* Shop Hero Section */
 .shop-hero {
@@ -423,4 +817,261 @@
     .nav-dropdown-menu {
         display: none;
     }
+} 
+
+/* Slide-up Modal Styles */
+.waitlist-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.waitlist-modal.active {
+    display: flex;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background: #000000;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin: 0;
+}
+
+.waitlist-modal.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Desktop: Center modal */
+@media (min-width: 769px) {
+    .waitlist-modal {
+        align-items: center;
+    }
+    
+    .modal-content {
+        transform: scale(0.8) translateY(20px);
+        opacity: 0;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+    }
+    
+    .waitlist-modal.active .modal-content {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobile: Slide up from bottom */
+@media (max-width: 768px) {
+    .waitlist-modal {
+        align-items: flex-end;
+    }
+    
+    .modal-content {
+        border-radius: 12px 12px 0 0;
+        transform: translateY(100%);
+    }
+    
+    .waitlist-modal.active .modal-content {
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #fffcf1;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.waitlist-title {
+    font-family: 'Unica One', cursive;
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: #fffcf1;
+    text-align: center;
+}
+
+.waitlist-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #fffcf1;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.sms-signup-form {
+    margin-bottom: 1.5rem;
+}
+
+.sms-signup-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.sms-signup-form input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #fffcf1;
+    background: transparent;
+    color: #fffcf1;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.sms-signup-form input:focus {
+    border-color: #ca0013;
+}
+
+.sms-signup-form input::placeholder {
+    color: #fffcf1;
+    opacity: 0.7;
+}
+
+.sms-signup-form .btn-primary {
+    background: #ca0013;
+    color: #fffcf1;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.sms-signup-form .btn-primary:hover {
+    background: #a0000f;
+}
+
+.legal-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: #fffcf1;
+    opacity: 0.7;
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.form-success {
+    background: rgba(202, 0, 19, 0.2);
+    border: 1px solid #ca0013;
+    color: #fffcf1;
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Mobile Responsive for Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 1.5rem;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .waitlist-title {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .waitlist-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .modal-close {
+        top: 0.75rem;
+        right: 0.75rem;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1rem;
+    }
+    
+    .waitlist-title {
+        font-size: 1.25rem;
+    }
+    
+    .waitlist-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .legal-text {
+        font-size: 0.625rem;
+    }
+} 
+
+/* Hide main content when pre-drop overlay is active */
+.pre-drop-overlay:not([style*="display: none"]) ~ main {
+    display: none;
+}
+
+/* Ensure main content is visible when overlay is hidden */
+main {
+    display: block;
+} 
+
+/* Ensure proper body spacing with fixed header */
+body {
+    padding-top: 80px; /* Account for fixed header */
+}
+
+/* Ensure main content and footer are visible when overlay is hidden */
+main, footer {
+    display: block;
 } 

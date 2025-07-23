@@ -2451,7 +2451,7 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
 .hero-scroll-cue {
     position: absolute;
     left: 50%;
-    bottom: 2.5rem;
+    bottom: 0.1rem;
     transform: translateX(-50%);
     z-index: 3;
     display: flex;
@@ -2469,9 +2469,8 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
 
 .hero-scroll-cue svg {
     display: block;
-    width: 56px;
-    height: 56px;
-    animation: hero-cue-bounce 1.6s infinite cubic-bezier(.68,-0.55,.27,1.55);
+    width: 40px;
+    height: 40px;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
 }
 
