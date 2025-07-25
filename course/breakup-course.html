@@ -180,8 +180,8 @@
                         <a href="../shop/index.html" class="nav-dropdown-trigger">SHOP</a>
                         <ul class="nav-dropdown-menu" id="shopDropdownMenu">
                             <li><a href="../shop/index.html">STILL HEALING COLLECTION</a></li>
-                            <li><a href="../product/breakup-course.html">Breakup Recovery Course</a></li>
-                            <li id="myCourseLink" style="display: none;"><a href="breakup-course.html">Continue Course</a></li>
+                            <li><a href="../product/breakup-course.html" id="desktopBreakupResetLink">The Breakup Reset</a></li>
+                            <li id="myCourseLink" style="display: none;"><a href="breakup-course.html" id="desktopContinueBreakupResetLink">Continue The Breakup Reset</a></li>
                         </ul>
                     </li>
                     <li><a href="../info.html">JOIN THE MOVEMENT</a></li>
@@ -198,7 +198,8 @@
             <a href="../letitout.html">LET IT OUT</a>
             <a href="../theheartroom.html">THE HEART ROOM</a>
             <a href="../info.html">JOIN THE MOVEMENT</a>
-            <a id="mobileCourseLink" href="breakup-course.html" style="display: none;">Continue Course</a>
+            <a id="mobileBreakupResetLink" href="../product/breakup-course.html">THE BREAKUP RESET</a>
+            <a id="mobileCourseLink" href="breakup-course.html" style="display: none;">Continue The Breakup Reset</a>
         </nav>
     </div>
     <main>
@@ -235,10 +236,24 @@
             const isUnlocked = localStorage.getItem('courseUnlocked_breakup') === 'true';
             const myCourseLink = document.getElementById('myCourseLink');
             const mobileCourseLink = document.getElementById('mobileCourseLink');
-            
+            const mobileBreakupResetLink = document.getElementById('mobileBreakupResetLink');
+            const desktopBreakupResetLink = document.getElementById('desktopBreakupResetLink');
+            const desktopContinueBreakupResetLink = document.getElementById('desktopContinueBreakupResetLink');
             if (isUnlocked) {
                 if (myCourseLink) myCourseLink.style.display = 'block';
-                if (mobileCourseLink) mobileCourseLink.style.display = 'block';
+                if (mobileCourseLink) {
+                    mobileCourseLink.style.display = 'block';
+                    mobileCourseLink.textContent = 'Continue The Breakup Reset';
+                }
+                if (mobileBreakupResetLink) mobileBreakupResetLink.style.display = 'none';
+                if (desktopBreakupResetLink) desktopBreakupResetLink.style.display = 'none';
+                if (desktopContinueBreakupResetLink) desktopContinueBreakupResetLink.style.display = 'block';
+            } else {
+                if (myCourseLink) myCourseLink.style.display = 'none';
+                if (mobileCourseLink) mobileCourseLink.style.display = 'none';
+                if (mobileBreakupResetLink) mobileBreakupResetLink.style.display = 'block';
+                if (desktopBreakupResetLink) desktopBreakupResetLink.style.display = 'block';
+                if (desktopContinueBreakupResetLink) desktopContinueBreakupResetLink.style.display = 'none';
             }
         }
         
