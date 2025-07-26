@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fffcf1">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
+    
+    <title>Meet the Makers Behind the Movement | Heart Matters</title>
+    <meta name="description" content="Discover the Indigenous Embera Chami women and creators behind Heart Matters' first collection. Each piece tells a story of healing, purpose, and community.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Meet the Makers Behind the Movement | Heart Matters">
+    <meta property="og:description" content="Discover the Indigenous Embera Chami women and creators behind Heart Matters' first collection. Each piece tells a story of healing, purpose, and community.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.joinheartmatters.com/makers.html">
+    <meta property="og:image" content="https://heartmatters.com/images/impactimage2.jpg">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="shop/shop.css">
+    
+    <style>
+        /* Makers Page Specific Styles */
+        .makers-hero {
+            background: #fffcf1;
+            padding: 0 0 4rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .makers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 0 3rem;
+        }
+        
+        .makers-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            margin-top: -2rem;
+        }
+        
+        .makers-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.8rem;
+            color: #000;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        
+
+        
+        .makers-image {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .makers-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .makers-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 5rem;
+            margin-top: 2rem;
+        }
+        
+        .makers-image-container {
+            flex: 0 0 45%;
+        }
+        
+        .makers-text-container {
+            flex: 0 0 55%;
+            text-align: left;
+        }
+        
+        .makers-copy {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #2a2a2a;
+            margin-bottom: 3rem;
+            text-align: left;
+            font-weight: 400;
+        }
+        
+        .makers-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ca0013;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .makers-ctas {
+            display: flex;
+            flex-direction: row;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .waitlist-btn {
+            background: #ca0013;
+            color: #fffcf1;
+            border: 2px solid #ca0013;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.85rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            box-sizing: border-box;
+            white-space: nowrap;
+            min-height: 48px;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        
+        .waitlist-btn:hover {
+            background: #a00012;
+            color: #fffcf1;
+            border-color: #a00012;
+            outline: none;
+        }
+        
+        .create-with-us-btn {
+            background: transparent;
+            color: #ca0013;
+            border: 2px solid #ca0013;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.85rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            box-sizing: border-box;
+            white-space: nowrap;
+            min-height: 48px;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        
+        .create-with-us-btn:hover {
+            background: #ca0013;
+            color: #fffcf1;
+            border-color: #ca0013;
+            outline: none;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .makers-title {
+                font-size: 2.2rem;
+            }
+            
+
+            
+            .makers-copy {
+                font-size: 1.1rem;
+            }
+            
+            .makers-subtitle {
+                font-size: 1.2rem;
+                margin-top: 1rem;
+            }
+            
+            .makers-container {
+                padding: 0 1rem;
+            }
+            
+            .makers-header {
+                margin-bottom: 0.25rem;
+                margin-top: 0;
+            }
+            
+            .makers-layout {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .makers-image-container {
+                flex: 0 0 auto;
+            }
+            
+            .makers-text-container {
+                flex: 0 0 auto;
+                text-align: center;
+            }
+            
+            .makers-image {
+                margin: 0.5rem auto;
+                max-width: 450px;
+            }
+            
+            .makers-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+
+        
+        /* Close Button Styles */
+        .close-page-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+        
+        .close-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            color: #666;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .close-link:hover {
+            background: #ca0013;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Mobile responsive for close button */
+        @media (max-width: 768px) {
+            .close-page-btn {
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .close-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Embera Chami Section Styles */
+        .embera-section {
+            background: #1a1a1a;
+            padding: 6rem 0;
+        }
+        
+        .embera-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        
+        .embera-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .embera-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 3rem;
+            color: #fffcf1;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        
+        .embera-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ca0013;
+            text-align: center;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .embera-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .embera-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #e0e0e0;
+            text-align: left;
+            font-weight: 400;
+        }
+        
+        .embera-text p {
+            margin-bottom: 2rem;
+        }
+        
+        .embera-quote {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ca0013;
+            text-align: center;
+            font-style: italic;
+            margin-top: 3rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        /* Mobile Responsive for Embera Section */
+        @media (max-width: 768px) {
+            .embera-section {
+                padding: 4rem 0;
+            }
+            
+            .embera-container {
+                padding: 0 1rem;
+            }
+            
+            .embera-header {
+                margin-bottom: 3rem;
+            }
+            
+            .embera-title {
+                font-size: 2.2rem;
+            }
+            
+            .embera-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .embera-text {
+                font-size: 1.1rem;
+            }
+            
+            .embera-quote {
+                font-size: 1.2rem;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Close Button -->
+    <div class="close-page-btn">
+        <a href="index.html" class="close-link">
+            <i class="fas fa-times"></i>
+        </a>
+    </div>
+
+    <!-- Makers Hero Section -->
+    <section class="makers-hero">
+        <div class="makers-container">
+            <div class="makers-header">
+                                        <h1 class="makers-title">Meet the Makers Behind the Movement</h1>
+            </div>
+            
+            <div class="makers-content">
+                <div class="makers-layout">
+                    <div class="makers-image-container">
+                        <img src="images/impactimage2.jpg" alt="Indigenous Embera Chami women crafting" class="makers-image">
+                    </div>
+                                            <div class="makers-text-container">
+                            <div class="makers-copy">
+                                <h3 class="makers-subtitle"><strong>The Hands Behind the Healing</strong></h3>
+                                <p>Our first collection was handcrafted by <strong>Indigenous Embera Chami women in Colombia</strong> — turning pain and tradition into purpose, income, and healing. As we grow, each drop will spotlight makers from all walks of life — from LGBTQ+ youth to widowed elders, unhoused creators to survivor-led artists — all reclaiming dignity, income, and healing through expression. This isn't just craft. It's survival. It's purpose. It's healing in motion.</p>
+                                
+                                <p>Our first limited drop is launching soon!</p>
+                            </div>
+                        
+                        <div class="makers-ctas">
+                            <button class="waitlist-btn" onclick="openWaitlistModal()">JOIN THE WAITLIST</button>
+                            <button class="create-with-us-btn" onclick="window.open('https://tally.so/r/wbQkKL', '_blank')">BECOME A MAKER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Embera Chami Section -->
+    <section class="embera-section">
+        <div class="embera-container">
+            <div class="embera-header">
+                <h2 class="embera-title">The Embera Chami Women of Caquetá, Colombia</h2>
+                <h3 class="embera-subtitle">Artisans. Survivors. Storytellers.</h3>
+            </div>
+            
+            <div class="embera-content">
+                <div class="embera-text">
+                    <p>Forced from their ancestral lands during Colombia's armed conflict, the Embera Chami families of Caquetá lost everything — their homes, safety, and connection to the natural world that had always sustained them. What followed were years of hardship: disease, displacement, and the daily struggle to survive in overcrowded slums and unfamiliar cities. But through all of this, they kept creating.</p>
+                    
+                    <p>Their beadwork — known as <strong>chaquira</strong> — is more than just jewelry. It's a language. A spiritual art form passed down through generations, each color and pattern a reflection of their cosmovision — their deep connection to the universe, to nature, and to healing. Every piece is a prayer, a story, and a survival.</p>
+                    
+                    <p>Today, many Embera Chami women still live in conditions of poverty, illness, and displacement. With limited access to education or modern jobs, this craft remains one of the few lifelines available — a way to reclaim income, dignity, and cultural identity. By partnering with them, our first collection is not just handmade. It's heart-made.</p>
+                    
+                    <p class="embera-quote">A symbol of survival. A thread of resilience. A shared step toward healing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Modal -->
+    <div class="waitlist-modal" id="waitlistModal">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 class="waitlist-title">JOIN OUR WAITLIST</h2>
+            <p class="waitlist-subtitle">JOIN TO GET THE ACCESS TO THE SHOP ON DROP DAY AND OUR EXCLUSIVE WAITLIST DISCOUNT</p>
+            
+            <form class="sms-signup-form" id="smsSignupForm" action="https://docs.google.com/forms/d/e/YOUR_NEW_FORM_ID/formResponse" method="POST" target="hidden-sms-iframe">
+                <div class="form-group">
+                    <input type="tel" name="entry.PHONE_FIELD_ID" placeholder="Phone Number" required>
+                </div>
+                <button type="submit" class="btn-primary">Tap to join</button>
+            </form>
+            
+            <p class="legal-text">
+                By submitting this form, you consent to receive informational (e.g., order updates) and/or marketing texts (e.g., cart reminders) from Tamed Psychotic including texts sent by autodialer. Consent is not a condition of purchase. Msg & data rates may apply. Msg frequency varies. Unsubscribe at any time by replying STOP or clicking the unsubscribe link (where available). Privacy Policy & Terms.
+            </p>
+            
+            <div id="sms-form-success" class="form-success" style="display: none;">
+                Welcome to our exclusive waitlist<br>Please check your text for a confirmation message.
+            </div>
+        </div>
+    </div>
+    
+    <iframe name="hidden-sms-iframe" style="display:none;"></iframe>
+
+    <script src="js/menu.js"></script>
+    <script>
+        // Waitlist Modal Functionality (using shop's modal system)
+        const waitlistModal = document.getElementById('waitlistModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const smsSignupForm = document.getElementById('smsSignupForm');
+        const formSuccess = document.getElementById('sms-form-success');
+
+        function showWaitlistModal() {
+            if (waitlistModal) {
+                waitlistModal.classList.add('active');
+            }
+        }
+
+        function hideWaitlistModal() {
+            if (waitlistModal) {
+                waitlistModal.classList.remove('active');
+            }
+        }
+
+        // Open modal when button is clicked
+        document.querySelector('.waitlist-btn').addEventListener('click', showWaitlistModal);
+
+        // Close modal when X is clicked
+        modalClose.addEventListener('click', hideWaitlistModal);
+
+        // Close modal when backdrop is clicked
+        modalBackdrop.addEventListener('click', hideWaitlistModal);
+
+        // Handle form submission
+        smsSignupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Track waitlist signup
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'waitlist_signup', {
+                    event_category: 'makers_page_engagement',
+                    event_label: 'makers_waitlist_signup'
+                });
+            }
+            
+            // Show success message
+            formSuccess.style.display = 'block';
+            smsSignupForm.style.display = 'none';
+            
+            // Hide modal after 3 seconds
+            setTimeout(() => {
+                hideWaitlistModal();
+                formSuccess.style.display = 'none';
+                smsSignupForm.style.display = 'block';
+            }, 3000);
+        });
+    </script>
+</body>
+</html> 
