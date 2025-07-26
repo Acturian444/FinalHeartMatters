@@ -4,15 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fffcf1">
-    <title>Breakup Recovery Course - Heal Your Heart, Rebuild Your Life | Heart Matters</title>
-    <meta name="description" content="A comprehensive digital course to help you heal from heartbreak, rebuild your confidence, and create a life you love. Guided journaling, emotional support, and practical tools for your healing journey.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
+    <title>The Breakup Reset – 22-Day Breakup Recovery Course to Heal & Attract Real Love</title>
+    <meta name="description" content="Heartbroken after a breakup? This 22-day course gives you daily tools to stop missing your ex, rebuild confidence, and finally move on.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Breakup Recovery Course - Heal Your Heart, Rebuild Your Life | Heart Matters">
-    <meta property="og:description" content="A comprehensive digital course to help you heal from heartbreak, rebuild your confidence, and create a life you love.">
+    <meta property="og:title" content="The Breakup Reset – 22-Day Breakup Recovery Course to Heal & Attract Real Love">
+    <meta property="og:description" content="Heartbroken after a breakup? This 22-day course gives you daily tools to stop missing your ex, rebuild confidence, and finally move on.">
     <meta property="og:type" content="product">
-    <meta property="og:url" content="https://heartmatters.com/product/breakup-course.html">
+    <meta property="og:url" content="https://www.joinheartmatters.com/product/breakup-course.html">
     <meta property="og:image" content="https://heartmatters.com/images/shop/course-placeholder.jpg">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "THE BREAKUP RESET",
+      "description": "22-day digital course to transform heartbreak into strength and rebuild self-worth for women recovering from toxic relationships or divorce",
+      "brand": {
+        "@type": "Brand",
+        "name": "Heart Matters"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "33.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "150"
+      }
+    }
+    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -831,6 +866,237 @@
 
         // Check incognito status on page load
         document.addEventListener('DOMContentLoaded', checkIncognito);
+
+        // Custom Google Analytics Events for Course Product Page Tracking
+        function trackCourseProductEvent(eventName, eventParameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    event_category: 'course_product_engagement',
+                    event_label: 'breakup_recovery_course',
+                    ...eventParameters
+                });
+                console.log('Course product event tracked:', eventName, eventParameters);
+            }
+        }
+
+        // Track course product page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackCourseProductEvent('course_product_page_view', {
+                product_name: 'The Breakup Reset',
+                product_category: 'digital_course',
+                product_price: 33.00,
+                course_duration: '22_days'
+            });
+        });
+
+        // Track course content interactions
+        function trackCourseContentInteraction(interactionType, contentSection) {
+            trackCourseProductEvent('course_content_interaction', {
+                interaction_type: interactionType, // 'view', 'click', 'read'
+                content_section: contentSection, // 'hero', 'benefits', 'curriculum', 'testimonials'
+                interaction_category: 'content_engagement'
+            });
+        }
+
+        // Track course benefits engagement
+        function trackCourseBenefitsEngagement(benefitType, engagementAction) {
+            trackCourseProductEvent('course_benefits_engagement', {
+                benefit_type: benefitType, // 'healing', 'confidence', 'transformation', 'support'
+                engagement_action: engagementAction, // 'view', 'click', 'hover'
+                engagement_category: 'value_proposition'
+            });
+        }
+
+        // Track curriculum exploration
+        function trackCurriculumExploration(dayNumber, sectionType) {
+            trackCourseProductEvent('curriculum_exploration', {
+                day_number: dayNumber, // 1-22
+                section_type: sectionType, // 'morning_reflection', 'evening_practice', 'journaling'
+                exploration_type: 'course_preview'
+            });
+        }
+
+        // Track testimonial interactions
+        function trackTestimonialInteraction(interactionType, testimonialSource) {
+            trackCourseProductEvent('testimonial_interaction', {
+                interaction_type: interactionType, // 'view', 'click', 'read_full'
+                testimonial_source: testimonialSource, // 'social_proof', 'transformation_story'
+                interaction_category: 'social_proof_engagement'
+            });
+        }
+
+        // Track course preview interactions
+        function trackCoursePreviewInteraction(previewType, previewContent) {
+            trackCourseProductEvent('course_preview_interaction', {
+                preview_type: previewType, // 'sample_lesson', 'journal_prompt', 'exercise'
+                preview_content: previewContent, // 'day_1_sample', 'reflection_prompt'
+                interaction_category: 'course_preview'
+            });
+        }
+
+        // Track pricing interactions
+        function trackPricingInteraction(interactionType, pricingElement) {
+            trackCourseProductEvent('pricing_interaction', {
+                interaction_type: interactionType, // 'view', 'click', 'hover'
+                pricing_element: pricingElement, // 'price', 'value_prop', 'guarantee'
+                interaction_category: 'pricing_engagement'
+            });
+        }
+
+        // Track purchase intent signals
+        function trackPurchaseIntent(intentSignal, intentStrength) {
+            trackCourseProductEvent('purchase_intent', {
+                intent_signal: intentSignal, // 'add_to_cart', 'view_pricing', 'read_guarantee'
+                intent_strength: intentStrength, // 'high', 'medium', 'low'
+                intent_category: 'conversion_tracking'
+            });
+        }
+
+        // Track course guarantee interactions
+        function trackGuaranteeInteraction(interactionType, guaranteeType) {
+            trackCourseProductEvent('guarantee_interaction', {
+                interaction_type: interactionType, // 'view', 'click', 'read'
+                guarantee_type: guaranteeType, // 'money_back', 'satisfaction', 'support'
+                interaction_category: 'trust_building'
+            });
+        }
+
+        // Track course FAQ interactions
+        function trackFAQInteraction(questionType, interactionAction) {
+            trackCourseProductEvent('faq_interaction', {
+                question_type: questionType, // 'timing', 'content', 'support', 'access'
+                interaction_action: interactionAction, // 'view', 'expand', 'click'
+                interaction_category: 'information_seeking'
+            });
+        }
+
+        // Track course sharing
+        function trackCourseSharing(sharingPlatform, sharingContext) {
+            trackCourseProductEvent('course_sharing', {
+                sharing_platform: sharingPlatform, // 'instagram', 'copy_link', 'email'
+                sharing_context: sharingContext, // 'product_page', 'testimonial', 'benefit'
+                sharing_type: 'course_recommendation'
+            });
+        }
+
+        // Track course comparison
+        function trackCourseComparison(comparisonType, comparedWith) {
+            trackCourseProductEvent('course_comparison', {
+                comparison_type: comparisonType, // 'price', 'duration', 'content'
+                compared_with: comparedWith, // 'other_courses', 'therapy', 'books'
+                comparison_category: 'decision_making'
+            });
+        }
+
+        // Track course page navigation
+        function trackCoursePageNavigation(fromSection, toSection) {
+            trackCourseProductEvent('course_page_navigation', {
+                from_section: fromSection, // 'hero', 'benefits', 'curriculum', 'testimonials'
+                to_section: toSection,
+                navigation_type: 'course_exploration'
+            });
+        }
+
+        // Track mobile interactions
+        function trackCourseMobileInteraction(interactionType, courseElement) {
+            trackCourseProductEvent('course_mobile_interaction', {
+                interaction_type: interactionType, // 'swipe', 'tap', 'scroll'
+                course_element: courseElement, // 'curriculum', 'testimonials', 'pricing'
+                interaction_category: 'mobile_experience'
+            });
+        }
+
+        // Track course page session duration
+        let courseProductSessionStartTime = Date.now();
+        let courseProductInteractionsCount = 0;
+
+        window.addEventListener('beforeunload', function() {
+            const sessionDuration = Math.round((Date.now() - courseProductSessionStartTime) / 1000 / 60); // minutes
+            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
+                trackCourseProductEvent('course_product_session_duration', {
+                    duration_minutes: sessionDuration,
+                    interactions_count: courseProductInteractionsCount,
+                    session_type: 'course_consideration'
+                });
+            }
+        });
+
+        // Track return visits to course product page
+        let courseProductVisitCount = localStorage.getItem('breakupCourseProductVisitCount') || 0;
+        let lastCourseProductVisitDate = localStorage.getItem('breakupCourseProductLastVisitDate');
+        courseProductVisitCount = parseInt(courseProductVisitCount) + 1;
+        localStorage.setItem('breakupCourseProductVisitCount', courseProductVisitCount);
+        localStorage.setItem('breakupCourseProductLastVisitDate', new Date().toISOString());
+
+        if (courseProductVisitCount > 1 && lastCourseProductVisitDate) {
+            const daysSinceLastVisit = Math.round((new Date() - new Date(lastCourseProductVisitDate)) / (1000 * 60 * 60 * 24));
+            trackCourseProductEvent('course_product_return_visit', {
+                visit_number: courseProductVisitCount,
+                days_since_last_visit: daysSinceLastVisit,
+                visit_type: 'course_consideration'
+            });
+        }
+
+        // Track scroll depth for course content
+        let maxScrollDepth = 0;
+        window.addEventListener('scroll', function() {
+            const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+            if (scrollDepth > maxScrollDepth) {
+                maxScrollDepth = scrollDepth;
+                if (scrollDepth % 25 === 0) { // Track at 25%, 50%, 75%, 100%
+                    trackCourseProductEvent('course_scroll_depth', {
+                        scroll_percentage: scrollDepth,
+                        scroll_category: 'content_engagement'
+                    });
+                }
+            }
+        });
+
+        // Track time spent on course sections
+        let sectionStartTime = Date.now();
+        let currentSection = 'hero';
+
+        function trackSectionTime(sectionName) {
+            const timeSpent = Math.round((Date.now() - sectionStartTime) / 1000); // seconds
+            if (timeSpent > 10) { // Only track if spent more than 10 seconds
+                trackCourseProductEvent('course_section_time', {
+                    section_name: currentSection,
+                    time_spent_seconds: timeSpent,
+                    section_category: 'content_engagement'
+                });
+            }
+            currentSection = sectionName;
+            sectionStartTime = Date.now();
+        }
+
+        // Example usage - you can call these functions from your existing course product logic:
+        // trackCourseContentInteraction('click', 'benefits');
+        // trackCourseBenefitsEngagement('healing', 'view');
+        // trackCurriculumExploration(1, 'morning_reflection');
+        // trackTestimonialInteraction('view', 'transformation_story');
+        // trackCoursePreviewInteraction('sample_lesson', 'day_1_sample');
+        // trackPricingInteraction('click', 'price');
+        // trackPurchaseIntent('add_to_cart', 'high');
+        // trackGuaranteeInteraction('view', 'money_back');
+        // trackFAQInteraction('timing', 'expand');
+        // trackCourseSharing('instagram', 'product_page');
+        // trackCourseComparison('price', 'therapy');
+        // trackCoursePageNavigation('hero', 'curriculum');
+        // trackCourseMobileInteraction('swipe', 'curriculum');
+        // trackSectionTime('benefits');
+
+        // Track newsletter signups from course product page
+        function trackCourseNewsletterSignup(courseName, signupSource) {
+            trackCourseProductEvent('newsletter_signup', {
+                course_name: courseName,
+                signup_source: signupSource, // 'course_page', 'footer'
+                signup_category: 'email_marketing'
+            });
+        }
+
+        // Example usage for newsletter tracking:
+        // trackCourseNewsletterSignup('The Breakup Reset', 'course_page');
+
     </script>
 </body>
 </html> 

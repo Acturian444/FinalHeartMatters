@@ -187,7 +187,7 @@
     let reminderText;
     if (completedCount === totalDays) {
       // All 22 days completed, with mobile line break after 'day.'
-      reminderText = "You made it to the last day.<span class=\"mobile-br\"></span> That says everything.";
+              reminderText = "You didn't just finish a course.<span class=\"mobile-br\"></span> You reclaimed your power.";
     } else {
       // Default message with mobile line break after 'again.'
       reminderText = "This is where you begin again.<span class=\"mobile-br\"></span> One day at a time.";

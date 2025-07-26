@@ -1,0 +1,57 @@
+User-agent: *
+Allow: /
+
+# Allow all public pages
+Allow: /index.html
+Allow: /letitout.html
+Allow: /info.html
+Allow: /theheartroom.html
+Allow: /shop/
+Allow: /product/
+Allow: /course/
+
+# Allow CSS and JavaScript files for proper rendering
+Allow: /style.css
+Allow: /product.css
+Allow: /course.css
+Allow: /js/
+Allow: /styles/
+
+# Allow images for SEO and social sharing
+Allow: /images/
+Allow: /fonts/
+
+# Block development and testing files
+Disallow: /test-mvp-implementation.html
+Disallow: /tests/
+Disallow: /product_backup/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /server.js
+
+# Block sensitive configuration files
+Disallow: /js/config/
+Disallow: /js/firebase-debug.js
+Disallow: /js/test-setup.js
+
+# Block any potential admin or development areas
+Disallow: /admin/
+Disallow: /dev/
+Disallow: /temp/
+Disallow: /cache/
+
+# Block any API endpoints or sensitive data
+Disallow: /api/
+Disallow: /data/
+Disallow: /logs/
+
+# Allow sitemap
+Allow: /sitemap.xml
+
+# Sitemap location
+Sitemap: https://www.joinheartmatters.com/sitemap.xml
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1 

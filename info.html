@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fffcf1">
-    <title>Join The Movement - Heart Matters</title>
-    <meta name="description" content="Join the Heart Matters movement - Learn more and get involved">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
+    <title>Join the Healing in Public Movement | Heart Matters Manifesto</title>
+    <meta name="description" content="Healing is a human right, not a privilege. Join our movement to make emotional healing visible, shared, and supported. Read our manifesto and take the healing pledge.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Join the Healing in Public Movement | Heart Matters Manifesto">
+    <meta property="og:description" content="Healing is a human right, not a privilege. Join our movement to make emotional healing visible, shared, and supported. Read our manifesto and take the healing pledge.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.joinheartmatters.com/info.html">
+    <meta property="og:image" content="https://heartmatters.com/images/The Heart Room Logo.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Heart Matters",
+      "description": "A public healing movement making emotional healing visible, shared, and supported for everyone.",
+      "url": "https://heartmatters.com",
+      "logo": "https://heartmatters.com/images/The Heart Room Logo.png",
+      "sameAs": [
+        "https://www.instagram.com/heartmatters__/",
+        "https://www.tiktok.com/@heartmatters__"
+      ],
+      "foundingDate": "2024",
+      "mission": "No One Should Have to Heal Alone",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Healing in Public Movement",
+        "description": "Join our movement to make emotional healing visible and accessible"
+      }
+    }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style">
@@ -1417,6 +1458,125 @@
         
         // Update navigation on page load
         document.addEventListener('DOMContentLoaded', updateNavigation);
+
+        // Custom Google Analytics Events for Movement Page Tracking
+        function trackMovementEvent(eventName, eventParameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    event_category: 'movement_engagement',
+                    event_label: 'healing_movement',
+                    ...eventParameters
+                });
+                console.log('Movement event tracked:', eventName, eventParameters);
+            }
+        }
+
+        // Track movement page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackMovementEvent('movement_page_view', {
+                page_type: 'movement_manifesto',
+                page_category: 'brand_engagement'
+            });
+        });
+
+        // Track healing pledge submissions
+        function trackPledgeSubmission(pledgeType, userType) {
+            trackMovementEvent('pledge_submission', {
+                pledge_type: pledgeType, // 'healing_pledge', 'movement_commitment'
+                user_type: userType, // 'new', 'returning'
+                pledge_category: 'movement_engagement'
+            });
+        }
+
+        // Track manifesto interactions
+        function trackManifestoInteraction(interactionType, manifestoSection) {
+            trackMovementEvent('manifesto_interaction', {
+                interaction_type: interactionType, // 'view', 'read', 'share'
+                manifesto_section: manifestoSection, // 'mission', 'values', 'commitment'
+                interaction_category: 'content_engagement'
+            });
+        }
+
+        // Track movement commitment clicks
+        function trackCommitmentClick(commitmentType, commitmentSource) {
+            trackMovementEvent('commitment_click', {
+                commitment_type: commitmentType, // 'pledge', 'share', 'join'
+                commitment_source: commitmentSource, // 'hero', 'manifesto', 'footer'
+                commitment_category: 'movement_participation'
+            });
+        }
+
+        // Track movement sharing
+        function trackMovementSharing(sharingPlatform, sharingContext) {
+            trackMovementEvent('movement_sharing', {
+                sharing_platform: sharingPlatform, // 'instagram', 'copy_link', 'email'
+                sharing_context: sharingContext, // 'manifesto', 'pledge', 'movement'
+                sharing_type: 'movement_advocacy'
+            });
+        }
+
+        // Track movement navigation
+        function trackMovementNavigation(fromSection, toSection) {
+            trackMovementEvent('movement_navigation', {
+                from_section: fromSection, // 'hero', 'manifesto', 'pledge'
+                to_section: toSection,
+                navigation_type: 'movement_exploration'
+            });
+        }
+
+        // Track movement session duration
+        let movementSessionStartTime = Date.now();
+        let movementInteractionsCount = 0;
+
+        window.addEventListener('beforeunload', function() {
+            const sessionDuration = Math.round((Date.now() - movementSessionStartTime) / 1000 / 60); // minutes
+            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
+                trackMovementEvent('movement_session_duration', {
+                    duration_minutes: sessionDuration,
+                    interactions_count: movementInteractionsCount,
+                    session_type: 'movement_engagement'
+                });
+            }
+        });
+
+        // Track return visits to movement page
+        let movementVisitCount = localStorage.getItem('movementVisitCount') || 0;
+        let lastMovementVisitDate = localStorage.getItem('movementLastVisitDate');
+        movementVisitCount = parseInt(movementVisitCount) + 1;
+        localStorage.setItem('movementVisitCount', movementVisitCount);
+        localStorage.setItem('movementLastVisitDate', new Date().toISOString());
+
+        if (movementVisitCount > 1 && lastMovementVisitDate) {
+            const daysSinceLastVisit = Math.round((new Date() - new Date(lastMovementVisitDate)) / (1000 * 60 * 60 * 24));
+            trackMovementEvent('movement_return_visit', {
+                visit_number: movementVisitCount,
+                days_since_last_visit: daysSinceLastVisit,
+                visit_type: 'movement_engagement'
+            });
+        }
+
+        // Track scroll depth for movement content
+        let maxMovementScrollDepth = 0;
+        window.addEventListener('scroll', function() {
+            const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+            if (scrollDepth > maxMovementScrollDepth) {
+                maxMovementScrollDepth = scrollDepth;
+                if (scrollDepth % 25 === 0) { // Track at 25%, 50%, 75%, 100%
+                    trackMovementEvent('movement_scroll_depth', {
+                        scroll_percentage: scrollDepth,
+                        scroll_category: 'content_engagement'
+                    });
+                }
+            }
+        });
+
+        // Example usage - you can call these functions from your existing movement logic:
+        // trackPledgeSubmission('healing_pledge', 'new');
+        // trackManifestoInteraction('read', 'mission');
+        // trackCommitmentClick('pledge', 'hero');
+        // trackMovementSharing('instagram', 'manifesto');
+        // trackMovementNavigation('hero', 'manifesto');
+
     </script>
 </body>
 </html> 

@@ -3,13 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Self Love Bracelet - Heart Matters</title>
-    <meta name="description" content="Self Love Bracelet – Wear your worth with this meaningful, handmade bracelet from Heart Matters.">
-    <meta property="og:title" content="Self Love Bracelet - Heart Matters">
-    <meta property="og:description" content="Self Love Bracelet – Wear your worth with this meaningful, handmade bracelet from Heart Matters.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
+    <title>Self Love Bracelet | Handmade Healing Jewelry for Self-Worth - Heart Matters</title>
+    <meta name="description" content="Handmade healing jewelry that reminds you of your worth. Self love bracelet for women embracing their value. Limited edition from the Still Healing Collection.">
+    <meta property="og:title" content="Self Love Bracelet | Handmade Healing Jewelry for Self-Worth - Heart Matters">
+    <meta property="og:description" content="Handmade healing jewelry that reminds you of your worth. Self love bracelet for women embracing their value. Limited edition from the Still Healing Collection.">
     <meta property="og:type" content="product">
     <meta property="og:image" content="https://heartmatters.com/images/SelfLove Bracelet Product/Self Love Bracelet2.jpg">
-    <meta property="og:url" content="https://heartmatters.com/product/self-love-bracelet.html">
+    <meta property="og:url" content="https://www.joinheartmatters.com/product/self-love-bracelet.html">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Self Love Bracelet",
+      "description": "Handmade healing jewelry that reminds you of your worth. Self love bracelet for women embracing their value.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Heart Matters"
+      },
+      "category": "Healing Jewelry",
+      "offers": {
+        "@type": "Offer",
+        "price": "33.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "image": [
+        "https://heartmatters.com/images/Self Love Bracelet.jpg",
+        "https://heartmatters.com/images/SelfLove Bracelet Product/Self Love Bracelet2.jpg",
+        "https://heartmatters.com/images/SelfLove Bracelet Product/Self Love Bracelet3.jpg",
+        "https://heartmatters.com/images/SelfLove Bracelet Product/Self Love Bracelet4.jpg",
+        "https://heartmatters.com/images/SelfLove Bracelet Product/Self Love Bracelet5.jpg"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "52"
+      }
+    }
+    </script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../style.css?v=2">
     <link rel="stylesheet" href="../shop/shop.css?v=1">
@@ -374,6 +418,186 @@
                 }
             });
         }
+
+        // Custom Google Analytics Events for Product Page Tracking
+        function trackProductEvent(eventName, eventParameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    event_category: 'product_engagement',
+                    event_label: 'self_love_bracelet',
+                    ...eventParameters
+                });
+                console.log('Product event tracked:', eventName, eventParameters);
+            }
+        }
+
+        // Track product page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackProductEvent('product_page_view', {
+                product_name: 'Self Love Bracelet',
+                product_category: 'healing_jewelry',
+                product_price: 33.00
+            });
+        });
+
+        // Track product interactions
+        function trackProductInteraction(interactionType, interactionElement) {
+            trackProductEvent('product_interaction', {
+                interaction_type: interactionType, // 'view', 'click', 'hover'
+                interaction_element: interactionElement, // 'image', 'description', 'price'
+                interaction_category: 'product_exploration'
+            });
+        }
+
+        // Track add to cart clicks
+        function trackAddToCart(productName, productPrice, productCategory) {
+            trackProductEvent('add_to_cart', {
+                product_name: productName,
+                product_price: productPrice,
+                product_category: productCategory,
+                cart_action: 'add_item'
+            });
+        }
+
+        // Track product image interactions
+        function trackImageInteraction(interactionType, productName, imageNumber) {
+            trackProductEvent('image_interaction', {
+                interaction_type: interactionType, // 'view', 'zoom', 'gallery_nav'
+                product_name: productName,
+                image_number: imageNumber,
+                image_category: 'product_gallery'
+            });
+        }
+
+        // Track product information clicks
+        function trackProductInfoClick(infoType, productName) {
+            trackProductEvent('product_info_click', {
+                info_type: infoType, // 'materials', 'care_instructions', 'sizing'
+                product_name: productName,
+                info_category: 'product_details'
+            });
+        }
+
+        // Track share product
+        function trackShareProduct(productName, platform) {
+            trackProductEvent('share_product', {
+                product_name: productName,
+                sharing_platform: platform, // 'instagram', 'copy_link', 'email'
+                sharing_type: 'product_recommendation'
+            });
+        }
+
+        // Track product comparison
+        function trackProductComparison(productName, comparedWith) {
+            trackProductEvent('product_comparison', {
+                product_name: productName,
+                compared_with: comparedWith,
+                comparison_type: 'product_research'
+            });
+        }
+
+        // Track wishlist addition
+        function trackWishlistAddition(productName, productPrice) {
+            trackProductEvent('wishlist_addition', {
+                product_name: productName,
+                product_price: productPrice,
+                wishlist_type: 'save_for_later'
+            });
+        }
+
+        // Track product reviews/ratings
+        function trackProductReview(productName, rating, reviewType) {
+            trackProductEvent('product_review', {
+                product_name: productName,
+                rating: rating, // 1-5 stars
+                review_type: reviewType, // 'rating', 'review', 'feedback'
+                review_category: 'customer_feedback'
+            });
+        }
+
+        // Track related product clicks
+        function trackRelatedProductClick(currentProduct, relatedProduct) {
+            trackProductEvent('related_product_click', {
+                current_product: currentProduct,
+                related_product: relatedProduct,
+                click_type: 'cross_selling'
+            });
+        }
+
+        // Track product page navigation
+        function trackProductNavigation(fromSection, toSection) {
+            trackProductEvent('product_navigation', {
+                from_section: fromSection, // 'gallery', 'description', 'details'
+                to_section: toSection,
+                navigation_type: 'product_exploration'
+            });
+        }
+
+        // Track mobile interactions
+        function trackMobileInteraction(interactionType, productName) {
+            trackProductEvent('mobile_interaction', {
+                interaction_type: interactionType, // 'swipe', 'tap', 'pinch'
+                product_name: productName,
+                interaction_category: 'mobile_experience'
+            });
+        }
+
+        // Track product page session duration
+        let productSessionStartTime = Date.now();
+        let productInteractionsCount = 0;
+
+        window.addEventListener('beforeunload', function() {
+            const sessionDuration = Math.round((Date.now() - productSessionStartTime) / 1000 / 60); // minutes
+            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
+                trackProductEvent('product_session_duration', {
+                    duration_minutes: sessionDuration,
+                    interactions_count: productInteractionsCount,
+                    session_type: 'product_exploration'
+                });
+            }
+        });
+
+        // Track return visits to product page
+        let productVisitCount = localStorage.getItem('selfLoveBraceletVisitCount') || 0;
+        let lastProductVisitDate = localStorage.getItem('selfLoveBraceletLastVisitDate');
+        productVisitCount = parseInt(productVisitCount) + 1;
+        localStorage.setItem('selfLoveBraceletVisitCount', productVisitCount);
+        localStorage.setItem('selfLoveBraceletLastVisitDate', new Date().toISOString());
+
+        if (productVisitCount > 1 && lastProductVisitDate) {
+            const daysSinceLastVisit = Math.round((new Date() - new Date(lastProductVisitDate)) / (1000 * 60 * 60 * 24));
+            trackProductEvent('product_return_visit', {
+                visit_number: productVisitCount,
+                days_since_last_visit: daysSinceLastVisit,
+                visit_type: 'product_consideration'
+            });
+        }
+
+        // Example usage - you can call these functions from your existing product logic:
+        // trackProductInteraction('click', 'image');
+        // trackAddToCart('Self Love Bracelet', 33.00, 'jewelry');
+        // trackImageInteraction('zoom', 'Self Love Bracelet', 2);
+        // trackProductInfoClick('materials', 'Self Love Bracelet');
+        // trackShareProduct('Self Love Bracelet', 'instagram');
+        // trackProductComparison('Self Love Bracelet', 'Power Earrings');
+        // trackWishlistAddition('Self Love Bracelet', 33.00);
+        // trackProductReview('Self Love Bracelet', 5, 'rating');
+        // trackRelatedProductClick('Self Love Bracelet', 'Power Earrings');
+        // trackProductNavigation('gallery', 'description');
+        // trackMobileInteraction('swipe', 'Self Love Bracelet');
+
+        // Track newsletter signups from product pages
+        function trackProductNewsletterSignup(productName, signupSource) {
+            trackProductEvent('newsletter_signup', {
+                product_name: productName,
+                signup_source: signupSource, // 'product_page', 'footer'
+                signup_category: 'email_marketing'
+            });
+        }
+
+        // Example usage for newsletter tracking:
+        // trackProductNewsletterSignup('Self Love Bracelet', 'product_page');
+
     </script>
 </body>
 </html> 

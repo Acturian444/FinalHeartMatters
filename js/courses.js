@@ -3,7 +3,7 @@
 
 const breakupRecoveryCourse = {
   id: 'breakup-recovery',
-  title: 'Breakup Recovery Course',
+  title: 'THE BREAKUP RESET',
   subtitle: 'Your healing journey starts here.',
   description: 'A 22-day journey to heal your heart and reclaim your power.',
   price: 33,

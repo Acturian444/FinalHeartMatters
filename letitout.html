@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#fffcf1">
-    <title>Let It Out - Heart Matters</title>
-    <meta name="description" content="A safe space to express your feelings and connect with others">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
+    <title>Let It Out | Your Anonymous Public Journal to Share, Heal, and Be Heard</title>
+    <meta name="description" content="Write what you're carrying. Post it anonymously on our public wall. No sign-up. No judgment. Just truth—and others who feel it too.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Let It Out | Your Anonymous Public Journal to Share, Heal, and Be Heard">
+    <meta property="og:description" content="Write what you're carrying. Post it anonymously on our public wall. No sign-up. No judgment. Just truth—and others who feel it too.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.joinheartmatters.com/letitout.html">
+    <meta property="og:image" content="https://heartmatters.com/images/letitoutcard.jpg">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Let It Out",
+      "description": "Anonymous writing platform for emotional expression and healing. Share your truth safely on our public wall.",
+      "url": "https://heartmatters.com/letitout.html",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Anonymous posting",
+        "Public wall feed",
+        "Real-time updates",
+        "Age verification (13+)",
+        "Safe space guidelines"
+      ]
+    }
+    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -601,6 +643,254 @@
         }
         // Update navigation on page load
         updateNavigation();
+
+        // Custom Google Analytics Events for Let It Out Page Tracking
+        function trackLetItOutEvent(eventName, eventParameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    event_category: 'letitout_engagement',
+                    event_label: 'anonymous_writing_platform',
+                    ...eventParameters
+                });
+                console.log('Let It Out event tracked:', eventName, eventParameters);
+            }
+        }
+
+        // Track page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackLetItOutEvent('letitout_page_view', {
+                page_type: 'anonymous_writing_wall',
+                platform_type: 'public_journal'
+            });
+        });
+
+        // Track post submissions
+        function trackPostSubmission(postLength, postCategory, isAnonymous) {
+            trackLetItOutEvent('post_submission', {
+                post_length: postLength, // 'short', 'medium', 'long'
+                post_category: postCategory, // 'heartbreak', 'healing', 'grief', 'shame', 'growth', 'other'
+                is_anonymous: isAnonymous,
+                submission_type: 'public_wall'
+            });
+        }
+
+        // Track post drafts (when users start writing but don't submit)
+        function trackPostDraft(postLength, timeSpent) {
+            trackLetItOutEvent('post_draft', {
+                draft_length: postLength,
+                time_spent_seconds: timeSpent,
+                draft_status: 'abandoned'
+            });
+        }
+
+        // Track post views (when users read posts)
+        function trackPostView(postId, postCategory, postLength) {
+            trackLetItOutEvent('post_view', {
+                post_id: postId,
+                post_category: postCategory,
+                post_length: postLength,
+                view_type: 'public_wall'
+            });
+        }
+
+        // Track post reactions (if you add reaction features)
+        function trackPostReaction(postId, reactionType) {
+            trackLetItOutEvent('post_reaction', {
+                post_id: postId,
+                reaction_type: reactionType, // 'heart', 'support', 'relate'
+                reaction_category: 'emotional_support'
+            });
+        }
+
+        // Track post sharing
+        function trackPostSharing(postId, platform) {
+            trackLetItOutEvent('post_sharing', {
+                post_id: postId,
+                sharing_platform: platform, // 'copy_link', 'social_media'
+                sharing_type: 'anonymous_content'
+            });
+        }
+
+        // Track content filtering/search
+        function trackContentFilter(filterType, filterValue) {
+            trackLetItOutEvent('content_filter', {
+                filter_type: filterType, // 'category', 'search', 'date'
+                filter_value: filterValue,
+                filter_action: 'content_discovery'
+            });
+        }
+
+        // Track session duration
+        function trackSessionDuration(durationMinutes, postsViewed) {
+            trackLetItOutEvent('session_duration', {
+                duration_minutes: durationMinutes,
+                posts_viewed: postsViewed,
+                session_type: 'wall_browsing'
+            });
+        }
+
+        // Track scroll behavior
+        function trackScrollBehavior(scrollDepth, postsLoaded) {
+            trackLetItOutEvent('scroll_behavior', {
+                scroll_depth_percentage: scrollDepth,
+                posts_loaded: postsLoaded,
+                scroll_type: 'wall_navigation'
+            });
+        }
+
+        // Track return visits
+        function trackReturnVisit(visitNumber, daysSinceLastVisit) {
+            trackLetItOutEvent('return_visit', {
+                visit_number: visitNumber,
+                days_since_last_visit: daysSinceLastVisit,
+                visit_type: 'wall_engagement'
+            });
+        }
+
+        // Track writing patterns
+        function trackWritingPattern(timeOfDay, dayOfWeek, sessionDuration) {
+            trackLetItOutEvent('writing_pattern', {
+                time_of_day: timeOfDay, // 'morning', 'afternoon', 'evening', 'night'
+                day_of_week: dayOfWeek,
+                session_duration_minutes: sessionDuration,
+                pattern_type: 'writing_behavior'
+            });
+        }
+
+        // Track wall refreshes
+        function trackWallRefresh(refreshCount, timeSinceLastRefresh) {
+            trackLetItOutEvent('wall_refresh', {
+                refresh_count: refreshCount,
+                time_since_last_refresh_minutes: timeSinceLastRefresh,
+                refresh_type: 'content_update'
+            });
+        }
+
+        // Track age verification
+        function trackAgeVerification(verificationMethod, userAge) {
+            trackLetItOutEvent('age_verification', {
+                verification_method: verificationMethod, // 'birthday', 'age_checkbox'
+                user_age_group: userAge, // '13-17', '18-24', '25-34', '35+'
+                verification_status: 'completed'
+            });
+        }
+
+        // Track guidelines acceptance
+        function trackGuidelinesAcceptance(guidelineType) {
+            trackLetItOutEvent('guidelines_acceptance', {
+                guideline_type: guidelineType, // 'community_guidelines', 'privacy_policy'
+                acceptance_status: 'accepted',
+                acceptance_type: 'user_agreement'
+            });
+        }
+
+        // Track error interactions
+        function trackErrorInteraction(errorType, errorMessage) {
+            trackLetItOutEvent('error_interaction', {
+                error_type: errorType, // 'post_submission', 'page_load', 'network'
+                error_message: errorMessage,
+                error_category: 'technical_issue'
+            });
+        }
+
+        // Track premium pack interactions
+        function trackPremiumPackInteraction(packId, packTitle, interactionType) {
+            trackLetItOutEvent('premium_pack_interaction', {
+                pack_id: packId,
+                pack_title: packTitle,
+                interaction_type: interactionType, // 'view', 'purchase', 'unlock'
+                pack_category: 'premium_content'
+            });
+        }
+
+        // Track modal interactions
+        function trackModalInteraction(modalType, action) {
+            trackLetItOutEvent('modal_interaction', {
+                modal_type: modalType, // 'intro', 'guidelines', 'age_verification'
+                action: action, // 'open', 'close', 'accept', 'dismiss'
+                modal_category: 'user_experience'
+            });
+        }
+
+        // Track segment switching
+        function trackSegmentSwitch(fromSegment, toSegment) {
+            trackLetItOutEvent('segment_switch', {
+                from_segment: fromSegment, // 'write', 'read', 'my_posts'
+                to_segment: toSegment,
+                switch_type: 'navigation'
+            });
+        }
+
+        // Track my posts interactions
+        function trackMyPostsInteraction(action, postCount) {
+            trackLetItOutEvent('my_posts_interaction', {
+                action: action, // 'view', 'edit', 'delete', 'share'
+                post_count: postCount,
+                interaction_type: 'personal_content'
+            });
+        }
+
+        // Auto-track session duration on page unload
+        let sessionStartTime = Date.now();
+        let postsViewed = 0;
+        let scrollDepth = 0;
+        let refreshCount = 0;
+
+        window.addEventListener('beforeunload', function() {
+            const sessionDuration = Math.round((Date.now() - sessionStartTime) / 1000 / 60); // minutes
+            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
+                trackSessionDuration(sessionDuration, postsViewed);
+            }
+        });
+
+        // Track return visits
+        let visitCount = localStorage.getItem('letitoutVisitCount') || 0;
+        let lastVisitDate = localStorage.getItem('letitoutLastVisitDate');
+        visitCount = parseInt(visitCount) + 1;
+        localStorage.setItem('letitoutVisitCount', visitCount);
+        localStorage.setItem('letitoutLastVisitDate', new Date().toISOString());
+        
+        if (visitCount > 1 && lastVisitDate) {
+            const daysSinceLastVisit = Math.round((new Date() - new Date(lastVisitDate)) / (1000 * 60 * 60 * 24));
+            trackReturnVisit(visitCount, daysSinceLastVisit);
+        }
+
+        // Track writing patterns
+        const now = new Date();
+        const hour = now.getHours();
+        const dayOfWeek = now.getDay();
+        let timeOfDay = 'afternoon';
+        
+        if (hour < 12) timeOfDay = 'morning';
+        else if (hour < 17) timeOfDay = 'afternoon';
+        else if (hour < 21) timeOfDay = 'evening';
+        else timeOfDay = 'night';
+
+        const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+        
+        // Track writing pattern when user submits a post
+        function trackWritingPatternOnSubmit() {
+            const sessionDuration = Math.round((Date.now() - sessionStartTime) / 1000 / 60);
+            trackWritingPattern(timeOfDay, dayNames[dayOfWeek], sessionDuration);
+        }
+
+        // Example usage - you can call these functions from your existing Let It Out logic:
+        // trackPostSubmission('medium', 'heartbreak', true);
+        // trackPostDraft('short', 120); // 120 seconds
+        // trackPostView('post123', 'healing', 'long');
+        // trackPostReaction('post123', 'heart');
+        // trackPostSharing('post123', 'copy_link');
+        // trackContentFilter('category', 'heartbreak');
+        // trackScrollBehavior(75, 25); // 75% scroll depth, 25 posts loaded
+        // trackWallRefresh(3, 5); // 3rd refresh, 5 minutes since last
+        // trackAgeVerification('birthday', '18-24');
+        // trackGuidelinesAcceptance('community_guidelines');
+        // trackErrorInteraction('post_submission', 'Network error');
+        // trackPremiumPackInteraction('pack1', 'Healing Prompts', 'purchase');
+        // trackModalInteraction('intro', 'close');
+        // trackSegmentSwitch('write', 'read');
+        // trackMyPostsInteraction('view', 5);
+
     });
     </script>
 </body>

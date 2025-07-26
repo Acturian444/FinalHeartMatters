@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fffcf1">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
     <title>My Breakup Recovery Course</title>
     <meta name="description" content="Access your 22-day breakup recovery course. Progress is saved privately on your device.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,7 +215,7 @@
     <main>
         <div id="courseApp" class="course-app-container">
             <!-- Large course title -->
-            <h1 class="course-main-title">Breakup Recovery Course</h1>
+            <h1 class="course-main-title">THE BREAKUP RESET</h1>
             <div id="courseReminder" class="course-subtitle"></div>
             <div style="display:flex;align-items:center;justify-content:center;gap:1.2em;position:relative;">
                 <div id="courseProgressBar" style="display:flex;align-items:center;gap:0.3em;"></div>
@@ -342,6 +352,199 @@
 
         // Check incognito status on page load
         document.addEventListener('DOMContentLoaded', checkIncognito);
+
+        // Custom Google Analytics Events for Course Tracking
+        function trackCourseEvent(eventName, eventParameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    event_category: 'course_engagement',
+                    event_label: 'breakup_recovery_course',
+                    ...eventParameters
+                });
+                console.log('Course event tracked:', eventName, eventParameters);
+            }
+        }
+
+        // Track course page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackCourseEvent('course_page_view', {
+                course_name: 'The Breakup Reset',
+                course_type: '22_day_program'
+            });
+        });
+
+        // Track day completions
+        function trackDayCompletion(dayNumber, dayTitle) {
+            trackCourseEvent('day_completion', {
+                day_number: dayNumber,
+                day_title: dayTitle,
+                progress_percentage: Math.round((dayNumber / 22) * 100)
+            });
+        }
+
+        // Track section completions
+        function trackSectionCompletion(sectionName, dayNumber) {
+            trackCourseEvent('section_completion', {
+                section_name: sectionName,
+                day_number: dayNumber,
+                section_type: 'lesson_content'
+            });
+        }
+
+        // Track lesson starts
+        function trackLessonStart(lessonName, dayNumber) {
+            trackCourseEvent('lesson_start', {
+                lesson_name: lessonName,
+                day_number: dayNumber,
+                lesson_type: 'daily_content'
+            });
+        }
+
+        // Track journal entries
+        function trackJournalEntry(dayNumber, entryLength) {
+            trackCourseEvent('journal_entry', {
+                day_number: dayNumber,
+                entry_length: entryLength,
+                entry_type: 'reflection'
+            });
+        }
+
+        // Track exercise completions
+        function trackExerciseCompletion(exerciseName, dayNumber) {
+            trackCourseEvent('exercise_completion', {
+                exercise_name: exerciseName,
+                day_number: dayNumber,
+                exercise_type: 'healing_activity'
+            });
+        }
+
+        // Track course milestones
+        function trackCourseMilestone(milestone) {
+            trackCourseEvent('course_milestone', {
+                milestone: milestone,
+                milestone_type: 'progress_marker'
+            });
+        }
+
+        // Track session duration
+        function trackSessionDuration(durationMinutes) {
+            trackCourseEvent('session_duration', {
+                duration_minutes: durationMinutes,
+                session_type: 'course_engagement'
+            });
+        }
+
+        // Track return visits
+        function trackReturnVisit(visitNumber) {
+            trackCourseEvent('return_visit', {
+                visit_number: visitNumber,
+                visit_type: 'course_continuation'
+            });
+        }
+
+        // Track course completion
+        function trackCourseCompletion() {
+            trackCourseEvent('course_completion', {
+                course_name: 'The Breakup Reset',
+                completion_date: new Date().toISOString(),
+                total_days: 22
+            });
+        }
+
+        // Track drop-off points
+        function trackDropOff(dayNumber, sectionName) {
+            trackCourseEvent('course_drop_off', {
+                day_number: dayNumber,
+                section_name: sectionName,
+                drop_off_type: 'engagement_loss'
+            });
+        }
+
+        // Track navigation patterns
+        function trackNavigation(fromSection, toSection) {
+            trackCourseEvent('course_navigation', {
+                from_section: fromSection,
+                to_section: toSection,
+                navigation_type: 'user_movement'
+            });
+        }
+
+        // Track resource interactions
+        function trackResourceInteraction(resourceType, resourceName) {
+            trackCourseEvent('resource_interaction', {
+                resource_type: resourceType,
+                resource_name: resourceName,
+                interaction_type: 'content_engagement'
+            });
+        }
+
+        // Track social sharing
+        function trackSocialSharing(platform, contentType) {
+            trackCourseEvent('social_sharing', {
+                platform: platform,
+                content_type: contentType,
+                sharing_type: 'course_progress'
+            });
+        }
+
+        // Track feedback submissions
+        function trackFeedbackSubmission(feedbackType, rating) {
+            trackCourseEvent('feedback_submission', {
+                feedback_type: feedbackType,
+                rating: rating,
+                feedback_category: 'course_experience'
+            });
+        }
+
+        // Track video interactions
+        function trackVideoInteraction(videoName, interactionType) {
+            trackCourseEvent('video_interaction', {
+                video_name: videoName,
+                interaction_type: interactionType,
+                video_category: 'course_content'
+            });
+        }
+
+        // Track certificate claims
+        function trackCertificateClaim() {
+            trackCourseEvent('certificate_claim', {
+                course_name: 'The Breakup Reset',
+                certificate_type: 'completion_certificate',
+                claim_date: new Date().toISOString()
+            });
+        }
+
+        // Auto-track session duration on page unload
+        let sessionStartTime = Date.now();
+        window.addEventListener('beforeunload', function() {
+            const sessionDuration = Math.round((Date.now() - sessionStartTime) / 1000 / 60); // minutes
+            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
+                trackSessionDuration(sessionDuration);
+            }
+        });
+
+        // Track return visits
+        let visitCount = localStorage.getItem('courseVisitCount') || 0;
+        visitCount = parseInt(visitCount) + 1;
+        localStorage.setItem('courseVisitCount', visitCount);
+        
+        if (visitCount > 1) {
+            trackReturnVisit(visitCount);
+        }
+
+        // Example usage - you can call these functions from your course logic:
+        // trackDayCompletion(1, "Day 1: Acknowledging Your Pain");
+        // trackSectionCompletion("Morning Reflection", 1);
+        // trackLessonStart("Understanding Heartbreak", 1);
+        // trackJournalEntry(1, "medium");
+        // trackExerciseCompletion("Self-Compassion Practice", 1);
+        // trackCourseMilestone("25% Complete");
+        // trackResourceInteraction("download", "Day 1 Workbook");
+        // trackVideoInteraction("Introduction Video", "play");
+        // trackSocialSharing("instagram", "progress_update");
+        // trackFeedbackSubmission("daily_lesson", 5);
+        // trackCertificateClaim();
+
     </script>
 </body>
 </html> 

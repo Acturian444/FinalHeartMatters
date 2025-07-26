@@ -4,15 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fffcf1">
-    <title>Still Healing Hoodie - Comfort for the Journey | Heart Matters</title>
-    <meta name="description" content="Wear your healing journey with the Still Healing Hoodie. Comfortable, meaningful apparel that speaks to your heart and reminds you of your strength.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
+    <title>The Reminder T-Shirt | Identity-Based Healing Apparel - Heart Matters</title>
+    <meta name="description" content="Identity-based healing apparel with a message for the person behind you. The Reminder T-Shirt speaks to your heart and reminds others they matter too. Limited edition from the Still Healing Collection.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Still Healing Hoodie - Comfort for the Journey | Heart Matters">
-    <meta property="og:description" content="Wear your healing journey with the Still Healing Hoodie. Comfortable, meaningful apparel that speaks to your heart.">
+    <meta property="og:title" content="The Reminder T-Shirt | Identity-Based Healing Apparel - Heart Matters">
+    <meta property="og:description" content="Identity-based healing apparel with a message for the person behind you. The Reminder T-Shirt speaks to your heart and reminds others they matter too. Limited edition from the Still Healing Collection.">
     <meta property="og:type" content="product">
-    <meta property="og:url" content="https://heartmatters.com/product/reminder-tshirt.html">
-    <meta property="og:image" content="https://heartmatters.com/images/shop/apparel-placeholder-1.jpg">
+    <meta property="og:url" content="https://www.joinheartmatters.com/product/reminder-tshirt.html">
+    <meta property="og:image" content="https://heartmatters.com/images/The Reminder-Tee.jpg">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "The Reminder T-Shirt",
+      "description": "Identity-based healing apparel with a message for the person behind you. The Reminder T-Shirt speaks to your heart and reminds others they matter too.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Heart Matters"
+      },
+      "category": "Healing Apparel",
+      "offers": {
+        "@type": "Offer",
+        "price": "38.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "image": [
+        "https://heartmatters.com/images/The Reminder-Tee.jpg"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "28"
+      }
+    }
+    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -436,6 +475,186 @@
                 }
             });
         }
+
+        // Custom Google Analytics Events for Product Page Tracking
+        function trackProductEvent(eventName, eventParameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    event_category: 'product_engagement',
+                    event_label: 'reminder_tshirt',
+                    ...eventParameters
+                });
+                console.log('Product event tracked:', eventName, eventParameters);
+            }
+        }
+
+        // Track product page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackProductEvent('product_page_view', {
+                product_name: 'The Reminder T-Shirt',
+                product_category: 'healing_apparel',
+                product_price: 38.00
+            });
+        });
+
+        // Track product interactions
+        function trackProductInteraction(interactionType, interactionElement) {
+            trackProductEvent('product_interaction', {
+                interaction_type: interactionType, // 'view', 'click', 'hover'
+                interaction_element: interactionElement, // 'image', 'description', 'price'
+                interaction_category: 'product_exploration'
+            });
+        }
+
+        // Track add to cart clicks
+        function trackAddToCart(productName, productPrice, productCategory) {
+            trackProductEvent('add_to_cart', {
+                product_name: productName,
+                product_price: productPrice,
+                product_category: productCategory,
+                cart_action: 'add_item'
+            });
+        }
+
+        // Track product image interactions
+        function trackImageInteraction(interactionType, productName, imageNumber) {
+            trackProductEvent('image_interaction', {
+                interaction_type: interactionType, // 'view', 'zoom', 'gallery_nav'
+                product_name: productName,
+                image_number: imageNumber,
+                image_category: 'product_gallery'
+            });
+        }
+
+        // Track product information clicks
+        function trackProductInfoClick(infoType, productName) {
+            trackProductEvent('product_info_click', {
+                info_type: infoType, // 'materials', 'care_instructions', 'sizing'
+                product_name: productName,
+                info_category: 'product_details'
+            });
+        }
+
+        // Track share product
+        function trackShareProduct(productName, platform) {
+            trackProductEvent('share_product', {
+                product_name: productName,
+                sharing_platform: platform, // 'instagram', 'copy_link', 'email'
+                sharing_type: 'product_recommendation'
+            });
+        }
+
+        // Track product comparison
+        function trackProductComparison(productName, comparedWith) {
+            trackProductEvent('product_comparison', {
+                product_name: productName,
+                compared_with: comparedWith,
+                comparison_type: 'product_research'
+            });
+        }
+
+        // Track wishlist addition
+        function trackWishlistAddition(productName, productPrice) {
+            trackProductEvent('wishlist_addition', {
+                product_name: productName,
+                product_price: productPrice,
+                wishlist_type: 'save_for_later'
+            });
+        }
+
+        // Track product reviews/ratings
+        function trackProductReview(productName, rating, reviewType) {
+            trackProductEvent('product_review', {
+                product_name: productName,
+                rating: rating, // 1-5 stars
+                review_type: reviewType, // 'rating', 'review', 'feedback'
+                review_category: 'customer_feedback'
+            });
+        }
+
+        // Track related product clicks
+        function trackRelatedProductClick(currentProduct, relatedProduct) {
+            trackProductEvent('related_product_click', {
+                current_product: currentProduct,
+                related_product: relatedProduct,
+                click_type: 'cross_selling'
+            });
+        }
+
+        // Track product page navigation
+        function trackProductNavigation(fromSection, toSection) {
+            trackProductEvent('product_navigation', {
+                from_section: fromSection, // 'gallery', 'description', 'details'
+                to_section: toSection,
+                navigation_type: 'product_exploration'
+            });
+        }
+
+        // Track mobile interactions
+        function trackMobileInteraction(interactionType, productName) {
+            trackProductEvent('mobile_interaction', {
+                interaction_type: interactionType, // 'swipe', 'tap', 'pinch'
+                product_name: productName,
+                interaction_category: 'mobile_experience'
+            });
+        }
+
+        // Track product page session duration
+        let productSessionStartTime = Date.now();
+        let productInteractionsCount = 0;
+
+        window.addEventListener('beforeunload', function() {
+            const sessionDuration = Math.round((Date.now() - productSessionStartTime) / 1000 / 60); // minutes
+            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
+                trackProductEvent('product_session_duration', {
+                    duration_minutes: sessionDuration,
+                    interactions_count: productInteractionsCount,
+                    session_type: 'product_exploration'
+                });
+            }
+        });
+
+        // Track return visits to product page
+        let productVisitCount = localStorage.getItem('reminderTshirtVisitCount') || 0;
+        let lastProductVisitDate = localStorage.getItem('reminderTshirtLastVisitDate');
+        productVisitCount = parseInt(productVisitCount) + 1;
+        localStorage.setItem('reminderTshirtVisitCount', productVisitCount);
+        localStorage.setItem('reminderTshirtLastVisitDate', new Date().toISOString());
+
+        if (productVisitCount > 1 && lastProductVisitDate) {
+            const daysSinceLastVisit = Math.round((new Date() - new Date(lastProductVisitDate)) / (1000 * 60 * 60 * 24));
+            trackProductEvent('product_return_visit', {
+                visit_number: productVisitCount,
+                days_since_last_visit: daysSinceLastVisit,
+                visit_type: 'product_consideration'
+            });
+        }
+
+        // Example usage - you can call these functions from your existing product logic:
+        // trackProductInteraction('click', 'image');
+        // trackAddToCart('The Reminder T-Shirt', 38.00, 'apparel');
+        // trackImageInteraction('zoom', 'The Reminder T-Shirt', 2);
+        // trackProductInfoClick('materials', 'The Reminder T-Shirt');
+        // trackShareProduct('The Reminder T-Shirt', 'instagram');
+        // trackProductComparison('The Reminder T-Shirt', 'Power Earrings');
+        // trackWishlistAddition('The Reminder T-Shirt', 38.00);
+        // trackProductReview('The Reminder T-Shirt', 5, 'rating');
+        // trackRelatedProductClick('The Reminder T-Shirt', 'Power Earrings');
+        // trackProductNavigation('gallery', 'description');
+        // trackMobileInteraction('swipe', 'The Reminder T-Shirt');
+
+        // Track newsletter signups from product pages
+        function trackProductNewsletterSignup(productName, signupSource) {
+            trackProductEvent('newsletter_signup', {
+                product_name: productName,
+                signup_source: signupSource, // 'product_page', 'footer'
+                signup_category: 'email_marketing'
+            });
+        }
+
+        // Example usage for newsletter tracking:
+        // trackProductNewsletterSignup('The Reminder T-Shirt', 'product_page');
+
     </script>
 </body>
 </html> 

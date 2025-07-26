@@ -4,15 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fffcf1">
-    <title>Shop - Still Healing Collection | Heart Matters</title>
-    <meta name="description" content="A collection for the journey back to yourself. Shop apparel, handmade jewelry, stickers, and digital courses from Heart Matters.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST1QJZ92B0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ST1QJZ92B0');
+    </script>
+    <title>Still Healing Collection | Limited Edition Healing Jewelry & Identity Drops</title>
+    <meta name="description" content="Limited edition healing jewelry and identity drops for your journey back to yourself. Handmade pieces that carry your truth. First come, first heal.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Shop - Still Healing Collection | Heart Matters">
-    <meta property="og:description" content="A collection for the journey back to yourself. Shop apparel, handmade jewelry, stickers, and digital courses from Heart Matters.">
+    <meta property="og:title" content="Still Healing Collection | Limited Edition Healing Jewelry & Identity Drops">
+    <meta property="og:description" content="Limited edition healing jewelry and identity drops for your journey back to yourself. Handmade pieces that carry your truth. First come, first heal.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://heartmatters.com/shop/">
+    <meta property="og:url" content="https://www.joinheartmatters.com/shop/">
     <meta property="og:image" content="https://heartmatters.com/images/shop-hero.jpg">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Heart Matters",
+      "description": "Limited edition healing jewelry and identity-based products for emotional wellness",
+      "url": "https://heartmatters.com",
+      "logo": "https://heartmatters.com/images/The Heart Room Logo.png",
+      "sameAs": [
+        "https://www.instagram.com/heartmatters__/",
+        "https://www.tiktok.com/@heartmatters__"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Still Healing Collection",
+        "description": "Limited edition healing jewelry and identity drops",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Power Earrings",
+              "description": "Handmade healing jewelry for inner strength"
+            },
+            "price": "55.00",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Self Love Bracelet",
+              "description": "Identity-based healing jewelry"
+            },
+            "price": "33.00",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Balance Earrings",
+              "description": "Handmade healing jewelry for emotional balance"
+            },
+            "price": "55.00",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "The Reminder T-Shirt",
+              "description": "Identity-based healing apparel"
+            },
+            "price": "33.00",
+            "priceCurrency": "USD"
+          }
+        ]
+      }
+    }
+    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -502,6 +575,160 @@
         
         // Update navigation on page load
         document.addEventListener('DOMContentLoaded', updateNavigation);
+
+        // Custom Google Analytics Events for Shop Page Tracking
+        function trackShopEvent(eventName, eventParameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    event_category: 'shop_engagement',
+                    event_label: 'still_healing_collection',
+                    ...eventParameters
+                });
+                console.log('Shop event tracked:', eventName, eventParameters);
+            }
+        }
+
+        // Track shop page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackShopEvent('shop_page_view', {
+                page_type: 'product_catalog',
+                collection_name: 'Still Healing Collection'
+            });
+        });
+
+        // Track waitlist signups
+        function trackWaitlistSignup(signupMethod, signupSource) {
+            trackShopEvent('waitlist_signup', {
+                signup_method: signupMethod, // 'sms', 'email'
+                signup_source: signupSource, // 'shop_waitlist', 'countdown'
+                signup_type: 'early_access'
+            });
+        }
+
+        // Track countdown interactions
+        function trackCountdownInteraction(interactionType, countdownElement) {
+            trackShopEvent('countdown_interaction', {
+                interaction_type: interactionType, // 'view', 'click', 'hover'
+                countdown_element: countdownElement, // 'drop_countdown', 'timer'
+                interaction_category: 'urgency_engagement'
+            });
+        }
+
+        // Track product preview clicks
+        function trackProductPreview(productName, productCategory) {
+            trackShopEvent('product_preview', {
+                product_name: productName, // 'power_earrings', 'balance_earrings', etc.
+                product_category: productCategory, // 'jewelry', 'apparel', 'course'
+                preview_type: 'catalog_view'
+            });
+        }
+
+        // Track newsletter signups
+        function trackNewsletterSignup(signupSource, listType) {
+            trackShopEvent('newsletter_signup', {
+                signup_source: signupSource, // 'shop_page', 'footer'
+                list_type: listType, // 'email_list', 'updates'
+                signup_category: 'email_marketing'
+            });
+        }
+
+        // Track social media clicks
+        function trackSocialClick(platform, pageLocation) {
+            trackShopEvent('social_click', {
+                platform: platform, // 'instagram', 'tiktok'
+                page_location: pageLocation, // 'shop_page', 'footer'
+                click_type: 'social_engagement'
+            });
+        }
+
+        // Track collection interactions
+        function trackCollectionInteraction(collectionName, interactionType) {
+            trackShopEvent('collection_interaction', {
+                collection_name: collectionName, // 'Still Healing Collection'
+                interaction_type: interactionType, // 'view', 'browse', 'filter'
+                interaction_category: 'product_discovery'
+            });
+        }
+
+        // Track drop countdown engagement
+        function trackDropCountdownEngagement(engagementType, timeRemaining) {
+            trackShopEvent('drop_countdown_engagement', {
+                engagement_type: engagementType, // 'view', 'interact', 'share'
+                time_remaining_days: timeRemaining,
+                engagement_category: 'urgency_marketing'
+            });
+        }
+
+        // Track early access requests
+        function trackEarlyAccessRequest(requestType, userType) {
+            trackShopEvent('early_access_request', {
+                request_type: requestType, // 'waitlist', 'notification'
+                user_type: userType, // 'new', 'returning'
+                request_category: 'exclusive_access'
+            });
+        }
+
+        // Track shop navigation
+        function trackShopNavigation(fromSection, toSection) {
+            trackShopEvent('shop_navigation', {
+                from_section: fromSection, // 'hero', 'products', 'footer'
+                to_section: toSection,
+                navigation_type: 'shop_exploration'
+            });
+        }
+
+        // Track mobile menu interactions
+        function trackMobileMenuInteraction(action, menuItem) {
+            trackShopEvent('mobile_menu_interaction', {
+                action: action, // 'open', 'close', 'click'
+                menu_item: menuItem, // 'shop', 'let_it_out', 'heart_room'
+                interaction_type: 'mobile_navigation'
+            });
+        }
+
+        // Auto-track session duration on page unload
+        let sessionStartTime = Date.now();
+        let interactionsCount = 0;
+
+        window.addEventListener('beforeunload', function() {
+            const sessionDuration = Math.round((Date.now() - sessionStartTime) / 1000 / 60); // minutes
+            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
+                trackShopEvent('shop_session_duration', {
+                    duration_minutes: sessionDuration,
+                    interactions_count: interactionsCount,
+                    session_type: 'shop_browsing'
+                });
+            }
+        });
+
+        // Track return visits to shop
+        let shopVisitCount = localStorage.getItem('shopVisitCount') || 0;
+        let lastShopVisitDate = localStorage.getItem('shopLastVisitDate');
+        shopVisitCount = parseInt(shopVisitCount) + 1;
+        localStorage.setItem('shopVisitCount', shopVisitCount);
+        localStorage.setItem('shopLastVisitDate', new Date().toISOString());
+        
+        if (shopVisitCount > 1 && lastShopVisitDate) {
+            const daysSinceLastVisit = Math.round((new Date() - new Date(lastShopVisitDate)) / (1000 * 60 * 60 * 24));
+            trackShopEvent('shop_return_visit', {
+                visit_number: shopVisitCount,
+                days_since_last_visit: daysSinceLastVisit,
+                visit_type: 'shop_engagement'
+            });
+        }
+
+        // Example usage - you can call these functions from your existing shop logic:
+        // trackWaitlistSignup('sms', 'shop_waitlist');
+        // trackCountdownInteraction('view', 'drop_countdown');
+        // trackProductPreview('power_earrings', 'jewelry');
+        // trackNewsletterSignup('shop_page', 'email_list');
+        // trackSocialClick('instagram', 'shop_page');
+        // trackCollectionInteraction('Still Healing Collection', 'view');
+        // trackDropCountdownEngagement('view', 15);
+        // trackEarlyAccessRequest('waitlist', 'new');
+        // trackShopNavigation('hero', 'products');
+        // trackMobileMenuInteraction('open', 'shop');
+
     </script>
 </body>
 </html> 
