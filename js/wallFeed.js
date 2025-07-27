@@ -877,7 +877,7 @@ class WallFeed {
         footer.style.textAlign = 'center';
 
         const watermark = document.createElement('p');
-        watermark.innerHTML = 'Heart Matters &nbsp;&middot;&nbsp; wereheartmatters.com';
+        watermark.innerHTML = 'Heart Matters &nbsp;&middot;&nbsp; joinheartmatters.com';
         Object.assign(watermark.style, {
             fontFamily: '"DM Sans", sans-serif',
             fontSize: '24px',
