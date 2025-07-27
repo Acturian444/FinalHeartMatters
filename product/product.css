@@ -8,8 +8,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0;
-    margin-top: 0; /* Ensure no top margin */
+    margin: 0; /* Remove all margins to connect with header */
+    position: relative;
+    top: 0;
 }
 
 /* Product Page Scrolling Quotes Bar - Independent from Homepage */
@@ -63,6 +64,7 @@
     margin: 0 auto;
     padding: 0 1rem;
     justify-items: center;
+    transform: translateY(-20px); /* Move content up */
 }
 
 /* Image on the left, text on the right */
@@ -438,7 +440,7 @@
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -449,14 +451,11 @@
     padding: 1.5rem;
     background: #fffcf1;
     border-radius: 12px;
-    transition: transform 0.3s ease;
-    max-width: 300px;
+    max-width: 340px;
     margin: 0 auto;
 }
 
-.feature-item:hover {
-    transform: translateY(-4px);
-}
+/* Removed hover animation */
 
 .feature-icon {
     width: 60px;
@@ -1133,15 +1132,16 @@
 .breakup-course-page .product-hero {
   background: url('../images/Course Hero.jpg') center center/cover no-repeat;
   position: relative;
-  padding: 0; /* Ensure no padding to connect with header */
-  margin-top: -1px; /* Remove any remaining gap */
-  margin-bottom: 0; /* Ensure no bottom margin */
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   top: 0 !important;
 }
 .breakup-course-page .product-hero-content,
 .breakup-course-page .product-hero-text {
   position: relative;
   z-index: 2;
+  transform: translateY(-20px); /* Move content up for breakup course */
 }
 
 .still-healing-hoodie-page .product-hero,
@@ -1178,8 +1178,8 @@
   .breakup-course-page .product-hero {
     background: url('../images/Course Hero Mobile.jpg') center center/cover no-repeat;
     height: 85vh;
-    padding: 0; /* Ensure no padding on mobile to connect with header */
-    margin-top: -1px; /* Remove any remaining gap on mobile */
+    padding: 0;
+    margin-top: 0;
     margin-bottom: 0;
     top: 0 !important;
   }
@@ -1735,6 +1735,22 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Header fixed, content scrollable for breakup course page */
+body.breakup-course-page {
+  margin: 0;
+  padding: 0;
+}
+
+body.breakup-course-page header {
+  margin: 0;
+  padding: 0 1rem;
+}
+
+body.breakup-course-page main {
+  margin: 0;
+  padding-top: 60px; /* Reduced padding to eliminate gap */
+}
+
 .image-lightbox {
   display: none;
   position: fixed;
@@ -1861,7 +1877,7 @@ html, body {
   text-align: center;
 } 
 
-/* Mobile-specific header fix for product pages */
+/* Header should be fixed, hero should scroll */
 header {
     position: fixed !important;
     top: 0 !important;
@@ -1874,19 +1890,25 @@ header {
     height: auto !important;
 }
 main {
-    padding-top: 0 !important; /* Remove padding to connect hero to header */
+    padding-top: 60px !important; /* Reduced padding to eliminate gap */
 }
 .product-hero {
     margin-top: 0 !important;
-    padding-top: 0 !important; /* Remove fixed padding to allow proper spacing */
+    padding-top: 0 !important;
     position: relative !important;
     top: 0 !important;
 }
 
 @media (max-width: 600px) {
+    main {
+        padding-top: 55px !important; /* Reduced padding for mobile to eliminate gap */
+    }
     .product-hero {
-        padding: 0 !important; /* Removed padding to connect with header */
+        padding: 0 !important;
         margin-top: 0 !important;
+    }
+    .product-hero-content {
+        transform: translateY(-15px); /* Move content up on mobile */
     }
     .product-hero-text {
         text-align: center;
@@ -1931,7 +1953,10 @@ main {
     margin: 0 auto;
   }
   .feature-item {
-    max-width: none;
+    max-width: 340px; /* Keep the wider width for desktop */
+  }
+  .description-content h2 {
+    margin-bottom: 4rem; /* Increased spacing below title on desktop */
   }
 }
 

@@ -40,7 +40,8 @@ End your day with reflection and gratitude. It helps you integrate what you're l
 <p><strong>Journaling Prompt (5-10 mins)</strong><br>
 A prompt to help you process, reflect, and release your thoughts and feelings.</p>
 <p>This course is designed to fit into your real life, even when nothing feels normal. You can make small adjustments if needed, but we recommend sticking with it as closely as you can.</p>`,
-      task: 'A healing activity based on the day\'s theme. This is where the transformation deepens. Show up fully for yourself here.',
+      task: `<p>A healing activity based on the day's theme. This is where the transformation deepens. Show up fully for yourself here.</p>
+<p><strong style="color: #ca0013;">Quick Mindset Hack That Actually Works:</strong> Change your phone or laptop password to something empowering — like iamenough4!, ihaveitall222, or iamthebest7. You'll type it every day, and each time, you're planting that belief deeper into your mind. It may seem small, but repetition rewires your brain. This tiny habit becomes a daily affirmation — no extra effort, just transformation.</p>`,
       ritualMorning: 'Don\'t reach for your phone right away. Sit in silence for a few minutes. Just breathe and be with yourself. Say your "I AM" affirmations — bold, powerful reminders of who you are (e.g., "I am strong," "I am powerful," "I am amazing," "I am incredible," "I am unstoppable"). Think or write down 1–3 things you\'re grateful for.',
       ritualEvening: 'Say your "I CHOOSE" intentions (e.g., "I choose peace," "I choose to let go," "I choose happiness," "I choose abundance," "I choose myself," "I choose to heal," "I choose freedom"). Reflect or journal on: "I let go of…" and "I am grateful for…" Optional: Do a short calming meditation before sleep.',
       prompt: 'What do you hope to gain from this healing journey? What are you afraid to feel?',
