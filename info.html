@@ -49,8 +49,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap&font-display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=2">
     <style>
@@ -702,10 +702,23 @@
             font-size: 2.7rem;
             font-weight: 700;
             color: #ca0013;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1rem;
             text-align: center;
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+        
+        .shared-healing-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .shared-healing-body {
@@ -906,12 +919,14 @@
         }
 
         .cycle-kindness-subtitle {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            font-weight: 400;
             color: #ca0013;
             margin: 0;
             text-align: center;
+            line-height: 1.4;
+            font-style: italic;
             letter-spacing: 0.5px;
         }
 
@@ -1091,6 +1106,20 @@
                 height: 52px;
             }
         }
+        
+        /* Responsive pledge title */
+        @media (max-width: 768px) {
+            .pledge-title {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pledge-title {
+                font-size: 2rem !important;
+                white-space: normal !important;
+            }
+        }
     </style>
     <style>
   /* Confirmation message: prevent line breaks for headline and secondary lines */
@@ -1121,6 +1150,69 @@
     }
   }
 </style>
+    <style>
+                @media (max-width: 900px) {
+                    .healing-images {
+                        flex-direction: column !important;
+                        gap: 0 !important;
+                        overflow: hidden !important;
+                        position: relative !important;
+                        height: 350px !important;
+                    }
+                    .healing-image {
+                        min-width: 100% !important;
+                        max-width: 100% !important;
+                        position: absolute !important;
+                        top: 0 !important;
+                        left: 0 !important;
+                        opacity: 0 !important;
+                        transition: opacity 0.8s ease-in-out !important;
+                    }
+                    .healing-image.active {
+                        opacity: 1 !important;
+                    }
+                    .healing-image img {
+                        height: 350px !important;
+                    }
+                }
+                
+                /* Quote responsive styling */
+                @media (max-width: 600px) {
+                    .healing-quote {
+                        font-size: 1.5rem !important;
+                        margin-top: 2rem !important;
+                        padding: 0 1rem !important;
+                    }
+                }
+                
+                /* Mobile title responsive styling */
+                @media (max-width: 600px) {
+                    .healing-public-title {
+                        font-size: 2rem !important;
+                        line-height: 1.2 !important;
+                        white-space: nowrap !important;
+                    }
+                }
+                
+                /* Mobile section spacing */
+                @media (max-width: 600px) {
+                    .healing-public-section {
+                        padding: 3rem 0 1rem 0 !important;
+                    }
+                    .manifesto-section {
+                        padding: 1rem 1rem 3rem 1rem !important;
+                    }
+                }
+                
+                /* Mobile manifesto line break adjustments */
+                @media (max-width: 600px) {
+                    .manifesto-line-break-1,
+                    .manifesto-line-break-2,
+                    .manifesto-line-break-3 {
+                        display: none !important;
+                    }
+                }
+            </style>
 </head>
 <body>
     <header>
@@ -1164,20 +1256,215 @@
     </header>
 
     <main>
-        <section style="background-color: #fffcf1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 2.5rem 1rem 4.5rem 1rem; min-height: 60vh; margin-bottom: 0;">
+        <!-- This is Healing in Public Section -->
+        <section class="healing-public-section" style="background-color: #fffcf1; padding: 4rem 0 2rem 0; width: 100vw;">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; text-align: center;">
+                <h2 class="healing-public-title" style="font-family: 'Anton', sans-serif; font-size: 2.7rem; font-weight: 700; color: #ca0013; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">This is Healing in Public</h2>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 1.35rem; font-weight: 700; color: #000000; margin-bottom: 3rem; line-height: 1.7;">Feel it. Say it. Let it out. Be seen. Heal together.</p>
+                
+                <!-- Three Images Display -->
+                <div class="healing-images" style="display: flex; gap: 2rem; justify-content: center; align-items: center; margin: 2rem 0; flex-wrap: wrap;">
+                    <div class="healing-image" style="flex: 1; min-width: 300px; max-width: 350px;">
+                        <img src="images/sfmirror.jpg" alt="Healing in public - San Francisco mirror" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);">
+                    </div>
+                    <div class="healing-image" style="flex: 1; min-width: 300px; max-width: 350px;">
+                        <img src="images/healinpublic.jpg" alt="Healing in public - Community healing" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);">
+                    </div>
+                    <div class="healing-image" style="flex: 1; min-width: 300px; max-width: 350px;">
+                        <img src="images/mirrorquote.jpg" alt="Healing in public - Mirror quote" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);">
+                    </div>
+                </div>
+                
+                <!-- Quote -->
+                <div style="margin-top: 3rem; text-align: center;">
+                    <p class="healing-quote" style="font-family: 'Caveat', cursive; font-size: 1.8rem; font-weight: 400; color: #ca0013; line-height: 1.4; margin: 0; font-style: italic; letter-spacing: 0.5px;">We are mirrors of each other. What we reflect helps us heal.</p>
+                </div>
+            </div>
+            
+            <style>
+                @media (max-width: 900px) {
+                    .healing-images {
+                        flex-direction: column !important;
+                        gap: 0 !important;
+                        overflow: hidden !important;
+                        position: relative !important;
+                        height: 350px !important;
+                    }
+                    .healing-image {
+                        min-width: 100% !important;
+                        max-width: 100% !important;
+                        position: absolute !important;
+                        top: 0 !important;
+                        left: 0 !important;
+                        opacity: 0 !important;
+                        transition: opacity 0.5s ease-in-out !important;
+                    }
+                    .healing-image.active {
+                        opacity: 1 !important;
+                    }
+                    .healing-image img {
+                        height: 350px !important;
+                    }
+                }
+                @media (max-width: 768px) {
+                    section {
+                        padding: 4rem 1.5rem !important;
+                    }
+                    h1 {
+                        font-size: 2.5rem !important;
+                        padding: 0 1rem !important;
+                    }
+                    p[style*="font-family: 'DM Sans'"] {
+                        font-size: 1.2rem !important;
+                        padding: 0 1rem !important;
+                        margin-bottom: 3rem !important;
+                    }
+                    div[style*="max-width: 800px"] {
+                        font-size: 1.1rem !important;
+                        padding: 0 0.5rem !important;
+                        text-align: center !important;
+                    }
+                    div[style*="max-width: 800px"] p {
+                        margin-bottom: 1.5rem !important;
+                    }
+                }
+                @media (max-width: 480px) {
+                    section {
+                        padding: 3rem 1rem !important;
+                    }
+                    h1 {
+                        font-size: 2rem !important;
+                        padding: 0 0.5rem !important;
+                    }
+                    p[style*="font-family: 'DM Sans'"] {
+                        font-size: 1.1rem !important;
+                        padding: 0 0.5rem !important;
+                        margin-bottom: 2.5rem !important;
+                    }
+                    div[style*="max-width: 800px"] {
+                        font-size: 1rem !important;
+                        padding: 0 !important;
+                        text-align: center !important;
+                    }
+                    div[style*="max-width: 800px"] p {
+                        margin-bottom: 1.25rem !important;
+                    }
+                }
+                .subtitle-movement {
+                    font-family: 'DM Sans', sans-serif;
+                    font-weight: 700;
+                    color: #000;
+                    text-align: center;
+                    margin-bottom: 4rem;
+                    line-height: 1.7;
+                    font-size: 1.35rem;
+                    max-width: 600px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    word-break: break-word;
+                }
+                @media (max-width: 900px) {
+                    .subtitle-movement {
+                        font-size: 1.2rem !important;
+                        margin: 0.5rem auto 2rem auto !important;
+                        padding: 0 1rem;
+                        max-width: 95vw;
+                    }
+                }
+                @media (max-width: 600px) {
+                    .subtitle-movement {
+                        font-size: 1.05rem !important;
+                        margin: 0.5rem auto 1.2rem auto !important;
+                        padding: 0 0.5rem;
+                        max-width: 99vw;
+                    }
+                }
+            </style>
+            
+            <script>
+            // Mobile carousel functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                let carouselInterval;
+                
+                function startCarousel() {
+                    if (window.innerWidth <= 900) {
+                        const images = document.querySelectorAll('.healing-image');
+                        if (images.length > 0) {
+                            let currentIndex = 0;
+                            
+                            // Set initial state
+                            images.forEach((img, index) => {
+                                img.classList.remove('active');
+                                if (index === 0) {
+                                    img.classList.add('active');
+                                }
+                            });
+                            
+                            function showNextImage() {
+                                images[currentIndex].classList.remove('active');
+                                currentIndex = (currentIndex + 1) % images.length;
+                                images[currentIndex].classList.add('active');
+                            }
+                            
+                            // Clear existing interval and start new one
+                            if (carouselInterval) {
+                                clearInterval(carouselInterval);
+                            }
+                            carouselInterval = setInterval(showNextImage, 2000);
+                        }
+                    } else {
+                        // Desktop: clear interval and show all images
+                        if (carouselInterval) {
+                            clearInterval(carouselInterval);
+                            carouselInterval = null;
+                        }
+                        const images = document.querySelectorAll('.healing-image');
+                        images.forEach(img => {
+                            img.classList.remove('active');
+                            img.style.opacity = '1';
+                        });
+                    }
+                }
+                
+                // Start carousel on load
+                startCarousel();
+                
+                // Restart carousel on window resize
+                window.addEventListener('resize', startCarousel);
+            });
+            </script>
+        </section>
+
+        <section class="manifesto-section" style="background-color: #fffcf1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 1.5rem 1rem 4.5rem 1rem; min-height: 60vh; margin-bottom: 0;">
             <div class="movement-letter-container">
                 <h1 class="movement-title" style="margin-bottom: 1.5rem; color: #ca0013; white-space: nowrap;">#HEALINGINPUBLIC MANIFESTO</h1>
                 <div class="movement-letter-body">
-                    <p>We live in a world that tells us to hide our pain. To only show what’s polished. To bury what hurts and pretend we’re fine.</p>
-                    <p>But most of us carry trauma, heartbreak, grief, and shame with no safe space to release it. No time. No support. No tools. Just pressure to move on and stay positive while silently falling apart.</p>
-                    <p>And when pain has nowhere to go, it festers. It breaks us down into addiction, isolation, anxiety, burnout, and sometimes homelessness. <strong>Not because we're broken. But because no one gave us space to heal.</strong></p>
-                    <p><span style="color: #ca0013; font-weight: bold;">We believe healing is a human right — not a privilege.</span> And right now, it's treated like a luxury.</p>
-                    <p>We’re here to change that.</p>
-                    <p><span style="color: #ca0013; font-weight: bold;">Healing happens in public.</span> When we're seen, heard, and held — even by strangers. It's not about being fixed.<br>It's about being real.</p>
-                    <p>We’re building spaces, tools, and opportunities that make emotional healing visible and accessible — especially for those who’ve been left behind.</p>
-                    <p>Because we’re all one heartbreak, one trauma, one moment away from needing that space too.</p>
-                    <p><strong>To feel it. To say it. To let it out.</strong></p>
-                    <p><strong>This is healing in public.<br>This is the movement.</strong></p>
+                    <p>We've been told to hide our pain.<br>
+                    To bury the hard stuff.<br class="manifesto-line-break-1">
+                    To show up only when we've got it all together.</p>
+
+                    <p>But the truth is, most of us are carrying heartbreak, grief, trauma, and shame with nowhere to put it.</p>
+                    
+                    <p>We're moving through life while silently falling apart.<br class="manifesto-line-break-2">
+                    Not because we're weak.<br>
+                    But because we've been taught to suffer alone.</p>
+
+                    <p><strong>We believe healing is a human right.</strong><br>
+                    <strong>We believe being seen as you are is medicine.</strong><br class="manifesto-line-break-3">
+                    <strong>And we believe your truth, yes, yours, can change someone's life.</strong></p>
+
+                    <p>This is what healing in public means:<br>
+                    Showing up.<br>
+                    Telling the truth.<br>
+                    Letting it out.<br>
+                    And being seen, not in spite of your pain, but because of it.</p>
+
+                    <p style="color: #ca0013; font-weight: bold;">Your story might be someone else's lifeline.</p>
+
+                    <p>When you go first, others find the courage to follow.</p>
+
+                    <p>This is healing in public.<br>
+                    This is the movement.</p>
                 </div>
             </div>
             <!-- Red downward arrow cue -->
@@ -1193,6 +1480,7 @@
             <div class="shared-healing-content">
                 <div class="shared-healing-text">
                     <h2 class="shared-healing-title">THE HEALING LOOP</h2>
+                    <p class="shared-healing-subtitle">A Cycle That Connects Us All</p>
                     <div class="shared-healing-body">
                     </div>
                 </div>
@@ -1285,91 +1573,252 @@
                     </div>
                 </div>
                 <div class="cycle-kindness-text">
-                    <h3 class="cycle-kindness-title">A CYCLE THAT CONNECTS US ALL</h3>
-                    <p class="cycle-kindness-subtitle">Be kind. Everyone is healing<br class="mobile-break"> from something.</p>
+                    <p class="cycle-kindness-subtitle" style="font-family: 'Caveat', cursive; font-size: 1.8rem; font-weight: 400; color: #ca0013; line-height: 1.4; margin: 0; font-style: italic; letter-spacing: 0.5px;">Be kind. Everyone is healing<br class="mobile-break"> from something.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Down Arrow -->
+        <div class="section-arrow">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 22L28 36L42 22"/>
+            </svg>
+        </div>
+
+        <!-- Help Us Heal One Million Hearts Section -->
+        <section class="million-hearts-section">
+            <div class="million-hearts-content">
+                <div class="people-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fffcf1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h2 class="million-hearts-title">Let's Heal One Million Hearts Together</h2>
+                <p class="million-hearts-subtitle">We're on a mission to help one million people feel seen and supported. Through tools, stories, and rituals for emotional release, we're building a movement of healing — one truth, one piece, one person at a time.</p>
+                
+                <div class="social-proof-metric">
+                    <div class="metric-bubble">
+                        <div class="metric-number" id="heartsReached">689,000+ Hearts</div>
+                        <div class="metric-label">hearts reached and we're just getting started.</div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <style>
-            @media (max-width: 768px) {
-                section {
-                    padding: 4rem 1.5rem !important;
-                }
-                h1 {
-                    font-size: 2.5rem !important;
-                    padding: 0 1rem !important;
-                }
-                p[style*="font-family: 'DM Sans'"] {
-                    font-size: 1.2rem !important;
-                    padding: 0 1rem !important;
-                    margin-bottom: 3rem !important;
-                }
-                div[style*="max-width: 800px"] {
-                    font-size: 1.1rem !important;
-                    padding: 0 0.5rem !important;
-                    text-align: center !important;
-                }
-                div[style*="max-width: 800px"] p {
-                    margin-bottom: 1.5rem !important;
-                }
+        /* Million Hearts Section Styles */
+        .million-hearts-section {
+            background: #fffcf1;
+            padding: 2rem 0 4rem 0;
+            width: 100vw;
+        }
+        
+        .million-hearts-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .section-arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0;
+            background: #fffcf1;
+        }
+        
+        .section-arrow svg {
+            transition: transform 0.3s ease;
+        }
+        
+        .section-arrow:hover svg {
+            transform: translateY(3px);
+        }
+        
+        .people-icon {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .million-hearts-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #ca0013;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .million-hearts-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-proof-metric {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .metric-bubble {
+            background: rgba(202, 0, 19, 0.05);
+            border: 2px solid #ca0013;
+            border-radius: 20px;
+            padding: 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .metric-number {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ca0013;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .metric-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        .metric-subtext {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 600px) {
+            .million-hearts-section {
+                padding: 3rem 0;
             }
-            @media (max-width: 480px) {
-                section {
-                    padding: 3rem 1rem !important;
-                }
-                h1 {
-                    font-size: 2rem !important;
-                    padding: 0 0.5rem !important;
-                }
-                p[style*="font-family: 'DM Sans'"] {
-                    font-size: 1.1rem !important;
-                    padding: 0 0.5rem !important;
-                    margin-bottom: 2.5rem !important;
-                }
-                div[style*="max-width: 800px"] {
-                    font-size: 1rem !important;
-                    padding: 0 !important;
-                    text-align: center !important;
-                }
-                div[style*="max-width: 800px"] p {
-                    margin-bottom: 1.25rem !important;
-                }
+            
+            .people-icon {
+                margin-bottom: 1rem;
             }
-            .subtitle-movement {
-                font-family: 'DM Sans', sans-serif;
-                font-weight: 700;
-                color: #000;
-                text-align: center;
-                margin-bottom: 4rem;
-                line-height: 1.7;
-                font-size: 1.35rem;
-                max-width: 600px;
-                margin-left: auto;
-                margin-right: auto;
-                word-break: break-word;
+            
+            .people-icon svg {
+                width: 40px;
+                height: 40px;
             }
-            @media (max-width: 900px) {
-                .subtitle-movement {
-                    font-size: 1.2rem !important;
-                    margin: 0.5rem auto 2rem auto !important;
-                    padding: 0 1rem;
-                    max-width: 95vw;
-                }
+            
+            .million-hearts-title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
             }
-            @media (max-width: 600px) {
-                .subtitle-movement {
-                    font-size: 1.05rem !important;
-                    margin: 0.5rem auto 1.2rem auto !important;
-                    padding: 0 0.5rem;
-                    max-width: 99vw;
-                }
+            
+            .million-hearts-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
             }
+            
+            .metric-bubble {
+                padding: 1.5rem 2rem;
+                border-radius: 15px;
+            }
+            
+            .metric-number {
+                font-size: 2.5rem;
+            }
+            
+            .metric-label {
+                font-size: 1rem;
+            }
+            
+            .metric-subtext {
+                font-size: 1rem;
+            }
+        }
         </style>
+        
+        <script>
+        // Social Proof Metric Management
+        document.addEventListener('DOMContentLoaded', function() {
+            const heartsReachedElement = document.getElementById('heartsReached');
+            
+            // Function to format number with commas and round to nearest thousand
+            function formatNumber(num) {
+                return Math.round(num / 1000) * 1000;
+            }
+            
+            // Function to update the metric display
+            function updateHeartsReached(count) {
+                const formattedCount = formatNumber(count);
+                const heartIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+                const displayText = `${heartIcon}${formattedCount.toLocaleString()}+`;
+                heartsReachedElement.innerHTML = displayText;
+            }
+            
+            // Get cached value or use default
+            function getCachedHeartsCount() {
+                const cached = localStorage.getItem('heartsReachedCount');
+                const lastUpdated = localStorage.getItem('heartsReachedLastUpdated');
+                
+                // Check if cache is older than 7 days
+                if (lastUpdated) {
+                    const daysSinceUpdate = (Date.now() - parseInt(lastUpdated)) / (1000 * 60 * 60 * 24);
+                    if (daysSinceUpdate > 7) {
+                        // Cache expired, could trigger API update here
+                        console.log('Hearts count cache expired, consider updating');
+                    }
+                }
+                
+                return cached ? parseInt(cached) : 689000; // Default fallback
+            }
+            
+            // Update hearts count (can be called manually or via API)
+            function updateHeartsCount(newCount) {
+                localStorage.setItem('heartsReachedCount', newCount.toString());
+                localStorage.setItem('heartsReachedLastUpdated', Date.now().toString());
+                updateHeartsReached(newCount);
+            }
+            
+            // Initialize with cached or default value
+            const initialCount = getCachedHeartsCount();
+            updateHeartsReached(initialCount);
+            
+            // Make function globally available for manual updates
+            window.updateHeartsCount = updateHeartsCount;
+            
+            // Example: To manually update the count, call:
+            // window.updateHeartsCount(800000);
+        });
+        </script>
 
         <section id="sign-the-pledge" style="min-height: 40vh; background-color: #ca0013; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3.25rem 2rem 3.25rem 2rem; margin-bottom: 0;">
             <div class="pledge-form-block" style="background: none; box-shadow: none; border-radius: 0; padding: 0; max-width: 420px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: stretch;">
-                <div class="pledge-title" style="font-family: 'Anton', sans-serif; color: #fffcf1; margin-bottom: 1.2rem; text-align: center; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; line-height: 1.1; font-size: 3.5rem; white-space: nowrap;">THE HEALING PLEDGE</div>
+                <div class="pledge-title" style="font-family: 'Anton', sans-serif; color: #fffcf1; margin-bottom: 1.2rem; text-align: center; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; line-height: 1.1; font-size: 2.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">THE HEALING PLEDGE</div>
                 <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 1.08rem; margin-bottom: 1.5rem; text-align: center; line-height: 1.6; max-width: 420px; padding-left: 0;">
                     I'm done hiding.<br>
                     I'm done pretending I'm fine.<br>
@@ -1387,7 +1836,7 @@
                     <input type="email" name="entry.649844771" placeholder="Enter your email..." required style="padding: 0.65rem 1rem; border-radius: 4px; border: 2px solid #fffcf1; background: transparent; color: #fffcf1; font-size: 1.08rem; font-family: 'DM Sans', sans-serif; outline: none; margin-bottom: 0; transition: border-color 0.2s; box-shadow: none; width: 100%;" />
                     <button type="submit" class="btn btn-primary" style="background: #fffcf1; color: #ca0013; padding: 0.65rem 0; border-radius: 4px; font-family: 'Anton', sans-serif; font-size: 1.1rem; font-weight: bold; border: none; margin-bottom: 0; transition: background 0.2s, color 0.2s; box-shadow: none; letter-spacing: 0.5px;">Sign the Pledge &rarr;</button>
                 </form>
-                <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 0.98rem; margin-top: 1.1rem; text-align: center; opacity: 0.85;">Join the movement. You’re not alone. Get what’s next.</div>
+                <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 0.98rem; margin-top: 1.1rem; text-align: center; opacity: 0.85;">Join the movement. You're not alone. Get what's next.</div>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
                 <div id="pledge-inline-success" class="form-success" style="display:none; color: #fffcf1; margin-top: 1.2rem; text-align: center; font-weight: 600;">Thank you for signing the pledge!</div>
             </div>
@@ -1414,243 +1863,5 @@
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="footer-content">
-            <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 2rem 0 1.5rem 0; width: 100%;" />
-            <p style="text-align: center;">&copy; 2025 Heart Matters. All rights reserved.</p>
-        </div>
-    </footer>
-    <script>
-    // Pledge form confirmation logic with localStorage tracking
-    document.addEventListener('DOMContentLoaded', function() {
-      var pledgeForm = document.getElementById('pledgeInlineForm');
-      var formBlock = document.querySelector('.pledge-form-block');
-      
-      // Check if user has already signed the pledge
-      function hasSignedPledge() {
-        return localStorage.getItem('healingPledgeSigned') === 'true';
-      }
-      
-      // Save pledge status to localStorage
-      function savePledgeStatus() {
-        localStorage.setItem('healingPledgeSigned', 'true');
-      }
-      
-      // Create confirmation message HTML
-      function createConfirmationHTML() {
-        return `
-          <div class="confirmation-message text-center px-6 py-10 fade-in-octagon">
-            <div class="confirmation-heart">
-              <svg viewBox="0 0 8 7" width="64" height="56" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                <rect x="1" y="1" width="2" height="1" fill="#fffcf1"/>
-                <rect x="5" y="1" width="2" height="1" fill="#fffcf1"/>
-                <rect x="0" y="2" width="4" height="1" fill="#fffcf1"/>
-                <rect x="4" y="2" width="4" height="1" fill="#fffcf1"/>
-                <rect x="0" y="3" width="8" height="1" fill="#fffcf1"/>
-                <rect x="1" y="4" width="6" height="1" fill="#fffcf1"/>
-                <rect x="2" y="5" width="4" height="1" fill="#fffcf1"/>
-                <rect x="3" y="6" width="2" height="1" fill="#fffcf1"/>
-              </svg>
-            </div>
-            <h1 class="confirmation-headline">
-              <span class="headline-line1">YOU'RE IN.</span>
-              <span class="headline-line2">You're healing in public.</span>
-            </h1>
-            <div class="confirmation-secondary">They Create → You Support → You Reflect → Others Feel → We All Heal</div>
-            <div class="confirmation-secondary" style="font-style: italic; margin-top: 0.3rem;">Healing yourself creates waves. You change lives just by being who you are.</div>
-            <p style="color: #fffcf1; font-size: 1.35rem; font-family: 'DM Sans', sans-serif; font-weight: 500; line-height: 1.5; margin: 0.5rem 0 0 0;">Check your inbox.</p>
-          </div>
-        `;
-      }
-      
-      // Show confirmation message
-      function showConfirmation() {
-        if (formBlock) {
-          formBlock.innerHTML = createConfirmationHTML();
-        }
-      }
-      
-      // Check on page load if user has already signed
-      if (hasSignedPledge()) {
-        showConfirmation();
-      } else if (pledgeForm) {
-        // Add submit event listener only if user hasn't signed yet
-        pledgeForm.addEventListener('submit', function(e) {
-          // Let the form submit to Google Forms in the hidden iframe
-          setTimeout(function() {
-            if (formBlock) {
-              // Save pledge status
-              savePledgeStatus();
-              
-              // Show confirmation
-              showConfirmation();
-              
-              // Smooth scroll to confirmation
-              formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-          }, 900); // Wait for Google Forms to process
-        });
-      }
-    });
-    </script>
-    <script src="js/menu.js"></script>
-    <script src="js/postForm.js?v=2"></script>
-    <script src="js/wallFeed.js?v=2"></script>
-    <script src="js/utils.js?v=2"></script>
-    <script src="js/firebase.js?v=2"></script>
-    <script src="js/config/firebase-config.js?v=2"></script>
-    <script src="js/components/post-card.js?v=2"></script>
-    <script src="js/services/post-service.js?v=2"></script>
-    <script>
-        // Update navigation to show course links when unlocked
-        function updateNavigation() {
-            const isUnlocked = localStorage.getItem('courseUnlocked_breakup') === 'true';
-            const myCourseLink = document.getElementById('myCourseLink');
-            const mobileCourseLink = document.getElementById('mobileCourseLink');
-            const mobileBreakupResetLink = document.getElementById('mobileBreakupResetLink');
-            const desktopBreakupResetLink = document.getElementById('desktopBreakupResetLink');
-            const desktopContinueBreakupResetLink = document.getElementById('desktopContinueBreakupResetLink');
-            
-            if (isUnlocked) {
-                if (myCourseLink) myCourseLink.style.display = 'block';
-                if (mobileCourseLink) {
-                    mobileCourseLink.style.display = 'block';
-                    mobileCourseLink.textContent = 'CONTINUE THE BREAKUP RESET';
-                }
-                if (mobileBreakupResetLink) mobileBreakupResetLink.style.display = 'none';
-                if (desktopBreakupResetLink) desktopBreakupResetLink.style.display = 'none';
-                if (desktopContinueBreakupResetLink) desktopContinueBreakupResetLink.style.display = 'block';
-            } else {
-                if (myCourseLink) myCourseLink.style.display = 'none';
-                if (mobileCourseLink) mobileCourseLink.style.display = 'none';
-                if (mobileBreakupResetLink) mobileBreakupResetLink.style.display = 'block';
-                if (desktopBreakupResetLink) desktopBreakupResetLink.style.display = 'block';
-                if (desktopContinueBreakupResetLink) desktopContinueBreakupResetLink.style.display = 'none';
-            }
-        }
-        
-        // Update navigation on page load
-        document.addEventListener('DOMContentLoaded', updateNavigation);
-
-        // Custom Google Analytics Events for Movement Page Tracking
-        function trackMovementEvent(eventName, eventParameters = {}) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', eventName, {
-                    event_category: 'movement_engagement',
-                    event_label: 'healing_movement',
-                    ...eventParameters
-                });
-                console.log('Movement event tracked:', eventName, eventParameters);
-            }
-        }
-
-        // Track movement page load
-        document.addEventListener('DOMContentLoaded', function() {
-            trackMovementEvent('movement_page_view', {
-                page_type: 'movement_manifesto',
-                page_category: 'brand_engagement'
-            });
-        });
-
-        // Track healing pledge submissions
-        function trackPledgeSubmission(pledgeType, userType) {
-            trackMovementEvent('pledge_submission', {
-                pledge_type: pledgeType, // 'healing_pledge', 'movement_commitment'
-                user_type: userType, // 'new', 'returning'
-                pledge_category: 'movement_engagement'
-            });
-        }
-
-        // Track manifesto interactions
-        function trackManifestoInteraction(interactionType, manifestoSection) {
-            trackMovementEvent('manifesto_interaction', {
-                interaction_type: interactionType, // 'view', 'read', 'share'
-                manifesto_section: manifestoSection, // 'mission', 'values', 'commitment'
-                interaction_category: 'content_engagement'
-            });
-        }
-
-        // Track movement commitment clicks
-        function trackCommitmentClick(commitmentType, commitmentSource) {
-            trackMovementEvent('commitment_click', {
-                commitment_type: commitmentType, // 'pledge', 'share', 'join'
-                commitment_source: commitmentSource, // 'hero', 'manifesto', 'footer'
-                commitment_category: 'movement_participation'
-            });
-        }
-
-        // Track movement sharing
-        function trackMovementSharing(sharingPlatform, sharingContext) {
-            trackMovementEvent('movement_sharing', {
-                sharing_platform: sharingPlatform, // 'instagram', 'copy_link', 'email'
-                sharing_context: sharingContext, // 'manifesto', 'pledge', 'movement'
-                sharing_type: 'movement_advocacy'
-            });
-        }
-
-        // Track movement navigation
-        function trackMovementNavigation(fromSection, toSection) {
-            trackMovementEvent('movement_navigation', {
-                from_section: fromSection, // 'hero', 'manifesto', 'pledge'
-                to_section: toSection,
-                navigation_type: 'movement_exploration'
-            });
-        }
-
-        // Track movement session duration
-        let movementSessionStartTime = Date.now();
-        let movementInteractionsCount = 0;
-
-        window.addEventListener('beforeunload', function() {
-            const sessionDuration = Math.round((Date.now() - movementSessionStartTime) / 1000 / 60); // minutes
-            if (sessionDuration > 1) { // Only track if session was longer than 1 minute
-                trackMovementEvent('movement_session_duration', {
-                    duration_minutes: sessionDuration,
-                    interactions_count: movementInteractionsCount,
-                    session_type: 'movement_engagement'
-                });
-            }
-        });
-
-        // Track return visits to movement page
-        let movementVisitCount = localStorage.getItem('movementVisitCount') || 0;
-        let lastMovementVisitDate = localStorage.getItem('movementLastVisitDate');
-        movementVisitCount = parseInt(movementVisitCount) + 1;
-        localStorage.setItem('movementVisitCount', movementVisitCount);
-        localStorage.setItem('movementLastVisitDate', new Date().toISOString());
-
-        if (movementVisitCount > 1 && lastMovementVisitDate) {
-            const daysSinceLastVisit = Math.round((new Date() - new Date(lastMovementVisitDate)) / (1000 * 60 * 60 * 24));
-            trackMovementEvent('movement_return_visit', {
-                visit_number: movementVisitCount,
-                days_since_last_visit: daysSinceLastVisit,
-                visit_type: 'movement_engagement'
-            });
-        }
-
-        // Track scroll depth for movement content
-        let maxMovementScrollDepth = 0;
-        window.addEventListener('scroll', function() {
-            const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-            if (scrollDepth > maxMovementScrollDepth) {
-                maxMovementScrollDepth = scrollDepth;
-                if (scrollDepth % 25 === 0) { // Track at 25%, 50%, 75%, 100%
-                    trackMovementEvent('movement_scroll_depth', {
-                        scroll_percentage: scrollDepth,
-                        scroll_category: 'content_engagement'
-                    });
-                }
-            }
-        });
-
-        // Example usage - you can call these functions from your existing movement logic:
-        // trackPledgeSubmission('healing_pledge', 'new');
-        // trackManifestoInteraction('read', 'mission');
-        // trackCommitmentClick('pledge', 'hero');
-        // trackMovementSharing('instagram', 'manifesto');
-        // trackMovementNavigation('hero', 'manifesto');
-
-    </script>
-</body>
-</html> 
+    </body>
+    </html> 

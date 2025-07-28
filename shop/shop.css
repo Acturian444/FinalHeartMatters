@@ -1032,7 +1032,7 @@ header {
     }
     
     .modal-close {
-        top: 0.75rem;
+        top: 0.5rem;
         right: 0.75rem;
         font-size: 1.25rem;
     }

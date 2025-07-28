@@ -38,7 +38,7 @@
         "https://www.tiktok.com/@heartmatters__"
       ],
       "foundingDate": "2024",
-      "mission": "No One Should Have to Heal Alone"
+      "mission": "You Being You Changes Everything"
     }
     </script>
     
@@ -358,9 +358,9 @@
     }
 
     .healing-purpose-text {
-        text-align: center;
+        text-align: left;
         max-width: 800px;
-        margin: 0 auto;
+        margin: 0;
     }
 
     .healing-purpose-title {
@@ -369,7 +369,7 @@
         font-weight: 700;
         color: #ca0013;
         margin-bottom: 1rem;
-        text-align: center;
+        text-align: left;
         letter-spacing: 1px;
         text-transform: uppercase;
     }
@@ -379,7 +379,7 @@
         font-size: 1.35rem;
         font-weight: 700;
         color: #000000;
-        text-align: center;
+        text-align: left;
         margin-bottom: 1.5rem;
         line-height: 1.7;
     }
@@ -389,11 +389,11 @@
         font-size: 1.125rem;
         font-weight: 500;
         color: #000000;
-        text-align: center;
+        text-align: left;
         margin-bottom: 2.5rem;
         line-height: 1.8;
         max-width: 700px;
-        margin-left: auto;
+        margin-left: 0;
         margin-right: auto;
     }
 
@@ -401,8 +401,8 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     .btn-healing-primary {
@@ -497,7 +497,7 @@
         .healing-purpose-content {
             flex-direction: row;
             align-items: center;
-            gap: 4rem;
+            gap: 6rem;
             text-align: left;
         }
 
@@ -530,6 +530,7 @@
         .healing-purpose-image {
             flex: 1;
             max-width: 500px;
+            margin-left: 2rem;
         }
     }
 
@@ -549,7 +550,7 @@
         }
 
         .healing-purpose-content {
-            gap: 2.5rem;
+            gap: 3.5rem;
         }
     }
 
@@ -564,9 +565,15 @@
             padding: 0 1rem;
         }
 
+        .healing-purpose-text {
+            text-align: center;
+            margin: 0 auto;
+        }
+
         .healing-purpose-title {
             font-size: 2rem;
             margin-bottom: 0.8rem;
+            text-align: center;
         }
 
         .healing-purpose-subtitle {
@@ -574,6 +581,7 @@
             font-weight: 700;
             line-height: 1.8;
             margin-bottom: 1.2rem;
+            text-align: center;
         }
 
         .healing-purpose-body {
@@ -581,22 +589,15 @@
             font-weight: 500 !important;
             line-height: 1.8 !important;
             margin-bottom: 2rem;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .healing-purpose-buttons {
             gap: 0.8rem;
-        }
-
-        .btn-healing-primary,
-        .btn-healing-secondary {
-            width: 100%;
-            max-width: 290px;
-            padding: 0.85rem 1.2rem;
-            font-size: 1rem;
-        }
-
-        .healing-purpose-image {
-            max-width: 100%;
+            align-items: center;
+            justify-content: center;
         }
     }
     </style>
@@ -644,10 +645,11 @@
 
     <main>
         <section id="home-hero" class="hero">
-            <video class="hero-bg-video" autoplay loop muted playsinline>
+            <video class="hero-bg-video" autoplay loop muted playsinline webkit-playsinline>
                 <source src="images/Hero Section background video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <div class="hero-overlay"></div>
             <div class="hero-content">
                 <div class="hero-text">
                     <!-- Removed h1 and subtitle from hero section -->
@@ -657,9 +659,20 @@
                 </div>
             </div>
             <div class="hero-tagline-cta" style="margin-bottom: 0.5rem;">
+              <p class="hero-subtitle" style="color: #fffcf1; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; text-align: center; margin-bottom: 1rem; letter-spacing: 0.3px; text-shadow: 0 2px 12px rgba(0,0,0,0.13); white-space: nowrap;">Let yourself be seen. Heal with us.</p>
               <a href="letitout.html" class="hero-letitout-btn">I'M READY TO LET IT OUT</a>
             </div>
             <style>
+            .hero-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.2);
+              z-index: 1;
+            }
+            
             .hero-tagline-cta {
               display: flex;
               flex-direction: column;
@@ -674,14 +687,14 @@
             
             @media (max-width: 600px) {
               .hero-tagline-cta {
-                justify-content: flex-end;
-                bottom: 0;
-                top: auto;
-                left: 0;
-                right: 0;
-                transform: none;
-                margin-bottom: 2rem;
-                padding-bottom: 2rem;
+                justify-content: center;
+                top: 50%;
+                bottom: auto;
+                left: 50%;
+                right: auto;
+                transform: translate(-50%, -50%);
+                margin-bottom: 0;
+                padding-bottom: 0;
               }
             }
             .hero-tagline {
@@ -695,8 +708,8 @@
               text-shadow: 0 2px 12px rgba(0,0,0,0.13);
             }
             .hero-letitout-btn {
-              color: #fffcf1;
-              background: transparent;
+              color: #000000;
+              background: rgba(255, 252, 241, 0.9);
               border: 2px solid #fffcf1;
               border-radius: 4px;
               font-family: 'DM Sans', sans-serif;
@@ -722,14 +735,38 @@
                 margin-bottom: 0.5rem;
               }
               .hero-letitout-btn {
-                font-size: 0.95rem;
-                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                padding: 0.6rem 1.8rem;
+                white-space: nowrap;
+                min-width: auto;
+                width: auto;
+                background: rgba(255, 252, 241, 0.9);
+                color: #000000;
               }
               .hero-tagline-cta {
                 margin-bottom: 0.3rem;
               }
             }
             </style>
+            
+            <script>
+            // Ensure video autoplay works on mobile
+            document.addEventListener('DOMContentLoaded', function() {
+                const video = document.querySelector('.hero-bg-video');
+                if (video) {
+                    // Force play on mobile devices
+                    video.play().catch(function(error) {
+                        console.log('Video autoplay failed:', error);
+                        // Retry play on user interaction
+                        document.addEventListener('touchstart', function() {
+                            video.play().catch(function(e) {
+                                console.log('Video play retry failed:', e);
+                            });
+                        }, { once: true });
+                    });
+                }
+            });
+            </script>
 
         </section>
 
@@ -757,14 +794,15 @@
 
         <section id="mission-section" class="mission-modern">
             <h2 class="mission-modern-title">
-              <span class="highlight">No One Should Have to Heal Alone</span>
+              <span class="highlight">You Being You Changes Everything</span>
             </h2>
             <p class="mission-modern-text">
-              Most people don’t have access to the time, tools, or safe spaces they need to process pain. So they keep going — quietly hurting. We’re building a public healing movement: a space to feel it, say it, and let it out together. Because when pain is seen and supported, healing becomes possible. When you heal in public, you remind someone else they’re not alone.
+              When you show up as you are, others feel safe to do the same. You are one of a kind. When you let yourself be seen, others feel seen too. You change the world by being fully yourself. Your story heals more than you know. This is how healing spreads.<br>
+              This is how the movement begins.
             </p>
             <div class="mission-buttons">
-                <a href="info.html" class="btn btn-mission btn-mission-primary">Join the Movement</a>
-                <a href="shop/index.html" class="btn btn-mission">Shop the Collection</a>
+                <a href="letitout.html" class="btn btn-mission btn-mission-primary">Be Seen</a>
+                <a href="info.html" class="btn btn-mission">Take The Healing Pledge</a>
             </div>
         </section>
 
@@ -772,10 +810,10 @@
         <section class="why-it-matters-section">
             <div class="why-it-matters-overlay"></div>
             <div class="why-it-matters-content">
-                <h2 class="why-it-matters-title">This Is Why We Exist</h2>
+                <h2 class="why-it-matters-title">Why We Exist</h2>
                 <div class="why-it-matters-text">
-                    <p>We’re all one heartbreak, one loss, one moment away from falling apart. But most of us don’t have the tools, the time, or the community to process it. So pain builds — until it breaks us. Unprocessed pain is often at the root of homelessness, addiction, depression, isolation, and suicide. This is why we exist. Every post. Every product. Every shared truth helps someone feel seen.</p>
-                    <p><strong>You matter. You’re not alone.<br>Your healing helps others heal too.</strong></p>
+                    <p>We're told to hide what hurts, stay strong, and keep going like nothing's wrong. But when pain stays hidden, it turns into isolation, anxiety, addiction, and burnout. We're not broken. We're unsupported. Heart Matters exists to change that — by building a world where healing is allowed to be public. Where your story is safe. Your truth is valid. And being real is enough. Every post, every product, every voice helps someone feel seen.<br>
+                    Your healing helps others heal too.</p>
                 </div>
             </div>
         </section>
@@ -783,8 +821,8 @@
         <!-- Start Here Section -->
         <section class="start-here-section">
             <div class="start-here-content">
-                <h2 class="start-here-title" style="color: #ca0013;">Start Healing</h2>
-                <div class="start-here-subtext" style="color: #000000;">4 ways to feel lighter: Write it. Wear it.<span class="mobile-break"><br></span> Say it. Heal it.</div>
+                <h2 class="start-here-title" style="color: #ca0013;">Let Yourself Be Seen</h2>
+                <div class="start-here-subtext" style="color: #000000;">Choose your first step to heal in public.</div>
                 <style>
                   .mobile-break { display: none; }
                   @media (max-width: 600px) { .mobile-break { display: inline; } }
@@ -813,7 +851,7 @@
                           </svg>
                         </div>
                         <h3>Shop Still Healing</h3>
-                        <p>Wear what you feel<br>Every piece is a mirror<br>Truth you can carry</p>
+                        <p>For your healing journey<br>Each piece holds meaning<br>Tools. Rituals. Symbols</p>
                     </a>
                     <!-- Card 3 -->
                     <a href="theheartroom.html" class="start-here-card card-red start-here-clickable" style="background: url('images/heartroomcard.jpg') center center/cover no-repeat;">
@@ -849,8 +887,8 @@
             <div class="healing-purpose-content">
                 <div class="healing-purpose-text">
                     <h2 class="healing-purpose-title">Crafted with Heart</h2>
-                    <p class="healing-purpose-subtitle">Every piece is part of a healing journey.</p>
-                    <p class="healing-purpose-body">We partner with people using their craft to heal, rebuild, and reclaim purpose — from Indigenous artisans to survivors, storytellers, and creators rising from loss, trauma, or marginalization. Each drop is intentionally made, fairly paid, and rooted in dignity. When you choose a piece, you carry a story. You help someone create their way forward — and remind others they're not alone.</p>
+                    <p class="healing-purpose-subtitle">Made for healing. Yours and theirs.</p>
+                    <p class="healing-purpose-body">We partner with makers who use their craft to heal and rebuild. From Indigenous artisans to survivors and storytellers, every piece holds meaning. Each drop is made with care, paid fairly, and rooted in purpose. When you choose a piece, you're carrying more than a product. You're carrying a story. You're carrying someone's healing. And you're reminding others they're not alone.</p>
                     <div class="healing-purpose-buttons">
                         <a href="makers.html" class="btn btn-healing-primary">Meet the Makers</a>
                         <a href="shop/index.html" class="btn btn-healing-secondary">Shop The Drop</a>
@@ -895,8 +933,8 @@
         <!-- Real Impact Section -->
         <section class="real-impact-section">
             <div class="real-impact-content">
-                <h2 class="real-impact-title">Each Drop Creates Real Impact</h2>
-                <p class="real-impact-subtitle">Each piece is more than a product — it's a ritual, a reminder, a reflection.</p>
+                <h2 class="real-impact-title">Each Drop Creates<span class="mobile-break-title"><br></span> Real Impact</h2>
+                <p class="real-impact-subtitle">Every piece is more than a product. It's a ritual. A reminder. A symbol.</p>
                 
                 <div class="impact-steps">
                     <div class="impact-step">
@@ -909,7 +947,7 @@
                         </div>
                         <div class="step-content">
                             <h3 class="step-title">Made With Intention</h3>
-                            <p class="step-description">We collaborate with makers to create meaningful, limited-edition pieces — made with care, culture, and purpose.</p>
+                            <p class="step-description">We partner with makers to create limited edition pieces made with care, culture, and meaning.</p>
                         </div>
                     </div>
                     
@@ -920,8 +958,8 @@
                             </svg>
                         </div>
                         <div class="step-content">
-                            <h3 class="step-title">Worn With Meaning</h3>
-                            <p class="step-description">Each piece is made to be felt — not just worn. These are symbols of healing, identity, and emotional expression.</p>
+                            <h3 class="step-title">CHOSEN WITH PURPOSE</h3>
+                            <p class="step-description">Each piece is a symbol of healing. It's felt by the one who made it and carried by the one who wears it.</p>
                         </div>
                     </div>
                     
@@ -936,7 +974,7 @@
                         </div>
                         <div class="step-content">
                             <h3 class="step-title">The Impact Ripples</h3>
-                            <p class="step-description">You support real makers, amplify their stories, and help healing spread — one meaningful piece at a time.</p>
+                            <p class="step-description">The piece you choose supports healing. It carries a story and helps others feel seen.</p>
                         </div>
                     </div>
                 </div>
@@ -944,7 +982,14 @@
             </div>
         </section>
 
+
+
         <style>
+        .mobile-break-title { display: none; }
+        @media (max-width: 600px) {
+            .mobile-break-title { display: inline; }
+        }
+        
         .real-impact-section {
             background: #fffcf1;
             padding: 4rem 0;
@@ -1154,6 +1199,7 @@
             }
         }
         </style>
+
 
     </main>
 
@@ -1442,6 +1488,57 @@
     // trackMovementEngagement('click', 'hero');
     // trackHomepageSocialClick('instagram', 'footer');
     // trackHomepageNavigation('hero', 'stories');
+
+    // Social Proof Metric Management
+    document.addEventListener('DOMContentLoaded', function() {
+        const heartsReachedElement = document.getElementById('heartsReached');
+        
+        // Function to format number with commas and round to nearest thousand
+        function formatNumber(num) {
+            return Math.round(num / 1000) * 1000;
+        }
+        
+        // Function to update the metric display
+        function updateHeartsReached(count) {
+            const formattedCount = formatNumber(count);
+            const displayText = `Over ${formattedCount.toLocaleString()}`;
+            heartsReachedElement.textContent = displayText;
+        }
+        
+        // Get cached value or use default
+        function getCachedHeartsCount() {
+            const cached = localStorage.getItem('heartsReachedCount');
+            const lastUpdated = localStorage.getItem('heartsReachedLastUpdated');
+            
+            // Check if cache is older than 7 days
+            if (lastUpdated) {
+                const daysSinceUpdate = (Date.now() - parseInt(lastUpdated)) / (1000 * 60 * 60 * 24);
+                if (daysSinceUpdate > 7) {
+                    // Cache expired, could trigger API update here
+                    console.log('Hearts count cache expired, consider updating');
+                }
+            }
+            
+            return cached ? parseInt(cached) : 758000; // Default fallback
+        }
+        
+        // Update hearts count (can be called manually or via API)
+        function updateHeartsCount(newCount) {
+            localStorage.setItem('heartsReachedCount', newCount.toString());
+            localStorage.setItem('heartsReachedLastUpdated', Date.now().toString());
+            updateHeartsReached(newCount);
+        }
+        
+        // Initialize with cached or default value
+        const initialCount = getCachedHeartsCount();
+        updateHeartsReached(initialCount);
+        
+        // Make function globally available for manual updates
+        window.updateHeartsCount = updateHeartsCount;
+        
+        // Example: To manually update the count, call:
+        // window.updateHeartsCount(800000);
+    });
 
     </script>
 </body>
