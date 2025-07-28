@@ -62,4 +62,5 @@ app.listen(PORT, () => {
     if (!process.env.STRIPE_SECRET_KEY) {
         console.warn('⚠️  Warning: STRIPE_SECRET_KEY not set. Please set it as an environment variable.');
     }
-}); 
+}); // Pre-deployment review: Heart Matters production server
+// Production-ready Stripe integration with live keys
