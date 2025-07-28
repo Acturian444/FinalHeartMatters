@@ -426,6 +426,11 @@ class PostForm {
             return;
         }
 
+        if (this.selectedEmotions.length === 0) {
+            window.LetItOutUtils.showError('Please select at least one emotion before posting.');
+            return;
+        }
+
         const submitButton = this.form.querySelector('.letitout-submit-btn');
         if (submitButton) {
             submitButton.disabled = true;
