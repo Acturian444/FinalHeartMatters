@@ -771,46 +771,36 @@ class WallFeed {
         const topWrapper = document.createElement('div');
         Object.assign(topWrapper.style, {
             width: '100%',
-            textAlign: 'center'
+            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '100%'
         });
 
-        // --- Header (Title & Signature) ---
+        // --- Header (empty for spacing) ---
         const header = document.createElement('div');
-        header.style.textAlign = 'center';
-        
-        const title = document.createElement('h1');
-        title.textContent = 'LET IT OUT';
-        Object.assign(title.style, {
-            fontFamily: '"Anton", sans-serif',
-            color: isDarkMode ? '#D4D4D4' : '#ca0013', // THEME AWARE
-            fontSize: '96px',
-            fontWeight: 'bold',
-            letterSpacing: '2px',
-            margin: '0'
-        });
-
-        const signature = document.createElement('p');
-        signature.textContent = post.city ? `Anonymous from ${post.city}` : 'Anonymous';
-        Object.assign(signature.style, {
-            fontSize: '28px',
-            color: isDarkMode ? '#888' : '#888', // No change needed, but explicit for clarity
-            margin: '10px 0 0 0'
-        });
-
-        header.append(title, signature);
+        header.style.textAlign = 'left';
+        header.style.width = '80%';
+        header.style.height = '80px'; // Top padding
 
         // --- Main Content ---
         const mainContent = document.createElement('div');
         Object.assign(mainContent.style, {
-            width: '100%',
-            marginTop: '80px' // Creates space between signature and tags
+            width: '80%',
+            marginTop: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            flex: '1'
         });
 
         const tagsContainer = document.createElement('div');
         Object.assign(tagsContainer.style, {
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             gap: '15px',
             marginBottom: '50px'
         });
@@ -866,31 +856,50 @@ class WallFeed {
             color: isDarkMode ? '#D4D4D4' : 'black', // THEME AWARE
             lineHeight: '1.6',
             whiteSpace: 'pre-wrap',
-            textAlign: 'center',
+            textAlign: 'left',
             margin: '0'
         });
         
         mainContent.append(tagsContainer, content);
         
+        // --- Signature (below content) ---
+        const signature = document.createElement('p');
+        signature.textContent = post.city ? `— Let out anonymously from ${post.city}` : '— Let out anonymously';
+        Object.assign(signature.style, {
+            fontSize: '28px',
+            color: isDarkMode ? '#888' : '#888',
+            margin: '30px 0 0 0',
+            fontStyle: 'italic'
+        });
+        
+        mainContent.appendChild(signature);
+        
         // --- Footer (Watermark) ---
         const footer = document.createElement('div');
-        footer.style.textAlign = 'center';
+        footer.style.textAlign = 'left';
+        footer.style.width = '100%';
+        footer.style.height = '120px'; // Fixed height for footer
+        footer.style.display = 'flex';
+        footer.style.alignItems = 'center';
+        footer.style.justifyContent = 'flex-start';
+        footer.style.paddingLeft = '108px'; // Match the content padding (10% of 1080px = 108px)
 
         const watermark = document.createElement('p');
-        watermark.innerHTML = 'Heart Matters &nbsp;&middot;&nbsp; joinheartmatters.com';
+        watermark.innerHTML = '#LetItOut &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Heart Matters &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; joinheartmatters.com';
         Object.assign(watermark.style, {
             fontFamily: '"DM Sans", sans-serif',
             fontSize: '24px',
             color: isDarkMode ? '#666' : '#aaa', // THEME AWARE
             fontWeight: '500',
-            margin: '0'
+            margin: '0',
+            textAlign: 'left'
         });
         
         footer.appendChild(watermark);
 
         // --- Assemble and Render ---
-        topWrapper.append(header, mainContent);
-        shareContainer.append(topWrapper, footer);
+        topWrapper.append(header, mainContent, footer);
+        shareContainer.append(topWrapper);
         document.body.appendChild(shareContainer);
 
         try {

@@ -587,7 +587,7 @@
                     throw new Error('Stripe is not available');
                 }
 
-                const stripePublicKey = 'pk_test_51RaP4RQ1hjqBwoa0ZnOuoRygvmNsfrRQmGG5wXIjcVhyKebi1CFfcG00pIQCceYu8pqlzFhAuJeNGz2dw5wlAcbD00wooUWDOR';
+                const stripePublicKey = 'pk_live_51RaP4MLWOdcyyqSfMIlvbkoTQ0cVvm1KrSOExbJQeO6UBJoq4IbWpcuhAhlGbNSZbudJUAzh4B3L4jXYU9p109y000XIJvvIld';
                 const stripe = Stripe(stripePublicKey);
                 
                 // Create a Checkout Session for course purchase
@@ -598,7 +598,7 @@
                     },
                     body: JSON.stringify({
                         type: 'course_purchase',
-                        priceId: 'price_1RiJYoQ1hjqBwoa0rGn93X9K',
+                        priceId: 'price_1RpkcDLWOdcyyqSffkzJQUf8',
                         successUrl: window.location.origin + '/course/breakup-course.html?unlocked=true',
                         cancelUrl: window.location.href,
                     }),

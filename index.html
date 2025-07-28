@@ -664,14 +664,25 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              justify-content: flex-end;
-              margin-bottom: 2rem;
+              justify-content: center;
               z-index: 2;
               position: absolute;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              padding-bottom: 2rem;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+            
+            @media (max-width: 600px) {
+              .hero-tagline-cta {
+                justify-content: flex-end;
+                bottom: 0;
+                top: auto;
+                left: 0;
+                right: 0;
+                transform: none;
+                margin-bottom: 2rem;
+                padding-bottom: 2rem;
+              }
             }
             .hero-tagline {
               color: #fffcf1;
@@ -719,11 +730,7 @@
               }
             }
             </style>
-            <div class="hero-scroll-cue">
-                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 22L28 36L42 22" stroke="#fffcf1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
+
         </section>
 
         <!-- BEGIN: Horizontal Scrolling Quotes Bar -->
