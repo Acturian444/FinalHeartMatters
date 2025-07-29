@@ -1988,13 +1988,14 @@
             }
             @media (max-width: 600px) {
                 .confirmation-section {
-                    padding: 18vw 0 18vw 0;
-                    min-height: 100vh;
+                    padding: 8vw 0 8vw 0;
+                    min-height: auto;
+                    height: auto;
                 }
                 .confirmation-message {
-                    min-height: 120px;
-                    padding: 1.2rem 0.7rem;
-                    max-width: 99vw;
+                    min-height: auto;
+                    padding: 2rem 1rem;
+                    max-width: 95vw;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -2004,17 +2005,22 @@
                     margin-bottom: 1rem;
                 }
                 .headline-line1 {
-                    font-size: 1.05rem;
+                    font-size: 2.4rem !important;
                     margin-bottom: 0.1em;
                 }
                 .headline-line2 {
-                    font-size: 0.85rem;
+                    font-size: 1.6rem !important;
                     margin-bottom: 0.15em;
                 }
                 .confirmation-heart svg {
-                    width: 42px;
-                    height: 42px;
-                    margin-bottom: 0.5rem;
+                    width: 48px;
+                    height: 48px;
+                    margin-bottom: 0.8rem;
+                }
+                .confirmation-secondary {
+                    font-size: 1.1rem !important;
+                    margin: 0.5rem 0;
+                    line-height: 1.4;
                 }
             }
         </style>
@@ -2037,7 +2043,9 @@
             }
             @media (max-width: 600px) {
                 .confirmation-message .confirmation-secondary {
-                    font-size: 1.05rem;
+                    font-size: 1.1rem !important;
+                    margin: 0.5rem 0;
+                    line-height: 1.4;
                 }
                 .confirmation-headline .headline-line1 {
                     font-size: 2.4rem !important;
@@ -2049,6 +2057,17 @@
         </style>
 
     <script>
+    // Mobile menu functionality - must be global for onclick to work
+    function openMenu() {
+      document.getElementById('menuOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
     // Pledge form confirmation logic with localStorage tracking
     document.addEventListener('DOMContentLoaded', function() {
       var pledgeForm = document.getElementById('pledgeInlineForm');
@@ -2107,26 +2126,13 @@
                         });
         }
       }
-      
-      // Mobile menu functionality
-      function openMenu() {
-        document.getElementById('menuOverlay').classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeMenu() {
-        document.getElementById('menuOverlay').classList.remove('open');
-        document.body.style.overflow = '';
-      }
 
       // Close menu when clicking outside
-      document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('menuOverlay').addEventListener('click', function(e) {
-          if (e.target === this) {
-            this.classList.remove('open');
-            document.body.style.overflow = '';
-          }
-        });
+      document.getElementById('menuOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          document.body.style.overflow = '';
+        }
       });
       
       // Check on page load if user has already signed
