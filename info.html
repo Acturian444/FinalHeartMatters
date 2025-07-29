@@ -1259,6 +1259,9 @@
                     .healing-image img {
                         height: 350px !important;
                     }
+                    .healing-public-title {
+                        font-size: 2.2rem !important;
+                    }
                 }
                 @media (max-width: 768px) {
                     section {
@@ -1267,6 +1270,9 @@
                     h1 {
                         font-size: 2.5rem !important;
                         padding: 0 1rem !important;
+                    }
+                    .healing-public-title {
+                        font-size: 2rem !important;
                     }
                     p[style*="font-family: 'DM Sans'"] {
                         font-size: 1.2rem !important;
@@ -1289,6 +1295,9 @@
                     h1 {
                         font-size: 2rem !important;
                         padding: 0 0.5rem !important;
+                    }
+                    .healing-public-title {
+                        font-size: 1.8rem !important;
                     }
                     p[style*="font-family: 'DM Sans'"] {
                         font-size: 1.1rem !important;
@@ -2098,6 +2107,36 @@
                         });
         }
       }
+      
+      // Mobile menu functionality
+      function openMenu() {
+        const menuOverlay = document.getElementById('menuOverlay');
+        const hamburger = document.querySelector('.hamburger');
+        
+        if (menuOverlay && hamburger) {
+          menuOverlay.classList.toggle('open');
+          hamburger.classList.toggle('active');
+          
+          // Prevent body scroll when menu is open
+          if (menuOverlay.classList.contains('open')) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+          }
+        }
+      }
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        const menuOverlay = document.getElementById('menuOverlay');
+        const hamburger = document.querySelector('.hamburger');
+        
+        if (menuOverlay && hamburger && !hamburger.contains(e.target) && !menuOverlay.contains(e.target)) {
+          menuOverlay.classList.remove('open');
+          hamburger.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
       
       // Check on page load if user has already signed
       if (hasSignedPledge()) {
