@@ -1809,48 +1809,309 @@
             </div>
         </section>
 
+        <style>
+            .confirmation-section {
+                background: linear-gradient(180deg, #ca0013 0%, #b8001a 100%);
+                min-height: 100vh;
+                width: 100vw;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                padding: 7vw 0 7vw 0;
+                overflow: hidden;
+            }
+            .confirmation-section::before, .confirmation-section::after {
+                content: '';
+                position: absolute;
+                left: 0; right: 0;
+                height: 80px;
+                pointer-events: none;
+                z-index: 1;
+            }
+            .confirmation-section::before {
+                top: 0;
+                background: linear-gradient(to bottom, rgba(193,0,22,0.95) 60%, rgba(193,0,22,0.0) 100%);
+            }
+            .confirmation-section::after {
+                bottom: 0;
+                background: linear-gradient(to top, rgba(193,0,22,0.95) 60%, rgba(193,0,22,0.0) 100%);
+            }
+            .fade-in-octagon {
+                position: relative;
+                z-index: 2;
+                animation: fadeInUp 0.8s ease-out;
+            }
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .confirmation-message {
+                padding: 5.5rem 2.5rem 4.5rem 2.5rem;
+                text-align: center;
+                position: relative;
+                max-width: 800px;
+                margin: 0 auto;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: none;
+            }
+            .confirmation-heart {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 0.8rem;
+            }
+            .confirmation-heart svg {
+                width: 64px;
+                height: 64px;
+                filter: drop-shadow(0 2px 12px #ca0013aa);
+                animation: heartBeat 1.8s infinite;
+            }
+            @keyframes heartBeat {
+                0% { transform: scale(1); }
+                10% { transform: scale(1.1); }
+                20% { transform: scale(1); }
+                30% { transform: scale(1.12); }
+                40% { transform: scale(0.98); }
+                50% { transform: scale(1.06); }
+                60% { transform: scale(1); }
+            }
+            .confirmation-headline {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+            .headline-line1 {
+                font-family: 'Anton', sans-serif;
+                font-size: 3.2rem;
+                color: #fffcf1;
+                margin-bottom: 0.1em;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                line-height: 1;
+            }
+            .headline-line2 {
+                font-family: 'Anton', sans-serif;
+                font-size: 2.1rem;
+                color: #fffcf1;
+                margin-bottom: 0.1em;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                line-height: 1;
+            }
+            @media (max-width: 600px) {
+                .headline-line1 { font-size: 2.4rem; margin-bottom: 0.13em; }
+                .headline-line2 { font-size: 1.6rem; margin-bottom: 0.09em; }
+            }
+            .confirmation-message p {
+                color: #222;
+                font-size: 1.55rem;
+                margin-bottom: 0;
+                line-height: 1.9;
+                font-family: 'DM Sans', sans-serif;
+                font-weight: 500;
+            }
+            @media (max-width: 1200px) {
+                .confirmation-message {
+                    padding: 3.5rem 0.5rem 3.5rem 0.5rem;
+                    max-width: 99vw;
+                    min-height: 220px;
+                }
+                .confirmation-message h1 {
+                    font-size: 2.2rem;
+                }
+                .confirmation-message p {
+                    font-size: 1.15rem;
+                }
+            }
+            @media (max-width: 900px) {
+                .confirmation-section {
+                    padding: 14vw 0 14vw 0;
+                    min-height: 100vh;
+                }
+                .confirmation-message {
+                    min-height: 220px;
+                    padding: 2.2rem 0.2rem 2.2rem 0.2rem;
+                    max-width: 99vw;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .confirmation-headline {
+                    margin-bottom: 1.1rem;
+                }
+                .headline-line1 {
+                    font-size: 2.1rem;
+                    margin-bottom: 0.12em;
+                }
+                .headline-line2 {
+                    font-size: 1.4rem;
+                    margin-bottom: 0.18em;
+                }
+                .confirmation-heart svg {
+                    width: 38px;
+                    height: 38px;
+                }
+            }
+            @media (max-width: 600px) {
+                .confirmation-section {
+                    padding: 18vw 0 18vw 0;
+                    min-height: 100vh;
+                }
+                .confirmation-message {
+                    min-height: 120px;
+                    padding: 1.2rem 0.7rem;
+                    max-width: 99vw;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .confirmation-headline {
+                    margin-bottom: 1rem;
+                }
+                .headline-line1 {
+                    font-size: 1.05rem;
+                    margin-bottom: 0.1em;
+                }
+                .headline-line2 {
+                    font-size: 0.85rem;
+                    margin-bottom: 0.15em;
+                }
+                .confirmation-heart svg {
+                    width: 42px;
+                    height: 42px;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        </style>
+        <style>
+            /* Confirmation message: prevent line breaks for headline and secondary lines */
+            .confirmation-headline .headline-line1,
+            .confirmation-headline .headline-line2,
+            .confirmation-message .confirmation-secondary {
+                white-space: nowrap;
+                display: block;
+                text-align: center;
+            }
+            .confirmation-message .confirmation-secondary {
+                font-family: 'DM Sans', sans-serif;
+                font-size: 1.35rem;
+                color: #fffcf1;
+                margin: 0.8rem 0 0.5rem 0;
+                font-weight: 500;
+                line-height: 1.5;
+            }
+            @media (max-width: 600px) {
+                .confirmation-message .confirmation-secondary {
+                    font-size: 1.05rem;
+                }
+                .confirmation-headline .headline-line1 {
+                    font-size: 2.4rem !important;
+                }
+                .confirmation-headline .headline-line2 {
+                    font-size: 1.6rem !important;
+                }
+            }
+        </style>
+
         <script>
-            // Pledge form submission handler
+            // Pledge form confirmation logic with localStorage tracking
             document.addEventListener('DOMContentLoaded', function() {
-                const pledgeForm = document.getElementById('pledgeInlineForm');
-                const pledgeSuccess = document.getElementById('pledge-inline-success');
+                var pledgeForm = document.getElementById('pledgeInlineForm');
+                var formBlock = document.querySelector('.pledge-form-block');
                 
-                if (pledgeForm) {
+                // Check if user has already signed the pledge
+                function hasSignedPledge() {
+                    return localStorage.getItem('healingPledgeSigned') === 'true';
+                }
+                
+                // Save pledge status to localStorage
+                function savePledgeStatus() {
+                    localStorage.setItem('healingPledgeSigned', 'true');
+                }
+                
+                // Create confirmation message HTML
+                function createConfirmationHTML() {
+                    return `
+                        <div class="confirmation-message text-center px-6 py-10 fade-in-octagon">
+                            <div class="confirmation-heart">
+                                <svg viewBox="0 0 8 7" width="64" height="56" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                                    <rect x="1" y="1" width="2" height="1" fill="#fffcf1"/>
+                                    <rect x="5" y="1" width="2" height="1" fill="#fffcf1"/>
+                                    <rect x="0" y="2" width="4" height="1" fill="#fffcf1"/>
+                                    <rect x="4" y="2" width="4" height="1" fill="#fffcf1"/>
+                                    <rect x="0" y="3" width="8" height="1" fill="#fffcf1"/>
+                                    <rect x="1" y="4" width="6" height="1" fill="#fffcf1"/>
+                                    <rect x="2" y="5" width="4" height="1" fill="#fffcf1"/>
+                                    <rect x="3" y="6" width="2" height="1" fill="#fffcf1"/>
+                                </svg>
+                            </div>
+                            <h1 class="confirmation-headline">
+                                <span class="headline-line1">YOU'RE IN.</span>
+                                <span class="headline-line2">You're healing in public.</span>
+                            </h1>
+                            <div class="confirmation-secondary">They Create → You Support → You Reflect → Others Feel → We All Heal</div>
+                            <div class="confirmation-secondary" style="font-style: italic; margin-top: 0.3rem;">Healing yourself creates waves. You change lives just by being who you are.</div>
+                            <p style="color: #fffcf1; font-size: 1.35rem; font-family: 'DM Sans', sans-serif; font-weight: 500; line-height: 1.5; margin: 0.5rem 0 0 0;">Check your inbox.</p>
+                        </div>
+                    `;
+                }
+                
+                // Show confirmation message
+                function showConfirmation() {
+                    if (formBlock) {
+                        formBlock.innerHTML = createConfirmationHTML();
+                    }
+                }
+                
+                // Track pledge signup
+                function trackPledgeSignup() {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'pledge_signup', {
+                            event_category: 'info_page_engagement',
+                            event_label: 'healing_pledge_signup'
+                        });
+                    }
+                }
+                
+                // Check on page load if user has already signed
+                if (hasSignedPledge()) {
+                    showConfirmation();
+                } else if (pledgeForm) {
+                    // Add submit event listener only if user hasn't signed yet
                     pledgeForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        
-                        const submitButton = pledgeForm.querySelector('button[type="submit"]');
-                        const originalText = submitButton.textContent;
-                        
-                        // Disable button and show loading state
-                        submitButton.disabled = true;
-                        submitButton.textContent = 'Signing...';
-                        
-                        // Track pledge signup
-                        if (typeof gtag !== 'undefined') {
-                            gtag('event', 'pledge_signup', {
-                                event_category: 'info_page_engagement',
-                                event_label: 'healing_pledge_signup'
-                            });
-                        }
-                        
-                        // Simulate form submission delay
+                        // Let the form submit to Google Forms in the hidden iframe
                         setTimeout(function() {
-                            // Reset form
-                            pledgeForm.reset();
-                            
-                            // Re-enable button
-                            submitButton.disabled = false;
-                            submitButton.textContent = originalText;
-                            
-                            // Show success message
-                            pledgeSuccess.style.display = 'block';
-                            
-                            // Hide success message after 5 seconds
-                            setTimeout(function() {
-                                pledgeSuccess.style.display = 'none';
-                            }, 5000);
-                        }, 1200);
+                            if (formBlock) {
+                                // Track analytics
+                                trackPledgeSignup();
+                                
+                                // Save pledge status
+                                savePledgeStatus();
+                                
+                                // Show confirmation
+                                showConfirmation();
+                                
+                                // Smooth scroll to confirmation
+                                formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }, 900); // Wait for Google Forms to process
                     });
                 }
             });
