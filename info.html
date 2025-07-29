@@ -1664,11 +1664,11 @@
         }
         
         .metric-subtext {
-            font-family: 'DM Sans', sans-serif;
+                font-family: 'DM Sans', sans-serif;
             font-size: 1.1rem;
             font-weight: 500;
             color: #ffffff;
-            text-align: center;
+                text-align: center;
             line-height: 1.4;
             opacity: 0.9;
         }
@@ -1713,8 +1713,8 @@
             
             .metric-subtext {
                 font-size: 1rem;
+                }
             }
-        }
         </style>
         
         <script>
@@ -2030,55 +2030,55 @@
             }
         </style>
 
-        <script>
-            // Pledge form confirmation logic with localStorage tracking
-            document.addEventListener('DOMContentLoaded', function() {
-                var pledgeForm = document.getElementById('pledgeInlineForm');
-                var formBlock = document.querySelector('.pledge-form-block');
-                
-                // Check if user has already signed the pledge
-                function hasSignedPledge() {
-                    return localStorage.getItem('healingPledgeSigned') === 'true';
-                }
-                
-                // Save pledge status to localStorage
-                function savePledgeStatus() {
-                    localStorage.setItem('healingPledgeSigned', 'true');
-                }
-                
-                // Create confirmation message HTML
-                function createConfirmationHTML() {
-                    return `
-                        <div class="confirmation-message text-center px-6 py-10 fade-in-octagon">
-                            <div class="confirmation-heart">
-                                <svg viewBox="0 0 8 7" width="64" height="56" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                                    <rect x="1" y="1" width="2" height="1" fill="#fffcf1"/>
-                                    <rect x="5" y="1" width="2" height="1" fill="#fffcf1"/>
-                                    <rect x="0" y="2" width="4" height="1" fill="#fffcf1"/>
-                                    <rect x="4" y="2" width="4" height="1" fill="#fffcf1"/>
-                                    <rect x="0" y="3" width="8" height="1" fill="#fffcf1"/>
-                                    <rect x="1" y="4" width="6" height="1" fill="#fffcf1"/>
-                                    <rect x="2" y="5" width="4" height="1" fill="#fffcf1"/>
-                                    <rect x="3" y="6" width="2" height="1" fill="#fffcf1"/>
-                                </svg>
-                            </div>
-                            <h1 class="confirmation-headline">
-                                <span class="headline-line1">YOU'RE IN.</span>
-                                <span class="headline-line2">You're healing in public.</span>
-                            </h1>
-                            <div class="confirmation-secondary">They Create → You Support → You Reflect → Others Feel → We All Heal</div>
-                            <div class="confirmation-secondary" style="font-style: italic; margin-top: 0.3rem;">Healing yourself creates waves. You change lives just by being who you are.</div>
-                            <p style="color: #fffcf1; font-size: 1.35rem; font-family: 'DM Sans', sans-serif; font-weight: 500; line-height: 1.5; margin: 0.5rem 0 0 0;">Check your inbox.</p>
-                        </div>
-                    `;
-                }
-                
-                // Show confirmation message
-                function showConfirmation() {
-                    if (formBlock) {
-                        formBlock.innerHTML = createConfirmationHTML();
-                    }
-                }
+    <script>
+    // Pledge form confirmation logic with localStorage tracking
+    document.addEventListener('DOMContentLoaded', function() {
+      var pledgeForm = document.getElementById('pledgeInlineForm');
+      var formBlock = document.querySelector('.pledge-form-block');
+      
+      // Check if user has already signed the pledge
+      function hasSignedPledge() {
+        return localStorage.getItem('healingPledgeSigned') === 'true';
+      }
+      
+      // Save pledge status to localStorage
+      function savePledgeStatus() {
+        localStorage.setItem('healingPledgeSigned', 'true');
+      }
+      
+      // Create confirmation message HTML
+      function createConfirmationHTML() {
+        return `
+          <div class="confirmation-message text-center px-6 py-10 fade-in-octagon">
+            <div class="confirmation-heart">
+              <svg viewBox="0 0 8 7" width="64" height="56" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <rect x="1" y="1" width="2" height="1" fill="#fffcf1"/>
+                <rect x="5" y="1" width="2" height="1" fill="#fffcf1"/>
+                <rect x="0" y="2" width="4" height="1" fill="#fffcf1"/>
+                <rect x="4" y="2" width="4" height="1" fill="#fffcf1"/>
+                <rect x="0" y="3" width="8" height="1" fill="#fffcf1"/>
+                <rect x="1" y="4" width="6" height="1" fill="#fffcf1"/>
+                <rect x="2" y="5" width="4" height="1" fill="#fffcf1"/>
+                <rect x="3" y="6" width="2" height="1" fill="#fffcf1"/>
+              </svg>
+            </div>
+            <h1 class="confirmation-headline">
+              <span class="headline-line1">YOU'RE IN.</span>
+              <span class="headline-line2">You're healing in public.</span>
+            </h1>
+            <div class="confirmation-secondary">They Create → You Support → You Reflect → Others Feel → We All Heal</div>
+            <div class="confirmation-secondary" style="font-style: italic; margin-top: 0.3rem;">Healing yourself creates waves. You change lives just by being who you are.</div>
+            <p style="color: #fffcf1; font-size: 1.35rem; font-family: 'DM Sans', sans-serif; font-weight: 500; line-height: 1.5; margin: 0.5rem 0 0 0;">Check your inbox.</p>
+          </div>
+        `;
+      }
+      
+      // Show confirmation message
+      function showConfirmation() {
+        if (formBlock) {
+          formBlock.innerHTML = createConfirmationHTML();
+        }
+      }
                 
                 // Track pledge signup
                 function trackPledgeSignup() {
@@ -2089,33 +2089,33 @@
                         });
                     }
                 }
-                
-                // Check on page load if user has already signed
-                if (hasSignedPledge()) {
-                    showConfirmation();
-                } else if (pledgeForm) {
-                    // Add submit event listener only if user hasn't signed yet
-                    pledgeForm.addEventListener('submit', function(e) {
-                        // Let the form submit to Google Forms in the hidden iframe
-                        setTimeout(function() {
-                            if (formBlock) {
+      
+      // Check on page load if user has already signed
+      if (hasSignedPledge()) {
+        showConfirmation();
+      } else if (pledgeForm) {
+        // Add submit event listener only if user hasn't signed yet
+        pledgeForm.addEventListener('submit', function(e) {
+          // Let the form submit to Google Forms in the hidden iframe
+          setTimeout(function() {
+            if (formBlock) {
                                 // Track analytics
                                 trackPledgeSignup();
                                 
-                                // Save pledge status
-                                savePledgeStatus();
-                                
-                                // Show confirmation
-                                showConfirmation();
-                                
-                                // Smooth scroll to confirmation
-                                formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }
-                        }, 900); // Wait for Google Forms to process
-                    });
-                }
-            });
-        </script>
+              // Save pledge status
+              savePledgeStatus();
+              
+              // Show confirmation
+              showConfirmation();
+              
+              // Smooth scroll to confirmation
+              formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 900); // Wait for Google Forms to process
+        });
+      }
+    });
+    </script>
 
         <section class="contact-section">
             <div class="contact-content">
@@ -2138,5 +2138,5 @@
             </div>
         </section>
     </main>
-    </body>
-    </html> 
+</body>
+</html> 
