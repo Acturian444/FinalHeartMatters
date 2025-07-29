@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Let It Out posts - public read, authenticated write
+    match /letitout-posts/{postId} {
+      allow read: if true;
+      
+      allow create: if request.auth != null 
+        && request.resource.data.content is string
+        && request.resource.data.content.size() > 0
+        && request.resource.data.content.size() <= 2000;
+      
+      allow update: if request.auth != null 
+        && (
+          // Original author can update their own posts
+          request.auth.uid == resource.data.userId
+          ||
+          // Any authenticated user can add replies (Send Love functionality)
+          (
+            // Check if only replies field is being updated
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['replies'])
+            &&
+            // Ensure replies is an array
+            request.resource.data.replies is list
+          )
+          ||
+          // Allow updating feltCount for "Felt It" functionality
+          (
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['feltCount'])
+            &&
+            request.resource.data.feltCount is number
+            &&
+            request.resource.data.feltCount >= 0
+          )
+        );
+    }
+    
+    // Reports - authenticated only
+    match /reports/{reportId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Default rule - deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 
