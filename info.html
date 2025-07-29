@@ -420,7 +420,7 @@
         .confirmation-section {
             background: linear-gradient(180deg, #ca0013 0%, #b8001a 100%);
             min-height: 100vh;
-            width: 100vw;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -690,7 +690,7 @@
         .shared-healing-section {
             background: #fffcf1;
             padding: 4rem 0;
-            width: 100vw;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1211,7 +1211,7 @@
 
     <main>
         <!-- This is Healing in Public Section -->
-        <section class="healing-public-section" style="background-color: #fffcf1; padding: 4rem 0 2rem 0; width: 100vw;">
+        <section class="healing-public-section" style="background-color: #fffcf1; padding: 4rem 0 2rem 0; width: 100%;">
             <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; text-align: center;">
                 <h2 class="healing-public-title" style="font-family: 'Anton', sans-serif; font-size: 2.7rem; font-weight: 700; color: #ca0013; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">This is Healing in Public</h2>
                 <p style="font-family: 'DM Sans', sans-serif; font-size: 1.35rem; font-weight: 700; color: #000000; margin-bottom: 3rem; line-height: 1.7;">Feel it. Say it. Let it out. Be seen. Heal together.</p>
@@ -1586,7 +1586,7 @@
         .million-hearts-section {
             background: #fffcf1;
             padding: 2rem 0 4rem 0;
-            width: 100vw;
+            width: 100%;
         }
         
         .million-hearts-content {
@@ -1831,7 +1831,7 @@
             .confirmation-section {
                 background: linear-gradient(180deg, #ca0013 0%, #b8001a 100%);
                 min-height: 100vh;
-                width: 100vw;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -2113,16 +2113,26 @@
         const menuOverlay = document.getElementById('menuOverlay');
         const hamburger = document.querySelector('.hamburger');
         
+        console.log('openMenu called');
+        console.log('menuOverlay:', menuOverlay);
+        console.log('hamburger:', hamburger);
+        
         if (menuOverlay && hamburger) {
           menuOverlay.classList.toggle('open');
           hamburger.classList.toggle('active');
           
+          console.log('Menu overlay classes:', menuOverlay.classList.toString());
+          
           // Prevent body scroll when menu is open
           if (menuOverlay.classList.contains('open')) {
             document.body.style.overflow = 'hidden';
+            console.log('Menu opened - body scroll hidden');
           } else {
             document.body.style.overflow = '';
+            console.log('Menu closed - body scroll restored');
           }
+        } else {
+          console.log('Menu elements not found');
         }
       }
       
