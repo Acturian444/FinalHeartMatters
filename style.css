@@ -834,6 +834,17 @@ footer {
     opacity: 0.8;
 }
 
+/* Mobile responsive adjustments for general social-links */
+@media (max-width: 600px) {
+    .social-links a i {
+        font-size: 1.2rem;
+    }
+    
+    .social-links a span {
+        font-size: 0.9rem;
+    }
+}
+
 .contact-info p {
     margin-bottom: 0.5rem;
     color: #000000;
@@ -1719,11 +1730,11 @@ footer {
     }
     
     #join .social-links a i {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
     
     #join .social-links a span {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }
 
