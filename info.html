@@ -60,15 +60,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Preload correctly & avoid double download -->
     <link rel="preload"
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap"
           as="style"
           onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
       <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap">
+            href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap">
     </noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <style>
         main {
             margin: 0;
@@ -735,6 +735,13 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        @media (max-width: 600px) {
+            .shared-healing-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
         }
 
         .shared-healing-body {
@@ -1441,7 +1448,7 @@
                 </div>
             </div>
             <!-- Red downward arrow cue -->
-            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.7rem 0; cursor: pointer; width: 100%;">
+            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.3rem 0; cursor: pointer; width: 100%;">
               <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 22L28 36L42 22" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1453,7 +1460,7 @@
             <div class="shared-healing-content">
                 <div class="shared-healing-text">
                     <h2 class="shared-healing-title">THE HEALING LOOP</h2>
-                    <p class="shared-healing-subtitle">A Cycle That Connects Us All</p>
+                    <p class="shared-healing-subtitle">A cycle that connects us all.</p>
                     <div class="shared-healing-body">
                     </div>
                 </div>
@@ -1569,8 +1576,10 @@
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg>
                 </div>
-                <h2 class="million-hearts-title">Let's Heal One Million Hearts Together</h2>
-                <p class="million-hearts-subtitle">We're on a mission to help one million people feel seen and supported. Through tools, stories, and rituals for emotional release, we're building a movement of healing — one truth, one drop, one person at a time.</p>
+                <h2 class="million-hearts-title">Heal One Million Hearts</h2>
+                <p class="million-hearts-subtitle">We're here to help one million hearts feel seen.<br>
+                With every story. Every tool. Every ritual.<br>
+                One truth. One drop.<br class="mobile-break"> One person at a time.</p>
                 
                 <div class="social-proof-metric">
                     <div class="metric-bubble">
@@ -1709,6 +1718,7 @@
             .million-hearts-title {
                 font-size: 2rem;
                 margin-bottom: 1rem;
+                white-space: nowrap;
             }
             
             .million-hearts-subtitle {
@@ -1731,6 +1741,10 @@
             
             .metric-subtext {
                 font-size: 1rem;
+            }
+            
+            .manifesto-down-arrow {
+                margin: 0.1rem 0 !important;
                 }
             }
         </style>
@@ -1749,7 +1763,7 @@
             function updateHeartsReached(count) {
                 if (!heartsReachedElement) return;
                 const formattedCount = formatNumber(count);
-                const heartIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+                const heartIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 12px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
                 const displayText = `${heartIcon}${formattedCount.toLocaleString()}+`;
                 heartsReachedElement.innerHTML = displayText;
             }
