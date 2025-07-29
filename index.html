@@ -50,8 +50,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=3">
     <style>
@@ -645,7 +644,15 @@
 
     <main>
         <section id="home-hero" class="hero">
-            <video class="hero-bg-video" autoplay loop muted playsinline webkit-playsinline>
+            <video class="hero-bg-video" 
+                   autoplay 
+                   loop 
+                   muted 
+                   playsinline 
+                   webkit-playsinline
+                   preload="none"
+                   loading="lazy"
+                   aria-hidden="true">
                 <source src="images/Hero Section background video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -757,12 +764,13 @@
                     // Force play on mobile devices
                     video.play().catch(function(error) {
                         console.log('Video autoplay failed:', error);
-                        // Retry play on user interaction
-                        document.addEventListener('touchstart', function() {
-                            video.play().catch(function(e) {
-                                console.log('Video play retry failed:', e);
+                        // Retry play on user interaction with proper cleanup
+                        const retry = () => {
+                            video.play().finally(() => {
+                                document.removeEventListener('touchstart', retry);
                             });
-                        }, { once: true });
+                        };
+                        document.addEventListener('touchstart', retry, { once: true });
                     });
                 }
             });
@@ -992,7 +1000,7 @@
         
         .real-impact-section {
             background: #fffcf1;
-            padding: 4rem 0;
+            padding: 4rem 0 0 0;
             width: 100vw;
         }
         
@@ -1162,7 +1170,7 @@
         /* Mobile Layout */
         @media (max-width: 600px) {
             .real-impact-section {
-                padding: 2rem 0;
+                padding: 0;
             }
             
             .real-impact-title {
@@ -1244,7 +1252,7 @@
     <div id="signup-popup" class="modal-popup">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close popup" onclick="closePopup()">&times;</button>
-            <h3 class="modal-title">WANT TO BE PART OF THE MOVEMENT?</h3>
+            <h3 class="modal-title">Be Part of the Movement</h3>
             <p class="modal-subtext">Get drops, stories, and reminders that speak to your heart.</p>
             <form class="signup-form popup-form" id="popupSignupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
                 <div class="form-group">
@@ -1500,6 +1508,7 @@
         
         // Function to update the metric display
         function updateHeartsReached(count) {
+            if (!heartsReachedElement) return;
             const formattedCount = formatNumber(count);
             const displayText = `Over ${formattedCount.toLocaleString()}`;
             heartsReachedElement.textContent = displayText;

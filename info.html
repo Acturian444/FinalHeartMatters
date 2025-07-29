@@ -49,8 +49,15 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap&font-display=swap" rel="stylesheet">
+    <!-- Preload correctly & avoid double download -->
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap">
+    </noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=2">
     <style>
@@ -1150,69 +1157,7 @@
     }
   }
 </style>
-    <style>
-                @media (max-width: 900px) {
-                    .healing-images {
-                        flex-direction: column !important;
-                        gap: 0 !important;
-                        overflow: hidden !important;
-                        position: relative !important;
-                        height: 350px !important;
-                    }
-                    .healing-image {
-                        min-width: 100% !important;
-                        max-width: 100% !important;
-                        position: absolute !important;
-                        top: 0 !important;
-                        left: 0 !important;
-                        opacity: 0 !important;
-                        transition: opacity 0.8s ease-in-out !important;
-                    }
-                    .healing-image.active {
-                        opacity: 1 !important;
-                    }
-                    .healing-image img {
-                        height: 350px !important;
-                    }
-                }
-                
-                /* Quote responsive styling */
-                @media (max-width: 600px) {
-                    .healing-quote {
-                        font-size: 1.5rem !important;
-                        margin-top: 2rem !important;
-                        padding: 0 1rem !important;
-                    }
-                }
-                
-                /* Mobile title responsive styling */
-                @media (max-width: 600px) {
-                    .healing-public-title {
-                        font-size: 2rem !important;
-                        line-height: 1.2 !important;
-                        white-space: nowrap !important;
-                    }
-                }
-                
-                /* Mobile section spacing */
-                @media (max-width: 600px) {
-                    .healing-public-section {
-                        padding: 3rem 0 1rem 0 !important;
-                    }
-                    .manifesto-section {
-                        padding: 1rem 1rem 3rem 1rem !important;
-                    }
-                }
-                
-                /* Mobile manifesto line break adjustments */
-                @media (max-width: 600px) {
-                    .manifesto-line-break-1,
-                    .manifesto-line-break-2,
-                    .manifesto-line-break-3 {
-                        display: none !important;
-                    }
-                }
-            </style>
+
 </head>
 <body>
     <header>
@@ -1401,9 +1346,12 @@
                             });
                             
                             function showNextImage() {
-                                images[currentIndex].classList.remove('active');
-                                currentIndex = (currentIndex + 1) % images.length;
-                                images[currentIndex].classList.add('active');
+                                // Only run carousel if page is visible
+                                if (document.visibilityState === 'visible') {
+                                    images[currentIndex].classList.remove('active');
+                                    currentIndex = (currentIndex + 1) % images.length;
+                                    images[currentIndex].classList.add('active');
+                                }
                             }
                             
                             // Clear existing interval and start new one
@@ -1431,6 +1379,13 @@
                 
                 // Restart carousel on window resize
                 window.addEventListener('resize', startCarousel);
+                
+                // Clear interval on page unload
+                window.addEventListener('beforeunload', function() {
+                    if (carouselInterval) {
+                        clearInterval(carouselInterval);
+                    }
+                });
             });
             </script>
         </section>
@@ -1774,6 +1729,7 @@
             
             // Function to update the metric display
             function updateHeartsReached(count) {
+                if (!heartsReachedElement) return;
                 const formattedCount = formatNumber(count);
                 const heartIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
                 const displayText = `${heartIcon}${formattedCount.toLocaleString()}+`;
@@ -1782,8 +1738,13 @@
             
             // Get cached value or use default
             function getCachedHeartsCount() {
-                const cached = localStorage.getItem('heartsReachedCount');
+                const cachedRaw = localStorage.getItem('heartsReachedCount');
                 const lastUpdated = localStorage.getItem('heartsReachedLastUpdated');
+                
+                // Validate cached value
+                const cached = Number.isFinite(Number(cachedRaw)) && Number(cachedRaw) > 0 
+                    ? Number(cachedRaw) 
+                    : null;
                 
                 // Check if cache is older than 7 days
                 if (lastUpdated) {
@@ -1794,11 +1755,17 @@
                     }
                 }
                 
-                return cached ? parseInt(cached) : 689000; // Default fallback
+                return cached || 689000; // Return validated cached value or default fallback
             }
             
             // Update hearts count (can be called manually or via API)
             function updateHeartsCount(newCount) {
+                // Validate newCount before storing
+                if (!Number.isFinite(newCount) || newCount < 0) {
+                    console.warn('Invalid hearts count provided:', newCount);
+                    return; // Don't update with invalid data
+                }
+                
                 localStorage.setItem('heartsReachedCount', newCount.toString());
                 localStorage.setItem('heartsReachedLastUpdated', Date.now().toString());
                 updateHeartsReached(newCount);
@@ -1818,7 +1785,7 @@
 
         <section id="sign-the-pledge" style="min-height: 40vh; background-color: #ca0013; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3.25rem 2rem 3.25rem 2rem; margin-bottom: 0;">
             <div class="pledge-form-block" style="background: none; box-shadow: none; border-radius: 0; padding: 0; max-width: 420px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: stretch;">
-                <div class="pledge-title" style="font-family: 'Anton', sans-serif; color: #fffcf1; margin-bottom: 1.2rem; text-align: center; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; line-height: 1.1; font-size: 2.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">THE HEALING PLEDGE</div>
+                <div class="pledge-title" style="font-family: 'Anton', sans-serif; color: #fffcf1; margin-bottom: 1.2rem; text-align: center; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; line-height: 1.1; font-size: 2.5rem;">THE HEALING PLEDGE</div>
                 <div style="font-family: 'DM Sans', sans-serif; color: #fffcf1; font-size: 1.08rem; margin-bottom: 1.5rem; text-align: center; line-height: 1.6; max-width: 420px; padding-left: 0;">
                     I'm done hiding.<br>
                     I'm done pretending I'm fine.<br>

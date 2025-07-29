@@ -258,17 +258,14 @@
             <div class="newsletter">
                 <h3>First Come. First Heal</h3>
                 <p class="newsletter-subtext">Be the first to shop our limited healing drops before they're gone.</p>
-                <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdMfNDBBsnuE2Q1_Gn57Y_FJmpWTw0h00bTStNd5Bju07mTKA/formResponse" method="POST" target="hidden-iframe">
+                <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfPbFlyktw_r1yuLameKjx3SPxQnKWTFFL47yid8lY1DI-3YQ/formResponse" method="POST" target="hidden-iframe">
                     <div class="form-group">
-                        <input type="email" name="entry.649844771" placeholder="Email" required>
+                        <input type="tel" name="entry.1738533901" placeholder="Phone Number" required>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" name="entry.673635167" placeholder="Phone (optional)">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Claim Yours First</button>
+                    <button type="submit" class="btn btn-primary">Join Waitlist</button>
                 </form>
                 <iframe name="hidden-iframe" style="display:none;"></iframe>
-                <div id="form-success" class="form-success">Thank you for signing up!</div>
+                <div id="form-success" class="form-success">Welcome to our exclusive waitlist! Please check your text for a confirmation message.</div>
             </div>
             
             <div class="copyright">
@@ -300,7 +297,7 @@
             setTimeout(function() {
                 form.reset();
                 submitButton.disabled = false;
-                submitButton.textContent = 'Claim Yours First';
+                submitButton.textContent = 'Join Waitlist';
                 document.getElementById('form-success').style.display = 'block';
                 setTimeout(function() {
                     document.getElementById('form-success').style.display = 'none';
