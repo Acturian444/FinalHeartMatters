@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+/* Font loading optimization */
+@font-face {
+    font-family: 'Anton';
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    font-display: swap;
+}
+
 :root {
     --primary-color: #ca0013;
     --secondary-bg: #fffcf1;
@@ -1572,7 +1583,7 @@ footer {
 
 .menu-overlay a.active {
     color: #ca0013;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 @media (max-width: 600px) {
