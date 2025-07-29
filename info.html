@@ -2110,42 +2110,23 @@
       
       // Mobile menu functionality
       function openMenu() {
-        const menuOverlay = document.getElementById('menuOverlay');
-        const hamburger = document.querySelector('.hamburger');
-        
-        console.log('openMenu called');
-        console.log('menuOverlay:', menuOverlay);
-        console.log('hamburger:', hamburger);
-        
-        if (menuOverlay && hamburger) {
-          menuOverlay.classList.toggle('open');
-          hamburger.classList.toggle('active');
-          
-          console.log('Menu overlay classes:', menuOverlay.classList.toString());
-          
-          // Prevent body scroll when menu is open
-          if (menuOverlay.classList.contains('open')) {
-            document.body.style.overflow = 'hidden';
-            console.log('Menu opened - body scroll hidden');
-          } else {
-            document.body.style.overflow = '';
-            console.log('Menu closed - body scroll restored');
-          }
-        } else {
-          console.log('Menu elements not found');
-        }
+        document.getElementById('menuOverlay').classList.add('open');
+        document.body.style.overflow = 'hidden';
       }
-      
+
+      function closeMenu() {
+        document.getElementById('menuOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
       // Close menu when clicking outside
-      document.addEventListener('click', function(e) {
-        const menuOverlay = document.getElementById('menuOverlay');
-        const hamburger = document.querySelector('.hamburger');
-        
-        if (menuOverlay && hamburger && !hamburger.contains(e.target) && !menuOverlay.contains(e.target)) {
-          menuOverlay.classList.remove('open');
-          hamburger.classList.remove('active');
-          document.body.style.overflow = '';
-        }
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('menuOverlay').addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('open');
+            document.body.style.overflow = '';
+          }
+        });
       });
       
       // Check on page load if user has already signed
