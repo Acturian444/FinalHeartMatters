@@ -1441,7 +1441,7 @@
                 </div>
             </div>
             <!-- Red downward arrow cue -->
-            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.7rem 0; cursor: pointer; width: 100vw;">
+            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.7rem 0; cursor: pointer; width: 100%;">
               <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 22L28 36L42 22" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -2025,13 +2025,15 @@
             }
         </style>
         <style>
-            /* Confirmation message: prevent line breaks for headline and secondary lines */
+            /* Confirmation message: allow line breaks on mobile for better readability */
             .confirmation-headline .headline-line1,
             .confirmation-headline .headline-line2,
             .confirmation-message .confirmation-secondary {
-                white-space: nowrap;
+                white-space: normal;
                 display: block;
                 text-align: center;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
             .confirmation-message .confirmation-secondary {
                 font-family: 'DM Sans', sans-serif;
@@ -2046,12 +2048,25 @@
                     font-size: 1.1rem !important;
                     margin: 0.5rem 0;
                     line-height: 1.4;
+                    white-space: normal !important;
+                    word-wrap: break-word !important;
+                    overflow-wrap: break-word !important;
                 }
                 .confirmation-headline .headline-line1 {
                     font-size: 2.4rem !important;
+                    white-space: normal !important;
+                    word-wrap: break-word !important;
+                    overflow-wrap: break-word !important;
                 }
                 .confirmation-headline .headline-line2 {
                     font-size: 1.6rem !important;
+                    white-space: normal !important;
+                    word-wrap: break-word !important;
+                    overflow-wrap: break-word !important;
+                }
+                .confirmation-message {
+                    max-width: 90vw !important;
+                    padding: 1.5rem 1rem !important;
                 }
             }
         </style>
