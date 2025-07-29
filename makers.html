@@ -22,7 +22,7 @@
     <meta property="og:description" content="Discover the Indigenous Embera Chami women and creators behind Heart Matters' first collection. Each piece tells a story of healing, purpose, and community.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.joinheartmatters.com/makers.html">
-    <meta property="og:image" content="https://heartmatters.com/images/impactimage2.jpg">
+    <meta property="og:image" content="https://heartmatters.com/images/embera-chami-women-crafting.jpg">
     
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -411,7 +411,7 @@
             <div class="makers-content">
                 <div class="makers-layout">
                     <div class="makers-image-container">
-                        <img src="images/impactimage2.jpg" alt="Indigenous Embera Chami women crafting" class="makers-image">
+                        <img src="images/embera-chami-women-crafting.jpg" alt="Indigenous Embera Chami women crafting" class="makers-image">
                     </div>
                                             <div class="makers-text-container">
                             <div class="makers-copy">
@@ -463,7 +463,18 @@
             
             <form class="sms-signup-form" id="smsSignupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSey5IWSGTZIubCMSQCvZUu04CBp4ooSqvoHaWjNoWOg4zBU2g/formResponse" method="POST" target="hidden-sms-iframe">
                 <div class="form-group">
-                    <input type="tel" name="entry.798045465" placeholder="Phone Number" required>
+                    <label for="waitlistPhone" class="visually-hidden">Phone number</label>
+                    <input id="waitlistPhone"
+                           type="tel"
+                           name="entry.798045465"
+                           placeholder="Phone Number"
+                           inputmode="tel"
+                           pattern="\\+?[0-9]{10,15}"
+                           aria-describedby="smsConsent"
+                           required>
+                    <small id="smsConsent" class="form-text">
+                        By submitting, you agree to receive SMS updates from Heart Matters. Reply STOP to opt-out.
+                    </small>
                 </div>
                 <button type="submit" class="btn-primary">Tap to join</button>
             </form>

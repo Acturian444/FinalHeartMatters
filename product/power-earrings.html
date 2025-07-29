@@ -149,7 +149,7 @@
                     <div id="imageLightbox" class="image-lightbox" style="display:none;">
                         <div class="lightbox-overlay"></div>
                         <div class="lightbox-content">
-                            <img id="lightboxImg" src="" alt="" />
+                            <img id="lightboxImg" src="" alt="Power Earrings - Zoomed View" />
                             <div class="lightbox-controls">
                                 <button class="lightbox-arrow lightbox-prev" aria-label="Previous image">&#8592;</button>
                                 <button class="lightbox-close" aria-label="Close">&times;</button>
@@ -238,7 +238,18 @@
                 <p class="newsletter-subtext">Be the first to shop our limited healing drops before they're gone.</p>
                 <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfPbFlyktw_r1yuLameKjx3SPxQnKWTFFL47yid8lY1DI-3YQ/formResponse" method="POST" target="hidden-iframe">
                     <div class="form-group">
-                        <input type="tel" name="entry.1738533901" placeholder="Phone Number" required>
+                        <label for="waitlistPhone" class="visually-hidden">Phone number</label>
+                        <input id="waitlistPhone"
+                               type="tel"
+                               name="entry.1738533901"
+                               placeholder="Phone Number"
+                               inputmode="tel"
+                               pattern="\\+?[0-9]{10,15}"
+                               aria-describedby="smsConsent"
+                               required>
+                        <small id="smsConsent" class="form-text">
+                            By submitting, you agree to receive SMS updates from Heart Matters. Reply STOP to opt-out.
+                        </small>
                     </div>
                     <button type="submit" class="btn btn-primary">Join Waitlist</button>
                 </form>

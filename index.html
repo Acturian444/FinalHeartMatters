@@ -933,7 +933,7 @@
                     </style>
                 </div>
                 <div class="healing-purpose-image">
-                    <img src="images/impactimage.jpg" alt="Healing with purpose - supporting creators and communities" loading="lazy">
+                    <img src="images/healing-impact-community.jpg" alt="Healing with purpose - supporting creators and communities" loading="lazy">
                 </div>
             </div>
         </section>
@@ -1225,7 +1225,13 @@
                         <input type="email" name="entry.649844771" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" name="entry.673635167" placeholder="Phone (optional)">
+                        <label for="newsletterPhone" class="visually-hidden">Phone number (optional)</label>
+                        <input id="newsletterPhone"
+                               type="tel"
+                               name="entry.673635167"
+                               placeholder="Phone (optional)"
+                               inputmode="tel"
+                               pattern="\\+?[0-9]{10,15}">
                     </div>
                     <button type="submit" class="btn-main">Join the Movement</button>
                 </form>
@@ -1259,7 +1265,13 @@
                     <input type="email" name="entry.649844771" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="entry.673635167" placeholder="Phone (optional)">
+                    <label for="popupNewsletterPhone" class="visually-hidden">Phone number (optional)</label>
+                    <input id="popupNewsletterPhone"
+                           type="tel"
+                           name="entry.673635167"
+                           placeholder="Phone (optional)"
+                           inputmode="tel"
+                           pattern="\\+?[0-9]{10,15}">
                 </div>
                 <button type="submit" class="btn-main">Join Us</button>
             </form>
