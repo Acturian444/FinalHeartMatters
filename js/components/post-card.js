@@ -451,18 +451,18 @@ class PostCard {
         try {
             console.log('Sending reply for post:', postId, 'with content:', content);
             
-            const reply = {
-                postId,
+        const reply = {
+            postId,
                 content: content,  // Changed from replyText to content
-                timestamp: new Date().toISOString(),
+            timestamp: new Date().toISOString(),
                 anonymousId: window.firebaseUserId,  // Changed from feltBy to anonymousId
-                read: false
-            };
+            read: false
+        };
 
             console.log('Reply data structure:', reply);
             console.log('Firebase user ID:', window.firebaseUserId);
 
-            await window.PostService.addReply(postId, reply);
+        await window.PostService.addReply(postId, reply);
             console.log('Reply sent successfully');
         } catch (error) {
             console.error('Error in sendReply:', error);
