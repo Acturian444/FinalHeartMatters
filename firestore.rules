@@ -1,73 +1,31 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Posts collection - anonymous posts from Let It Out
-    match /posts/{postId} {
-      // Anyone can read posts (public wall)
+    // Let It Out posts - public read, authenticated write
+    match /letitout-posts/{postId} {
       allow read: if true;
-      // Anyone can create posts (anonymous posting)
-      allow create: if true;
-      // Only the original poster can update/delete their own posts
-      allow update, delete: if request.auth != null && 
-        request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null 
+        && request.resource.data.content is string
+        && request.resource.data.content.size() > 0
+        && request.resource.data.content.size() <= 500;
+      allow update: if request.auth != null 
+        && request.auth.uid == resource.data.userId;
     }
     
-    // Replies collection - anonymous replies to posts
-    match /replies/{replyId} {
-      // Anyone can read replies (public)
+    // User posts - same rules
+    match /user-posts/{postId} {
       allow read: if true;
-      // Anyone can create replies (anonymous replies)
-      allow create: if true;
-      // Only the original replier can update/delete their own replies
-      allow update, delete: if request.auth != null && 
-        request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null 
+        && request.auth.uid == resource.data.userId;
     }
     
-    // User posts collection - personal posts for "My Posts" feature
-    match /userPosts/{userId}/{postId} {
-      // Users can only access their own posts
-      allow read, write: if request.auth != null && 
-        request.auth.uid == userId;
+    // Reports - authenticated only
+    match /reports/{reportId} {
+      allow read, write: if request.auth != null;
     }
     
-    // User replies collection - personal replies for inbox
-    match /userReplies/{userId}/{replyId} {
-      // Users can only access their own replies
-      allow read, write: if request.auth != null && 
-        request.auth.uid == userId;
-    }
-    
-    // Course progress collection - user course data
-    match /courseProgress/{userId} {
-      // Users can only access their own course progress
-      allow read, write: if request.auth != null && 
-        request.auth.uid == userId;
-    }
-    
-    // Premium packs collection - user unlocked packs
-    match /premiumPacks/{userId} {
-      // Users can only access their own premium packs
-      allow read, write: if request.auth != null && 
-        request.auth.uid == userId;
-    }
-    
-    // Analytics collection - public analytics data
-    match /analytics/{docId} {
-      // Anyone can read analytics (public stats)
-      allow read: if true;
-      // Only authenticated users can write analytics
-      allow write: if request.auth != null;
-    }
-    
-    // Admin collection - admin-only data
-    match /admin/{docId} {
-      // Only admin users can access admin data
-      allow read, write: if request.auth != null && 
-        request.auth.token.admin == true;
-    }
-    
-    // Default deny all other collections
+    // Default rule - deny everything else
     match /{document=**} {
       allow read, write: if false;
     }
