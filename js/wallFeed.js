@@ -682,7 +682,7 @@ class WallFeed {
             const searchTerm = this.currentSearch.toLowerCase();
             filteredPosts = filteredPosts.filter(post => 
                 post.content.toLowerCase().includes(searchTerm) ||
-                post.emotion.toLowerCase().includes(searchTerm)
+                (post.emotion && post.emotion.toLowerCase().includes(searchTerm))
             );
         }
         
@@ -863,7 +863,7 @@ class WallFeed {
         });
 
         const watermark = document.createElement('p');
-        watermark.innerHTML = '#LetItOut &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Heart Matters &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; joinheartmatters.com';
+        watermark.innerHTML = `Truth #${post.truthNumber || ''} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; LetItOut &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Heart Matters`;
         Object.assign(watermark.style, {
             fontFamily: '"DM Sans", sans-serif',
             fontSize: '24px',

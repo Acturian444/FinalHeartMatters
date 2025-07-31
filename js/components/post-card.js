@@ -103,14 +103,25 @@ class PostCard {
             contentArea.appendChild(readMoreLink);
         }
 
-        // City line with timestamp (Anonymous from [City] · 8h ago)
+        // City line with timestamp (Truth #147 · Miami, FL · 22h ago)
         const cityLine = document.createElement('div');
         cityLine.className = 'post-city-line';
         const timeString = window.LetItOutUtils.formatDate(post.timestamp);
-        if (post.city) {
-            cityLine.textContent = `Anonymous from ${post.city} · ${timeString}`;
+        
+        // NEW LOGIC: Show Truth number if available, fallback to old format
+        if (post.truthNumber) {
+            if (post.city) {
+                cityLine.textContent = `Truth #${post.truthNumber} · ${post.city} · ${timeString}`;
+            } else {
+                cityLine.textContent = `Truth #${post.truthNumber} · ${timeString}`;
+            }
         } else {
-            cityLine.textContent = `Anonymous · ${timeString}`;
+            // Fallback for existing posts without truthNumber
+            if (post.city) {
+                cityLine.textContent = `Anonymous from ${post.city} · ${timeString}`;
+            } else {
+                cityLine.textContent = `Anonymous · ${timeString}`;
+            }
         }
         contentArea.appendChild(cityLine);
 

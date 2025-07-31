@@ -28,6 +28,7 @@ class PostForm {
         // Prompt bank for all packs
         this.promptBank = {
             starter: [
+                "Tell your story. Your secret. Your truth.",
                 "What's on your heart today?",
                 "What's something you've never said out loud until now?",
                 "What did you need, but never received?",
@@ -116,7 +117,7 @@ class PostForm {
         textareaWrapper.className = 'textarea-wrapper';
         
         const textarea = document.createElement('textarea');
-        textarea.placeholder = 'Let it out here…';
+        textarea.placeholder = 'Let it out anonymously…';
         textarea.maxLength = 500;
         textarea.required = true;
         
@@ -213,7 +214,7 @@ class PostForm {
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            Add Feeling
+            Tag a feeling
         `;
         emotionBtn.onclick = () => {
             this.openEmotionModal();
@@ -426,10 +427,7 @@ class PostForm {
             return;
         }
 
-        if (this.selectedEmotions.length === 0) {
-            window.LetItOutUtils.showError('Please select at least one emotion before posting.');
-            return;
-        }
+        // Emotion tags are now optional - no validation needed
 
         const submitButton = this.form.querySelector('.letitout-submit-btn');
         if (submitButton) {
@@ -1088,7 +1086,7 @@ class PostForm {
                             this.selectedEmotions.push(emotion);
                         }
                         this.updateSelectedTags();
-                        doneBtn.disabled = this.selectedEmotions.length === 0;
+                        doneBtn.disabled = false; // Emotions are now optional
                         // Re-render to update selected state
                         renderEmotions(searchInput.value);
                     };
@@ -1177,9 +1175,9 @@ class PostForm {
             this.selectedTagsDisplay.appendChild(tag);
         });
 
-        // Update error message
+        // Update error message - emotions are now optional
         if (this.selectedEmotions.length === 0) {
-            this.emotionError.textContent = 'Please select at least one feeling';
+            this.emotionError.textContent = 'Tag a feeling to help others feel it too.';
             this.emotionError.style.display = 'block';
         } else {
             this.emotionError.style.display = 'none';
