@@ -448,15 +448,26 @@ class PostCard {
     }
 
     static async sendReply(postId, content) {
+        try {
+            console.log('Sending reply for post:', postId, 'with content:', content);
+            
         const reply = {
             postId,
-            replyText: content,
+                content: content,  // Changed from replyText to content
             timestamp: new Date().toISOString(),
-            feltBy: window.firebaseUserId,
+                anonymousId: window.firebaseUserId,  // Changed from feltBy to anonymousId
             read: false
         };
 
+            console.log('Reply data structure:', reply);
+            console.log('Firebase user ID:', window.firebaseUserId);
+
         await window.PostService.addReply(postId, reply);
+            console.log('Reply sent successfully');
+        } catch (error) {
+            console.error('Error in sendReply:', error);
+            throw error;
+        }
     }
 
     static showSuccessMessage() {

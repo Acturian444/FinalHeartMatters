@@ -18,11 +18,11 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 2rem 1rem;
-    background: #000;
+    background: #fffcf1; /* Match the sections background */
     z-index: 10;
-    overflow: hidden; /* Prevent scrolling within overlay */
+    overflow-y: auto; /* Allow vertical scrolling */
     margin: 0; /* Remove any margin */
 }
 
@@ -32,7 +32,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fffcf1; /* Solid color instead of background image */
+    background-color: #fffcf1; /* Match the sections background */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -46,17 +46,15 @@ header {
     text-align: center;
     color: #fffcf1;
     width: 100%;
-    max-width: 600px;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Changed from center to flex-start */
-    flex: 1;
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Prevent content scrolling */
+    justify-content: flex-start;
     margin-top: 80px; /* Push content below header */
     gap: 2rem; /* Consistent spacing between elements */
     padding-top: 15vh; /* Push content down from the top */
+    padding-bottom: 2rem; /* Add bottom padding for scrolling */
 }
 
 .pre-drop-logo {
@@ -64,7 +62,7 @@ header {
     justify-content: center;
     align-items: center;
     margin-bottom: 0; /* Remove margin, use gap instead */
-    margin-top: -5vh; /* Move logo up from its current position */
+    margin-top: -10vh; /* Move logo up more from its current position */
 }
 
 .pre-drop-logo img {
@@ -102,7 +100,7 @@ header {
 
 .shop-closed-title {
     font-family: 'Unica One', cursive;
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -157,19 +155,20 @@ header {
 }
 
 .btn-ghost {
-    background: transparent;
+    background: #ca0013;
     border: 2px solid #ca0013;
-    color: #ca0013;
-    padding: 1rem 2rem;
-    font-family: 'Unica One', cursive;
-    font-size: 0.875rem;
-    font-weight: 400;
+    color: #fffcf1;
+    padding: 0.75rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem !important;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 4px;
     margin-top: auto;
+    width: 265px;
 }
 
 .btn-ghost:hover {
@@ -279,6 +278,7 @@ header {
 @media (max-width: 768px) {
     .pre-drop-overlay {
         padding: 1rem;
+        overflow-y: auto; /* Ensure scrolling on mobile */
     }
     
     .pre-drop-logo {
@@ -290,22 +290,22 @@ header {
     }
     
     .shop-closed-title {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
         letter-spacing: 1px;
         margin-bottom: 0;
     }
     
     .countdown-timer {
-        gap: 1rem;
-        margin-bottom: 1rem;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
     }
     
     .countdown-number {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     
     .countdown-label {
-        font-size: 0.625rem;
+        font-size: 0.6rem;
     }
     
     .waitlist-form {
@@ -329,39 +329,43 @@ header {
 }
 
 @media (max-width: 480px) {
+    .pre-drop-overlay {
+        overflow-y: auto; /* Ensure scrolling on mobile */
+    }
     .pre-drop-content {
         padding: 0;
         padding-top: 10vh; /* Reduced padding for mobile */
         gap: 1.5rem; /* Reduced gap for mobile */
-        height: calc(100vh - 80px); /* Account for header */
+        padding-bottom: 2rem; /* Add bottom padding for scrolling */
     }
     
     .pre-drop-logo {
         margin-bottom: 1rem;
-        margin-top: 0; /* Remove negative margin on mobile */
+        margin-top: -3vh; /* Move logo up on mobile */
     }
     
     .pre-drop-logo img {
-        width: 280px; /* Reasonable size for mobile */
+        width: 350px; /* Increased size for mobile */
         max-width: 90vw; /* Ensure it doesn't overflow */
     }
     
     .shop-closed-title {
-        font-size: 0.625rem;
+        font-size: 0.8rem;
         letter-spacing: 1px;
         margin-top: 1rem;
     }
     
     .countdown-timer {
         gap: 0.5rem;
+        margin-bottom: 1.5rem;
     }
     
     .countdown-number {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
     
     .countdown-label {
-        font-size: 0.5rem;
+        font-size: 0.55rem;
     }
     
     .waitlist-container {
@@ -369,8 +373,10 @@ header {
     }
     
     .btn-ghost {
-        font-size: 1rem;
-        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem !important;
+        padding: 0.7rem 1.2rem;
+        width: 100%;
+        max-width: 220px;
     }
     
     .waitlist-form {
@@ -440,7 +446,7 @@ header {
 }
 
 .shop-hero-titles h1 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.2rem;
     font-weight: 900;
     letter-spacing: 2px;
@@ -484,7 +490,7 @@ header {
 }
 
 .shop-section-header h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.7rem;
     font-weight: 700;
     color: #000;
@@ -566,7 +572,7 @@ header {
 }
 
 .product-content h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.5rem;
     color: #000;
     margin-bottom: 0.75rem;
@@ -1066,4 +1072,388 @@ body {
 /* Ensure main content and footer are visible when overlay is hidden */
 main, footer {
     display: block;
+}
+
+/* Healing With Purpose Section Styles */
+.healing-purpose-section {
+    background: transparent;
+    padding: 10rem 0 4rem 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.healing-purpose-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+    padding: 0 1rem;
+}
+
+.healing-purpose-text {
+    text-align: left;
+    max-width: 600px;
+    margin: 0;
+    flex: 1;
+}
+
+.healing-purpose-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: #ca0013;
+    margin-bottom: 1rem;
+    text-align: left;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.healing-purpose-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #000000;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.healing-purpose-body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #000000;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.healing-purpose-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.btn-healing-primary {
+    background: #ca0013;
+    color: #fffcf1;
+    border: 2px solid #ca0013;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+    width: 265px;
+}
+
+.btn-healing-primary:hover,
+.btn-healing-primary:focus {
+    background: #a00012;
+    color: #fffcf1;
+    border-color: #a00012;
+}
+
+.btn-healing-secondary {
+    background: transparent;
+    color: #ca0013;
+    border: 2px solid #ca0013;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+    width: 265px;
+}
+
+.btn-healing-secondary:hover,
+.btn-healing-secondary:focus {
+    background: #ca0013;
+    color: #fffcf1;
+}
+
+    .create-with-us-link {
+        text-align: center;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    @media (max-width: 600px) {
+        .create-with-us-link {
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+.create-with-us-question {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+}
+
+.create-with-us-text {
+    color: #ca0013;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.create-with-us-text:hover {
+    text-decoration: underline;
+}
+
+.healing-purpose-image {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.healing-purpose-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Real Impact Section Styles */
+.real-impact-section {
+    background: transparent;
+    padding: 2rem 0 0 0;
+    width: 100vw;
+}
+
+.real-impact-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.real-impact-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: #ca0013;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.real-impact-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 4rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.impact-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-bottom: 2rem;
+}
+
+.impact-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: transparent;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: none;
+    border: 2px solid #ca0013;
+    min-height: 320px;
+    justify-content: center;
+}
+
+.step-icon {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background: #ca0013;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+}
+
+.step-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.step-description {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #000000;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.mobile-break-title {
+    display: none;
+}
+
+/* Mobile Responsive Styles */
+/* Desktop Layout */
+@media (min-width: 768px) {
+    .impact-steps {
+        flex-direction: row;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+    
+    .impact-step {
+        flex: 1;
+        max-width: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .healing-purpose-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .impact-steps {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .impact-step {
+        max-width: 600px;
+    }
+    
+    .mobile-break-title {
+        display: inline;
+    }
+}
+
+@media (max-width: 600px) {
+    .healing-purpose-section {
+        padding: 6rem 0;
+    }
+    
+    .healing-purpose-content {
+        gap: 1.5rem;
+    }
+    
+    .healing-purpose-text {
+        text-align: center;
+    }
+    
+    .healing-purpose-title {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+        text-align: center;
+    }
+    
+    .healing-purpose-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    
+    .healing-purpose-body {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    .healing-purpose-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+    }
+    
+    .btn-healing-primary,
+    .btn-healing-secondary {
+        width: 100%;
+        max-width: 280px;
+        font-size: 0.9rem !important;
+        padding: 0.7rem 1.2rem;
+    }
+    
+    .impact-steps {
+        gap: 1.5rem;
+    }
+    
+    .impact-step {
+        padding: 1.5rem;
+        min-height: 280px;
+    }
+    
+    .real-impact-section {
+        padding: 0.25rem 0 0 0;
+    }
+    
+    .real-impact-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .real-impact-subtitle {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .step-title {
+        font-size: 1.3rem;
+    }
+    
+    .step-description {
+        font-size: 0.95rem;
+    }
 } 

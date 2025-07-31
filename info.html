@@ -58,17 +58,10 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload correctly & avoid double download -->
-    <link rel="preload"
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap"
-          as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap">
-    </noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap&font-display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap&font-display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <style>
         main {
             margin: 0;
@@ -245,6 +238,12 @@
                 gap: 1.2rem;
                 margin-top: 1rem;
             }
+            .social-link i {
+                font-size: 1.5rem !important;
+            }
+            .social-link span {
+                font-size: 0.9rem !important;
+            }
         }
 
         .movement-letter-text {
@@ -408,6 +407,9 @@
                 width: 40px;
                 height: 4px;
             }
+            .movement-letter-body .mobile-break {
+                display: block !important;
+            }
         }
         .pledge-form-block input[type="email"]::placeholder {
             color: #fffcf1;
@@ -420,7 +422,7 @@
         .confirmation-section {
             background: linear-gradient(180deg, #ca0013 0%, #b8001a 100%);
             min-height: 100vh;
-            width: 100vw;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -498,7 +500,7 @@
             padding: 5.5rem 2.5rem 4.5rem 2.5rem;
             text-align: center;
             position: relative;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             font-family: 'DM Sans', sans-serif;
             min-height: 380px;
@@ -508,6 +510,7 @@
             justify-content: center;
             background: none;
             z-index: 2;
+            width: 100%;
         }
         .confirmation-heart {
             display: flex;
@@ -594,6 +597,23 @@
             }
             .confirmation-message p {
                 font-size: 1.15rem;
+            }
+        }
+        
+        /* Desktop-specific styles to override mobile constraints */
+        @media (min-width: 1201px) {
+            .confirmation-message {
+                max-width: 1200px !important;
+                padding: 5.5rem 4rem 4.5rem 4rem !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                text-align: center !important;
+            }
+            .confirmation-message .confirmation-secondary {
+                max-width: 1000px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                text-align: center !important;
             }
         }
         @media (max-width: 900px) {
@@ -690,7 +710,7 @@
         .shared-healing-section {
             background: #fffcf1;
             padding: 4rem 0;
-            width: 100vw;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -735,6 +755,13 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        @media (max-width: 600px) {
+            .shared-healing-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
         }
 
         .shared-healing-body {
@@ -1138,13 +1165,81 @@
         }
     </style>
     <style>
-  /* Confirmation message: prevent line breaks for headline and secondary lines */
+  /* Confirmation message: base styles */
   .confirmation-headline .headline-line1,
-  .confirmation-headline .headline-line2,
-  .confirmation-message .confirmation-secondary {
+  .confirmation-headline .headline-line2 {
     white-space: nowrap;
     display: block;
     text-align: center;
+  }
+  
+  .confirmation-message .confirmation-secondary {
+    display: block;
+    text-align: center;
+  }
+  
+  /* Mobile: Allow text to wrap naturally */
+  @media (max-width: 600px) {
+    .confirmation-message .confirmation-secondary {
+      white-space: normal !important;
+    }
+  }
+  
+  /* Desktop: Better text flow for confirmation message */
+  @media (min-width: 901px) {
+    .confirmation-message .confirmation-secondary {
+      white-space: normal !important;
+      max-width: 1200px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      text-align: center !important;
+      width: 100% !important;
+      font-size: 1.3rem !important;
+      line-height: 1.6 !important;
+    }
+    .confirmation-message .desktop-single-line {
+      white-space: normal !important;
+      font-size: 1.3rem !important;
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      width: 100% !important;
+      max-width: 1200px !important;
+      line-height: 1.6 !important;
+    }
+    .confirmation-message {
+      max-width: 1400px !important;
+      padding: 5.5rem 4rem 4.5rem 4rem !important;
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      width: 100% !important;
+    }
+    .confirmation-headline {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+    .headline-line1,
+    .headline-line2 {
+      display: block !important;
+      white-space: nowrap !important;
+      text-align: center !important;
+    }
+    .confirmation-headline .headline-line1 {
+      margin-bottom: 0.1em !important;
+    }
+    .confirmation-headline .headline-line2 {
+      margin-top: 0 !important;
+      margin-bottom: 0.1em !important;
+    }
   }
   .confirmation-message .confirmation-secondary {
     font-family: 'DM Sans', sans-serif;
@@ -1157,12 +1252,16 @@
   @media (max-width: 600px) {
     .confirmation-message .confirmation-secondary {
       font-size: 1.05rem;
+      white-space: normal !important;
+      text-align: center !important;
     }
     .confirmation-headline .headline-line1 {
       font-size: 2.4rem !important;
+      text-align: center !important;
     }
     .confirmation-headline .headline-line2 {
       font-size: 1.6rem !important;
+      text-align: center !important;
     }
   }
 </style>
@@ -1211,7 +1310,7 @@
 
     <main>
         <!-- This is Healing in Public Section -->
-        <section class="healing-public-section" style="background-color: #fffcf1; padding: 4rem 0 2rem 0; width: 100vw;">
+        <section class="healing-public-section" style="background-color: #fffcf1; padding: 4rem 0 2rem 0; width: 100%;">
             <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; text-align: center;">
                 <h2 class="healing-public-title" style="font-family: 'Anton', sans-serif; font-size: 2.7rem; font-weight: 700; color: #ca0013; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">This is Healing in Public</h2>
                 <p style="font-family: 'DM Sans', sans-serif; font-size: 1.35rem; font-weight: 700; color: #000000; margin-bottom: 3rem; line-height: 1.7;">Feel it. Say it. Let it out. Be seen. Heal together.</p>
@@ -1259,6 +1358,9 @@
                     .healing-image img {
                         height: 350px !important;
                     }
+                    .healing-public-title {
+                        font-size: 2.2rem !important;
+                    }
                 }
                 @media (max-width: 768px) {
                     section {
@@ -1267,6 +1369,9 @@
                     h1 {
                         font-size: 2.5rem !important;
                         padding: 0 1rem !important;
+                    }
+                    .healing-public-title {
+                        font-size: 2rem !important;
                     }
                     p[style*="font-family: 'DM Sans'"] {
                         font-size: 1.2rem !important;
@@ -1289,6 +1394,9 @@
                     h1 {
                         font-size: 2rem !important;
                         padding: 0 0.5rem !important;
+                    }
+                    .healing-public-title {
+                        font-size: 1.8rem !important;
                     }
                     p[style*="font-family: 'DM Sans'"] {
                         font-size: 1.1rem !important;
@@ -1400,39 +1508,51 @@
         </section>
 
         <section class="manifesto-section" style="background-color: #fffcf1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 1.5rem 1rem 4.5rem 1rem; min-height: 60vh; margin-bottom: 0;">
+            <style>
+                @media (max-width: 600px) {
+                    .manifesto-section {
+                        padding: 1.5rem 0.5rem 4.5rem 0.5rem !important;
+                    }
+                    .movement-letter-container {
+                        max-width: 95vw !important;
+                        padding: 0 0.5rem !important;
+                    }
+                    .movement-letter-body p {
+                        text-align: left !important;
+                        line-height: 1.6 !important;
+                    }
+                }
+            </style>
             <div class="movement-letter-container">
-                <h1 class="movement-title" style="margin-bottom: 1.5rem; color: #ca0013; white-space: nowrap;">#HEALINGINPUBLIC MANIFESTO</h1>
+                <h1 class="movement-title" style="margin-bottom: 1.5rem; color: #ca0013; white-space: nowrap;">The Manifesto</h1>
                 <div class="movement-letter-body">
-                    <p>We've been told to hide our pain.<br>
-                    To bury the hard stuff.<br class="manifesto-line-break-1">
-                    To show up only when we've got it all together.</p>
+                    <p>We've been taught to be polished, filtered, and perfect. Taught to hide our feelings, silence our truth, and dim our real selves—afraid of being rejected, judged, or seen as a burden.</p>
 
-                    <p>But the truth is, most of us are carrying heartbreak, grief, trauma, and shame with nowhere to put it.</p>
-                    
-                    <p>We're moving through life while silently falling apart.<br class="manifesto-line-break-2">
-                    Not because we're weak.<br>
-                    But because we've been taught to suffer alone.</p>
+                    <p>But that hiding comes at a cost. It keeps us from living fully. From becoming who we truly are. From feeling joy, freedom, and peace.</p>
 
-                    <p><strong>We believe healing is a human right.</strong><br>
-                    <strong>We believe being seen as you are is medicine.</strong><br class="manifesto-line-break-3">
-                    <strong>And we believe your truth, yes, yours, can change someone's life.</strong></p>
+                    <p>We trade our truth for approval. We surrender to systems, expectations, and unspoken rules—just to feel safe, accepted, or loved.</p>
 
-                    <p>This is what healing in public means:<br>
-                    Showing up.<br>
-                    Telling the truth.<br>
-                    Letting it out.<br>
-                    And being seen, not in spite of your pain, but because of it.</p>
+                    <p>Meanwhile, we move through life carrying pain. Sadness. Heartbreak. Grief. Shame. With nowhere safe to put it.</p>
+
+                    <p>That ends here.</p>
+
+                    <p>We believe being your real self is healing. Letting it out is brave. Being seen is powerful. Because when one person shares their truth, others feel safe to share theirs.</p>
+
+                    <p>This is healing in public:<br class="mobile-break">
+                    <strong>Show up as you are.</strong><br class="mobile-break">
+                    <strong>Tell the truth.</strong><br class="mobile-break">
+                    <strong>Let your real self out.</strong><br class="mobile-break">
+                    <strong>Be seen. Be felt. Be free.</strong></p>
 
                     <p style="color: #ca0013; font-weight: bold;">Your story might be someone else's lifeline.</p>
 
-                    <p>When you go first, others find the courage to follow.</p>
+                    <p>And when you go first, others find the courage to follow.</p>
 
-                    <p>This is healing in public.<br>
-                    This is the movement.</p>
+                    <p>This is the movement.<br class="mobile-break"> This is Heart Matters.</p>
                 </div>
             </div>
             <!-- Red downward arrow cue -->
-            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.7rem 0; cursor: pointer; width: 100vw;">
+            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.3rem 0; cursor: pointer; width: 100%;">
               <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 22L28 36L42 22" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1444,7 +1564,7 @@
             <div class="shared-healing-content">
                 <div class="shared-healing-text">
                     <h2 class="shared-healing-title">THE HEALING LOOP</h2>
-                    <p class="shared-healing-subtitle">A Cycle That Connects Us All</p>
+                    <p class="shared-healing-subtitle">A cycle that connects us all.</p>
                     <div class="shared-healing-body">
                     </div>
                 </div>
@@ -1560,8 +1680,10 @@
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg>
                 </div>
-                <h2 class="million-hearts-title">Let's Heal One Million Hearts Together</h2>
-                <p class="million-hearts-subtitle">We're on a mission to help one million people feel seen and supported. Through tools, stories, and rituals for emotional release, we're building a movement of healing — one truth, one drop, one person at a time.</p>
+                <h2 class="million-hearts-title">Heal One Million Hearts</h2>
+                <p class="million-hearts-subtitle">We're on a mission to help one million hearts feel seen.<br class="desktop-break">
+                With every story. Every tool. Every ritual.<br class="desktop-break">
+                One truth.<br class="mobile-break"> One drop.<br class="desktop-break"> One person at a time.</p>
                 
                 <div class="social-proof-metric">
                     <div class="metric-bubble">
@@ -1577,7 +1699,7 @@
         .million-hearts-section {
             background: #fffcf1;
             padding: 2rem 0 4rem 0;
-            width: 100vw;
+            width: 100%;
         }
         
         .million-hearts-content {
@@ -1586,7 +1708,7 @@
             margin: 0 auto;
             padding: 0 1rem;
             text-align: center;
-        }
+                }
         
         .section-arrow {
             display: flex;
@@ -1608,7 +1730,7 @@
             margin-bottom: 1.5rem;
             display: flex;
             justify-content: center;
-        }
+                }
         
         .million-hearts-title {
             font-family: 'Anton', sans-serif;
@@ -1619,7 +1741,7 @@
             text-align: center;
             letter-spacing: 1px;
             text-transform: uppercase;
-        }
+                }
         
         .million-hearts-subtitle {
             font-family: 'DM Sans', sans-serif;
@@ -1632,7 +1754,7 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-        }
+                }
         
         .social-proof-metric {
             display: flex;
@@ -1640,7 +1762,7 @@
             align-items: center;
             gap: 1rem;
             margin-top: 2rem;
-        }
+                }
         
         .metric-bubble {
             background: rgba(202, 0, 19, 0.05);
@@ -1661,7 +1783,7 @@
             color: #ca0013;
             text-align: center;
             letter-spacing: 1px;
-        }
+                }
         
         .metric-label {
             font-family: 'DM Sans', sans-serif;
@@ -1670,7 +1792,7 @@
             color: #000000;
             text-align: center;
             line-height: 1.4;
-        }
+                }
         
         .metric-subtext {
                 font-family: 'DM Sans', sans-serif;
@@ -1700,6 +1822,7 @@
             .million-hearts-title {
                 font-size: 2rem;
                 margin-bottom: 1rem;
+                white-space: nowrap;
             }
             
             .million-hearts-subtitle {
@@ -1710,7 +1833,7 @@
             .metric-bubble {
                 padding: 1.5rem 2rem;
                 border-radius: 15px;
-            }
+                }
             
             .metric-number {
                 font-size: 2.5rem;
@@ -1722,6 +1845,10 @@
             
             .metric-subtext {
                 font-size: 1rem;
+            }
+            
+            .manifesto-down-arrow {
+                margin: 0.1rem 0 !important;
                 }
             }
         </style>
@@ -1740,7 +1867,7 @@
             function updateHeartsReached(count) {
                 if (!heartsReachedElement) return;
                 const formattedCount = formatNumber(count);
-                const heartIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+                const heartIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca0013" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 12px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
                 const displayText = `${heartIcon}${formattedCount.toLocaleString()}+`;
                 heartsReachedElement.innerHTML = displayText;
             }
@@ -1822,7 +1949,7 @@
             .confirmation-section {
                 background: linear-gradient(180deg, #ca0013 0%, #b8001a 100%);
                 min-height: 100vh;
-                width: 100vw;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -1979,13 +2106,14 @@
             }
             @media (max-width: 600px) {
                 .confirmation-section {
-                    padding: 18vw 0 18vw 0;
-                    min-height: 100vh;
+                    padding: 8vw 0 8vw 0;
+                    min-height: auto;
+                    height: auto;
                 }
                 .confirmation-message {
-                    min-height: 120px;
-                    padding: 1.2rem 0.7rem;
-                    max-width: 99vw;
+                    min-height: auto;
+                    padding: 2rem 1rem;
+                    max-width: 95vw;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -1995,28 +2123,35 @@
                     margin-bottom: 1rem;
                 }
                 .headline-line1 {
-                    font-size: 1.05rem;
+                    font-size: 2.4rem !important;
                     margin-bottom: 0.1em;
                 }
                 .headline-line2 {
-                    font-size: 0.85rem;
+                    font-size: 1.6rem !important;
                     margin-bottom: 0.15em;
                 }
                 .confirmation-heart svg {
-                    width: 42px;
-                    height: 42px;
-                    margin-bottom: 0.5rem;
+                    width: 48px;
+                    height: 48px;
+                    margin-bottom: 0.8rem;
+                }
+                .confirmation-secondary {
+                    font-size: 1.1rem !important;
+                    margin: 0.5rem 0;
+                    line-height: 1.4;
                 }
             }
         </style>
         <style>
-            /* Confirmation message: prevent line breaks for headline and secondary lines */
+            /* Confirmation message: allow line breaks on mobile for better readability */
             .confirmation-headline .headline-line1,
             .confirmation-headline .headline-line2,
             .confirmation-message .confirmation-secondary {
-                white-space: nowrap;
+                white-space: normal;
                 display: block;
                 text-align: center;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
             .confirmation-message .confirmation-secondary {
                 font-family: 'DM Sans', sans-serif;
@@ -2028,18 +2163,44 @@
             }
             @media (max-width: 600px) {
                 .confirmation-message .confirmation-secondary {
-                    font-size: 1.05rem;
+                    font-size: 1.1rem !important;
+                    margin: 0.5rem 0;
+                    line-height: 1.4;
+                    white-space: normal !important;
+                    word-wrap: break-word !important;
+                    overflow-wrap: break-word !important;
                 }
                 .confirmation-headline .headline-line1 {
                     font-size: 2.4rem !important;
+                    white-space: normal !important;
+                    word-wrap: break-word !important;
+                    overflow-wrap: break-word !important;
                 }
                 .confirmation-headline .headline-line2 {
                     font-size: 1.6rem !important;
+                    white-space: normal !important;
+                    word-wrap: break-word !important;
+                    overflow-wrap: break-word !important;
+                }
+                .confirmation-message {
+                    max-width: 90vw !important;
+                    padding: 1.5rem 1rem !important;
                 }
             }
         </style>
 
     <script>
+    // Mobile menu functionality - must be global for onclick to work
+    function openMenu() {
+      document.getElementById('menuOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
     // Pledge form confirmation logic with localStorage tracking
     document.addEventListener('DOMContentLoaded', function() {
       var pledgeForm = document.getElementById('pledgeInlineForm');
@@ -2075,8 +2236,7 @@
               <span class="headline-line1">YOU'RE IN.</span>
               <span class="headline-line2">You're healing in public.</span>
             </h1>
-            <div class="confirmation-secondary">They Create → You Support → You Reflect → Others Feel → We All Heal</div>
-            <div class="confirmation-secondary" style="font-style: italic; margin-top: 0.3rem;">Healing yourself creates waves. You change lives just by being who you are.</div>
+            <div class="confirmation-secondary desktop-single-line" style="font-style: italic; margin-top: 0.3rem;">You change lives just by being<br class="mobile-break"> who you are.</div>
             <p style="color: #fffcf1; font-size: 1.35rem; font-family: 'DM Sans', sans-serif; font-weight: 500; line-height: 1.5; margin: 0.5rem 0 0 0;">Check your inbox.</p>
           </div>
         `;
@@ -2098,6 +2258,14 @@
                         });
         }
       }
+
+      // Close menu when clicking outside
+      document.getElementById('menuOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
       
       // Check on page load if user has already signed
       if (hasSignedPledge()) {
@@ -2130,7 +2298,7 @@
             <div class="contact-content">
                 <h1 class="contact-title">Join Us</h1>
                 <div class="contact-info">
-                    <p>Email us at: <a href="mailto:info@wereheartmatters.com" class="contact-email">info@wereheartmatters.com</a></p>
+                    <p>Collaborate with us. Create real change.<br>Email us at: <a href="mailto:info@wereheartmatters.com" class="contact-email">info@wereheartmatters.com</a></p>
                     <p>Located in the Bay Area</p>
                 </div>
 

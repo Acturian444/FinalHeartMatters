@@ -42,7 +42,7 @@
 
 .product-scrolling-quote {
     font-size: 1.6rem;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 400;
     margin: 0 1.2rem;
     white-space: nowrap;
@@ -166,7 +166,7 @@
 }
 
 .product-hero-text h1 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 3rem;
     color: #000;
     margin-bottom: 1.5rem; /* Increased from 0.5rem for better spacing */
@@ -191,7 +191,7 @@
 }
 
 .price {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.5rem;
     color: #ca0013;
     font-weight: 900;
@@ -247,7 +247,7 @@
 
 .product-details h2,
 .product-story h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2rem;
     color: #000;
     margin-bottom: 2rem;
@@ -256,7 +256,7 @@
 }
 
 .product-story h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.2rem; /* Match hero section title size */
     color: #000;
     margin-bottom: 2rem;
@@ -345,7 +345,7 @@
 }
 
 .you-may-also-like .section-header h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2rem;
     color: #000;
     text-transform: uppercase;
@@ -408,7 +408,7 @@
 }
 
 .related-products .product-content h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.5rem;
     color: #000;
     margin-bottom: 0.5rem;
@@ -474,7 +474,7 @@
 }
 
 .feature-item h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.25rem;
     color: #000;
     margin-bottom: 1rem;
@@ -496,7 +496,7 @@
 }
 
 .product-features h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.5rem;
     color: #000;
     text-align: center;
@@ -527,7 +527,7 @@
 }
 
 .feature-detail h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.25rem;
     color: #000;
     margin-bottom: 1rem;
@@ -555,7 +555,7 @@
 }
 
 .story-content h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.5rem;
     color: #000;
     text-align: center;
@@ -604,7 +604,7 @@
 }
 
 .story-cta h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.5rem;
     color: #000;
     margin-bottom: 1rem;
@@ -626,7 +626,7 @@
 }
 
 .course-modules h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.5rem;
     color: #000;
     text-align: center;
@@ -657,7 +657,7 @@
 }
 
 .module-number {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2rem;
     color: #ca0013;
     font-weight: 900;
@@ -665,7 +665,7 @@
 }
 
 .module-card h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.25rem;
     color: #000;
     margin-bottom: 1rem;
@@ -715,7 +715,7 @@
 }
 
 .author-name {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -742,7 +742,7 @@
 }
 
 .cta-content h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.5rem;
     color: #000;
     margin-bottom: 1rem;
@@ -991,8 +991,12 @@
     .story-content h2,
     .course-modules h2,
     .cta-content h2,
-    .product-features h2 {
-        font-size: 1.75rem;
+    .product-features h2,
+    .for-you-title,
+    .transformation-title,
+    .product-details h2,
+    .product-story h2 {
+        font-size: 1.75rem !important;
     }
     
     .features-grid,
@@ -1058,12 +1062,16 @@
         padding: 6rem 0 2rem 0; /* Increased top padding for better separation */
     }
     
+    .story-content h2 {
+        font-size: 1.75rem !important;
+    }
+    
     .testimonial-author {
         font-size: 1rem;
     }
     
     .transformation-title {
-        font-size: 2rem;
+        font-size: 1.75rem !important;
     }
     
     .cta-subtitle {
@@ -1212,7 +1220,7 @@
   padding: 5rem 0 3rem 0;
 }
 .course-outline-title {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton', 'Anton-Local', sans-serif;
   color: #000;
   font-size: 2.5rem;
   text-align: center;
@@ -1247,7 +1255,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton', 'Anton-Local', sans-serif;
   color: #ca0013;
   font-size: 1.1rem;
   padding: 1.1rem 1.3rem;
@@ -1259,7 +1267,7 @@
   background: #fffcf1;
 }
 .accordion-title {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton', 'Anton-Local', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -1359,7 +1367,7 @@
   padding: 5rem 0 3rem 0;
 }
 .transformation-title {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton', 'Anton-Local', sans-serif;
   font-size: 2.5rem;
   color: #000;
   text-align: center;
@@ -1379,7 +1387,7 @@
 .transformation-header {
   display: flex;
   background: transparent;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton', 'Anton-Local', sans-serif;
   font-size: 1.15rem;
   color: #ca0013;
   font-weight: 700;
@@ -1514,7 +1522,7 @@
 
 @media (max-width: 600px) {
       .transformation-title {
-        font-size: 1.75rem;
+        font-size: 1.75rem !important;
     }
     
     .transformation-section {
@@ -1570,7 +1578,7 @@
 }
 
 .for-you-title {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.5rem;
     color: #000;
     text-align: center;
@@ -1656,8 +1664,17 @@
     }
     
     .for-you-title {
-        font-size: 2rem;
+        font-size: 1.75rem !important;
         margin-bottom: 0.5rem;
+    }
+    
+    /* Force override for specific titles */
+    .for-you-section .for-you-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .transformation-section .transformation-title {
+        font-size: 1.75rem !important;
     }
     
     .for-you-subtitle {
@@ -1688,7 +1705,7 @@
     }
     
     .transformation-title {
-        font-size: 2rem;
+        font-size: 1.75rem !important;
     }
 }
 
@@ -1967,4 +1984,17 @@ main {
   }
 }
 
-/* Mobile: 1 column (already handled) */ 
+/* Mobile: 1 column (already handled) */
+
+/* FINAL OVERRIDE: Force mobile font sizes for specific titles */
+@media (max-width: 600px) {
+    .for-you-title,
+    .transformation-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .for-you-section .for-you-title,
+    .transformation-section .transformation-title {
+        font-size: 1.75rem !important;
+    }
+} 

@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+/* Font loading optimization */
+@font-face {
+    font-family: 'Anton';
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    font-display: swap;
+}
+
 :root {
     --primary-color: #ca0013;
     --secondary-bg: #fffcf1;
@@ -29,7 +40,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 400;
     line-height: 1.2;
     color: var(--accent-text);
@@ -112,7 +123,7 @@ nav {
 }
 
 .logo-text {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.3rem;
     color: #ca0013;
     font-weight: bold;
@@ -133,7 +144,7 @@ nav {
 /* Desktop Navigation Links */
 .nav-links a,
 .nav-links a.nav-dropdown-trigger {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 400;
     font-size: 1.1rem;
     letter-spacing: 1.5px;
@@ -150,7 +161,7 @@ nav {
 
 /* Mobile Menu Overlay Links */
 .menu-overlay a {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 400;
     font-size: 1.1rem;
     letter-spacing: 1.5px;
@@ -165,7 +176,7 @@ nav {
 
 /* Dropdown Menu Items */
 .nav-dropdown-menu a {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 400;
     font-size: 0.9rem;
     letter-spacing: 1px;
@@ -244,7 +255,7 @@ nav {
     padding: 0.75rem 1.5rem;
     color: #000;
     text-decoration: none;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 0.9rem;
     font-weight: 400 !important;
     letter-spacing: 1px;
@@ -467,7 +478,7 @@ section {
     position: relative;
     overflow: hidden;
     margin-bottom: 2rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
     z-index: 1;
 }
 
@@ -477,7 +488,7 @@ section {
 }
 
 .mission-modern-title {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.7rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -823,6 +834,17 @@ footer {
     opacity: 0.8;
 }
 
+/* Mobile responsive adjustments for general social-links */
+@media (max-width: 600px) {
+    .social-links a i {
+        font-size: 1.2rem;
+    }
+    
+    .social-links a span {
+        font-size: 0.9rem;
+    }
+}
+
 .contact-info p {
     margin-bottom: 0.5rem;
     color: #000000;
@@ -834,7 +856,7 @@ footer {
 }
 
 .newsletter h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -845,7 +867,7 @@ footer {
 }
 
 .newsletter-title {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.7rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -1073,7 +1095,7 @@ footer {
 }
 
 .center-logo {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.5rem;
     color: #ca0013;
     font-weight: bold;
@@ -1180,7 +1202,7 @@ footer {
 }
 
 .feature-title h2 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 3rem;
     color: #ca0013;
     margin-bottom: 1.5rem;
@@ -1572,7 +1594,7 @@ footer {
 
 .menu-overlay a.active {
     color: #ca0013;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 @media (max-width: 600px) {
@@ -1615,7 +1637,7 @@ footer {
 #join .section-heading {
     margin-top: 4rem;
     font-size: 2.5rem;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 900;
     text-transform: uppercase;
     color: #000;
@@ -1708,16 +1730,16 @@ footer {
     }
     
     #join .social-links a i {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
     
     #join .social-links a span {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }
 
 h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section-heading {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 400 !important;
 }
 
@@ -1746,7 +1768,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 }
 
 @font-face {
-    font-family: 'Anton';
+    font-family: 'Anton-Local';
     src: url('fonts/anton.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
@@ -1770,7 +1792,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
     .section-heading {
         font-size: 2.4rem;
         line-height: 1.2;
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Anton-Local', sans-serif;
         font-weight: 700;
         letter-spacing: 1px;
     }
@@ -1792,7 +1814,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
     .section-heading {
         font-size: 2rem;
         line-height: 1.2;
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Anton-Local', sans-serif;
         font-weight: 700;
         letter-spacing: 1px;
     }
@@ -1870,7 +1892,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 }
 
 .modal-title {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.6rem;
     color: #ca0013;
     margin-bottom: 0.75rem;
@@ -1999,7 +2021,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         font-size: 3.5rem;
         line-height: 1.1;
         margin-bottom: 1.2rem;
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Anton-Local', sans-serif;
         text-transform: none;
     }
     
@@ -2015,7 +2037,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         line-height: 1.2;
         margin-top: 2rem;
         margin-bottom: 0.6rem;
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Anton-Local', sans-serif;
         text-transform: none !important;
     }
     
@@ -2089,7 +2111,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         font-size: 2.8rem;
         line-height: 1.1;
         margin-bottom: 1rem;
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Anton-Local', sans-serif;
         text-transform: none;
     }
     
@@ -2105,7 +2127,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         line-height: 1.2;
         margin-top: 1.2rem;
         margin-bottom: 0.5rem;
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Anton-Local', sans-serif;
         text-transform: none !important;
     }
     
@@ -2240,7 +2262,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 
 .scrolling-quote {
     font-size: 1.6rem;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 400;
     margin: 0 1.2rem;
     white-space: nowrap;
@@ -2431,7 +2453,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 .headline-line1 {
   display: block;
   font-size: 3.3rem;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton', 'Anton-Local', sans-serif;
   font-weight: 900;
   color: #fffcf1;
   letter-spacing: 2px;
@@ -2442,7 +2464,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 .headline-line2 {
   display: block;
   font-size: 2.5rem;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Anton', 'Anton-Local', sans-serif;
   font-weight: 900;
   color: #fffcf1;
   letter-spacing: 1.5px;
@@ -2652,7 +2674,7 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
 
 .start-here-card h3 {
     font-size: 1.75rem;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
@@ -2667,7 +2689,7 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
 
 /* Why It Matters Section */
 .why-it-matters-section {
-    background: url('../images/WhyItMatters.jpg') center center/cover no-repeat;
+    background: #ca0013;
     min-height: 80vh;
     width: 100vw;
     display: flex;
@@ -2678,16 +2700,6 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     margin-bottom: 4rem;
     margin-top: 0;
-}
-
-.why-it-matters-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
 }
 
 .why-it-matters-content {
@@ -2701,7 +2713,7 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
 }
 
 .why-it-matters-title {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 2.7rem;
     font-weight: 700;
     letter-spacing: 1px;
