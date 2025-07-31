@@ -765,7 +765,7 @@ class PostForm {
             }
 
             // Debug logging
-            console.log('showRepliesView debug:', {
+            if (window.DEBUG_MODE) console.log('showRepliesView debug:', {
                 LetItOutUtils: window.LetItOutUtils,
                 hasGetFreeUnlockedPosts: typeof window.LetItOutUtils.getFreeUnlockedPosts,
                 hasGetPaidUnlockedPosts: typeof window.LetItOutUtils.getPaidUnlockedPosts,
@@ -790,7 +790,7 @@ class PostForm {
             const isPaidUnlocked = paidUnlocked.includes(postId);
             const freeUnlocksLeft = window.LetItOutUtils.getFreeUnlocksLeft();
 
-            console.log('Unlock logic debug:', {
+            if (window.DEBUG_MODE) console.log('Unlock logic debug:', {
                 postId,
                 freeUnlocked,
                 paidUnlocked,
@@ -802,19 +802,19 @@ class PostForm {
 
             // MVP Mode: Skip unlock checks if MVP mode is enabled
             if (window.MVP_CONFIG && window.MVP_CONFIG.FREE_POST_UNLOCKS) {
-                console.log('MVP Mode: Skipping unlock checks, showing replies immediately');
+                if (window.DEBUG_MODE) console.log('MVP Mode: Skipping unlock checks, showing replies immediately');
                 // Continue to show replies without any unlock logic
             } else {
                 // Check unlock status (original logic)
             if (isFreeUnlocked || isPaidUnlocked) {
-                console.log('Post already unlocked, continuing...');
+                if (window.DEBUG_MODE) console.log('Post already unlocked, continuing...');
                 // Already unlocked, continue to show replies
             } else if (freeUnlocked.length < 3) {
-                console.log('Adding free unlock for post:', postId);
+                if (window.DEBUG_MODE) console.log('Adding free unlock for post:', postId);
                 window.LetItOutUtils.addFreeUnlockedPost(postId);
                 this.showFreeUnlockBanner(2 - freeUnlocked.length);
             } else {
-                console.log('Showing paywall for post:', postId);
+                if (window.DEBUG_MODE) console.log('Showing paywall for post:', postId);
                 this.showPaywallModal(postId);
                 return;
                 }
