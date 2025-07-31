@@ -449,7 +449,7 @@ class PostCard {
 
     static async sendReply(postId, content) {
         try {
-            console.log('Sending reply for post:', postId, 'with content:', content);
+            if (window.DEBUG_MODE) console.log('Sending reply for post:', postId, 'with content:', content);
             
         const reply = {
             postId,
@@ -459,13 +459,15 @@ class PostCard {
             read: false
         };
 
-            console.log('Reply data structure:', reply);
-            console.log('Firebase user ID:', window.firebaseUserId);
+            if (window.DEBUG_MODE) {
+                console.log('Reply data structure:', reply);
+                console.log('Firebase user ID:', window.firebaseUserId);
+            }
 
         await window.PostService.addReply(postId, reply);
-            console.log('Reply sent successfully');
+            if (window.DEBUG_MODE) console.log('Reply sent successfully');
         } catch (error) {
-            console.error('Error in sendReply:', error);
+            console.error('Error in sendReply:', error); // Keep error logging
             throw error;
         }
     }
