@@ -5,22 +5,7 @@
     box-sizing: border-box;
 }
 
-/* Font loading optimization */
-@font-face {
-    font-family: 'Anton';
-    src: local('Anton'), url('fonts/anton.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'DM Sans';
-    src: local('DM Sans'), url('fonts/dmsans.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
+/* Font loading optimization - Using Google Fonts CDN */
 
 :root {
     --primary-color: #ca0013;
@@ -1517,17 +1502,24 @@ footer {
 .menu-overlay .close-btn {
     position: absolute;
     top: 1rem;
-    right: 1.5rem;
+    left: 1rem;
     font-size: 2.5rem;
     color: #000000;
     background: none;
     border: none;
     cursor: pointer;
+    display: block !important;
+    z-index: 1202;
 }
 
 /* Hide the old, stray close button from the header */
 .nav-centered > .close-btn {
     display: none !important;
+}
+
+/* Ensure menu overlay close button is always visible */
+.menu-overlay > .close-btn {
+    display: block !important;
 }
 
 .theme-toggle-btn {

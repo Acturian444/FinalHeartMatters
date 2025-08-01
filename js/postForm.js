@@ -28,7 +28,7 @@ class PostForm {
         // Prompt bank for all packs
         this.promptBank = {
             starter: [
-                "Tell your story. Your secret. Your truth.",
+                "Tell your story, your secret, your truth.",
                 "What's on your heart today?",
                 "What's something you've never said out loud until now?",
                 "What did you need, but never received?",
@@ -487,21 +487,9 @@ class PostForm {
         overlay.className = 'letitout-confirmation-overlay';
         overlay.innerHTML = `
           <div class="letitout-confirmation-modal">
-            <div class="letitout-confirmation-heart">
-              <svg viewBox="0 0 8 7" width="54" height="48" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                <rect x="1" y="1" width="2" height="1" fill="#ca0013"/>
-                <rect x="5" y="1" width="2" height="1" fill="#ca0013"/>
-                <rect x="0" y="2" width="4" height="1" fill="#ca0013"/>
-                <rect x="4" y="2" width="4" height="1" fill="#ca0013"/>
-                <rect x="0" y="3" width="8" height="1" fill="#ca0013"/>
-                <rect x="1" y="4" width="6" height="1" fill="#ca0013"/>
-                <rect x="2" y="5" width="4" height="1" fill="#ca0013"/>
-                <rect x="3" y="6" width="2" height="1" fill="#ca0013"/>
-              </svg>
-            </div>
             <div class="letitout-confirmation-text">
-              <span class="confirmation-line">Your journal was saved.</span>
-              <span class="confirmation-line">You let it out.</span>
+              <span class="confirmation-title">You let it out.</span>
+              <span class="confirmation-line">Your truth is on the wall.</span>
               <span class="confirmation-line">You're not alone here.</span>
             </div>
           </div>
@@ -558,7 +546,7 @@ class PostForm {
             const infoText = document.createElement('div');
             infoText.className = 'letitout-info-text';
             infoText.style.marginTop = '1.5rem';
-            infoText.textContent = 'This is your public journal. Always anonymous.';
+            infoText.textContent = 'Your words hold power. Your truth matters.';
             this.buttonContainer.appendChild(infoText);
 
             // Add "Need Support" button
