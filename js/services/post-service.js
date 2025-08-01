@@ -39,6 +39,9 @@ class PostService {
                 throw new Error('No user ID available');
             }
 
+            // Get next truth number
+            const truthNumber = await this.getNextTruthNumber();
+
             const post = {
                 content: window.LetItOutUtils.sanitizeText(content),
                 emotion,
@@ -47,7 +50,8 @@ class PostService {
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 feltCount: 0,
                 city: city || null,
-                customCity: !!isCustomCity
+                customCity: !!isCustomCity,
+                truthNumber: truthNumber
             };
 
             const docRef = await this.collection.add(post);
@@ -60,6 +64,31 @@ class PostService {
             } else {
                 window.LetItOutUtils.showError('Unable to create post. Please try again.');
             }
+            throw error;
+        }
+    }
+
+    async getNextTruthNumber() {
+        const counterRef = this.db.collection('counters').doc('posts');
+        
+        try {
+            const result = await this.db.runTransaction(async (transaction) => {
+                const counterDoc = await transaction.get(counterRef);
+                
+                if (!counterDoc.exists) {
+                    // Initialize counter
+                    transaction.set(counterRef, { count: 1 });
+                    return 1;
+                } else {
+                    const newCount = counterDoc.data().count + 1;
+                    transaction.update(counterRef, { count: newCount });
+                    return newCount;
+                }
+            });
+            
+            return result;
+        } catch (error) {
+            console.error('Error getting next truth number:', error);
             throw error;
         }
     }
@@ -321,6 +350,45 @@ class PostService {
             await this.db.collection('reports').add(report);
         } catch (error) {
             console.error('Error submitting report:', error);
+            throw error;
+        }
+    }
+
+    // Migration function for existing posts
+    async migrateExistingPosts() {
+        try {
+            console.log('Starting migration of existing posts...');
+            
+            const snapshot = await this.collection
+                .where('truthNumber', '==', null)
+                .orderBy('timestamp', 'asc')
+                .get();
+            
+            if (snapshot.empty) {
+                console.log('No posts need migration');
+                return;
+            }
+            
+            console.log(`Found ${snapshot.docs.length} posts to migrate`);
+            
+            let counter = 1;
+            const batch = this.db.batch();
+            
+            snapshot.docs.forEach(doc => {
+                batch.update(doc.ref, { truthNumber: counter });
+                counter++;
+            });
+            
+            await batch.commit();
+            console.log(`Successfully migrated ${counter - 1} existing posts`);
+            
+            // Update the counter to reflect the total count
+            const counterRef = this.db.collection('counters').doc('posts');
+            await counterRef.set({ count: counter - 1 });
+            console.log('Updated counter to reflect migrated posts');
+            
+        } catch (error) {
+            console.error('Migration failed:', error);
             throw error;
         }
     }

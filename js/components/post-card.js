@@ -103,14 +103,25 @@ class PostCard {
             contentArea.appendChild(readMoreLink);
         }
 
-        // City line with timestamp (Anonymous from [City] · 8h ago)
+        // City line with timestamp (Truth #147 · Miami, FL · 22h ago)
         const cityLine = document.createElement('div');
         cityLine.className = 'post-city-line';
         const timeString = window.LetItOutUtils.formatDate(post.timestamp);
-        if (post.city) {
-            cityLine.textContent = `Anonymous from ${post.city} · ${timeString}`;
+        
+        // NEW LOGIC: Show Truth number if available, fallback to old format
+        if (post.truthNumber) {
+            if (post.city) {
+                cityLine.textContent = `Truth #${post.truthNumber} · ${post.city} · ${timeString}`;
+            } else {
+                cityLine.textContent = `Truth #${post.truthNumber} · ${timeString}`;
+            }
         } else {
-            cityLine.textContent = `Anonymous · ${timeString}`;
+            // Fallback for existing posts without truthNumber
+            if (post.city) {
+                cityLine.textContent = `Anonymous from ${post.city} · ${timeString}`;
+            } else {
+                cityLine.textContent = `Anonymous · ${timeString}`;
+            }
         }
         contentArea.appendChild(cityLine);
 
@@ -449,7 +460,7 @@ class PostCard {
 
     static async sendReply(postId, content) {
         try {
-            console.log('Sending reply for post:', postId, 'with content:', content);
+            if (window.DEBUG_MODE) console.log('Sending reply for post:', postId, 'with content:', content);
             
         const reply = {
             postId,
@@ -459,13 +470,15 @@ class PostCard {
             read: false
         };
 
-            console.log('Reply data structure:', reply);
-            console.log('Firebase user ID:', window.firebaseUserId);
+            if (window.DEBUG_MODE) {
+                console.log('Reply data structure:', reply);
+                console.log('Firebase user ID:', window.firebaseUserId);
+            }
 
         await window.PostService.addReply(postId, reply);
-            console.log('Reply sent successfully');
+            if (window.DEBUG_MODE) console.log('Reply sent successfully');
         } catch (error) {
-            console.error('Error in sendReply:', error);
+            console.error('Error in sendReply:', error); // Keep error logging
             throw error;
         }
     }

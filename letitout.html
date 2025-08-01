@@ -61,8 +61,11 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap&font-display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    </noscript>
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -147,7 +150,7 @@
         animation: fadeInModal 0.5s;
     }
     .letitout-intro-modal {
-        background: #fff;
+        background: #252526;
         border-radius: 1.5rem;
         box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 8px rgba(0,0,0,0.06);
         max-width: 520px;
@@ -169,10 +172,10 @@
         font-family: 'Anton', sans-serif;
         font-size: 2.5rem;
         font-weight: 900;
-        color: #111;
+        color: #D4D4D4;
         letter-spacing: 1.2px;
         line-height: 1.18;
-        margin-bottom: 0.7rem;
+        margin-bottom: 0.1rem;
         text-align: center;
         text-transform: uppercase;
     }
@@ -188,11 +191,26 @@
     .letitout-intro-copy {
         font-family: 'DM Sans', sans-serif;
         font-size: 1.13rem;
-        color: #000000;
+        color: #b0b0b0;
         margin-bottom: 1.2rem;
-        margin-top: 1.2rem;
+        margin-top: 1.5rem;
         line-height: 1.7;
         text-align: left;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .intro-subtext {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #b0b0b0;
+        text-align: center;
+        margin-top: 0.1rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
+        text-transform: none;
         max-width: 420px;
         margin-left: auto;
         margin-right: auto;
@@ -215,22 +233,24 @@
         font-family: 'DM Sans', sans-serif;
         font-size: 1.1rem;
         font-weight: 600;
-        color: #000;
+        color: #D4D4D4;
         margin: 0 0 0.3rem 0;
+        text-transform: none;
+        letter-spacing: 0.2px;
     }
     .intro-text p {
         font-family: 'DM Sans', sans-serif;
         font-size: 1rem;
         line-height: 1.5;
-        color: #666;
+        color: #b0b0b0;
         margin: 0;
     }
-    .letitout-intro-copy p {
+    .letitout-intro-copy p:not(.intro-subtext) {
         margin-bottom: 1.1em;
         margin-top: 0;
     }
     .letitout-intro-age {
-        color: #000 !important;
+        color: #D4D4D4 !important;
         font-size: 1.13rem;
         font-weight: 700;
         margin-top: 0;
@@ -264,7 +284,7 @@
             margin: 0;
             padding: 1.8rem 1.1rem 1.5rem 1.1rem;
             box-sizing: border-box;
-            background: linear-gradient(180deg, #fff 80%, #fffcf1 100%);
+            background: linear-gradient(180deg, #252526 80%, #1E1E1E 100%);
             background-size: cover;
             border: none;
             box-shadow: none;
@@ -284,6 +304,11 @@
             margin-top: 1.2rem;
             padding-left: 0.1rem;
             padding-right: 0.1rem;
+        }
+        .intro-subtext {
+            font-size: 1rem;
+            margin-bottom: 1.3rem;
+            padding: 0 0.3rem;
         }
         .intro-section {
             margin-bottom: 1.2rem;
@@ -349,7 +374,7 @@
             <div class="letitout-intro-modal-content">
                 <h2 class="letitout-intro-title">
                     Let It Out
-                    <span class="subtitle">Your anonymous public journal</span>
+                    <span class="subtitle">Your space to release what you carry.</span>
                 </h2>
                 <div class="letitout-intro-copy">
                     <div class="intro-section">
@@ -357,8 +382,8 @@
                             <i class="fas fa-pen"></i>
                 </div>
                         <div class="intro-text">
-                            <h3>Write what you're feeling</h3>
-                            <p>Just type what's on your heart. No login. No judgment.</p>
+                            <h3>Write It Out</h3>
+                            <p>Type your thoughts, feelings, truth, story, or secret. No login. No judgment.</p>
                         </div>
                     </div>
                     <div class="intro-section">
@@ -366,8 +391,8 @@
                             <i class="fas fa-globe"></i>
                         </div>
                         <div class="intro-text">
-                            <h3>Post it anonymously</h3>
-                            <p>Your words are shared on the public wall— never tracked. safely stored.</p>
+                            <h3>Share Anonymously</h3>
+                            <p>Your words are shared on the public wall— never tracked, safely stored.</p>
                         </div>
                     </div>
                     <div class="intro-section">
@@ -375,11 +400,12 @@
                             <i class="fas fa-heart"></i>
                         </div>
                         <div class="intro-text">
-                            <h3>Feel seen and supported</h3>
+                            <h3>Feel Seen and Supported</h3>
                             <p>Others can react to your post or send anonymous support replies.</p>
                         </div>
                     </div>
                 </div>
+                <p class="intro-subtext">Your words hold power.</p>
                 <p class="letitout-intro-age">You must be 13 or older to enter.</p>
                 <button class="letitout-intro-btn" id="letitout-intro-btn">Let It Out</button>
             </div>
@@ -405,7 +431,7 @@
                         <a href="shop/index.html" class="nav-dropdown-trigger">SHOP</a>
                         <ul class="nav-dropdown-menu">
                             <li><a href="shop/index.html">STILL HEALING COLLECTION</a></li>
-                            <li><a href="product/breakup-course.html" id="desktopBreakupResetLink">The Breakup Reset</a></li>
+                            <li><a href="product/breakup-course.html" id="desktopBreakupResetLink">THE BREAKUP RESET</a></li>
                             <li id="myCourseLink" style="display: none;"><a href="course/breakup-course.html" id="desktopContinueBreakupResetLink">CONTINUE THE BREAKUP RESET</a></li>
                         </ul>
                     </li>

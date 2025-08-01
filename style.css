@@ -8,11 +8,17 @@
 /* Font loading optimization */
 @font-face {
     font-family: 'Anton';
+    src: local('Anton'), url('fonts/anton.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'DM Sans';
+    src: local('DM Sans'), url('fonts/dmsans.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
     font-display: swap;
 }
 
@@ -2689,7 +2695,7 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
 
 /* Why It Matters Section */
 .why-it-matters-section {
-    background: url('../images/WhyItMatters.jpg') center center/cover no-repeat;
+    background: #ca0013;
     min-height: 80vh;
     width: 100vw;
     display: flex;
@@ -2700,16 +2706,6 @@ header, nav, .nav-links a, .nav-dropdown-menu a, h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     margin-bottom: 4rem;
     margin-top: 0;
-}
-
-.why-it-matters-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
 }
 
 .why-it-matters-content {

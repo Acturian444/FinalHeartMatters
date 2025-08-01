@@ -682,7 +682,7 @@ class WallFeed {
             const searchTerm = this.currentSearch.toLowerCase();
             filteredPosts = filteredPosts.filter(post => 
                 post.content.toLowerCase().includes(searchTerm) ||
-                post.emotion.toLowerCase().includes(searchTerm)
+                (post.emotion && post.emotion.toLowerCase().includes(searchTerm))
             );
         }
         
@@ -767,42 +767,36 @@ class WallFeed {
             justifyContent: 'space-between' // Positions header at top, footer at bottom
         });
 
-        // --- Container for all top-aligned content ---
-        const topWrapper = document.createElement('div');
-        Object.assign(topWrapper.style, {
+        // --- Container for all content ---
+        const contentWrapper = document.createElement('div');
+        Object.assign(contentWrapper.style, {
             width: '100%',
             textAlign: 'left',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'center', // Center content vertically
             height: '100%'
         });
 
-        // --- Header (empty for spacing) ---
-        const header = document.createElement('div');
-        header.style.textAlign = 'left';
-        header.style.width = '80%';
-        header.style.height = '80px'; // Top padding
-
-        // --- Main Content ---
+        // --- Main Content (centered) ---
         const mainContent = document.createElement('div');
         Object.assign(mainContent.style, {
             width: '80%',
-            marginTop: '0',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            flex: '1'
+            alignItems: 'flex-start'
         });
 
+        // --- Emotion Tags with Anton Font ---
         const tagsContainer = document.createElement('div');
         Object.assign(tagsContainer.style, {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'flex-start',
             gap: '15px',
-            marginBottom: '50px'
+            marginBottom: '15px' // Reduced from 30px
         });
 
         let allEmotions = [];
@@ -812,25 +806,10 @@ class WallFeed {
             allEmotions = post.emotion.split(',').map(e => e.trim()).filter(e => e);
         }
 
-        // --- New Tag Display Logic ---
-        const STRONG_EMOTIONS = ["What I never said"];
+        // --- Show only 1 emotion tag ---
         let tagsToDisplay = [];
-        const strongEmotion = allEmotions.find(e => STRONG_EMOTIONS.includes(e));
-
-        if (strongEmotion) {
-            tagsToDisplay = [strongEmotion];
-        } else if (allEmotions.length === 1) {
-            tagsToDisplay = allEmotions;
-        } else if (allEmotions.length === 3) {
-            const totalLength = allEmotions.reduce((acc, tag) => acc + tag.length, 0);
-            // Heuristic to show 3 tags only if they are short enough to fit on one line
-            if (totalLength < 45) {
-                tagsToDisplay = allEmotions;
-            } else {
-                tagsToDisplay = allEmotions.slice(0, 2);
-            }
-        } else { // Handles 0, 2, or 4+ emotions
-            tagsToDisplay = allEmotions.slice(0, 2);
+        if (allEmotions.length > 0) {
+            tagsToDisplay = [allEmotions[0]]; // Only show the first emotion tag
         }
         
         if (tagsToDisplay.length > 0) {
@@ -838,12 +817,12 @@ class WallFeed {
                 const tag = document.createElement('span');
                 tag.textContent = e;
                 Object.assign(tag.style, {
-                    backgroundColor: isDarkMode ? '#ca0013' : '#fff0f2', // THEME AWARE
-                                          color: isDarkMode ? '#ffffff' : '#ca0013', // THEME AWARE
-                    borderRadius: '30px',
-                    padding: '12px 24px',
-                    fontSize: '24px',
-                    fontWeight: '600'
+                    fontFamily: '"Anton", sans-serif', // Anton font
+                    color: '#ca0013', // Brand red for both light and dark modes
+                    fontSize: '42px', // Same size as body text
+                    fontWeight: '400', // Normal weight for Anton
+                    textTransform: 'uppercase', // Uppercase for Anton
+                    letterSpacing: '1px'
                 });
                 tagsContainer.appendChild(tag);
             });
@@ -862,44 +841,40 @@ class WallFeed {
         
         mainContent.append(tagsContainer, content);
         
-        // --- Signature (below content) ---
-        const signature = document.createElement('p');
-        signature.textContent = post.city ? `— Let out anonymously from ${post.city}` : '— Let out anonymously';
-        Object.assign(signature.style, {
-            fontSize: '28px',
-            color: isDarkMode ? '#888' : '#888',
-            margin: '30px 0 0 0',
-            fontStyle: 'italic'
-        });
-        
-        mainContent.appendChild(signature);
-        
-        // --- Footer (Watermark) ---
+        // --- Assemble and Render ---
+        contentWrapper.append(mainContent);
+        shareContainer.append(contentWrapper);
+
+        // --- Footer (Watermark) - Always at bottom ---
         const footer = document.createElement('div');
-        footer.style.textAlign = 'left';
-        footer.style.width = '100%';
-        footer.style.height = '120px'; // Fixed height for footer
-        footer.style.display = 'flex';
-        footer.style.alignItems = 'center';
-        footer.style.justifyContent = 'flex-start';
-        footer.style.paddingLeft = '108px'; // Match the content padding (10% of 1080px = 108px)
+        Object.assign(footer.style, {
+            position: 'absolute',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            textAlign: 'left',
+            width: '100%',
+            height: '120px', // Fixed height for footer
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            paddingLeft: '150px', // Increased to move footer more to the right
+            backgroundColor: isDarkMode ? '#1e1e1e' : '#fffcf1' // Match container background
+        });
 
         const watermark = document.createElement('p');
-        watermark.innerHTML = '#LetItOut &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Heart Matters &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; joinheartmatters.com';
+        watermark.innerHTML = `Truth #${post.truthNumber || ''} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; LetItOut &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Heart Matters`;
         Object.assign(watermark.style, {
             fontFamily: '"DM Sans", sans-serif',
             fontSize: '24px',
-            color: isDarkMode ? '#666' : '#aaa', // THEME AWARE
+            color: isDarkMode ? '#888' : '#ccc', // Lighter colors for both modes
             fontWeight: '500',
             margin: '0',
             textAlign: 'left'
         });
         
         footer.appendChild(watermark);
-
-        // --- Assemble and Render ---
-        topWrapper.append(header, mainContent, footer);
-        shareContainer.append(topWrapper);
+        shareContainer.appendChild(footer);
         document.body.appendChild(shareContainer);
 
         try {

@@ -58,8 +58,11 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap&font-display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap&font-display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+    </noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=3">
     <style>
@@ -709,11 +712,17 @@
         /* Healing Is a Shared Experience Section Styles */
         .shared-healing-section {
             background: #fffcf1;
-            padding: 4rem 0;
+            padding: 2rem 0 0.25rem 0;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .shared-healing-section {
+                padding: 1rem 0 0.125rem 0;
+            }
         }
 
         .shared-healing-content {
@@ -723,8 +732,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4rem;
+            gap: 2rem;
             padding: 0 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .shared-healing-content {
+                gap: 1rem;
+            }
         }
 
         .shared-healing-text {
@@ -750,7 +765,7 @@
             font-weight: 500;
             color: #000000;
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1rem;
             line-height: 1.6;
             max-width: 600px;
             margin-left: auto;
@@ -760,7 +775,7 @@
         @media (max-width: 600px) {
             .shared-healing-subtitle {
                 font-size: 1.1rem;
-                margin-bottom: 2rem;
+                margin-bottom: 0.8rem;
             }
         }
 
@@ -783,162 +798,59 @@
             margin-bottom: 0;
         }
 
-        /* Healing Cycle Styles */
-        .healing-cycle-container {
+        /* Healing Steps Styles */
+        .healing-steps-container {
             width: 100%;
-            max-width: 600px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .healing-cycle {
-            position: relative;
-            width: 600px;
-            height: 600px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .cycle-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 250px;
-            height: 250px;
-            background: transparent;
-            border-radius: 50%;
+        .healing-steps-row {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .healing-step-bubble {
+            background: rgba(202, 0, 19, 0.05);
+            border: 2px solid #ca0013;
+            border-radius: 20px;
+            padding: 1.5rem 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 10;
-        }
-
-        .cycle-center-title {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #000000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            margin-bottom: 0.4rem;
-        }
-
-        .cycle-center-subtitle {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #ca0013;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-        }
-
-        .cycle-heart {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .cycle-heart svg {
-            filter: drop-shadow(0 2px 8px #ca0013aa);
-            animation: cycleHeartBeat 2s infinite;
-        }
-
-        @keyframes cycleHeartBeat {
-            0%, 100% { transform: scale(1); }
-            10% { transform: scale(1.05); }
-            20% { transform: scale(0.98); }
-            30% { transform: scale(1.08); }
-            40% { transform: scale(0.96); }
-            50% { transform: scale(1.04); }
-            60% { transform: scale(1); }
-        }
-
-        .cycle-item {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-250px) rotate(calc(-1 * var(--angle)));
-            width: 220px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            z-index: 5;
-        }
-
-        .cycle-circle {
-            width: 200px;
-            height: 200px;
-            background: transparent;
-            border: 3px solid #ca0013;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.8rem;
-            box-sizing: border-box;
-        }
-
-        .cycle-arrow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-240px) rotate(calc(-1 * var(--angle)));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 4;
-        }
-
-        .cycle-connecting-circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 360px;
-            height: 360px;
-            border: 2px dashed #cccccc;
-            border-radius: 50%;
-            z-index: 3;
-        }
-
-                    .cycle-text {
-                display: flex;
-                flex-direction: column;
-                gap: 0.3rem;
-                max-width: 180px;
+            gap: 0;
+            backdrop-filter: blur(10px);
+            min-width: 180px;
+            flex: 1 1 200px;
             }
 
-        .cycle-word {
+        .step-title {
             font-family: 'Anton', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #ca0013;
+            text-align: center;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 0;
         }
 
-        .cycle-description {
+        .step-description {
             font-family: 'DM Sans', sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             color: #000000;
-            line-height: 1.3;
-            max-height: 2.6em;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            text-align: center;
+            line-height: 1.4;
         }
 
         .cycle-kindness-text {
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
         .cycle-kindness-text p {
@@ -950,34 +862,9 @@
             letter-spacing: 0.5px;
         }
 
-        .cycle-kindness-title {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #000;
-            margin: 0 0 0.5rem 0;
-            text-align: center;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .cycle-kindness-subtitle {
-            font-family: 'Caveat', cursive;
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: #ca0013;
-            margin: 0;
-            text-align: center;
-            line-height: 1.4;
-            font-style: italic;
-            letter-spacing: 0.5px;
-        }
-
         .mobile-break {
             display: none;
         }
-
-
 
         /* Tablet Layout */
         @media (min-width: 601px) and (max-width: 900px) {
@@ -994,60 +881,35 @@
                 gap: 2.5rem;
             }
 
-            .healing-cycle {
-                width: 550px;
-                height: 550px;
+            .healing-steps-row {
+                gap: 1rem;
             }
 
-            .cycle-center {
-                width: 220px;
-                height: 220px;
+            .healing-step-bubble {
+                padding: 1.2rem 1rem;
+                min-width: 140px;
+                max-width: 160px;
             }
 
-            .cycle-center-title {
-                font-size: 1.1rem;
-            }
-
-            .cycle-center-subtitle {
-                font-size: 0.8rem;
-            }
-
-            .cycle-item {
-                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-195px) rotate(calc(-1 * var(--angle)));
-                width: 180px;
-            }
-
-            .cycle-connecting-circle {
-                width: 310px;
-                height: 310px;
-            }
-
-            .cycle-word {
+            .step-title {
                 font-size: 1.2rem;
             }
 
-            .cycle-description {
-                font-size: 0.9rem;
-                max-height: 2.2em;
-            }
-
-            .cycle-circle {
-                width: 120px;
-                height: 120px;
-                padding: 1rem;
-            }
-
-            .cycle-arrow {
-                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-145px) rotate(calc(-1 * var(--angle)));
-            }
-
-            .cycle-kindness-text p {
-                font-size: 1.1rem;
+            .step-description {
+                font-size: 0.85rem;
             }
         }
 
         /* Mobile Layout */
         @media (max-width: 600px) {
+            /* Override base healing-step-bubble styles for mobile */
+            .healing-step-bubble {
+                padding: 0.8rem 1.5rem !important;
+                min-width: auto !important;
+                max-width: none !important;
+                flex-shrink: 0 !important;
+                flex: none !important;
+            }
             .shared-healing-section {
                 padding: 2rem 0;
             }
@@ -1072,81 +934,24 @@
                 margin-bottom: 1.2rem;
             }
 
-            .healing-cycle {
-                width: 350px;
-                height: 350px;
+            .healing-steps-row {
+                flex-direction: column;
+                gap: 0.5rem;
+                justify-content: center;
             }
 
-            .cycle-center {
-                width: 140px;
-                height: 140px;
+
+
+            .step-title {
+                font-size: 1.3rem;
             }
 
-            .cycle-center-title {
-                font-size: 0.9rem;
-            }
-
-            .cycle-center-subtitle {
-                font-size: 0.6rem;
-            }
-
-            .cycle-item {
-                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-140px) rotate(calc(-1 * var(--angle)));
-                width: 120px;
-            }
-
-            .cycle-connecting-circle {
-                width: 260px;
-                height: 260px;
-            }
-
-            .cycle-word {
-                font-size: 0.85rem;
-            }
-
-            .cycle-description {
-                font-size: 0.6rem;
-                max-height: 2.4em;
-                line-height: 1.1;
-            }
-
-            .cycle-text {
-                gap: 0.2rem;
-            }
-
-            .cycle-circle {
-                width: 100px;
-                height: 100px;
-                padding: 0.5rem;
-            }
-
-            .cycle-arrow {
-                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-130px) rotate(calc(-1 * var(--angle)));
-            }
-
-            .cycle-arrow {
-                transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-125px) rotate(calc(-1 * var(--angle)));
-            }
-
-            .cycle-kindness-text p {
-                font-size: 1rem;
-            }
-
-            .cycle-kindness-title {
-                font-size: 1.2rem;
-            }
-
-            .cycle-kindness-subtitle {
-                font-size: 1rem;
+            .step-description {
+                font-size: 0.8rem;
             }
 
             .mobile-break {
                 display: inline;
-            }
-
-            .cycle-heart svg {
-                width: 60px;
-                height: 52px;
             }
         }
         
@@ -1288,7 +1093,7 @@
                         <a href="shop/index.html" class="nav-dropdown-trigger">SHOP</a>
                         <ul class="nav-dropdown-menu">
                             <li><a href="shop/index.html">STILL HEALING COLLECTION</a></li>
-                            <li><a href="product/breakup-course.html" id="desktopBreakupResetLink">The Breakup Reset</a></li>
+                            <li><a href="product/breakup-course.html" id="desktopBreakupResetLink">THE BREAKUP RESET</a></li>
                             <li id="myCourseLink" style="display: none;"><a href="course/breakup-course.html" id="desktopContinueBreakupResetLink">CONTINUE THE BREAKUP RESET</a></li>
                         </ul>
                     </li>
@@ -1310,31 +1115,46 @@
 
     <main>
         <!-- This is Healing in Public Section -->
-        <section class="healing-public-section" style="background-color: #fffcf1; padding: 4rem 0 2rem 0; width: 100%;">
+        <section class="healing-public-section" style="background-color: #fffcf1; padding: 4rem 0 1rem 0; width: 100%;">
+            <style>
+                @media (max-width: 600px) {
+                    .healing-public-section {
+                        padding: 3rem 0 0.5rem 0 !important;
+                        margin-bottom: 0 !important;
+                    }
+                    .healing-public-section .healing-quote {
+                        margin-top: 0.5rem !important;
+                        margin-bottom: 0 !important;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .healing-public-section {
+                        padding: 2.5rem 0 0.5rem 0 !important;
+                        margin-bottom: 0 !important;
+                    }
+                }
+            </style>
             <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; text-align: center;">
                 <h2 class="healing-public-title" style="font-family: 'Anton', sans-serif; font-size: 2.7rem; font-weight: 700; color: #ca0013; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">This is Healing in Public</h2>
-                <p style="font-family: 'DM Sans', sans-serif; font-size: 1.35rem; font-weight: 700; color: #000000; margin-bottom: 3rem; line-height: 1.7;">Feel it. Say it. Let it out. Be seen. Heal together.</p>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 1.35rem; font-weight: 700; color: #000000; margin-bottom: 3rem; line-height: 1.7;">Feel it. Say it. Let it out. Be seen,<br class="mobile-break"> Heal together.</p>
                 
                 <!-- Three Images Display -->
-                <div class="healing-images" style="display: flex; gap: 2rem; justify-content: center; align-items: center; margin: 2rem 0; flex-wrap: wrap;">
-                    <div class="healing-image" style="flex: 1; min-width: 300px; max-width: 350px;">
+                <div class="healing-images" style="display: flex; gap: 2rem; justify-content: center; align-items: center; margin: 2rem 0 0.5rem 0; flex-wrap: wrap;">
+                    <div class="healing-image" style="flex: 1 1 350px; min-width: 300px;">
                         <img src="images/sfmirror.jpg" alt="Healing in public - San Francisco mirror" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);">
                     </div>
-                    <div class="healing-image" style="flex: 1; min-width: 300px; max-width: 350px;">
+                    <div class="healing-image" style="flex: 1 1 350px; min-width: 300px;">
                         <img src="images/healinpublic.jpg" alt="Healing in public - Community healing" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);">
-                    </div>
-                    <div class="healing-image" style="flex: 1; min-width: 300px; max-width: 350px;">
+                </div>
+                    <div class="healing-image" style="flex: 1 1 350px; min-width: 300px;">
                         <img src="images/mirrorquote.jpg" alt="Healing in public - Mirror quote" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);">
-                    </div>
-                </div>
+                            </div>
+                        </div>
                 
-                <!-- Quote -->
-                <div style="margin-top: 3rem; text-align: center;">
-                    <p class="healing-quote" style="font-family: 'Caveat', cursive; font-size: 1.8rem; font-weight: 400; color: #ca0013; line-height: 1.4; margin: 0; font-style: italic; letter-spacing: 0.5px;">We are mirrors of each other. What we reflect helps us heal.</p>
-                </div>
-            </div>
-            
-            <style>
+
+                                </div>
+
+        <style>
                 @media (max-width: 900px) {
                     .healing-images {
                         flex-direction: column !important;
@@ -1362,86 +1182,86 @@
                         font-size: 2.2rem !important;
                     }
                 }
-                @media (max-width: 768px) {
-                    section {
-                        padding: 4rem 1.5rem !important;
-                    }
-                    h1 {
-                        font-size: 2.5rem !important;
-                        padding: 0 1rem !important;
-                    }
+            @media (max-width: 768px) {
+                section {
+                    padding: 1.2rem 1.5rem !important;
+                }
+                h1 {
+                    font-size: 2.5rem !important;
+                    padding: 0 1rem !important;
+                }
                     .healing-public-title {
                         font-size: 2rem !important;
-                    }
-                    p[style*="font-family: 'DM Sans'"] {
-                        font-size: 1.2rem !important;
-                        padding: 0 1rem !important;
-                        margin-bottom: 3rem !important;
-                    }
-                    div[style*="max-width: 800px"] {
-                        font-size: 1.1rem !important;
-                        padding: 0 0.5rem !important;
-                        text-align: center !important;
-                    }
-                    div[style*="max-width: 800px"] p {
-                        margin-bottom: 1.5rem !important;
-                    }
                 }
-                @media (max-width: 480px) {
-                    section {
-                        padding: 3rem 1rem !important;
-                    }
-                    h1 {
-                        font-size: 2rem !important;
-                        padding: 0 0.5rem !important;
-                    }
+                p[style*="font-family: 'DM Sans'"] {
+                    font-size: 1.2rem !important;
+                    padding: 0 1rem !important;
+                    margin-bottom: 3rem !important;
+                }
+                div[style*="max-width: 800px"] {
+                    font-size: 1.1rem !important;
+                    padding: 0 0.5rem !important;
+                    text-align: center !important;
+                }
+                div[style*="max-width: 800px"] p {
+                    margin-bottom: 1.5rem !important;
+                }
+            }
+            @media (max-width: 480px) {
+                section {
+                    padding: 0.8rem 1rem !important;
+                }
+                h1 {
+                    font-size: 2rem !important;
+                    padding: 0 0.5rem !important;
+                }
                     .healing-public-title {
                         font-size: 1.8rem !important;
-                    }
-                    p[style*="font-family: 'DM Sans'"] {
-                        font-size: 1.1rem !important;
-                        padding: 0 0.5rem !important;
-                        margin-bottom: 2.5rem !important;
-                    }
-                    div[style*="max-width: 800px"] {
-                        font-size: 1rem !important;
-                        padding: 0 !important;
-                        text-align: center !important;
-                    }
-                    div[style*="max-width: 800px"] p {
-                        margin-bottom: 1.25rem !important;
-                    }
                 }
+                p[style*="font-family: 'DM Sans'"] {
+                    font-size: 1.1rem !important;
+                    padding: 0 0.5rem !important;
+                    margin-bottom: 2.5rem !important;
+                }
+                div[style*="max-width: 800px"] {
+                    font-size: 1rem !important;
+                    padding: 0 !important;
+                    text-align: center !important;
+                }
+                div[style*="max-width: 800px"] p {
+                    margin-bottom: 1.25rem !important;
+                }
+            }
+            .subtitle-movement {
+                font-family: 'DM Sans', sans-serif;
+                font-weight: 700;
+                color: #000;
+                text-align: center;
+                margin-bottom: 4rem;
+                line-height: 1.7;
+                font-size: 1.35rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+                word-break: break-word;
+            }
+            @media (max-width: 900px) {
                 .subtitle-movement {
-                    font-family: 'DM Sans', sans-serif;
-                    font-weight: 700;
-                    color: #000;
-                    text-align: center;
-                    margin-bottom: 4rem;
-                    line-height: 1.7;
-                    font-size: 1.35rem;
-                    max-width: 600px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    word-break: break-word;
+                    font-size: 1.2rem !important;
+                    margin: 0.5rem auto 2rem auto !important;
+                    padding: 0 1rem;
+                    max-width: 95vw;
                 }
-                @media (max-width: 900px) {
-                    .subtitle-movement {
-                        font-size: 1.2rem !important;
-                        margin: 0.5rem auto 2rem auto !important;
-                        padding: 0 1rem;
-                        max-width: 95vw;
-                    }
+            }
+            @media (max-width: 600px) {
+                .subtitle-movement {
+                    font-size: 1.05rem !important;
+                    margin: 0.5rem auto 1.2rem auto !important;
+                    padding: 0 0.5rem;
+                    max-width: 99vw;
                 }
-                @media (max-width: 600px) {
-                    .subtitle-movement {
-                        font-size: 1.05rem !important;
-                        margin: 0.5rem auto 1.2rem auto !important;
-                        padding: 0 0.5rem;
-                        max-width: 99vw;
-                    }
-                }
-            </style>
+            }
+        </style>
             
             <script>
             // Mobile carousel functionality
@@ -1507,11 +1327,11 @@
             </script>
         </section>
 
-        <section class="manifesto-section" style="background-color: #fffcf1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 1.5rem 1rem 4.5rem 1rem; min-height: 60vh; margin-bottom: 0;">
+        <section class="manifesto-section" style="background-color: #fffcf1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 1.5rem 1rem 2rem 1rem; min-height: 60vh; margin-bottom: 0;">
             <style>
                 @media (max-width: 600px) {
                     .manifesto-section {
-                        padding: 1.5rem 0.5rem 4.5rem 0.5rem !important;
+                        padding: 0.5rem 0.5rem 1rem 0.5rem !important;
                     }
                     .movement-letter-container {
                         max-width: 95vw !important;
@@ -1551,123 +1371,47 @@
                     <p>This is the movement.<br class="mobile-break"> This is Heart Matters.</p>
                 </div>
             </div>
-            <!-- Red downward arrow cue -->
-            <a href="#healing-loop" class="manifesto-down-arrow" style="display: flex; justify-content: center; align-items: center; margin: 0.3rem 0; cursor: pointer; width: 100%;">
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 22L28 36L42 22" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+
         </section>
 
         <!-- Healing Is a Shared Experience Section -->
         <section id="healing-loop" class="shared-healing-section">
             <div class="shared-healing-content">
                 <div class="shared-healing-text">
-                    <h2 class="shared-healing-title">THE HEALING LOOP</h2>
-                    <p class="shared-healing-subtitle">A cycle that connects us all.</p>
+                    <h2 class="shared-healing-title">The Path Back to You</h2>
+                    <p class="shared-healing-subtitle">Every step is a return to who<br class="mobile-break"> we really are.</p>
                     <div class="shared-healing-body">
                     </div>
                 </div>
-                <div class="healing-cycle-container">
-                    <div class="healing-cycle">
-                        <div class="cycle-center">
-                            <div class="cycle-heart">
-                                <svg viewBox="0 0 8 7" width="80" height="70" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                                    <rect x="1" y="1" width="2" height="1" fill="#ca0013"/>
-                                    <rect x="5" y="1" width="2" height="1" fill="#ca0013"/>
-                                    <rect x="0" y="2" width="4" height="1" fill="#ca0013"/>
-                                    <rect x="4" y="2" width="4" height="1" fill="#ca0013"/>
-                                    <rect x="0" y="3" width="8" height="1" fill="#ca0013"/>
-                                    <rect x="1" y="4" width="6" height="1" fill="#ca0013"/>
-                                    <rect x="2" y="5" width="4" height="1" fill="#ca0013"/>
-                                    <rect x="3" y="6" width="2" height="1" fill="#ca0013"/>
-                                </svg>
-                            </div>
+                <div class="healing-steps-container">
+                    <div class="healing-steps-row">
+                        <div class="healing-step-bubble">
+                            <div class="step-title">FEEL</div>
+                            <div class="step-description">The pain. The story. The truth</div>
                         </div>
-                        <div class="cycle-item" data-step="feel" style="--angle: 0deg">
-                            <div class="cycle-circle">
-                                <div class="cycle-text">
-                                    <span class="cycle-word">FEEL</span>
-                                    <span class="cycle-description">The pain. The story. The truth</span>
-                                </div>
-                            </div>
+                        <div class="healing-step-bubble">
+                            <div class="step-title">EXPRESS</div>
+                            <div class="step-description">Through words, art, action, movement</div>
                         </div>
-                        <div class="cycle-item" data-step="express" style="--angle: 72deg">
-                            <div class="cycle-circle">
-                                <div class="cycle-text">
-                                    <span class="cycle-word">EXPRESS</span>
-                                    <span class="cycle-description">Through words, art, action</span>
-                                </div>
-                            </div>
+                        <div class="healing-step-bubble">
+                            <div class="step-title">RELEASE</div>
+                            <div class="step-description">Let it out. Let it go.<br class="desktop-break"> Be free</div>
                         </div>
-                        <div class="cycle-item" data-step="release" style="--angle: 144deg">
-                            <div class="cycle-circle">
-                                <div class="cycle-text">
-                                    <span class="cycle-word">RELEASE</span>
-                                    <span class="cycle-description">Let it out.<br>Let it go</span>
-                                </div>
-                            </div>
+                        <div class="healing-step-bubble">
+                            <div class="step-title">HEAL</div>
+                            <div class="step-description">Be seen. Be supported. Begin Again</div>
                         </div>
-                        <div class="cycle-item" data-step="heal" style="--angle: 216deg">
-                            <div class="cycle-circle">
-                                <div class="cycle-text">
-                                    <span class="cycle-word">HEAL</span>
-                                    <span class="cycle-description">Be seen.<br>Be supported</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cycle-item" data-step="love" style="--angle: 288deg">
-                            <div class="cycle-circle">
-                                <div class="cycle-text">
-                                    <span class="cycle-word">LOVE</span>
-                                    <span class="cycle-description">Yourself. Reflect it outward</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cycle-arrow" style="--angle: 36deg">
-                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(45deg);">
-                                <path d="M5 15h20"/>
-                                <path d="m15 5 10 10-10 10"/>
-                            </svg>
-                        </div>
-                        <div class="cycle-arrow" style="--angle: 108deg">
-                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(115deg);">
-                                <path d="M5 15h20"/>
-                                <path d="m15 5 10 10-10 10"/>
-                            </svg>
-                        </div>
-                        <div class="cycle-arrow" style="--angle: 180deg">
-                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(195deg);">
-                                <path d="M5 15h20"/>
-                                <path d="m15 5 10 10-10 10"/>
-                            </svg>
-                        </div>
-                        <div class="cycle-arrow" style="--angle: 252deg">
-                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(265deg);">
-                                <path d="M5 15h20"/>
-                                <path d="m15 5 10 10-10 10"/>
-                            </svg>
-                        </div>
-                        <div class="cycle-arrow" style="--angle: 324deg">
-                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(335deg);">
-                                <path d="M5 15h20"/>
-                                <path d="m15 5 10 10-10 10"/>
-                            </svg>
+                        <div class="healing-step-bubble">
+                            <div class="step-title">LOVE</div>
+                            <div class="step-description">Yourself. Reflect it outward</div>
                         </div>
                     </div>
                 </div>
-                <div class="cycle-kindness-text">
-                    <p class="cycle-kindness-subtitle" style="font-family: 'Caveat', cursive; font-size: 1.8rem; font-weight: 400; color: #ca0013; line-height: 1.4; margin: 0; font-style: italic; letter-spacing: 0.5px;">Be kind. Everyone is healing<br class="mobile-break"> from something.</p>
-                </div>
+
             </div>
         </section>
 
-        <!-- Down Arrow -->
-        <div class="section-arrow">
-            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#ca0013" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 22L28 36L42 22"/>
-            </svg>
-        </div>
+
 
         <!-- Help Us Heal One Million Hearts Section -->
         <section class="million-hearts-section">
@@ -1698,8 +1442,14 @@
         /* Million Hearts Section Styles */
         .million-hearts-section {
             background: #fffcf1;
-            padding: 2rem 0 4rem 0;
+            padding: 0.125rem 0 3rem 0;
             width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .million-hearts-section {
+                padding: 0.125rem 0 2rem 0;
+            }
         }
         
         .million-hearts-content {
@@ -1714,7 +1464,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0.5rem 0;
+            padding: 0.2rem 0;
             background: #fffcf1;
         }
         
@@ -1762,6 +1512,7 @@
             align-items: center;
             gap: 1rem;
             margin-top: 2rem;
+            margin-bottom: 2rem;
                 }
         
         .metric-bubble {
@@ -2236,7 +1987,7 @@
               <span class="headline-line1">YOU'RE IN.</span>
               <span class="headline-line2">You're healing in public.</span>
             </h1>
-            <div class="confirmation-secondary desktop-single-line" style="font-style: italic; margin-top: 0.3rem;">You change lives just by being<br class="mobile-break"> who you are.</div>
+            <div class="confirmation-secondary desktop-single-line" style="font-style: normal; margin-top: 0.3rem;">You change lives just by being<br class="mobile-break"> who you are.</div>
             <p style="color: #fffcf1; font-size: 1.35rem; font-family: 'DM Sans', sans-serif; font-weight: 500; line-height: 1.5; margin: 0.5rem 0 0 0;">Check your inbox.</p>
           </div>
         `;

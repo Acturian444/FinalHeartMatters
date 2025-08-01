@@ -22,23 +22,25 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
         firebase.auth().signInAnonymously()
             .then(() => {
-                console.log('Signed in anonymously with Firebase Auth');
+                if (window.DEBUG_MODE) console.log('Signed in anonymously with Firebase Auth');
             })
             .catch((error) => {
                 console.error('Anonymous sign-in error:', error);
                 // Retry authentication after a delay
                 setTimeout(() => {
                     firebase.auth().signInAnonymously()
-                        .then(() => console.log('Retry: Signed in anonymously'))
+                        .then(() => {
+                    if (window.DEBUG_MODE) console.log('Retry: Signed in anonymously');
+                })
                         .catch((retryError) => console.error('Retry failed:', retryError));
                 }, 2000);
             });
     } else {
-        console.log('Firebase Auth user ID:', user.uid);
+        if (window.DEBUG_MODE) console.log('Firebase Auth user ID:', user.uid);
         window.firebaseUserId = user.uid;
         
         // Verify authentication is working
-        console.log('Authentication verified:', {
+        if (window.DEBUG_MODE) console.log('Authentication verified:', {
             uid: user.uid,
             isAnonymous: user.isAnonymous,
             emailVerified: user.emailVerified

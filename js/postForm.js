@@ -28,6 +28,7 @@ class PostForm {
         // Prompt bank for all packs
         this.promptBank = {
             starter: [
+                "Tell your story. Your secret. Your truth.",
                 "What's on your heart today?",
                 "What's something you've never said out loud until now?",
                 "What did you need, but never received?",
@@ -116,7 +117,7 @@ class PostForm {
         textareaWrapper.className = 'textarea-wrapper';
         
         const textarea = document.createElement('textarea');
-        textarea.placeholder = 'Let it out here…';
+        textarea.placeholder = 'Let it out anonymously…';
         textarea.maxLength = 500;
         textarea.required = true;
         
@@ -213,7 +214,7 @@ class PostForm {
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            Add Feeling
+            Tag a feeling
         `;
         emotionBtn.onclick = () => {
             this.openEmotionModal();
@@ -426,10 +427,7 @@ class PostForm {
             return;
         }
 
-        if (this.selectedEmotions.length === 0) {
-            window.LetItOutUtils.showError('Please select at least one emotion before posting.');
-            return;
-        }
+        // Emotion tags are now optional - no validation needed
 
         const submitButton = this.form.querySelector('.letitout-submit-btn');
         if (submitButton) {
@@ -765,7 +763,7 @@ class PostForm {
             }
 
             // Debug logging
-            console.log('showRepliesView debug:', {
+            if (window.DEBUG_MODE) console.log('showRepliesView debug:', {
                 LetItOutUtils: window.LetItOutUtils,
                 hasGetFreeUnlockedPosts: typeof window.LetItOutUtils.getFreeUnlockedPosts,
                 hasGetPaidUnlockedPosts: typeof window.LetItOutUtils.getPaidUnlockedPosts,
@@ -790,7 +788,7 @@ class PostForm {
             const isPaidUnlocked = paidUnlocked.includes(postId);
             const freeUnlocksLeft = window.LetItOutUtils.getFreeUnlocksLeft();
 
-            console.log('Unlock logic debug:', {
+            if (window.DEBUG_MODE) console.log('Unlock logic debug:', {
                 postId,
                 freeUnlocked,
                 paidUnlocked,
@@ -802,19 +800,19 @@ class PostForm {
 
             // MVP Mode: Skip unlock checks if MVP mode is enabled
             if (window.MVP_CONFIG && window.MVP_CONFIG.FREE_POST_UNLOCKS) {
-                console.log('MVP Mode: Skipping unlock checks, showing replies immediately');
+                if (window.DEBUG_MODE) console.log('MVP Mode: Skipping unlock checks, showing replies immediately');
                 // Continue to show replies without any unlock logic
             } else {
                 // Check unlock status (original logic)
             if (isFreeUnlocked || isPaidUnlocked) {
-                console.log('Post already unlocked, continuing...');
+                if (window.DEBUG_MODE) console.log('Post already unlocked, continuing...');
                 // Already unlocked, continue to show replies
             } else if (freeUnlocked.length < 3) {
-                console.log('Adding free unlock for post:', postId);
+                if (window.DEBUG_MODE) console.log('Adding free unlock for post:', postId);
                 window.LetItOutUtils.addFreeUnlockedPost(postId);
                 this.showFreeUnlockBanner(2 - freeUnlocked.length);
             } else {
-                console.log('Showing paywall for post:', postId);
+                if (window.DEBUG_MODE) console.log('Showing paywall for post:', postId);
                 this.showPaywallModal(postId);
                 return;
                 }
@@ -1088,7 +1086,7 @@ class PostForm {
                             this.selectedEmotions.push(emotion);
                         }
                         this.updateSelectedTags();
-                        doneBtn.disabled = this.selectedEmotions.length === 0;
+                        doneBtn.disabled = false; // Emotions are now optional
                         // Re-render to update selected state
                         renderEmotions(searchInput.value);
                     };
@@ -1177,9 +1175,9 @@ class PostForm {
             this.selectedTagsDisplay.appendChild(tag);
         });
 
-        // Update error message
+        // Update error message - emotions are now optional
         if (this.selectedEmotions.length === 0) {
-            this.emotionError.textContent = 'Please select at least one feeling';
+            this.emotionError.textContent = 'Tag a feeling to help others feel it too.';
             this.emotionError.style.display = 'block';
         } else {
             this.emotionError.style.display = 'none';

@@ -121,8 +121,11 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap&font-display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    </noscript>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     
@@ -130,8 +133,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="../style.css?v=2">
-    <link rel="stylesheet" href="shop.css?v=2">
+    <link rel="stylesheet" href="../style.css?v=3">
+    <link rel="stylesheet" href="shop.css?v=3">
 </head>
 <body>
     <header>
@@ -154,7 +157,7 @@
                         <a href="index.html" class="nav-dropdown-trigger active">SHOP</a>
                         <ul class="nav-dropdown-menu">
                             <li><a href="index.html">STILL HEALING COLLECTION</a></li>
-                            <li><a href="../product/breakup-course.html" id="desktopBreakupResetLink">The Breakup Reset</a></li>
+                            <li><a href="../product/breakup-course.html" id="desktopBreakupResetLink">THE BREAKUP RESET</a></li>
                             <li id="myCourseLink" style="display: none;"><a href="../course/breakup-course.html" id="desktopContinueBreakupResetLink">CONTINUE THE BREAKUP RESET</a></li>
                         </ul>
                     </li>
@@ -201,6 +204,79 @@
             <div class="waitlist-container" id="waitlistContainer">
                 <button class="btn-ghost" id="joinSmsBtn">GET EARLY ACCESS</button>
             </div>
+            
+            <!-- Crafted with Heart Section -->
+            <section class="healing-purpose-section">
+                <div class="healing-purpose-content">
+                    <div class="healing-purpose-text">
+                        <h2 class="healing-purpose-title">Crafted with Heart</h2>
+                        <p class="healing-purpose-subtitle">Limited-Edition Drops for the Healing Journey.</p>
+                        <p class="healing-purpose-body">Each piece is co-created with makers. From Indigenous artisans to survivors and storytellers, they use their craft to heal and rebuild. Our limited drops offer wearables, symbols, and emotional tools made with care and purpose. They're made to support your healing journey while honoring someone else's.</p>
+                        <div class="healing-purpose-buttons">
+                            <a href="../makers.html" class="btn btn-healing-primary">Meet the Makers</a>
+                            <button class="btn btn-healing-secondary" onclick="showWaitlistModal()">Join the Waitlist</button>
+                        </div>
+                        <div class="create-with-us-link">
+                            <span class="create-with-us-question">Want to Create With Us?</span>
+                            <a href="https://tally.so/r/wbQkKL" target="_blank" rel="noopener noreferrer" class="create-with-us-text">Become a Maker</a>
+                        </div>
+                    </div>
+                    <div class="healing-purpose-image">
+                        <img src="../images/healing-impact-community.jpg" alt="Healing with purpose - supporting creators and communities" loading="lazy">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real Impact Section -->
+            <section class="real-impact-section">
+                <div class="real-impact-content">
+                    <h2 class="real-impact-title">Each Drop Creates<span class="mobile-break-title"><br></span> Real Impact</h2>
+                    <p class="real-impact-subtitle">Every piece is more than a product. It's a ritual. A reminder. A symbol.</p>
+                    
+                    <div class="impact-steps">
+                        <div class="impact-step">
+                            <div class="step-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fffcf1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <circle cx="12" cy="12" r="6"/>
+                                    <circle cx="12" cy="12" r="2"/>
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h3 class="step-title">Made With Intention</h3>
+                                <p class="step-description">Drops are curated collection of limited pieces. Crafted with meaning. Infused with story & soul.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="impact-step">
+                            <div class="step-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fffcf1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h3 class="step-title">CHOSEN WITH PURPOSE</h3>
+                                <p class="step-description">Each piece is a symbol of healing. It's felt by the one who made it and carried by the one who wears it.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="impact-step">
+                            <div class="step-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fffcf1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h3 class="step-title">The Impact Ripples</h3>
+                                <p class="step-description">The piece you choose supports healing. It carries a story and helps others feel seen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             
             <!-- Slide-up Modal -->
             <div class="waitlist-modal" id="waitlistModal">

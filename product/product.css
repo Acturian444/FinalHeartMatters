@@ -42,7 +42,7 @@
 
 .product-scrolling-quote {
     font-size: 1.6rem;
-    font-family: 'Anton', 'Anton-Local', sans-serif;
+    font-family: 'Anton-Local', 'Anton', sans-serif;
     font-weight: 400;
     margin: 0 1.2rem;
     white-space: nowrap;
@@ -991,8 +991,12 @@
     .story-content h2,
     .course-modules h2,
     .cta-content h2,
-    .product-features h2 {
-        font-size: 1.75rem;
+    .product-features h2,
+    .for-you-title,
+    .transformation-title,
+    .product-details h2,
+    .product-story h2 {
+        font-size: 1.75rem !important;
     }
     
     .features-grid,
@@ -1058,12 +1062,16 @@
         padding: 6rem 0 2rem 0; /* Increased top padding for better separation */
     }
     
+    .story-content h2 {
+        font-size: 1.75rem !important;
+    }
+    
     .testimonial-author {
         font-size: 1rem;
     }
     
     .transformation-title {
-        font-size: 2rem;
+        font-size: 1.75rem !important;
     }
     
     .cta-subtitle {
@@ -1514,7 +1522,7 @@
 
 @media (max-width: 600px) {
       .transformation-title {
-        font-size: 1.75rem;
+        font-size: 1.75rem !important;
     }
     
     .transformation-section {
@@ -1656,8 +1664,17 @@
     }
     
     .for-you-title {
-        font-size: 2rem;
+        font-size: 1.75rem !important;
         margin-bottom: 0.5rem;
+    }
+    
+    /* Force override for specific titles */
+    .for-you-section .for-you-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .transformation-section .transformation-title {
+        font-size: 1.75rem !important;
     }
     
     .for-you-subtitle {
@@ -1688,7 +1705,7 @@
     }
     
     .transformation-title {
-        font-size: 2rem;
+        font-size: 1.75rem !important;
     }
 }
 
@@ -1967,4 +1984,17 @@ main {
   }
 }
 
-/* Mobile: 1 column (already handled) */ 
+/* Mobile: 1 column (already handled) */
+
+/* FINAL OVERRIDE: Force mobile font sizes for specific titles */
+@media (max-width: 600px) {
+    .for-you-title,
+    .transformation-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .for-you-section .for-you-title,
+    .transformation-section .transformation-title {
+        font-size: 1.75rem !important;
+    }
+} 
