@@ -190,8 +190,6 @@ class PostService {
 
     async addReply(postId, reply) {
         try {
-            console.log('addReply called with postId:', postId, 'reply:', reply);
-            
             const userReply = await this.getUserReply(postId);
             if (userReply) {
                 throw new Error('You have already replied to this post');
@@ -204,28 +202,17 @@ class PostService {
                 read: false
             };
 
-            console.log('Processed replyData:', replyData);
-
             if (!replyData.content) {
                 throw new Error('Reply content is empty.');
             }
-
-            console.log('About to update Firestore document:', postId);
-            console.log('Update data:', { replies: firebase.firestore.FieldValue.arrayUnion(replyData) });
 
             await this.collection.doc(postId).update({
                 replies: firebase.firestore.FieldValue.arrayUnion(replyData)
             });
 
-            console.log('Firestore update successful');
             return replyData;
         } catch (error) {
             console.error('Error adding reply:', error);
-            console.error('Error details:', {
-                message: error.message,
-                code: error.code,
-                stack: error.stack
-            });
             throw error;
         }
     }
