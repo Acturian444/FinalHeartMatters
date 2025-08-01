@@ -682,7 +682,8 @@ class WallFeed {
             const searchTerm = this.currentSearch.toLowerCase();
             filteredPosts = filteredPosts.filter(post => 
                 post.content.toLowerCase().includes(searchTerm) ||
-                (post.emotion && post.emotion.toLowerCase().includes(searchTerm))
+                (post.emotion && post.emotion.toLowerCase().includes(searchTerm)) ||
+                (post.truthNumber && post.truthNumber.toString().includes(searchTerm.replace(/[^\d]/g, ''))) // Search Truth numbers
             );
         }
         

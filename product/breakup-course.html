@@ -157,9 +157,9 @@
     
     <!-- Preload Critical Resources -->
     <link rel="preload" href="../images/Breakup Recovery Course.jpg" as="image">
-    <link rel="preload" href="../style.css?v=2" as="style">
-    <link rel="preload" href="../shop/shop.css?v=1" as="style">
-    <link rel="preload" href="product.css?v=2" as="style">
+    <link rel="preload" href="../style.css?v=7" as="style">
+    <link rel="preload" href="../shop/shop.css?v=2" as="style">
+    <link rel="preload" href="product.css?v=7" as="style">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -168,9 +168,9 @@
     <script src="https://js.stripe.com/v3/"></script>
     
     <!-- Styles -->
-    <link rel="stylesheet" href="../style.css?v=2">
-    <link rel="stylesheet" href="../shop/shop.css?v=1">
-    <link rel="stylesheet" href="product.css?v=2">
+    <link rel="stylesheet" href="../style.css?v=7">
+    <link rel="stylesheet" href="../shop/shop.css?v=2">
+    <link rel="stylesheet" href="product.css?v=7">
     
     <style>
         /* Toast Notification Styles */
@@ -412,6 +412,13 @@
 
     <!-- Menu Overlay (moved outside header for proper banner coverage) -->
     <div class="menu-overlay" id="menuOverlay">
+        <button class="close-btn" onclick="closeMenu()" aria-label="Close menu" style="position: absolute; top: 1rem; left: 1rem; font-size: 2.5rem; color: #000000; background: none; border: none; cursor: pointer; display: block !important; z-index: 1202;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <rect y="6" width="28" height="2.5" rx="1.25" fill="currentColor"/>
+                <rect y="13" width="28" height="2.5" rx="1.25" fill="currentColor"/>
+                <rect y="20" width="28" height="2.5" rx="1.25" fill="currentColor"/>
+            </svg>
+        </button>
         <nav>
             <a href="../shop/index.html">SHOP</a>
             <a href="../letitout.html">LET IT OUT</a>
@@ -885,6 +892,10 @@
         // Mobile menu functionality
         function openMenu() {
             document.getElementById('menuOverlay').classList.add('open');
+        }
+
+        function closeMenu() {
+            document.getElementById('menuOverlay').classList.remove('open');
         }
 
         // Close menu when clicking outside
