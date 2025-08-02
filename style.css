@@ -1512,6 +1512,15 @@ footer {
     z-index: 1202;
 }
 
+/* Ensure hamburger positioning works in menu overlay */
+.menu-overlay .close-btn.hamburger {
+    position: absolute;
+    left: 1.2rem;
+    top: 1rem;
+    z-index: 1202;
+    padding: 0.75rem;
+}
+
 /* Hide the old, stray close button from the header */
 .nav-centered > .close-btn {
     display: none !important;

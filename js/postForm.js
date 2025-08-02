@@ -32,15 +32,15 @@ class PostForm {
                 "What's on your heart today?",
                 "What's something you've never said out loud until now?",
                 "What did you need, but never received?",
-                "What emotion do you suppress the most and why?",
+                "What feeling do you hide from the world?",
                 "What boundary did someone cross that changed you?",
                 "What story have you never told until now?",
                 "What do you need to release before it consumes you?",
                 "What's something you wish you could erase from your past?",
-                "What memory do you keep revisiting?",
+                "What memory haunts you when you're alone?",
                 "What old version of yourself are you ready to leave behind?",
-                "What would your younger self say to you today?",
-                "What guilt have you never forgiven yourself for?",
+                "What would you say to your younger self?",
+                "What guilt still weighs on you?",
                 "What do you carry that no one sees?",
                 "What's the truth you're afraid to admit?",
                 "What do you wish someone had said to you when you needed it?",
@@ -460,8 +460,8 @@ class PostForm {
                 submitButton.disabled = false;
             }
 
-            // Show confirmation modal and redirect to wall
-            this.showConfirmationAndRedirect(newPostId);
+            // Show confirmation modal and redirect to wall with Truth number
+            this.showConfirmationAndRedirect(newPostId, post.truthNumber);
         } catch (error) {
             window.LetItOutUtils.showError('Error posting. Please try again.');
             if (submitButton) {
@@ -471,8 +471,8 @@ class PostForm {
         }
     }
 
-    showConfirmationAndRedirect(newPostId) {
-        this.showConfirmationModal();
+    showConfirmationAndRedirect(newPostId, truthNumber) {
+        this.showConfirmationModal(truthNumber);
         setTimeout(() => {
             this.hideConfirmationModal();
             // Redirect to Let It Out wall page with post highlight
@@ -480,16 +480,20 @@ class PostForm {
         }, 1500);
     }
 
-    showConfirmationModal() {
+    showConfirmationModal(truthNumber) {
         // Remove any existing overlay
         this.hideConfirmationModal();
         const overlay = document.createElement('div');
         overlay.className = 'letitout-confirmation-overlay';
+        
+        // Create the confirmation message with Truth number if available
+        const truthLine = truthNumber ? `Truth #${truthNumber} is on the wall.` : 'Your truth is on the wall.';
+        
         overlay.innerHTML = `
           <div class="letitout-confirmation-modal">
             <div class="letitout-confirmation-text">
               <span class="confirmation-title">You let it out.</span>
-              <span class="confirmation-line">Your truth is on the wall.</span>
+              <span class="confirmation-line">${truthLine}</span>
               <span class="confirmation-line">You're not alone here.</span>
             </div>
           </div>
@@ -618,14 +622,26 @@ class PostForm {
                 replyLine = `<div class="${replyLineClass}"><button class="view-messages-btn" data-post-id="${post.id}" disabled style="opacity:0.6;cursor:not-allowed;">No replies yet</button></div>`;
             }
             
-            // Format timestamp
+            // Format timestamp with Truth number
             let date;
             if (post.timestamp && typeof post.timestamp.toDate === 'function') {
                 date = post.timestamp.toDate();
             } else {
                 date = new Date(post.timestamp);
             }
-            const timestamp = !isNaN(date) ? date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+            const formattedDate = !isNaN(date) ? date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '';
+            
+            // Add Truth number to timestamp if available
+            let timestamp;
+            if (post.truthNumber) {
+                // Extract just the date part (before the time)
+                // Handle format like "Aug 2, 2025, 10:15 AM" -> get "Aug 2, 2025"
+                const parts = formattedDate.split(',');
+                const dateOnly = parts.length >= 2 ? `${parts[0]},${parts[1]}` : formattedDate;
+                timestamp = `${dateOnly} · Truth #${post.truthNumber}`;
+            } else {
+                timestamp = formattedDate;
+            }
             
             // Render emotion tags if present, using WallFeed markup
             let emotionsHtml = '';
