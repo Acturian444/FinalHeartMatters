@@ -541,7 +541,7 @@ a[href*="tally.so"]:active .envelope-anim {
             <div class="content section-body" style="position: relative; z-index: 2; max-width: 700px; margin: 0 auto; padding-top: 1.5rem; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 1.35rem; color: #222; font-weight: 700; line-height: 1.7; padding: 0 1rem;">
                 <h2 class="section-heading" style="margin-top: 0; font-size: 2.5rem; color: #ca0013; text-align: center; margin-bottom: 2rem; line-height: 1;">The Confessional Mailbox</h2>
                 <div id="mailbox-text" style="text-align: center; margin-bottom: 2.5rem;">
-                    Real stories. Raw truths. No judgment. <span style="color: #ca0013;">Submit your secret, experiences, or your confession</span> to be featured on The Heart Room Live Show. Stay anonymous or speak your truth in your own words. No name, no pressure. Just truth.<br class="desktop-break"> Let it out and feel a little lighter.
+                    Real stories. Raw truths. No judgment. <span style="color: #ca0013;">Share your secret, experience, or confession</span> to be featured on The Heart Room Show. Stay anonymous, or speak your truth in your own words — no name, no pressure, just honesty.
                 </div>
                                 <!-- Begin mailbox visual and CTA overlap -->
                 <a href="https://tally.so/r/mVypp6" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none; width: 100%; max-width: 400px; margin: 0 auto 2.5rem auto;">
@@ -563,6 +563,12 @@ a[href*="tally.so"]:active .envelope-anim {
                         .mailbox-slot-btn {
                             font-size: 0.75rem !important;
                         }
+                        .mobile-break {
+                            display: inline !important;
+                        }
+                        .desktop-break {
+                            display: none !important;
+                        }
                     }
                     @media (min-width: 601px) {
                         .mobile-only {
@@ -571,13 +577,19 @@ a[href*="tally.so"]:active .envelope-anim {
                         .mailbox-visual-cta img {
                             max-width: 400px !important;
                         }
+                        .mobile-break {
+                            display: none !important;
+                        }
+                        .desktop-break {
+                            display: inline !important;
+                        }
                     }
                 </style>
             </div>
         </section>
 
         <section id="join" style="text-align: center; width: 100vw; min-width: 320px; min-height: 400px; max-width: 100vw; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 3rem 0 1rem 0; background-color: #fffcf1;">
-            <h2 class="section-heading" style="margin-top: 0; color: #ca0013;">Not ready for the show? Let it out.</h2>
+            <h2 class="section-heading" style="margin-top: 0; color: #ca0013;">Not ready for the show?<span class="mobile-break" style="display: none;"> Let it out.</span><span class="desktop-break"> Let it out.</span></h2>
             <p class="section-body" style="font-family: 'DM Sans', sans-serif; font-size: 1.35rem; color: #222; font-weight: 700; margin: 0.5rem 0 2.5rem 0; line-height: 1.7; max-width: 700px;">
                 You don't have to be in The Heart Room to be heard. If you're carrying something heavy, but you're not ready to speak it out loud, start here. Share your truth anonymously on the public wall. No names. No spotlight. Just a safe release.
             </p>

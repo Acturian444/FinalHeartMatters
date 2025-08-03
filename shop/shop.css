@@ -349,14 +349,14 @@ header {
     }
     .pre-drop-content {
         padding: 0;
-        padding-top: 15vh; /* Increased padding for bigger hero section */
+        padding-top: 18vh; /* Increased padding for bigger hero section on mobile */
         gap: 2rem; /* Increased gap for better spacing */
-        padding-bottom: 5rem; /* Increased bottom padding for more height */
-        min-height: 80vh; /* Ensure minimum height for hero section */
+        padding-bottom: 6rem; /* Increased bottom padding for more height on mobile */
+        min-height: 85vh; /* Increased minimum height for hero section on mobile */
     }
     
     .pre-drop-logo {
-        margin-bottom: 1.5rem; /* Reduced spacing between logo and countdown */
+        margin-bottom: 0.5rem; /* Much tighter spacing between logo and countdown for mobile */
         margin-top: -4vh; /* Moved logo higher in the section */
     }
     
@@ -377,11 +377,11 @@ header {
     }
     
     .countdown-number {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
     
     .countdown-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
     
     .countdown-divider {
@@ -1279,7 +1279,7 @@ main, footer {
 /* Real Impact Section Styles */
 .real-impact-section {
     background: transparent;
-    padding: 2rem 0 0 0;
+    padding: 2rem 0 6rem 0;
     width: 100vw;
 }
 
@@ -1468,7 +1468,7 @@ main, footer {
     }
     
     .real-impact-section {
-        padding: 0.5rem 0 0 0;
+        padding: 0.5rem 0 4rem 0;
     }
     
     .real-impact-title {
