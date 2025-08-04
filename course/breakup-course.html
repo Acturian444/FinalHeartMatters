@@ -224,8 +224,35 @@
             }
         }
         
+        // Handle URL parameters for course unlock
+        function handleUrlParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const unlocked = urlParams.get('unlocked');
+            
+            if (unlocked === 'true') {
+                // Unlock the course
+                localStorage.setItem('courseUnlocked_breakup', 'true');
+                
+                // Show success message
+                showToast('🎉 Payment successful! Your course is now unlocked.', 8000);
+                
+                // Track purchase event
+                trackCourseEvent('course_purchase_success', {
+                    course_name: 'The Breakup Reset',
+                    payment_method: 'stripe'
+                });
+                
+                // Clean up URL (remove the parameter)
+                const newUrl = window.location.pathname;
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        }
+        
         // Update navigation on page load
-        document.addEventListener('DOMContentLoaded', updateNavigation);
+        document.addEventListener('DOMContentLoaded', function() {
+            handleUrlParameters();
+            updateNavigation();
+        });
 
 
 
