@@ -6,9 +6,6 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Serve static files from the root directory
-app.use(express.static('./'));
-
 // Add CORS headers for Vercel
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
