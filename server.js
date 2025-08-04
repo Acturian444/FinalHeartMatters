@@ -68,12 +68,5 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
-// Start server
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    if (!process.env.STRIPE_SECRET_KEY) {
-        console.warn('⚠️  Warning: STRIPE_SECRET_KEY not set. Please set it as an environment variable.');
-    }
-}); // Pre-deployment review: Heart Matters production server
-// Production-ready Stripe integration with live keys
+// Export the Express app for Vercel serverless deployment
+module.exports = app;
