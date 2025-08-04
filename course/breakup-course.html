@@ -261,8 +261,8 @@
         }
         
         // Update navigation on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            handleUrlParameters();
+        document.addEventListener('DOMContentLoaded', async function() {
+            await handleUrlParameters();
             updateNavigation();
         });
 

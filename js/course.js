@@ -593,8 +593,11 @@
   window.saveJournalEntry = saveJournalEntry;
 
   // --- 9. Main init ---
-  function init() {
+  async function init() {
     checkUnlockFromQuery();
+    
+    // Wait a moment for any async verification to complete
+    await new Promise(resolve => setTimeout(resolve, 100));
     
     if (!isCourseUnlocked()) {
       showLockedMessage();
@@ -640,5 +643,5 @@
   }
 
   // --- 10. Run on DOMContentLoaded ---
-  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('DOMContentLoaded', () => init());
 })(); 
