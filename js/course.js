@@ -17,13 +17,38 @@
   };
 
   // --- 1. Unlock logic from query string ---
-  function checkUnlockFromQuery() {
+  async function checkUnlockFromQuery() {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('unlocked') === 'true') {
+    const sessionId = params.get('session');
+    
+    if (sessionId) {
+      try {
+        const response = await fetch(`/api/verify-checkout?session=${encodeURIComponent(sessionId)}`);
+        const result = await response.json();
+        
+        if (result.verified) {
+          localStorage.setItem(UNLOCK_KEY, 'true');
+          // Remove query param from URL for cleanliness
+          window.history.replaceState({}, document.title, window.location.pathname);
+          
+          // Show success message
+          if (typeof showToast === 'function') {
+            showToast('🎉 Payment verified! Your course is now unlocked.', 8000);
+          }
+          
+          return true;
+        }
+      } catch (error) {
+        console.error('Payment verification failed:', error);
+      }
+    } else if (params.get('unlocked') === 'true') {
+      // Legacy support for old unlock method
       localStorage.setItem(UNLOCK_KEY, 'true');
-      // Remove query param from URL for cleanliness
       window.history.replaceState({}, document.title, window.location.pathname);
+      return true;
     }
+    
+    return false;
   }
 
   // --- 2. Access control ---
@@ -594,10 +619,7 @@
 
   // --- 9. Main init ---
   async function init() {
-    checkUnlockFromQuery();
-    
-    // Wait a moment for any async verification to complete
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await checkUnlockFromQuery();
     
     if (!isCourseUnlocked()) {
       showLockedMessage();
@@ -643,5 +665,5 @@
   }
 
   // --- 10. Run on DOMContentLoaded ---
-  document.addEventListener('DOMContentLoaded', () => init());
+  document.addEventListener('DOMContentLoaded', () => init().catch(console.error));
 })(); 
