@@ -29,6 +29,7 @@ app.post('/create-checkout-session', async (req, res) => {
             mode: 'payment',
             success_url: successUrl,
             cancel_url: cancelUrl,
+            allow_promotion_codes: true,
         };
 
         if (type === 'pack_purchase' && priceId) {
