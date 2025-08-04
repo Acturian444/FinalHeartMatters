@@ -224,27 +224,39 @@
             }
         }
         
-        // Handle URL parameters for course unlock
-        function handleUrlParameters() {
+        // Handle URL parameters for course unlock (SECURE)
+        async function handleUrlParameters() {
             const urlParams = new URLSearchParams(window.location.search);
-            const unlocked = urlParams.get('unlocked');
+            const sessionId = urlParams.get('session');
             
-            if (unlocked === 'true') {
-                // Unlock the course
-                localStorage.setItem('courseUnlocked_breakup', 'true');
+            if (!sessionId) return;
+            
+            try {
+                const response = await fetch(`/api/verify-checkout?session=${encodeURIComponent(sessionId)}`);
+                const result = await response.json();
                 
-                // Show success message
-                showToast('🎉 Payment successful! Your course is now unlocked.', 8000);
-                
-                // Track purchase event
-                trackCourseEvent('course_purchase_success', {
-                    course_name: 'The Breakup Reset',
-                    payment_method: 'stripe'
-                });
-                
-                // Clean up URL (remove the parameter)
-                const newUrl = window.location.pathname;
-                window.history.replaceState({}, document.title, newUrl);
+                if (result.verified) {
+                    // Unlock the course
+                    localStorage.setItem('courseUnlocked_breakup', 'true');
+                    
+                    // Show success message
+                    showToast('🎉 Payment verified! Your course is now unlocked.', 8000);
+                    
+                    // Track purchase event
+                    trackCourseEvent('course_purchase_success', {
+                        course_name: 'The Breakup Reset',
+                        payment_method: 'stripe'
+                    });
+                    
+                    // Clean up URL (remove the parameter)
+                    const newUrl = window.location.pathname;
+                    window.history.replaceState({}, document.title, newUrl);
+                } else {
+                    showToast('❌ Payment verification failed. Please contact support.', 5000);
+                }
+            } catch (error) {
+                console.error('Payment verification failed:', error);
+                showToast('❌ Payment verification failed. Please contact support.', 5000);
             }
         }
         

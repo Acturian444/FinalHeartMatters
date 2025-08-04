@@ -925,7 +925,7 @@
                     body: JSON.stringify({
                         type: 'course_purchase',
                         priceId: 'price_1RpkcDLWOdcyyqSffkzJQUf8',
-                        successUrl: window.location.origin + '/course/breakup-course.html?unlocked=true',
+                        successUrl: window.location.origin + '/course/breakup-course.html?session={CHECKOUT_SESSION_ID}',
                         cancelUrl: window.location.href,
                     }),
                 });

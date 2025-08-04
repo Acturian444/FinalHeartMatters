@@ -16,6 +16,10 @@
       "dest": "/server.js"
     },
     {
+      "src": "/api/verify-checkout",
+      "dest": "/server.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }

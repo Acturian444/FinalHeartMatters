@@ -65,5 +65,36 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
+// Verify checkout session endpoint (SECURE)
+app.get('/api/verify-checkout', async (req, res) => {
+    try {
+        const { session } = req.query;
+        
+        if (!session) {
+            return res.status(400).json({ error: 'Session ID required' });
+        }
+
+        // Retrieve the checkout session from Stripe
+        const checkoutSession = await stripe.checkout.sessions.retrieve(session);
+        
+        // Check if payment was successful
+        if (checkoutSession.payment_status === 'paid') {
+            res.json({ 
+                verified: true, 
+                course: 'breakup_reset',
+                message: 'Payment verified successfully' 
+            });
+        } else {
+            res.status(402).json({ 
+                verified: false, 
+                error: 'Payment not completed' 
+            });
+        }
+    } catch (error) {
+        console.error('Error verifying checkout session:', error);
+        res.status(500).json({ error: 'Failed to verify payment' });
+    }
+});
+
 // Export the Express app for Vercel serverless deployment
 module.exports = app;
