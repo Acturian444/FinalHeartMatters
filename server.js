@@ -9,6 +9,19 @@ app.use(express.json());
 // Serve static files from the root directory
 app.use(express.static('./'));
 
+// Add CORS headers for Vercel
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
+// Handle OPTIONS requests for CORS
+app.options('/create-checkout-session', (req, res) => {
+    res.status(200).end();
+});
+
 // Create checkout session endpoint
 app.post('/create-checkout-session', async (req, res) => {
     try {
