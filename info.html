@@ -1947,6 +1947,33 @@
         </style>
 
     <script>
+    // Update navigation to show course links when unlocked
+    function updateNavigation() {
+        const isUnlocked = localStorage.getItem('courseUnlocked_breakup') === 'true';
+        const myCourseLink = document.getElementById('myCourseLink');
+        const mobileCourseLink = document.getElementById('mobileCourseLink');
+        const mobileBreakupResetLink = document.getElementById('mobileBreakupResetLink');
+        const desktopBreakupResetLink = document.getElementById('desktopBreakupResetLink');
+        const desktopContinueBreakupResetLink = document.getElementById('desktopContinueBreakupResetLink');
+        
+        if (isUnlocked) {
+            if (myCourseLink) myCourseLink.style.display = 'block';
+            if (mobileCourseLink) {
+                mobileCourseLink.style.display = 'block';
+                mobileCourseLink.textContent = 'CONTINUE THE BREAKUP RESET';
+            }
+            if (mobileBreakupResetLink) mobileBreakupResetLink.style.display = 'none';
+            if (desktopBreakupResetLink) desktopBreakupResetLink.style.display = 'none';
+            if (desktopContinueBreakupResetLink) desktopContinueBreakupResetLink.style.display = 'block';
+        } else {
+            if (myCourseLink) myCourseLink.style.display = 'none';
+            if (mobileCourseLink) mobileCourseLink.style.display = 'none';
+            if (mobileBreakupResetLink) mobileBreakupResetLink.style.display = 'block';
+            if (desktopBreakupResetLink) desktopBreakupResetLink.style.display = 'block';
+            if (desktopContinueBreakupResetLink) desktopContinueBreakupResetLink.style.display = 'none';
+        }
+    }
+
     // Mobile menu functionality - must be global for onclick to work
     function openMenu() {
       document.getElementById('menuOverlay').classList.add('open');
@@ -1960,6 +1987,8 @@
 
     // Pledge form confirmation logic with localStorage tracking
     document.addEventListener('DOMContentLoaded', function() {
+        // Update navigation on page load
+        updateNavigation();
       var pledgeForm = document.getElementById('pledgeInlineForm');
       var formBlock = document.querySelector('.pledge-form-block');
       
@@ -2072,5 +2101,14 @@
             </div>
         </section>
     </main>
+
+    <!-- Footer -->
+    <footer id="footer" style="margin-top: 2rem;">
+        <div class="footer-content">
+            <div class="copyright">
+                <p>&copy; 2025 Heart Matters™. All rights reserved. | <a href="legal.html">Legal</a></p>
+            </div>            </div>
+        </div>
+    </footer>
 </body>
 </html> 
