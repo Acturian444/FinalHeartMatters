@@ -928,6 +928,21 @@ footer {
     color: #000000;
 }
 
+.copyright a {
+    color: #000000 !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+}
+
+.copyright a:hover,
+.copyright a:focus {
+    color: #ca0013 !important;
+}
+
+.copyright a:visited {
+    color: #000000 !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     nav {
