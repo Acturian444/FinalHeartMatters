@@ -10,28 +10,34 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
-    {
-      "src": "/create-checkout-session",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/api/verify-checkout",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
   "redirects": [
     {
+      "source": "/create-checkout-session",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/api/verify-checkout",
+      "destination": "/server.js"
+    },
+    {
       "source": "/letitout",
-      "destination": "/letitout.html"
+      "destination": "/letitout.html",
+      "permanent": true
     },
     {
       "source": "/info",
-      "destination": "/info.html"
+      "destination": "/info.html",
+      "permanent": true
+    },
+    {
+      "source": "/letitout/",
+      "destination": "/letitout.html",
+      "permanent": true
+    },
+    {
+      "source": "/info/",
+      "destination": "/info.html",
+      "permanent": true
     }
   ]
 } 
