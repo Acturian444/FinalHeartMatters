@@ -23,5 +23,15 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/letitout",
+      "destination": "/letitout.html"
+    },
+    {
+      "source": "/info",
+      "destination": "/info.html"
+    }
   ]
 } 
