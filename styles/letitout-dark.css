@@ -22,6 +22,19 @@ LET IT OUT - DARK MODE STYLES
     color: #D4D4D4;
 }
 
+.dark-mode .copyright a {
+    color: #D4D4D4 !important;
+}
+
+.dark-mode .copyright a:hover,
+.dark-mode .copyright a:focus {
+    color: #ca0013 !important;
+}
+
+.dark-mode .copyright a:visited {
+    color: #D4D4D4 !important;
+}
+
 .dark-mode .nav-links a {
     color: #D4D4D4;
 }
