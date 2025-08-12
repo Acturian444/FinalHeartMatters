@@ -32,6 +32,56 @@
       "permanent": true
     },
     {
+      "source": "/theheartroom",
+      "destination": "/theheartroom.html",
+      "permanent": true
+    },
+    {
+      "source": "/makers",
+      "destination": "/makers.html",
+      "permanent": true
+    },
+    {
+      "source": "/legal",
+      "destination": "/legal.html",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/product/power-earrings",
+      "destination": "/product/power-earrings.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/balance-earrings",
+      "destination": "/product/balance-earrings.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/self-love-bracelet",
+      "destination": "/product/self-love-bracelet.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/reminder-tshirt",
+      "destination": "/product/reminder-tshirt.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/breakup-course",
+      "destination": "/product/breakup-course.html",
+      "permanent": true
+    },
+    {
+      "source": "/course/breakup-course",
+      "destination": "/course/breakup-course.html",
+      "permanent": true
+    },
+    {
       "source": "/letitout/",
       "destination": "/letitout.html",
       "permanent": true
@@ -39,6 +89,56 @@
     {
       "source": "/info/",
       "destination": "/info.html",
+      "permanent": true
+    },
+    {
+      "source": "/theheartroom/",
+      "destination": "/theheartroom.html",
+      "permanent": true
+    },
+    {
+      "source": "/makers/",
+      "destination": "/makers.html",
+      "permanent": true
+    },
+    {
+      "source": "/legal/",
+      "destination": "/legal.html",
+      "permanent": true
+    },
+    {
+      "source": "/shop/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/product/power-earrings/",
+      "destination": "/product/power-earrings.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/balance-earrings/",
+      "destination": "/product/balance-earrings.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/self-love-bracelet/",
+      "destination": "/product/self-love-bracelet.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/reminder-tshirt/",
+      "destination": "/product/reminder-tshirt.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/breakup-course/",
+      "destination": "/product/breakup-course.html",
+      "permanent": true
+    },
+    {
+      "source": "/course/breakup-course/",
+      "destination": "/course/breakup-course.html",
       "permanent": true
     }
   ]
