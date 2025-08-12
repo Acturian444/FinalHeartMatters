@@ -10,7 +10,7 @@
       "use": "@vercel/static"
     }
   ],
-  "redirects": [
+  "rewrites": [
     {
       "source": "/create-checkout-session",
       "destination": "/server.js"
@@ -18,7 +18,9 @@
     {
       "source": "/api/verify-checkout",
       "destination": "/server.js"
-    },
+    }
+  ],
+  "redirects": [
     {
       "source": "/letitout",
       "destination": "/letitout.html",
