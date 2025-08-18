@@ -419,7 +419,7 @@
                         <div class="product-content">
                             <h3>Balance Earrings</h3>
                             <p class="product-tagline">$55.00 USD</p>
-                            <a href="../product/balance-earrings.html" class="btn btn-primary">Get Yours</a
+                            <a href="../product/balance-earrings.html" class="btn btn-primary">Get Yours</a>
                         </div>
                     </article>
                 </div>
@@ -489,16 +489,16 @@
                 <p class="newsletter-subtext">Be the first to shop our limited healing drops before they're gone.</p>
                 <form class="signup-form" id="signupForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfPbFlyktw_r1yuLameKjx3SPxQnKWTFFL47yid8lY1DI-3YQ/formResponse" method="POST" target="hidden-iframe">
                     <div class="form-group">
-                        <label for="waitlistPhone" class="visually-hidden">Phone number</label>
-                        <input id="waitlistPhone"
+                        <label for="footerWaitlistPhone" class="visually-hidden">Phone number</label>
+                        <input id="footerWaitlistPhone"
                                type="tel"
                                name="entry.1738533901"
                                placeholder="Phone Number"
                                inputmode="tel"
                                pattern="[+]?[0-9]{10,15}"
-                               aria-describedby="smsConsent"
+                               aria-describedby="footerSmsConsent"
                                required>
-                        <small id="smsConsent" class="form-text">
+                        <small id="footerSmsConsent" class="form-text">
                             By submitting, you agree to receive SMS updates from Heart Matters. Reply STOP to opt-out.
                         </small>
                     </div>
@@ -539,8 +539,8 @@
         const smsSignupForm = document.getElementById('smsSignupForm');
         const smsFormSuccess = document.getElementById('sms-form-success');
         
-        // Countdown target date: September 8, 2025
-        const dropDate = new Date('September 8, 2025 00:00:00').getTime();
+        // Countdown target date (UTC): 2025-09-08T00:00:00Z
+        const dropDate = new Date('2025-09-08T00:00:00Z').getTime();
         
         // Testing override
         const isOverrideEnabled = localStorage.getItem('drop_waitlist_override_enabled') === 'true';
