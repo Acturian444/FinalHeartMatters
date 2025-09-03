@@ -1493,8 +1493,8 @@ main, footer {
     }
 }
 
-/* TEMPORARY: Simplified shop version - Hide countdown and sections */
-.countdown-container {
+/* TEMPORARY: Simplified shop version - Hide only the numeric timer */
+.countdown-timer {
     display: none !important;
 }
 
