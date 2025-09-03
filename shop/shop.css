@@ -1491,4 +1491,23 @@ main, footer {
         font-weight: 500 !important;
         line-height: 1.5 !important;
     }
+}
+
+/* TEMPORARY: Simplified shop version - Hide countdown and sections */
+.countdown-container {
+    display: none !important;
+}
+
+.healing-purpose-section {
+    display: none !important;
+}
+
+.real-impact-section {
+    display: none !important;
+}
+
+.shop-closed-title {
+    font-size: 2rem !important;
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
 } 
