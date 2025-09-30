@@ -13,11 +13,11 @@
   "rewrites": [
     {
       "source": "/create-checkout-session",
-      "destination": "/server"
+      "destination": "/server.js"
     },
     {
       "source": "/api/verify-checkout",
-      "destination": "/server"
+      "destination": "/server.js"
     }
   ],
   "redirects": [
