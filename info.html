@@ -1525,7 +1525,9 @@
             .million-hearts-title {
                 font-size: 2rem;
                 margin-bottom: 1rem;
-                white-space: nowrap;
+                white-space: normal;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
             
             .million-hearts-subtitle {
@@ -1926,17 +1928,6 @@
         }
     }
 
-    // Mobile menu functionality - must be global for onclick to work
-    function openMenu() {
-      document.getElementById('menuOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-      document.getElementById('menuOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
     // Pledge form confirmation logic with localStorage tracking
     document.addEventListener('DOMContentLoaded', function() {
         // Update navigation on page load
@@ -2062,5 +2053,6 @@
             </div>            </div>
         </div>
     </footer>
+    <script src="js/menu.js"></script>
 </body>
 </html> 
