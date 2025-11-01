@@ -166,6 +166,16 @@
     margin-left: 2rem; /* Added to move content further right */
 }
 
+.product-preheader {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.3px;
+}
+
 .product-hero-text h1 {
     font-family: 'Anton', sans-serif;
     font-size: 3rem;
@@ -560,9 +570,19 @@
     font-size: 2.5rem;
     color: #000;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.story-subheadline {
+    color: #ca0013;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    margin: -1rem 0 2rem 0;
+    font-style: italic;
 }
 
 .story-text {
@@ -805,6 +825,11 @@
         order: 2;
     }
     
+    .product-preheader {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+    
     .product-hero-text h1 {
         font-size: 2.5rem;
         margin-bottom: 1.25rem; /* Added proper spacing for tablet */
@@ -838,6 +863,11 @@
     .cta-content h2,
     .product-features h2 {
         font-size: 2rem;
+    }
+    
+    .description-subtitle {
+        font-size: 1.1rem !important;
+        margin: -0.5rem 0 2rem 0 !important;
     }
     
     .features-grid,
@@ -874,6 +904,11 @@
     .product-hero {
         padding: 0; /* Removed padding to connect with header */
         min-height: auto;
+    }
+    
+    .product-preheader {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
     }
     
     .product-hero-text h1 {
@@ -1067,6 +1102,11 @@
         font-size: 1.75rem !important;
     }
     
+    .story-subheadline {
+        font-size: 1.1rem !important;
+        margin: -0.5rem 0 1.5rem 0 !important;
+    }
+    
     .testimonial-author {
         font-size: 1rem;
     }
@@ -1106,6 +1146,7 @@
 }
 
 /* Accessibility */
+.product-preheader:focus,
 .product-hero-text h1:focus,
 .product-subtitle:focus,
 .price:focus {
@@ -1979,7 +2020,17 @@ main {
     max-width: 340px; /* Keep the wider width for desktop */
   }
   .description-content h2 {
-    margin-bottom: 4rem; /* Increased spacing below title on desktop */
+    margin-bottom: 1rem; /* Reduced spacing for subtitle */
+  }
+  
+  .description-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #ca0013;
+    text-align: center;
+    margin: -1rem 0 3rem 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -1997,6 +2048,11 @@ main {
     .for-you-title,
     .transformation-title {
         font-size: 1.75rem !important;
+    }
+    
+    .description-subtitle {
+        font-size: 1rem !important;
+        margin: -0.5rem 0 1.5rem 0 !important;
     }
     
     .for-you-section .for-you-title,

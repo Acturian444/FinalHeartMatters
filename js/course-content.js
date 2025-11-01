@@ -6,20 +6,26 @@ const courseContent = {
   introduction: {
     title: 'Introduction: Start Here',
     label: 'HI THERE',
-    beforeBegin: `<p>No one signs up for heartbreak. It hits hard, fast, and without warning. One minute you're planning a future, the next, you're grieving what you thought would last.</p>
-<p>If you're here, it means something cracked open. And now, you get to decide what comes next. Right now, it probably feels like your world just fell apart. But what if this moment—the one that feels like the end—is actually the beginning of everything you've been needing?</p>
-<p>That's the crazy thing about pain. It doesn't feel like transformation when you're in it — it just feels like chaos. But when we look back, the moments that shaped us were always the darkest ones. They pushed us to change, to shift, to do things we never would've done otherwise.</p>
-<p>You might not see it yet, but you're exactly where you need to be. This course is your roadmap back to yourself.</p>
+    beforeBegin: `<p>No one signs up for heartbreak. Whether it just happened yesterday or years ago, the pain can still feel fresh. The attachment. The patterns. The ways you keep repeating the same mistakes.</p>
+<p>Maybe you just broke up. Maybe you've been single and keep attracting the wrong people. Maybe you're still with them but know it's over.</p>
+<p>Here's the hard truth: We carry our exes into the next relationship. Their ghost shows up in arguments. Their patterns become ours. If you don't cut those ties before starting something new, you'll repeat the same toxic dynamics.</p>
+<p>That's why a reset isn't optional—it's essential. You must process what happened. Release the attachment. Clear the patterns. Only then can you attract someone healthy.</p>
+<p>This moment—where you realize you're stuck—is actually the beginning of everything you need.</p>
 <p>Here's what you need to know:</p>
-<p>This is a 22-day journey. Each day builds on the last. You'll get daily readings, healing activities, and journaling prompts designed to help you move through the pain and come out stronger on the other side.</p>
-<p>The course is designed to be done in order. Each day unlocks the next, so you can't skip ahead. This isn't about rushing through — it's about giving yourself the time and space to heal properly.</p>
+<p>This is a 22-day journey. Each day builds on the last. You'll get daily readings, healing activities, and journaling prompts to help you cut ties with your ex, break free from patterns, and attract healthy love.</p>
+<p>The course is done in order. Each day unlocks the next. This isn't about rushing through—it's about giving yourself time to heal properly.</p>
 <p>Your progress is saved locally on your device. No one else can see it. This is your private healing space.</p>
 <p>Ready to begin?</p>`,
     day0: {
       title: 'Day 0: Welcome',
-      reading: `<p>Healing happens when you show up consistently, even on the hard days. This isn't a magic fix. Healing is a choice you'll make again and again. But you won't be doing it alone. Every part of this program is designed to help you feel supported, motivated, and stronger each day. By the end, we hope this becomes a turning point that helps you remember your power and walk forward as the fullest, freest version of yourself.</p>
-<p>You're already whole. You're already enough. Healing starts with self-acceptance. From there, you grow. You evolve. Take it one day at a time. Trust the process. And remember: you're not alone.</p>
-<p>Over the next 22 days, we'll help you move through the pain, reconnect with yourself, and open your heart again.</p>
+      reading: `<p><strong style="color: #ca0013;">Without a reset, you repeat your past.</strong> The unresolved attachment to your ex shows up in your next relationship. Your unhealed patterns recreate the same dynamics. Your unprocessed pain becomes someone else's problem.</p>
+<p><strong style="color: #ca0013;">Without a reset, you sabotage healthy love.</strong> You push away emotionally available partners. You attract unavailable partners. You self-sabotage. You pick fights. You create drama. You fear intimacy—then blame them when it doesn't work.</p>
+<p><strong style="color: #ca0013;">Without a reset, you stay stuck.</strong> Dating with one foot out the door. Opening your heart with one eye on the exit. Protecting yourself from the wrong person—the one in your past.</p>
+<p><strong>But it doesn't have to be this way.</strong></p>
+<p>A reset breaks the cycle. It releases your emotional attachment to your ex. It clears the patterns keeping you stuck. It creates space for the healthy love you deserve.</p>
+<p>Healing happens when you show up consistently, even on the hard days. This isn't a magic fix. Healing is a choice you'll make again and again. But you won't be doing it alone. Every part of this program is designed to help you feel supported, motivated, and stronger each day. By the end, we hope this becomes a turning point that helps you remember your power and walk forward as the fullest, freest version of yourself.</p>
+<p>Take it one day at a time. Trust the process. And remember: you're not alone.</p>
+<p>Over the next 22 days, we'll help you cut ties with your ex, break free from toxic patterns, and finally attract the healthy love you deserve.</p>
 <p>This course is here to help you:</p>
 <ul style="margin-left:1.2em; margin-bottom:1.2em;">
   <li>Find calm and clarity in the chaos</li>
@@ -343,14 +349,15 @@ A prompt to help you process, reflect, and release your thoughts and feelings.</
 <p>Be patient. Be consistent. Be committed.</p>
 <p>When we're high on love, we often isolate. We shrink our world down to one person. Now is your chance to reconnect with the people you love and maybe neglected. Round up your circle. Get outside. Try new things. Rebuild the parts of yourself that felt forgotten.</p>
 <p>This is where you start coming back to you.</p>`,
-      task: `<p>Today's task is to detox from dating apps and take yourself on a real date — just you, no distractions, no waiting for someone else.</p>
+      task: `<p>Today's task is to do some grounding work. Walking in nature, laying on the grass — there is something very powerful about connecting to nature, as if it takes all our sorrows away and helps calm our anxieties, ease our pain, and brings peace and joy to our lives.</p>
 <ul>
-  <li>Delete all dating apps from your phone. Clear the space.</li>
-  <li>Choose something that feels like a treat: a walk, a nice lunch, a solo dinner, or anything that makes you feel good.</li>
-  <li>Get dressed in something that makes you feel confident and beautiful — for yourself, not anyone else.</li>
-  <li>Go solo. Be present. Put your phone away and enjoy your own company.</li>
-  <li>Don't rush. Take it all in. Let it feel like a reset.</li>
-  <li>Celebrate yourself — where you are now, and where you're headed. This is your new beginning.</li>
+  <li>Go to the park, smell roses, lay on the grass</li>
+  <li>Listen to your favorite calm music in headphones or just listen to the sounds of the park</li>
+  <li>Imagine that all the bad feelings are leaving your body and going to the ground, and disappearing</li>
+  <li>Imagine it as something dark grey smoke kind of energy going away</li>
+  <li>Imagine that amazing powerful earth energy is coming to your body</li>
+  <li>Just lay and enjoy it</li>
+  <li>Even if you don't feel anything, imagine that it's all around your body, shining bright energy enveloping every cell of your body, every organ, every part</li>
 </ul>`,
       ritualMorning: 'Don\'t reach for your phone right away. Sit in silence for a few minutes. Just breathe and be with yourself. Say your "I AM" affirmations — bold, powerful reminders of who you are (e.g., "I am strong," "I am powerful," "I am amazing," "I am incredible," "I am unstoppable"). Think or write down 1–3 things you\'re grateful for.',
       ritualEvening: 'Say your "I CHOOSE" intentions (e.g., "I choose peace," "I choose to let go," "I choose happiness," "I choose abundance," "I choose myself," "I choose to heal," "I choose freedom"). Reflect or journal on: "I let go of…" and "I am grateful for…" Optional: Do a short calming meditation before sleep.',
@@ -367,16 +374,9 @@ A prompt to help you process, reflect, and release your thoughts and feelings.</
 <p>By putting your time and energy into yourself, you're learning how to love yourself—not just as an idea, but through action. You're learning how to take up space again, how to enjoy your own company, and how to stop waiting for someone else to give you what you can give yourself right now.</p>
 <p>Today is about reconnecting with that version of you. Step back from dating and turn your energy inward. Treat yourself the way you'd want a partner to treat you. Buy yourself flowers. Dress up. Take yourself out. Do the things that make you feel seen, wanted, and appreciated—not for anyone else, but for you.</p>
 <p>Turn down the voice of your inner critic and turn up the voice of your inner lover. Be as kind to yourself as you'd want a partner to be. Little by little, you'll start to feel a shift, not just in how you see yourself, but in the kind of people you attract and the way your relationships begin to reflect that.</p>`,
-      task: `<p>
-<p>Along with your habit journal today, you're going to detox from dating apps and take yourself on a real date — just you, no distractions, no waiting for someone else.</p>
-<ul>
-  <li>Delete all dating apps from your phone. Clear the space.</li>
-  <li>Choose something that feels like a treat: a walk, a nice lunch, a solo dinner, or anything that makes you feel good.</li>
-  <li>Get dressed in something that makes you feel confident and beautiful — for yourself, not anyone else.</li>
-  <li>Go solo. Be present. Put your phone away and enjoy your own company.</li>
-  <li>Don't rush. Take it all in. Let it feel like a reset.</li>
-  <li>Celebrate yourself — where you are now, and where you're headed. This is your new beginning.</li>
-</ul>`,
+      task: `<p>Today's task is to detox from dating apps and take yourself on a real date.</p>
+<p>After you delete all your dating apps from your phone, pick an activity or experience to treat yourself. Get dressed, wear something nice which makes you feel on top of the world, not for anyone but for yourself. Go for a walk and get coffee at your favorite coffee shop, then have lunch at your favorite cafe. Or get a table at a nice restaurant and order your favorite meal. Enjoy your own company, enjoy your meal, no need to constantly be on your phone. Create the space for your incredible self, celebrate finally moving on, and leaving pain and hurt behind.</p>
+<p>To the new beginnings!</p>`,
       ritualMorning: 'Don\'t reach for your phone right away. Sit in silence for a few minutes. Just breathe and be with yourself. Say your "I AM" affirmations — bold, powerful reminders of who you are (e.g., "I am strong," "I am powerful," "I am amazing," "I am incredible," "I am unstoppable"). Think or write down 1–3 things you\'re grateful for.',
       ritualEvening: 'Say your "I CHOOSE" intentions (e.g., "I choose peace," "I choose to let go," "I choose happiness," "I choose abundance," "I choose myself," "I choose to heal," "I choose freedom"). Reflect or journal on: "I let go of…" and "I am grateful for…" Optional: Do a short calming meditation before sleep.',
       prompt: 'How can you treat yourself with the care and attention you once gave to them? What would that look like this week?',
@@ -428,37 +428,30 @@ A prompt to help you process, reflect, and release your thoughts and feelings.</
       day: 11,
       title: 'Day 11: Sex & Intimacy',
       reading: `<p><em>"You can't feel safe with someone else until you feel safe with yourself."</em></p>
-<p>After a breakup, you might feel an ache that's hard to name. Part of it is emotional, part of it is physical. You miss the closeness, the connection, and yes, the sex. The lack of intimacy can leave you feeling empty, and that's when it gets tempting to make poor decisions. It's normal to crave something familiar, especially when your ex was the one fulfilling those needs.</p>
-<p>You can still experience intimacy and sex, even without a partner. You deserve to feel desired, connected, and fulfilled. This is your chance to find creative, nourishing ways to meet those needs without relying on someone else.</p>
-<p>You can meet your need for connection through simple, non-sexual affection — hugs, cuddles, hand-holding with friends, even snuggling your pet. But let's be honest: after a breakup, those small comforts often don't go deep enough. They don't fully fill that empty space.</p>
-<p>Being single is the perfect time to explore what intimacy means to you. You don't need to rush into dating or hookups just to feel something again. You also don't need to have sex just because it's "been a while." And please don't fall into the trap of breakup sex with your ex. That will only set you back.</p>
-<p>Sexuality is more than who you sleep with. It's how you feel in your own skin, the energy you carry, the way you look at yourself in the mirror. This is your opportunity to reclaim that. To come back to your body, your pleasure, and your confidence on your own terms.</p>
-<p>Today is about giving yourself permission to reconnect with what feels good. To remember that you are still sensual, powerful, and deeply connected to your body, even without someone else in your bed.</p>
-<p>There's so much unnecessary shame around self-pleasure — especially for women. But claiming your own sensuality is nothing to be embarrassed about. Masturbation can be a healing and empowering tool during this time. It reminds you that your pleasure doesn't depend on anyone else. It can reduce stress, release tension, and help you reconnect to your body in a way that feels nourishing instead of needy.</p>
-<p>If you're not comfortable with self-pleasure, that's okay. There are other ways to awaken your sensuality: a candlelit bath, slow self-massage, dancing in your underwear, deep breathing under soft blankets feeling your entire body, every cell. Intimacy begins with presence. Choose what feels right for you.</p>
+<p>After a breakup, you might feel an ache that's hard to name. Part of it is emotional, part of it is physical. You miss the closeness, the connection — and yes, the sex. The lack of intimacy can leave you feeling empty, and that's when it gets tempting to make poor decisions. It's normal to crave something familiar, especially when your ex was the one fulfilling those needs.</p>
+<p>You still deserve to feel desired, connected, and fulfilled — even without a partner. This is your chance to find nourishing, creative ways to meet those needs without relying on someone else.</p>
+<p>You can meet your need for connection through simple, non-sexual affection: hugs, cuddles, hand-holding with friends, even snuggling your pet. But let's be honest: those small comforts don't always go deep enough to heal the ache.</p>
+<p>Being single is the perfect time to explore what intimacy really means to you. You don't need to rush into dating or hookups just to feel something. You also don't need to have sex just because it's "been a while." And please don't fall into the trap of breakup sex with your ex — that only sets you back.</p>
+<p>Sexuality is more than who you sleep with. It's how you feel in your own skin. It's the energy you carry, the way you move, the way you look at yourself in the mirror. This is your opportunity to reclaim that.</p>
+<p>Today is about giving yourself permission to reconnect with what feels good. To remember that you are still sensual, powerful, and deeply connected to your body — even without someone else in your bed.</p>
+<p>If self-pleasure feels aligned for you, you can explore that in a mindful, intentional way. But if not, there are so many other ways to awaken your sensuality: a candlelit bath, slow self-massage, dancing in your underwear, deep breathing under soft blankets, or simply touching your skin with love.</p>
+<p>Intimacy begins with presence. Choose what feels right for you.</p>
 <p>When you start to feel safe, sensual, and grounded in your own body again, you begin to heal.</p>
 <p>You remember your beauty, your worth, your power.</p>
-<p>You don't have to wait for someone else to make you feel wanted. You can start now. Reclaim your desire, your body, your power. Come home to yourself.</p>`,
+<p>You don't have to wait for someone else to make you feel wanted. You can start now.</p>
+<p>Reclaim your desire, your body, your energy. Come home to yourself.</p>`,
       task: `<p>Today's task is to reconnect with your sensuality in a way that feels healing, empowering, and real.</p>
-<p>The goal of today is to feel sexy and beautiful, love yourself fully, and explore your sexual energy. This is your invitation to make love to yourself — not as an escape, but as a ritual. It's best done at night, when you can relax and be fully present.</p>
-<p>We encourage you to begin with intentional masturbation. This isn't about quick release — it's about slowing down, breathing deeply, and honoring your body.</p>
-<p>Here's how to make it a ritual:</p>
-<ul>
-  <li>Set the space. Light candles. Adjust the lighting and temperature. Choose music, scents, or textures that feel sensual and safe.</li>
-  <li>Set an intention. Maybe it's to release old pain. Maybe it's to reconnect with your body. Choose something that feels true.</li>
-  <li>Start with breath. Inhale slowly through your nose, letting your belly rise. Exhale through pursed lips. Do this 10–15 times, then breathe normally. Let your breath guide you the whole time.</li>
-  <li>Touch yourself slowly. Begin with areas that feel safe and sensitive — your neck, chest, thighs. Stroke, tease, or massage gently. Let it unfold without rushing.</li>
-  <li>Explore what feels good. When you're ready, move into deeper pleasure — whatever that means for you. Use oils if it helps. Breathe deeply. Make sound — it feels liberating to release. Take your time. There's no rush.</li>
-  <li>Feel it all. If emotions come up, let them. This is your space to feel free, raw, and alive. Stay with yourself all the way through.</li>
-</ul>
-<p>If you're not ready for self-pleasure today, that's okay. Here are some other ways to connect with your sensuality:</p>
+<p>The goal is to feel sexy, beautiful, and present in your body — to remember that you are still whole and powerful on your own.</p>
+<p>Choose one or more of the following rituals to try tonight:</p>
 <ul>
   <li>A warm, candlelit bath with your favorite oils or salts</li>
-  <li>A slow self-massage with music</li>
-  <li>Dancing freely to music that turns you on</li>
+  <li>A slow self-massage with music, focusing on sensation</li>
+  <li>Dancing to music that makes you feel alive, free, and confident</li>
   <li>Mirror work with breath and gentle touch — look at yourself with love</li>
+  <li>Laying under cozy blankets and breathing deeply into your body</li>
 </ul>
-<p>Whatever you choose, let it be just for you. This is your time to reclaim your body, your pleasure, and your power.</p>`,
+<p>Let this be about pleasure, not pressure. Intimacy is not a performance — it's a practice of presence.</p>
+<p>Whatever you choose, let it be just for you. This is your time to reconnect with your sensuality and come back home to your body.</p>`,
       ritualMorning: 'Don\'t reach for your phone right away. Sit in silence for a few minutes. Just breathe and be with yourself. Say your "I AM" affirmations — bold, powerful reminders of who you are (e.g., "I am strong," "I am powerful," "I am amazing," "I am incredible," "I am unstoppable"). Think or write down 1–3 things you\'re grateful for.',
       ritualEvening: 'Say your "I CHOOSE" intentions (e.g., "I choose peace," "I choose to let go," "I choose happiness," "I choose abundance," "I choose myself," "I choose to heal," "I choose freedom"). Reflect or journal on: "I let go of…" and "I am grateful for…" Optional: Do a short calming meditation before sleep.',
       prompt: 'What did you learn about your relationship to sex, touch, and intimacy from this breakup?',
