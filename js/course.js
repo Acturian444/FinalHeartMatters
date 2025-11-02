@@ -631,7 +631,7 @@
     renderLinearProgress();
     renderReminder();
     renderWeeksAndDays();
-    renderLetItOutCTA();
+    // Removed renderLetItOutCTA() - sticky bar removed for better UX focus
     autoResumeLastOpenedDay();
 
     // Tooltip popover logic
