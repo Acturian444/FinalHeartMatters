@@ -1381,8 +1381,9 @@
                 document.body.appendChild(tempForm);
                 tempForm.submit();
                 
-                // Wait a brief moment for Google Forms to process, then proceed to Stripe
-                await new Promise(resolve => setTimeout(resolve, 300));
+                // Wait for Google Forms to process before proceeding to Stripe
+                // Note: This is a best-effort attempt. Lead data may not be captured on slow networks.
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 await proceedToCheckout();
             } catch (error) {
                 submitButton.disabled = false;
