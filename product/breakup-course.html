@@ -624,20 +624,21 @@
             </div>
             
             <!-- Popup Form -->
-            <form class="checkout-form" id="checkoutPopupForm">
+            <form class="checkout-form" id="checkoutPopupForm" action="https://docs.google.com/forms/d/e/1FAIpQLScXrguo3nsSmYskNpckgCh4kUyo5creIjPGBGgfsWXi83Ujjw/formResponse" method="POST" target="checkout-hidden-iframe">
                 <div style="margin-bottom: 1rem;">
-                    <input type="text" id="checkoutFirstName" placeholder="First Name*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
+                    <input type="text" id="checkoutFirstName" name="entry.2005620554" placeholder="First Name*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
                 </div>
                 <div style="margin-bottom: 1rem;">
-                    <input type="email" id="checkoutEmail" placeholder="Email*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
+                    <input type="email" id="checkoutEmail" name="entry.1045781291" placeholder="Email*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
                 </div>
                 <div style="margin-bottom: 1rem;">
-                    <input type="tel" id="checkoutPhone" placeholder="Phone*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
+                    <input type="tel" id="checkoutPhone" name="entry.1166974658" placeholder="Phone*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
                 </div>
                 <button type="submit" style="width: 100%; padding: 1rem; background: #ca0013; color: #fffcf1; border: none; border-radius: 4px; font-family: 'Anton', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: background 0.3s ease;">
                     GO TO STEP 2 →
                 </button>
             </form>
+            <iframe name="checkout-hidden-iframe" style="display:none;"></iframe>
             <p style="font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: #999; text-align: center; margin-top: 0.5rem; margin-bottom: 0;">
                 Get Instant Access!
             </p>
@@ -1325,8 +1326,17 @@
         }
         
         // Setup checkout popup form submission
-        document.getElementById('checkoutPopupForm').addEventListener('submit', function(e) {
+        document.getElementById('checkoutPopupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            // Validate email format before submission
+            const emailInput = document.getElementById('checkoutEmail');
+            const email = emailInput.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showToast('Please enter a valid email address.');
+                return;
+            }
             
             var form = this;
             var submitButton = form.querySelector('button[type="submit"]');
@@ -1335,8 +1345,50 @@
             submitButton.disabled = true;
             submitButton.textContent = 'GOING TO CHECKOUT...';
             
-            // Proceed to actual Stripe checkout
-            proceedToCheckout();
+            try {
+                // First submit to Google Forms to capture lead data
+                // Create a temporary form to submit to Google Forms in hidden iframe
+                var tempForm = document.createElement('form');
+                tempForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScXrguo3nsSmYskNpckgCh4kUyo5creIjPGBGgfsWXi83Ujjw/formResponse';
+                tempForm.method = 'POST';
+                tempForm.target = 'checkout-hidden-iframe';
+                tempForm.style.display = 'none';
+                
+                // Get values from main form
+                var firstName = document.getElementById('checkoutFirstName').value;
+                var phone = document.getElementById('checkoutPhone').value;
+                
+                // Create hidden inputs for Google Form
+                var input1 = document.createElement('input');
+                input1.type = 'hidden';
+                input1.name = 'entry.2005620554';
+                input1.value = firstName;
+                tempForm.appendChild(input1);
+                
+                var input2 = document.createElement('input');
+                input2.type = 'hidden';
+                input2.name = 'entry.1045781291';
+                input2.value = email;
+                tempForm.appendChild(input2);
+                
+                var input3 = document.createElement('input');
+                input3.type = 'hidden';
+                input3.name = 'entry.1166974658';
+                input3.value = phone;
+                tempForm.appendChild(input3);
+                
+                // Append to body and submit
+                document.body.appendChild(tempForm);
+                tempForm.submit();
+                
+                // Wait a brief moment for Google Forms to process, then proceed to Stripe
+                await new Promise(resolve => setTimeout(resolve, 300));
+                await proceedToCheckout();
+            } catch (error) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                showToast('Unable to process. Please check your connection and try again.');
+            }
         });
         
         // Close popup when clicking outside
