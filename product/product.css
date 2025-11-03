@@ -1228,7 +1228,7 @@
   .breakup-course-page .product-hero {
     background: url('../images/Course Hero Mobile.jpg') center center/cover no-repeat;
     height: 95vh;
-    padding: 0;
+    padding: 0 0 3rem 0;
     margin-top: 0;
     margin-bottom: 0;
     top: 0 !important;
