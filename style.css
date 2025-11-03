@@ -605,6 +605,7 @@ section {
         color: #ca0013;
         font-size: 2.2rem;
         margin-bottom: 0rem;
+        white-space: nowrap;
     }
     /* Unified tablet styling for all subtitle/subtext elements */
     .mission-modern-text,
@@ -670,6 +671,7 @@ section {
         font-size: 2rem;
         margin-top: 1.5rem;
         margin-bottom: 0rem;
+        white-space: nowrap;
     }
     /* Unified mobile styling for all subtitle/subtext elements */
     .mission-modern-text,
@@ -2061,6 +2063,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         margin-bottom: 0.6rem;
         font-family: 'Anton', 'Anton-Local', sans-serif;
         text-transform: none !important;
+        white-space: nowrap;
     }
     
     /* Unified tablet styling for all subtitle/subtext elements */
@@ -2151,6 +2154,7 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
         margin-bottom: 0.5rem;
         font-family: 'Anton', 'Anton-Local', sans-serif;
         text-transform: none !important;
+        white-space: nowrap;
     }
     
     /* Unified mobile styling for all subtitle/subtext elements */

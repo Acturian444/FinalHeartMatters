@@ -38,7 +38,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Course",
-      "name": "The Breakup Reset",
+      "name": "The Breakup Reset™",
       "description": "22-day reset to break emotional attachment to your ex, release the past, rebuild confidence, and attract healthy, emotionally available love",
       "provider": {
         "@type": "Organization",
@@ -369,8 +369,183 @@
             .product-hero-content {
                 margin-top: -6rem !important;
             }
+
+            /* Mobile banner adjustments */
+            #limited-time-banner {
+                font-size: 0.75rem !important;
+                padding: 0.5rem 0.3rem !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Why This Reset Works - Mobile adjustments */
+            .description-content h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .description-content h3 {
+                font-size: 1.1rem !important;
+                line-height: 1.4 !important;
+                margin-bottom: 0.6rem !important;
+            }
+
+            .description-content p {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+
+            .why-reset-item {
+                padding: 0.75rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            /* Still on the Fence - Mobile adjustments */
+            #limited-time-banner ~ main h2 {
+                margin-bottom: 1rem !important;
+            }
         }
 
+        /* Why This Reset Works Item Styling */
+        .why-reset-item {
+            display: block;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(202, 0, 19, 0.05);
+            border: 1px solid rgba(202, 0, 19, 0.1);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        /* Tablet adjustments */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .description-content h3 {
+                font-size: 1.15rem !important;
+            }
+
+            .description-content p {
+                font-size: 1.05rem !important;
+            }
+        }
+
+        /* Checkout Popup Styles */
+        .checkout-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .checkout-modal-content {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 3rem 3.5rem;
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            text-align: center;
+            box-sizing: border-box;
+            animation: slideIn 0.3s ease-out;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        .checkout-modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #fffcf1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            line-height: 1;
+            padding: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .checkout-modal-close:hover {
+            color: #ca0013;
+            background-color: rgba(202, 0, 19, 0.2);
+        }
+        
+        .checkout-form input::placeholder {
+            color: #999;
+        }
+        
+        .checkout-form input:focus {
+            outline: none;
+            border-color: #ca0013 !important;
+        }
+        
+        .checkout-form button:hover {
+            background: #a00010 !important;
+        }
+        
+        @media (max-width: 600px) {
+            .checkout-modal-content {
+                padding: 2rem 1.5rem;
+                max-width: 95%;
+                margin: 1rem;
+                max-height: 95vh;
+            }
+            
+            .checkout-modal-close {
+                top: 1rem;
+                right: 1rem;
+                font-size: 1.8rem;
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
+        /* Mobile adjustments for popup content */
+        @media (max-width: 600px) {
+            /* Reset inline styles for mobile */
+            .checkout-modal-content [style*="font-size: 2.5rem"] {
+                font-size: 1.8rem !important;
+            }
+            
+            .checkout-modal-content [style*="font-size: 0.95rem"] {
+                font-size: 0.9rem !important;
+            }
+            
+            .checkout-modal-content [style*="font-size: 1rem"] {
+                font-size: 0.95rem !important;
+            }
+            
+            .checkout-modal-content [style*="font-size: 1.2rem"] {
+                font-size: 1.1rem !important;
+            }
+        }
 
     </style>
 </head>
@@ -422,6 +597,54 @@
         </nav>
     </div>
 
+    <!-- Limited Time Banner -->
+    <div id="limited-time-banner" style="background: #000000; color: #fffcf1; padding: 0.7rem; text-align: center; font-size: 0.95rem; font-family: 'DM Sans', sans-serif; font-weight: 600; letter-spacing: 0.5px; border-bottom: 2px solid #000000;">
+80% OFF FOR A LIMITED TIME. OFFER EXPIRES: <span id="countdown-timer">23:59:59</span>
+    </div>
+
+    <!-- Lead Capture Popup -->
+    <div id="checkout-popup" class="checkout-popup" style="display: none;">
+        <div class="checkout-modal-content">
+            <button class="checkout-modal-close" aria-label="Close popup" onclick="closeCheckoutPopup()">&times;</button>
+            
+            <!-- Popup Header -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h3 style="font-family: 'Anton', sans-serif; font-size: 2.5rem; color: #fffcf1; margin-bottom: 0.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
+                    UNLOCK YOUR BREAKUP RESET
+                </h3>
+                <p style="font-family: 'Anton', sans-serif; font-size: 2rem; color: #fffcf1; margin-bottom: 0.3rem; font-weight: 700;">
+                    ONLY <span style="text-decoration: line-through;">$165</span> → $33 TODAY
+                </p>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: #fffcf1; margin-bottom: 1rem; letter-spacing: 0.5px;">
+                    80% OFF FOR VERY LIMITED TIME ONLY*
+                </p>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 1rem; color: #4CAF50; font-weight: 700; margin-bottom: 0;">
+                    AVAILABLE FOR INSTANT ACCESS
+                </p>
+            </div>
+            
+            <!-- Popup Form -->
+            <form class="checkout-form" id="checkoutPopupForm" action="https://docs.google.com/forms/d/e/1FAIpQLScXrguo3nsSmYskNpckgCh4kUyo5creIjPGBGgfsWXi83Ujjw/formResponse" method="POST" target="checkout-hidden-iframe">
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" id="checkoutFirstName" name="entry.2005620554" placeholder="First Name*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="email" id="checkoutEmail" name="entry.1045781291" placeholder="Email*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="tel" id="checkoutPhone" name="entry.1166974658" placeholder="Phone*" required style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #333; border-radius: 4px; background: #fffcf1; color: #000; font-family: 'DM Sans', sans-serif; font-size: 1rem;">
+                </div>
+                <button type="submit" style="width: 100%; padding: 1rem; background: #ca0013; color: #fffcf1; border: none; border-radius: 4px; font-family: 'Anton', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: background 0.3s ease;">
+                    GO TO STEP 2 →
+                </button>
+            </form>
+            <iframe name="checkout-hidden-iframe" style="display:none;"></iframe>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: #999; text-align: center; margin-top: 0.5rem; margin-bottom: 0;">
+                Get Instant Access!
+            </p>
+        </div>
+    </div>
+
     <main>
         <!-- Product Hero -->
         <section class="product-hero">
@@ -445,6 +668,13 @@
         <!-- Scrolling Value Proposition Bar -->
         <div class="product-scrolling-quotes-bar">
             <div class="product-scrolling-quotes-track">
+                <span class="product-scrolling-quote">Stop thinking about your ex every day</span>
+                <span class="product-scrolling-quote">Stop comparing everyone to them</span>
+                <span class="product-scrolling-quote">Stop feeling drained by the past</span>
+                <span class="product-scrolling-quote">Start attracting emotionally available partners</span>
+                <span class="product-scrolling-quote">Start dating with confidence and peace</span>
+                <span class="product-scrolling-quote">Start feeling like yourself again</span>
+                <!-- Duplicate for seamless loop -->
                 <span class="product-scrolling-quote">Stop thinking about your ex every day</span>
                 <span class="product-scrolling-quote">Stop comparing everyone to them</span>
                 <span class="product-scrolling-quote">Stop feeling drained by the past</span>
@@ -495,29 +725,7 @@
             <div class="container">
                 <div class="description-content">
                     <h2>WHAT YOU'LL GET</h2>
-                    <p class="description-subtitle" style="font-family: 'DM Sans', sans-serif; font-size: 1.2rem; color: #ca0013; text-align: center; margin: -1rem 0 3rem 0; font-weight: 600; letter-spacing: 0.5px;">THE BREAKUP RESET</p>
-                    <style>
-                      /* Mobile card styling to match "Let Yourself Be Seen" section */
-                      @media (max-width: 600px) {
-                        .feature-item h3 {
-                          font-size: 1.5rem !important;
-                          font-family: 'Anton', sans-serif;
-                          font-weight: 700;
-                          letter-spacing: 0.5px;
-                          text-transform: uppercase;
-                          margin-bottom: 1rem;
-                          text-align: center;
-                        }
-                        
-                        .feature-item p {
-                          font-family: 'DM Sans', sans-serif;
-                          font-size: 1.125rem !important;
-                          color: #000000;
-                          line-height: 1.6;
-                          text-align: center;
-                        }
-                      }
-                    </style>
+                    <p class="description-subtitle" style="font-family: 'DM Sans', sans-serif; font-size: 1.2rem; color: #ca0013; text-align: center; margin: -0.5rem 0 2.5rem 0; font-weight: 600; letter-spacing: 0.5px;">THE BREAKUP RESET™</p>
                     <div class="features-grid">
                         <div class="feature-item">
                             <div class="feature-icon">
@@ -557,6 +765,37 @@
                 Start My 22 Day Reset
             </button>
         </div>
+
+        <!-- Why This Reset Works -->
+        <section class="product-description">
+            <div class="container">
+                <div class="description-content">
+                    <h2>WHY THIS RESET WORKS</h2>
+                    <div style="max-width: 900px; margin: 0 auto; margin-top: 2rem;">
+                        <div class="why-reset-item">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">1. You Stop Thinking Your Way Out of Pain</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7;">Most people try to "think" their way through heartbreak. This reset helps your body actually release the emotional grip.</p>
+                        </div>
+                        <div class="why-reset-item">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">2. It Interrupts the Obsession Loop</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7;">You'll finally stop checking their profile, replaying old memories, or waiting for closure that never comes.</p>
+                        </div>
+                        <div class="why-reset-item">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">3. It Gives You Structure When You're Spiraling</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7;">You don't have to figure it out alone. This reset gives you exactly what to do every day.</p>
+                        </div>
+                        <div class="why-reset-item">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">4. It Shifts the Pattern, Not Just the Person</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7;">You're not just healing from them — you're ending a cycle that's been running your love life for years.</p>
+                        </div>
+                        <div class="why-reset-item" style="margin-bottom: 0;">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">5. It's Built for Real Life, Not Perfect Healing</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7;">No fluff. No therapy talk. Just grounded steps that work — even on your worst days.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Transformation Table Section -->
         <section class="transformation-section">
@@ -709,22 +948,72 @@
                 <div class="testimonial">
                     <div class="testimonial-content">
                         <p class="testimonial-text">
-                            "I've stopped holding onto what hurt me. I finally feel worthy, at peace, and ready to attract the kind of love that feels safe and real."
+                            "We created The Breakup Reset™ because we lived it. We know what it's like to be emotionally tied to an ex, to repeat the same patterns, and to wonder if we'd ever feel free again. This isn't theory—it's the exact process we used to break our own cycles, cut ties with our pasts, and finally attract healthy love. Now we're sharing it with you."
                         </p>
                         <div class="testimonial-author">
-                            <span class="author-name">— Future You</span>
+                            <span class="author-name">— The Founders of Heart Matters</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA -->
-        <section class="final-cta">
+        <!-- Guarantee Section -->
+        <section class="product-description" style="background: #fffcf1;">
+            <div class="container">
+                <div class="description-content">
+                    <h2 style="margin-bottom: 1.5rem;">OUR PROMISE TO YOU</h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                        <p style="font-family: 'DM Sans', sans-serif; font-size: 1.2rem; color: #000000; margin-bottom: 1.5rem; line-height: 1.7; font-weight: 600;">
+                            We're so confident this will help you break free that we're backing it 100%.
+                        </p>
+                        <p style="font-family: 'DM Sans', sans-serif; font-size: 1.15rem; color: #000000; margin-bottom: 1.5rem; line-height: 1.7;">
+                            If you complete all 22 days and don't feel emotionally lighter, more confident, and ready to attract healthy love, we'll refund every penny.
+                        </p>
+                        <p style="font-family: 'DM Sans', sans-serif; font-size: 1.15rem; color: #ca0013; margin-bottom: 1rem; line-height: 1.7; font-weight: 600;">
+                            No questions. No hassle. Just your money back.
+                        </p>
+                        <p style="font-family: 'DM Sans', sans-serif; font-size: 1.15rem; color: #000000; margin-bottom: 0; line-height: 1.7;">
+                            Simply email us at <a href="mailto:info@joinheartmatters.com" style="color: #ca0013; text-decoration: none; font-weight: 600;">info@joinheartmatters.com</a> and we'll refund you immediately.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA - Cost of Inaction -->
+        <section class="final-cta" style="background: #fffcf1; padding: 5rem 0;">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Ready to Let Go & Break the Cycle</h2>
-                    <p class="cta-subtitle">Your future self will thank you.</p>
+                    <h2 style="font-family: 'Anton', sans-serif; font-size: 2.5rem; color: #ca0013; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">You'll Sabotage Your Next Relationship</h2>
+                    <p style="font-family: 'DM Sans', sans-serif; font-size: 1.2rem; color: #000000; margin-bottom: 2.5rem; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;">
+                        Without a reset, you'll meet someone amazing — and destroy it. Because you're still energetically tied to your ex.
+                    </p>
+                    <div class="fear-grid" style="max-width: 800px; margin: 0 auto 2.5rem auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                        <div style="padding: 1.5rem; border: 1px solid #ca0013; border-radius: 8px; text-align: center;">
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                <strong style="color: #ca0013;">Push them away</strong> when they get too close
+                            </p>
+                        </div>
+                        <div style="padding: 1.5rem; border: 1px solid #ca0013; border-radius: 8px; text-align: center;">
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                <strong style="color: #ca0013;">Pick fights</strong> because peace feels wrong
+                            </p>
+                        </div>
+                        <div style="padding: 1.5rem; border: 1px solid #ca0013; border-radius: 8px; text-align: center;">
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                <strong style="color: #ca0013;">Compare them</strong> until they give up
+                            </p>
+                        </div>
+                        <div style="padding: 1.5rem; border: 1px solid #ca0013; border-radius: 8px; text-align: center;">
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                <strong style="color: #ca0013;">Ghost them</strong> when it gets real
+                            </p>
+                        </div>
+                    </div>
+                    <p style="font-family: 'DM Sans', sans-serif; font-size: 1.25rem; color: #000000; margin-bottom: 2rem; line-height: 1.7; font-weight: 600; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;">
+                        You'll lose them. Blame yourself. Repeat the cycle.<br>Or reset now. Cut the cord. Break free.
+                    </p>
                     <div class="cta-buttons">
                         <button class="btn btn-primary btn-large" onclick="purchaseCourse()">
                             Start My 22 Day Reset
@@ -733,6 +1022,75 @@
                 </div>
             </div>
         </section>
+        
+        <style>
+            @media (max-width: 600px) {
+                .final-cta h2 {
+                    font-size: 1.8rem !important;
+                }
+                
+                .final-cta .fear-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 1rem !important;
+                }
+                
+                .final-cta .fear-grid > div {
+                    padding: 1.2rem !important;
+                }
+                
+                .final-cta .fear-grid p {
+                    font-size: 1rem !important;
+                }
+                
+                .final-cta p[style*="font-size: 1.25rem"] {
+                    font-weight: 600 !important;
+                }
+            }
+            
+            @media (min-width: 601px) and (max-width: 900px) {
+                .final-cta h2 {
+                    font-size: 2rem !important;
+                }
+                
+                .final-cta .fear-grid {
+                    gap: 1.2rem !important;
+                }
+            }
+            
+            /* Still on the Fence responsive adjustments */
+            @media (max-width: 600px) {
+                .fence-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 1.5rem !important;
+                }
+                
+                .fence-item {
+                    padding: 1.5rem !important;
+                }
+                
+                .product-description h2[style*="margin-bottom: 1.5rem"] {
+                    font-size: 2rem !important;
+                }
+                
+                .fence-item h3 {
+                    font-size: 1.15rem !important;
+                }
+                
+                .fence-item p {
+                    font-size: 1rem !important;
+                }
+            }
+            
+            @media (min-width: 601px) and (max-width: 900px) {
+                .fence-grid {
+                    gap: 1.5rem !important;
+                }
+                
+                .fence-item {
+                    padding: 1.75rem !important;
+                }
+            }
+        </style>
 
         <!-- FAQ Section -->
         <section class="faq-section">
@@ -765,7 +1123,7 @@
                             <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>Most methods help you understand your pain. This one helps you release it. The Breakup Reset gives you a clear daily process to rewire your emotional patterns, rebuild self-worth, and break the cycle of attracting the same kind of relationships. It's structured, practical, and proven — not just motivational talk.</p>
+                            <p>Most methods help you understand your pain. This one helps you release it. The Breakup Reset™ gives you a clear daily process to rewire your emotional patterns, rebuild self-worth, and break the cycle of attracting the same kind of relationships. It's structured, practical, and proven — not just motivational talk.</p>
                         </div>
                     </div>
                     
@@ -787,6 +1145,46 @@
                         <div class="faq-answer">
                             <p>By the end, you'll feel emotionally lighter, grounded, and clear about what you want in love and life. You'll have tools you can use anytime to stay confident, peaceful, and free — so you never fall back into the same patterns again.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Still on the Fence Section -->
+        <section class="product-description">
+            <div class="container">
+                <div class="description-content">
+                    <h2 style="margin-bottom: 1.5rem;">STILL ON THE FENCE?</h2>
+                    <div class="fence-grid" style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                        <div class="fence-item" style="padding: 2rem; border: 1px solid #ca0013; border-radius: 12px; background: transparent;">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">"I'm not sure this is for me..."</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                If you're still comparing new people to your ex or attracting unavailable partners, this is for you.
+                            </p>
+                        </div>
+                        <div class="fence-item" style="padding: 2rem; border: 1px solid #ca0013; border-radius: 12px; background: transparent;">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">"I don't have time..."</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                10-15 minutes a day. Less time than scrolling Instagram. This changes your life.
+                            </p>
+                        </div>
+                        <div class="fence-item" style="padding: 2rem; border: 1px solid #ca0013; border-radius: 12px; background: transparent;">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">"What if I don't see results?"</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                Complete all 22 days. If you don't feel different, we refund every penny. Full stop.
+                            </p>
+                        </div>
+                        <div class="fence-item" style="padding: 2rem; border: 1px solid #ca0013; border-radius: 12px; background: transparent;">
+                            <h3 style="font-family: 'Anton', sans-serif; color: #ca0013; font-size: 1.3rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">"I've tried everything..."</h3>
+                            <p style="font-family: 'DM Sans', sans-serif; font-size: 1.1rem; color: #000000; line-height: 1.7; margin: 0;">
+                                Everything you tried missed one piece: cutting the cord with your ex. That's what makes this different.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <button class="btn btn-primary btn-large" onclick="purchaseCourse()">
+                            Start My 22 Day Reset
+                        </button>
                     </div>
                 </div>
             </div>
@@ -852,9 +1250,29 @@
             }
         });
 
-        // Course purchase function
-        async function purchaseCourse() {
+        // Show checkout popup when user clicks CTA
+        function showCheckoutPopup() {
+            document.getElementById('checkout-popup').style.display = 'flex';
+        }
+        
+        // Close checkout popup
+        function closeCheckoutPopup() {
+            document.getElementById('checkout-popup').style.display = 'none';
+        }
+        
+        // Legacy function name for backward compatibility - now shows popup
+        function purchaseCourse() {
+            showCheckoutPopup();
+        }
+        
+        // Actual Stripe checkout function (called after form submission)
+        async function proceedToCheckout() {
             try {
+                // Get form data
+                const firstName = document.getElementById('checkoutFirstName').value;
+                const email = document.getElementById('checkoutEmail').value;
+                const phone = document.getElementById('checkoutPhone').value;
+                
                 // Check if Stripe is available
                 if (typeof Stripe === 'undefined') {
                     throw new Error('Stripe is not available');
@@ -874,6 +1292,11 @@
                         priceId: 'price_1RpkcDLWOdcyyqSffkzJQUf8',
                         successUrl: window.location.origin + '/course/breakup-course.html?session={CHECKOUT_SESSION_ID}',
                         cancelUrl: window.location.href,
+                        customerData: {
+                            firstName: firstName,
+                            email: email,
+                            phone: phone
+                        }
                     }),
                 });
 
@@ -896,17 +1319,92 @@
                 alert('Payment setup failed. Please try again.');
             }
         }
+        
+        // Setup checkout popup form submission
+        document.getElementById('checkoutPopupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate email format before submission
+            const emailInput = document.getElementById('checkoutEmail');
+            const email = emailInput.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showToast('Please enter a valid email address.');
+                return;
+            }
+            
+            var form = this;
+            var submitButton = form.querySelector('button[type="submit"]');
+            var originalText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'GOING TO CHECKOUT...';
+            
+            try {
+                // First submit to Google Forms to capture lead data
+                // Create a temporary form to submit to Google Forms in hidden iframe
+                var tempForm = document.createElement('form');
+                tempForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScXrguo3nsSmYskNpckgCh4kUyo5creIjPGBGgfsWXi83Ujjw/formResponse';
+                tempForm.method = 'POST';
+                tempForm.target = 'checkout-hidden-iframe';
+                tempForm.style.display = 'none';
+                
+                // Get values from main form
+                var firstName = document.getElementById('checkoutFirstName').value;
+                var phone = document.getElementById('checkoutPhone').value;
+                
+                // Create hidden inputs for Google Form
+                var input1 = document.createElement('input');
+                input1.type = 'hidden';
+                input1.name = 'entry.2005620554';
+                input1.value = firstName;
+                tempForm.appendChild(input1);
+                
+                var input2 = document.createElement('input');
+                input2.type = 'hidden';
+                input2.name = 'entry.1045781291';
+                input2.value = email;
+                tempForm.appendChild(input2);
+                
+                var input3 = document.createElement('input');
+                input3.type = 'hidden';
+                input3.name = 'entry.1166974658';
+                input3.value = phone;
+                tempForm.appendChild(input3);
+                
+                // Append to body and submit
+                document.body.appendChild(tempForm);
+                tempForm.submit();
+                
+                // Wait for Google Forms to process before proceeding to Stripe
+                // Note: This is a best-effort attempt. Lead data may not be captured on slow networks.
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                await proceedToCheckout();
+            } catch (error) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                showToast('Unable to process. Please check your connection and try again.');
+            }
+        });
+        
+        // Close popup when clicking outside
+        document.getElementById('checkout-popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCheckoutPopup();
+            }
+        });
 
         // Newsletter form submission
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             var form = this;
             var submitButton = form.querySelector('button[type="submit"]');
+            var originalText = submitButton.textContent;
             submitButton.disabled = true;
             submitButton.textContent = 'Submitting...';
             setTimeout(function() {
                 form.reset();
                 submitButton.disabled = false;
-                submitButton.textContent = 'Join Us';
+                submitButton.textContent = originalText;
                 document.getElementById('form-success').style.display = 'block';
                 setTimeout(function() {
                     document.getElementById('form-success').style.display = 'none';
@@ -1259,6 +1757,51 @@
                 sessionStorage.setItem('browserWarningShown', 'true');
                 console.log('Browser warning toast shown');
             }
+
+            // Countdown timer for limited time offer (4-hour rolling window for maximum urgency)
+            function updateCountdown() {
+                const now = new Date();
+                let endTime = null;
+                const storedEndTime = localStorage.getItem('offerEndTime');
+                
+                // If no stored end time, or if time has passed, create new 4-hour window
+                if (!storedEndTime) {
+                    endTime = new Date(now.getTime() + (4 * 60 * 60 * 1000)); // 4 hours
+                    localStorage.setItem('offerEndTime', endTime.getTime());
+                } else {
+                    endTime = new Date(parseInt(storedEndTime));
+                    // If time has passed, create new 4-hour window
+                    if (endTime < now) {
+                        endTime = new Date(now.getTime() + (4 * 60 * 60 * 1000)); // 4 hours
+                        localStorage.setItem('offerEndTime', endTime.getTime());
+                    }
+                }
+                
+                const diff = endTime - now;
+                
+                if (diff > 0) {
+                    const hours = Math.floor(diff / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                    const countdownElement = document.getElementById('countdown-timer');
+                    if (countdownElement) {
+                        countdownElement.textContent = 
+                            String(hours).padStart(2, '0') + ':' + 
+                            String(minutes).padStart(2, '0') + ':' + 
+                            String(seconds).padStart(2, '0');
+                    }
+                } else {
+                    // Time's up, restart the 4-hour window
+                    endTime = new Date(now.getTime() + (4 * 60 * 60 * 1000)); // 4 hours
+                    localStorage.setItem('offerEndTime', endTime.getTime());
+                    updateCountdown(); // Recursive call to update immediately
+                }
+            }
+            
+            // Update countdown immediately and then every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
         });
 
     </script>
