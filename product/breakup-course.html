@@ -1383,7 +1383,7 @@
                 
                 // Wait for Google Forms to process before proceeding to Stripe
                 // Note: This is a best-effort attempt. Lead data may not be captured on slow networks.
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 await proceedToCheckout();
             } catch (error) {
                 submitButton.disabled = false;
