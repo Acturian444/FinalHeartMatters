@@ -659,7 +659,7 @@
 
     <!-- Limited Time Banner -->
     <div id="limited-time-banner" style="background: #000000; color: #fffcf1; padding: 0.7rem; text-align: center; font-size: 0.95rem; font-family: 'DM Sans', sans-serif; font-weight: 600; letter-spacing: 0.5px; border-bottom: 2px solid #000000;">
-80% OFF FOR A LIMITED TIME. OFFER EXPIRES: <span id="countdown-timer">23:59:59</span>
+80% OFF FOR A LIMITED TIME
     </div>
 
     <!-- Lead Capture Popup -->
@@ -678,7 +678,7 @@
                 <p style="font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: #fffcf1; margin-bottom: 1rem; letter-spacing: 0.5px;">
                     80% OFF FOR VERY LIMITED TIME ONLY*
                 </p>
-                <p style="font-family: 'DM Sans', sans-serif; font-size: 1rem; color: #4CAF50; font-weight: 700; margin-bottom: 0;">
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 1rem; color: #ca0013; font-weight: 700; margin-bottom: 0;">
                     AVAILABLE FOR INSTANT ACCESS
                 </p>
             </div>
@@ -1863,50 +1863,6 @@
                 console.log('Browser warning toast shown');
             }
 
-            // Countdown timer for limited time offer (4-hour rolling window for maximum urgency)
-            function updateCountdown() {
-                const now = new Date();
-                let endTime = null;
-                const storedEndTime = localStorage.getItem('offerEndTime');
-                
-                // If no stored end time, or if time has passed, create new 4-hour window
-                if (!storedEndTime) {
-                    endTime = new Date(now.getTime() + (4 * 60 * 60 * 1000)); // 4 hours
-                    localStorage.setItem('offerEndTime', endTime.getTime());
-                } else {
-                    endTime = new Date(parseInt(storedEndTime));
-                    // If time has passed, create new 4-hour window
-                    if (endTime < now) {
-                        endTime = new Date(now.getTime() + (4 * 60 * 60 * 1000)); // 4 hours
-                        localStorage.setItem('offerEndTime', endTime.getTime());
-                    }
-                }
-                
-                const diff = endTime - now;
-                
-                if (diff > 0) {
-                    const hours = Math.floor(diff / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                    
-                    const countdownElement = document.getElementById('countdown-timer');
-                    if (countdownElement) {
-                        countdownElement.textContent = 
-                            String(hours).padStart(2, '0') + ':' + 
-                            String(minutes).padStart(2, '0') + ':' + 
-                            String(seconds).padStart(2, '0');
-                    }
-                } else {
-                    // Time's up, restart the 4-hour window
-                    endTime = new Date(now.getTime() + (4 * 60 * 60 * 1000)); // 4 hours
-                    localStorage.setItem('offerEndTime', endTime.getTime());
-                    updateCountdown(); // Recursive call to update immediately
-                }
-            }
-            
-            // Update countdown immediately and then every second
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
         });
 
     </script>

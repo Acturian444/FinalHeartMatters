@@ -38,7 +38,7 @@
     white-space: nowrap;
     animation: product-marquee-scroll 18s linear infinite;
     will-change: transform;
-    min-width: 200%;
+    width: fit-content;
 }
 
 .product-scrolling-quote {
@@ -1252,7 +1252,7 @@
   }
   
   .product-scrolling-quotes-track {
-    animation: product-marquee-scroll 12s linear infinite;
+    animation: product-marquee-scroll 20s linear infinite;
   }
 }
 
