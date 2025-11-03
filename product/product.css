@@ -582,7 +582,6 @@
     font-weight: 600;
     text-align: center;
     margin: -1rem 0 2rem 0;
-    font-style: italic;
 }
 
 .story-text {
@@ -718,7 +717,6 @@
 .testimonial-text {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.35rem;
-    font-style: italic;
     line-height: 1.7;
     margin-bottom: 2rem;
     position: relative;
