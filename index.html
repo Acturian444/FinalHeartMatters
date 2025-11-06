@@ -1315,12 +1315,21 @@
         
         // Check if user has already signed the pledge
         function hasSignedPledge() {
-            return localStorage.getItem('healingPledgeSigned') === 'true';
+            try {
+                return localStorage.getItem('healingPledgeSigned') === 'true';
+            } catch (error) {
+                console.error('Error reading pledge status from localStorage:', error);
+                return false;
+            }
         }
         
         // Save pledge status to localStorage
         function savePledgeStatus() {
-            localStorage.setItem('healingPledgeSigned', 'true');
+            try {
+                localStorage.setItem('healingPledgeSigned', 'true');
+            } catch (error) {
+                console.error('Error saving pledge status to localStorage:', error);
+            }
         }
         
         // Create confirmation message HTML
@@ -1372,20 +1381,33 @@
         } else if (pledgeForm) {
             // Add submit event listener only if user hasn't signed yet
             pledgeForm.addEventListener('submit', function(e) {
+                // Check if offline before proceeding
+                if (!navigator.onLine) {
+                    e.preventDefault();
+                    alert('Connection issue. Please try again when you\'re back online.');
+                    return;
+                }
+                
                 // Let the form submit to Google Forms in the hidden iframe
-        setTimeout(function() {
-                    // Track analytics
-                    trackPledgeSignup();
-                    
-                    // Save pledge status
-                    savePledgeStatus();
-                    
-                    // Show confirmation
-                    showConfirmation();
-                    
-                    // Smooth scroll to confirmation
-                    if (formBlock) {
-                        formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(function() {
+                    try {
+                        // Track analytics
+                        trackPledgeSignup();
+                        
+                        // Save pledge status
+                        savePledgeStatus();
+                        
+                        // Show confirmation
+                        showConfirmation();
+                        
+                        // Smooth scroll to confirmation
+                        if (formBlock) {
+                            formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    } catch (error) {
+                        console.error('Error processing pledge submission:', error);
+                        // Still show confirmation even if localStorage fails
+                        showConfirmation();
                     }
                 }, 900); // Wait for Google Forms to process
             });
