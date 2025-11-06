@@ -1358,6 +1358,27 @@
             `;
         }
         
+        // Create error message HTML with retry button
+        function createErrorHTML() {
+            return `
+                <div class="confirmation-message text-center px-6 py-10" style="color: #fffcf1;">
+                    <p style="font-family: 'DM Sans', sans-serif; font-size: 1.2rem; color: #fffcf1; margin-bottom: 1.5rem; line-height: 1.6;">
+                        There was an issue submitting your pledge. Please try again.
+                    </p>
+                    <button onclick="location.reload()" class="btn btn-primary" style="background: #fffcf1; color: #ca0013; padding: 0.65rem 1.5rem; border-radius: 4px; font-family: 'Anton', sans-serif; font-size: 1.1rem; font-weight: bold; border: none; cursor: pointer; letter-spacing: 0.5px;">
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Show error message
+        function showError() {
+            if (formBlock) {
+                formBlock.innerHTML = createErrorHTML();
+            }
+        }
+        
         // Show confirmation message
         function showConfirmation() {
             if (formBlock) {
@@ -1379,6 +1400,64 @@
         if (hasSignedPledge()) {
             showConfirmation();
         } else if (pledgeForm) {
+            var iframe = document.querySelector('iframe[name="pledge-hidden-iframe"]');
+            var submissionTimeout = null;
+            var submissionSucceeded = false;
+            
+            // Monitor iframe for submission response
+            // Note: Due to CORS restrictions, we cannot read iframe content directly
+            // Google Forms typically processes quickly (1-2 seconds) and shows errors immediately if validation fails
+            if (iframe) {
+                var iframeLoadTimeout = null;
+                
+                iframe.addEventListener('load', function() {
+                    // Iframe loaded - this could be success or error page
+                    // Wait a brief moment to allow Google Forms to process
+                    // If we reach here without error, assume success (Google Forms shows errors quickly)
+                    if (iframeLoadTimeout) {
+                        clearTimeout(iframeLoadTimeout);
+                    }
+                    
+                    // Give Google Forms a moment to fully process (2 seconds)
+                    iframeLoadTimeout = setTimeout(function() {
+                        if (!submissionSucceeded) {
+                            submissionSucceeded = true;
+                            if (submissionTimeout) {
+                                clearTimeout(submissionTimeout);
+                            }
+                            
+                            // Assume success if iframe loaded without error
+                            // (Google Forms typically shows validation errors immediately)
+                            try {
+                                trackPledgeSignup();
+                                savePledgeStatus();
+                                showConfirmation();
+                                
+                                if (formBlock) {
+                                    formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                }
+                            } catch (error) {
+                                console.error('Error processing submission:', error);
+                                showConfirmation(); // Show confirmation even if localStorage fails
+                            }
+                        }
+                    }, 2000); // Wait 2 seconds after iframe load to confirm success
+                });
+                
+                // Monitor for errors
+                iframe.addEventListener('error', function() {
+                    if (!submissionSucceeded) {
+                        if (iframeLoadTimeout) {
+                            clearTimeout(iframeLoadTimeout);
+                        }
+                        if (submissionTimeout) {
+                            clearTimeout(submissionTimeout);
+                        }
+                        showError();
+                    }
+                });
+            }
+            
             // Add submit event listener only if user hasn't signed yet
             pledgeForm.addEventListener('submit', function(e) {
                 // Check if offline before proceeding
@@ -1388,28 +1467,26 @@
                     return;
                 }
                 
-                // Let the form submit to Google Forms in the hidden iframe
-                setTimeout(function() {
-                    try {
-                        // Track analytics
-                        trackPledgeSignup();
-                        
-                        // Save pledge status
-                        savePledgeStatus();
-                        
-                        // Show confirmation
-                        showConfirmation();
-                        
-                        // Smooth scroll to confirmation
-                        if (formBlock) {
-                            formBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    } catch (error) {
-                        console.error('Error processing pledge submission:', error);
-                        // Still show confirmation even if localStorage fails
-                        showConfirmation();
+                // Reset submission state
+                submissionSucceeded = false;
+                
+                // Clear any existing timeout
+                if (submissionTimeout) {
+                    clearTimeout(submissionTimeout);
+                }
+                
+                // Set up fallback timeout (8 seconds total)
+                // If no success signal after 8 seconds, assume failure and show error
+                submissionTimeout = setTimeout(function() {
+                    if (!submissionSucceeded) {
+                        console.warn('Pledge submission timeout - no success signal received after 8 seconds');
+                        showError();
                     }
-                }, 900); // Wait for Google Forms to process
+                }, 8000);
+                
+                // Let the form submit to Google Forms in the hidden iframe
+                // The iframe load event will handle success detection
+                // If iframe monitoring fails, the timeout will catch it
             });
         }
     });
