@@ -95,6 +95,12 @@ header {
     padding: 0 1rem;
 }
 
+@media (max-width: 900px) {
+    header {
+        padding: 0.5rem 1rem;
+    }
+}
+
 nav {
     max-width: 1200px;
     margin: 0 auto;
@@ -458,18 +464,18 @@ section {
 .mission-modern {
     background: #fffcf1;
     color: #ca0013;
-    min-height: 80vh;
+    min-height: auto;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4rem 3rem 3rem 3rem;
+    padding: 2.5rem 1rem 2rem 1rem;
     gap: 3rem;
     position: relative;
     overflow: hidden;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
+    margin-bottom: 0;
+    margin-top: 0;
     z-index: 1;
 }
 
@@ -495,13 +501,14 @@ section {
 }
 
 .mission-modern-text {
-    font-size: 1.35rem;
-    font-weight: 700;
-    line-height: 1.7;
-    text-align: center;
+    font-size: 1.18rem;
+    font-weight: 400;
+    line-height: 1.8;
+    text-align: left;
     margin: 0 auto;
     max-width: 700px;
-    padding: 0 1rem;
+    padding-left: 1.5rem;
+    padding-right: 0;
     font-family: 'DM Sans', sans-serif;
     color: #000000;
 }
@@ -599,7 +606,8 @@ section {
     .mission-modern {
         background: #fffcf1;
         color: #ca0013;
-        padding: 2rem 1.5rem 1rem 1.5rem;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        min-height: auto;
     }
     .mission-modern-title {
         color: #ca0013;
@@ -608,7 +616,6 @@ section {
         white-space: nowrap;
     }
     /* Unified tablet styling for all subtitle/subtext elements */
-    .mission-modern-text,
     .newsletter-subtext,
     .why-it-matters-text,
     .why-it-matters-text p,
@@ -637,6 +644,9 @@ section {
     .mission-modern-text {
         color: #000000;
         max-width: 95vw;
+        font-size: 1.05rem !important;
+        line-height: 1.8;
+        font-weight: 400;
     }
     
     .newsletter-title {
@@ -660,11 +670,11 @@ section {
     .mission-modern {
         background: #fffcf1;
         color: #ca0013;
-        padding: 3rem 1rem 2.5rem 1rem;
-        min-height: 70vh;
-        margin-top: 2rem;
-        margin-bottom: 1.5rem;
-        gap: 2.5rem;
+        padding: 2rem 1rem 1.5rem 1rem;
+        min-height: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        gap: 2rem;
     }
     .mission-modern-title {
         color: #ca0013;
@@ -674,7 +684,6 @@ section {
         white-space: nowrap;
     }
     /* Unified mobile styling for all subtitle/subtext elements */
-    .mission-modern-text,
     .newsletter-subtext,
     .why-it-matters-text,
     .why-it-matters-text p,
@@ -703,6 +712,9 @@ section {
     .mission-modern-text {
         color: #000000;
         max-width: 98vw;
+        font-size: 1.1rem !important;
+        line-height: 1.8;
+        font-weight: 400;
     }
     .mission-modern-text br {
         display: none;
@@ -1073,10 +1085,11 @@ footer {
 .nav-centered {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     position: relative;
     width: 100%;
     min-height: 70px;
+    gap: 2rem;
 }
 
 .nav-links {
@@ -1102,6 +1115,29 @@ footer {
     align-items: center;
 }
 
+.left-logo {
+    font-family: 'Anton', 'Anton-Local', sans-serif;
+    font-size: 1.5rem;
+    color: #ca0013;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: left;
+    flex: 0 0 auto;
+    margin: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    transition: color 0.3s ease;
+}
+
+.left-logo:hover {
+    color: #ca0013;
+    opacity: 0.8;
+}
+
 .center-logo {
     font-family: 'Anton', 'Anton-Local', sans-serif;
     font-size: 1.5rem;
@@ -1124,8 +1160,19 @@ footer {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        min-height: unset;
+        min-height: 60px;
         position: relative;
+        gap: 0;
+        padding: 0.25rem 0;
+    }
+    .left-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 1;
+        font-size: 1.3rem;
+        text-align: center;
     }
     .center-logo {
         flex: 0 1 auto;
@@ -1140,6 +1187,13 @@ footer {
         transform: translateY(-50%);
         z-index: 1201;
         padding: 0.75rem;
+    }
+    .nav-right {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
     }
 }
 
@@ -2129,7 +2183,10 @@ h1, h2, h3, h4, h5, h6, .mission-modern-title, .feature-title h2, #join .section
 
 @media (max-width: 600px) {
     .mission-modern {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 1rem 1rem 1rem;
+        margin-bottom: 0;
+        margin-top: 0;
+        min-height: auto;
     }
     
     .hero h1 {
