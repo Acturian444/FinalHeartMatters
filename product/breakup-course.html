@@ -1363,6 +1363,16 @@
             showCheckoutPopup();
         }
         
+        // Pre-initialize Stripe (faster, no need to recreate on each call)
+        let stripeInstance = null;
+        function getStripe() {
+            if (!stripeInstance && typeof Stripe !== 'undefined') {
+                const stripePublicKey = 'pk_live_51RaP4MLWOdcyyqSfMIlvbkoTQ0cVvm1KrSOExbJQeO6UBJoq4IbWpcuhAhlGbNSZbudJUAzh4B3L4jXYU9p109y000XIJvvIld';
+                stripeInstance = Stripe(stripePublicKey);
+            }
+            return stripeInstance;
+        }
+
         // Actual Stripe checkout function (called after form submission)
         async function proceedToCheckout() {
             try {
@@ -1372,14 +1382,12 @@
                 const phone = document.getElementById('checkoutPhone').value;
                 
                 // Check if Stripe is available
-                if (typeof Stripe === 'undefined') {
+                const stripe = getStripe();
+                if (!stripe) {
                     throw new Error('Stripe is not available');
                 }
-
-                const stripePublicKey = 'pk_live_51RaP4MLWOdcyyqSfMIlvbkoTQ0cVvm1KrSOExbJQeO6UBJoq4IbWpcuhAhlGbNSZbudJUAzh4B3L4jXYU9p109y000XIJvvIld';
-                const stripe = Stripe(stripePublicKey);
                 
-                // Create a Checkout Session for course purchase
+                // Create a Checkout Session for course purchase (optimized fetch)
                 const response = await fetch('/create-checkout-session', {
                     method: 'POST',
                     headers: {
@@ -1396,7 +1404,14 @@
                             phone: phone
                         }
                     }),
+                    // Optimize fetch for speed
+                    cache: 'no-cache',
+                    keepalive: true
                 });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
                 const session = await response.json();
 
@@ -1404,7 +1419,7 @@
                     throw new Error(session.error);
                 }
 
-                // Redirect to Checkout
+                // Redirect to Checkout immediately
                 const result = await stripe.redirectToCheckout({
                     sessionId: session.id
                 });
@@ -1415,6 +1430,7 @@
             } catch (error) {
                 console.error('Course purchase error:', error);
                 alert('Payment setup failed. Please try again.');
+                throw error; // Re-throw so calling function can handle UI state
             }
         }
         
@@ -1435,12 +1451,13 @@
             var submitButton = form.querySelector('button[type="submit"]');
             var originalText = submitButton.textContent;
             
+            // Disable button and show loading state immediately
             submitButton.disabled = true;
-            submitButton.textContent = 'GOING TO CHECKOUT...';
+            submitButton.textContent = 'PROCESSING...';
             
             try {
-                // Submit to Google Forms asynchronously (fire and forget) to capture lead data
-                // We don't wait for this to complete - proceed immediately to Stripe for better UX
+                // Start both processes in parallel for maximum speed
+                // 1. Submit to Google Forms asynchronously (fire and forget) to capture lead data
                 (function() {
                     try {
                         var tempForm = document.createElement('form');
@@ -1488,9 +1505,16 @@
                     }
                 })();
                 
-                // Proceed immediately to Stripe checkout without waiting
+                // 2. Update button text to show we're connecting to Stripe
+                submitButton.textContent = 'LOADING...';
+                
+                // 3. Proceed immediately to Stripe checkout (this is the actual bottleneck)
                 await proceedToCheckout();
+                
+                // If we get here, redirect is happening (button state doesn't matter)
+                submitButton.textContent = 'REDIRECTING...';
             } catch (error) {
+                // Re-enable button on error
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
                 showToast('Unable to process. Please check your connection and try again.');
