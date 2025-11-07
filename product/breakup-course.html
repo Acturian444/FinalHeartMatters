@@ -1439,44 +1439,56 @@
             submitButton.textContent = 'GOING TO CHECKOUT...';
             
             try {
-                // First submit to Google Forms to capture lead data
-                // Create a temporary form to submit to Google Forms in hidden iframe
-                var tempForm = document.createElement('form');
-                tempForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScXrguo3nsSmYskNpckgCh4kUyo5creIjPGBGgfsWXi83Ujjw/formResponse';
-                tempForm.method = 'POST';
-                tempForm.target = 'checkout-hidden-iframe';
-                tempForm.style.display = 'none';
+                // Submit to Google Forms asynchronously (fire and forget) to capture lead data
+                // We don't wait for this to complete - proceed immediately to Stripe for better UX
+                (function() {
+                    try {
+                        var tempForm = document.createElement('form');
+                        tempForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScXrguo3nsSmYskNpckgCh4kUyo5creIjPGBGgfsWXi83Ujjw/formResponse';
+                        tempForm.method = 'POST';
+                        tempForm.target = 'checkout-hidden-iframe';
+                        tempForm.style.display = 'none';
+                        
+                        // Get values from main form
+                        var firstName = document.getElementById('checkoutFirstName').value;
+                        var phone = document.getElementById('checkoutPhone').value;
+                        
+                        // Create hidden inputs for Google Form
+                        var input1 = document.createElement('input');
+                        input1.type = 'hidden';
+                        input1.name = 'entry.2005620554';
+                        input1.value = firstName;
+                        tempForm.appendChild(input1);
+                        
+                        var input2 = document.createElement('input');
+                        input2.type = 'hidden';
+                        input2.name = 'entry.1045781291';
+                        input2.value = email;
+                        tempForm.appendChild(input2);
+                        
+                        var input3 = document.createElement('input');
+                        input3.type = 'hidden';
+                        input3.name = 'entry.1166974658';
+                        input3.value = phone;
+                        tempForm.appendChild(input3);
+                        
+                        // Append to body and submit (non-blocking)
+                        document.body.appendChild(tempForm);
+                        tempForm.submit();
+                        
+                        // Clean up form after a short delay
+                        setTimeout(function() {
+                            if (tempForm.parentNode) {
+                                tempForm.parentNode.removeChild(tempForm);
+                            }
+                        }, 1000);
+                    } catch (e) {
+                        // Silently fail - lead capture is not critical for checkout flow
+                        console.log('Lead capture submission failed (non-critical):', e);
+                    }
+                })();
                 
-                // Get values from main form
-                var firstName = document.getElementById('checkoutFirstName').value;
-                var phone = document.getElementById('checkoutPhone').value;
-                
-                // Create hidden inputs for Google Form
-                var input1 = document.createElement('input');
-                input1.type = 'hidden';
-                input1.name = 'entry.2005620554';
-                input1.value = firstName;
-                tempForm.appendChild(input1);
-                
-                var input2 = document.createElement('input');
-                input2.type = 'hidden';
-                input2.name = 'entry.1045781291';
-                input2.value = email;
-                tempForm.appendChild(input2);
-                
-                var input3 = document.createElement('input');
-                input3.type = 'hidden';
-                input3.name = 'entry.1166974658';
-                input3.value = phone;
-                tempForm.appendChild(input3);
-                
-                // Append to body and submit
-                document.body.appendChild(tempForm);
-                tempForm.submit();
-                
-                // Wait for Google Forms to process before proceeding to Stripe
-                // Note: This is a best-effort attempt. Lead data may not be captured on slow networks.
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                // Proceed immediately to Stripe checkout without waiting
                 await proceedToCheckout();
             } catch (error) {
                 submitButton.disabled = false;
