@@ -141,11 +141,9 @@
             position: relative;
             background: #fffcf1;
             border-radius: 16px;
-            max-width: 560px;
+            max-width: 420px;
             width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2.5rem;
+            padding: 2rem 2.5rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             z-index: 10001;
         }
@@ -186,9 +184,9 @@
 
         .onboarding-title {
             font-family: 'Anton', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #ca0013;
-            margin: 0 0 0.8rem 0;
+            margin: 0 0 0.6rem 0;
             letter-spacing: 1px;
             text-transform: uppercase;
             line-height: 1.2;
@@ -196,90 +194,32 @@
 
         .onboarding-subtitle {
             font-family: 'DM Sans', sans-serif;
-            font-size: 1.25rem;
-            color: #333;
-            margin: 0 0 2rem 0;
+            font-size: 1.1rem;
+            color: #555;
+            margin: 0 0 1.8rem 0;
             line-height: 1.5;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .onboarding-features {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            text-align: left;
+            gap: 0.6rem;
+            margin-bottom: 1.8rem;
+            text-align: center;
         }
 
         .onboarding-feature {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(202, 0, 19, 0.05);
-            border-radius: 8px;
-            border-left: 3px solid #ca0013;
-        }
-
-        .onboarding-feature-icon {
-            font-size: 1.8rem;
-            flex-shrink: 0;
+            justify-content: center;
         }
 
         .onboarding-feature-text {
             font-family: 'DM Sans', sans-serif;
-            font-size: 1.1rem;
-            color: #222;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .onboarding-structure {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: rgba(202, 0, 19, 0.03);
-            border-radius: 12px;
-            border: 1px solid rgba(202, 0, 19, 0.1);
-        }
-
-        .onboarding-structure-title {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.1rem;
-            color: #222;
-            margin: 0 0 1rem 0;
-            font-weight: 600;
-        }
-
-        .onboarding-weeks {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .onboarding-week-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem 1rem;
-            background: #fff;
-            border-radius: 8px;
-            border: 1px solid rgba(202, 0, 19, 0.15);
-        }
-
-        .onboarding-week-number {
-            font-family: 'Anton', sans-serif;
-            font-size: 1rem;
-            color: #ca0013;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            min-width: 70px;
-            text-align: left;
-        }
-
-        .onboarding-week-label {
-            font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
             color: #333;
+            margin: 0;
             font-weight: 500;
         }
 
@@ -288,16 +228,16 @@
             color: #fffcf1;
             border: none;
             border-radius: 8px;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             font-family: 'Anton', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             box-shadow: 0 4px 12px rgba(202, 0, 19, 0.2);
         }
 
@@ -314,14 +254,13 @@
         .onboarding-skip-btn {
             background: none;
             border: none;
-            color: #666;
+            color: #999;
             font-family: 'DM Sans', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             transition: color 0.2s ease;
-            text-decoration: underline;
-            text-underline-offset: 4px;
+            text-decoration: none;
         }
 
         .onboarding-skip-btn:hover {
@@ -329,79 +268,41 @@
         }
 
         /* Responsive Styles */
-        @media (max-width: 900px) {
-            .onboarding-modal-content {
-                padding: 2rem 1.5rem;
-            }
-
-            .onboarding-title {
-                font-size: 2rem;
-            }
-
-            .onboarding-subtitle {
-                font-size: 1.1rem;
-            }
-        }
-
         @media (max-width: 600px) {
             .onboarding-modal-content {
-                padding: 1.5rem 1rem;
-                width: 95%;
-                max-height: 95vh;
+                padding: 1.8rem 1.5rem;
+                width: 92%;
+                max-width: 400px;
             }
 
             .onboarding-title {
-                font-size: 1.75rem;
-                margin-bottom: 0.6rem;
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
             }
 
             .onboarding-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 margin-bottom: 1.5rem;
             }
 
-            .onboarding-feature {
-                padding: 0.8rem;
-                gap: 0.8rem;
-            }
-
-            .onboarding-feature-icon {
-                font-size: 1.5rem;
+            .onboarding-features {
+                gap: 0.5rem;
+                margin-bottom: 1.5rem;
             }
 
             .onboarding-feature-text {
-                font-size: 1rem;
-            }
-
-            .onboarding-structure {
-                padding: 1.2rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .onboarding-structure-title {
-                font-size: 1rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .onboarding-week-item {
-                padding: 0.7rem 0.8rem;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.4rem;
-            }
-
-            .onboarding-week-number {
-                min-width: auto;
-                font-size: 0.95rem;
-            }
-
-            .onboarding-week-label {
                 font-size: 0.95rem;
             }
 
             .onboarding-cta-btn {
-                padding: 0.9rem 2rem;
-                font-size: 1.1rem;
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .onboarding-skip-btn {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.6rem;
             }
 
             .onboarding-modal-close {
@@ -454,43 +355,19 @@
             <button class="onboarding-modal-close" aria-label="Close onboarding" onclick="closeOnboardingModal()">&times;</button>
             <div class="onboarding-content">
                 <h2 class="onboarding-title">You're About to Break Free</h2>
-                <p class="onboarding-subtitle">22 days to cut ties, break patterns, and attract healthy love</p>
+                <p class="onboarding-subtitle">22 days to cut ties, break patterns, and call in the love you deserve</p>
                 
                 <div class="onboarding-features">
                     <div class="onboarding-feature">
-                        <div class="onboarding-feature-icon">⏱</div>
-                        <p class="onboarding-feature-text">5–10 minutes per day</p>
+                        <span class="onboarding-feature-text">⏱ 5–10 min per day</span>
                     </div>
                     <div class="onboarding-feature">
-                        <div class="onboarding-feature-icon">💾</div>
-                        <p class="onboarding-feature-text">Progress saved automatically</p>
-                    </div>
-                    <div class="onboarding-feature">
-                        <div class="onboarding-feature-icon">🚀</div>
-                        <p class="onboarding-feature-text">Start with Day 1 today</p>
-                    </div>
-                </div>
-
-                <div class="onboarding-structure">
-                    <p class="onboarding-structure-title">Your 22-Day Journey:</p>
-                    <div class="onboarding-weeks">
-                        <div class="onboarding-week-item">
-                            <span class="onboarding-week-number">Week 1</span>
-                            <span class="onboarding-week-label">Face Your New Reality</span>
-                        </div>
-                        <div class="onboarding-week-item">
-                            <span class="onboarding-week-number">Week 2</span>
-                            <span class="onboarding-week-label">Reclaim Your Power</span>
-                        </div>
-                        <div class="onboarding-week-item">
-                            <span class="onboarding-week-number">Week 3</span>
-                            <span class="onboarding-week-label">Rewrite Your Future</span>
-                        </div>
+                        <span class="onboarding-feature-text">💾 Auto-saved progress</span>
                     </div>
                 </div>
 
                 <button class="onboarding-cta-btn" onclick="startDay1()">START NOW</button>
-                <button class="onboarding-skip-btn" onclick="closeOnboardingModal()">Skip Intro</button>
+                <button class="onboarding-skip-btn" onclick="closeOnboardingModal()">Skip</button>
             </div>
         </div>
     </div>
@@ -642,15 +519,22 @@
             
             // Only show onboarding if course is unlocked and user hasn't seen it
             if (isUnlocked && !onboardingSeen) {
-                // Wait a bit for page to load, then show modal
-                setTimeout(showOnboardingModal, 500);
+                // Show immediately
+                showOnboardingModal();
             }
         }
 
+        // Check onboarding immediately (don't wait for async operations)
+        // This runs as soon as DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            checkOnboarding();
+        });
+        
         // Update navigation on page load
         document.addEventListener('DOMContentLoaded', async function() {
             await handleUrlParameters();
             updateNavigation();
+            // Check again in case course was just unlocked
             checkOnboarding();
         });
 
