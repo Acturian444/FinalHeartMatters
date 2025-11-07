@@ -1386,7 +1386,7 @@
                 if (!stripe) {
                     throw new Error('Stripe is not available');
                 }
-                
+
                 // Create a Checkout Session for course purchase (optimized fetch)
                 const response = await fetch('/create-checkout-session', {
                     method: 'POST',
