@@ -3,6 +3,17 @@ const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_STRIPE_SECRET_KEY');
 const app = express();
 
+// Comma-separated Stripe Price IDs permitted for breakup course checkout (e.g. test + live).
+const ALLOWED_COURSE_PRICE_IDS = new Set(
+    (process.env.ALLOWED_COURSE_PRICE_IDS || '')
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+);
+if (ALLOWED_COURSE_PRICE_IDS.size === 0 && process.env.STRIPE_SECRET_KEY) {
+    console.warn('[stripe] ALLOWED_COURSE_PRICE_IDS is empty; course checkout will fail until set.');
+}
+
 // Middleware to parse JSON bodies
 app.use(express.json());
 
@@ -32,15 +43,18 @@ app.post('/create-checkout-session', async (req, res) => {
             allow_promotion_codes: true,
         };
 
-        if (type === 'course_purchase' && priceId) {
-            sessionConfig.line_items = [{
-                price: priceId,
-                quantity: 1,
-            }];
-        } else {
+        if (type !== 'course_purchase' || !priceId) {
             res.status(400).json({ error: 'Invalid purchase type or missing priceId.' });
             return;
         }
+        if (!ALLOWED_COURSE_PRICE_IDS.has(priceId)) {
+            res.status(400).json({ error: 'Invalid or unauthorized priceId.' });
+            return;
+        }
+        sessionConfig.line_items = [{
+            price: priceId,
+            quantity: 1,
+        }];
 
         const session = await stripe.checkout.sessions.create(sessionConfig);
 
@@ -60,20 +74,26 @@ app.get('/api/verify-checkout', async (req, res) => {
             return res.status(400).json({ error: 'Session ID required' });
         }
 
-        // Retrieve the checkout session from Stripe
-        const checkoutSession = await stripe.checkout.sessions.retrieve(session);
-        
-        // Check if payment was successful
-        if (checkoutSession.payment_status === 'paid') {
-            res.json({ 
-                verified: true, 
+        const checkoutSession = await stripe.checkout.sessions.retrieve(session, {
+            expand: ['line_items'],
+        });
+
+        const lineItems = checkoutSession.line_items?.data || [];
+        const paidPriceIds = lineItems
+            .map((li) => (typeof li.price === 'string' ? li.price : li.price?.id))
+            .filter(Boolean);
+        const purchasedAllowedCourse = paidPriceIds.some((id) => ALLOWED_COURSE_PRICE_IDS.has(id));
+
+        if (checkoutSession.payment_status === 'paid' && purchasedAllowedCourse) {
+            res.json({
+                verified: true,
                 course: 'breakup_reset',
-                message: 'Payment verified successfully' 
+                message: 'Payment verified successfully',
             });
         } else {
-            res.status(402).json({ 
-                verified: false, 
-                error: 'Payment not completed' 
+            res.status(402).json({
+                verified: false,
+                error: 'Payment not completed',
             });
         }
     } catch (error) {

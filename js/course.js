@@ -489,10 +489,19 @@
       return;
     }
 
-    // If there is a last opened day, auto-expand it
+    // If there is a last opened day, auto-expand it (skip day 0: intro accordion, no day-0-content)
     if (lastOpened !== null && !isNaN(Number(lastOpened))) {
+      const dayNum = Number(lastOpened);
+      if (
+        !Number.isInteger(dayNum) ||
+        dayNum < 1 ||
+        !isDayUnlocked(dayNum) ||
+        !document.getElementById(`day-${dayNum}-content`)
+      ) {
+        return;
+      }
       setTimeout(() => {
-        toggleDay(Number(lastOpened));
+        toggleDay(dayNum);
       }, 300);
     }
   }

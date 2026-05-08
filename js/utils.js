@@ -1,7 +1,7 @@
 // Shared site utilities (lightweight; safe to load on any page)
 const Utils = {
     sanitizeText(text) {
-        return String(text || '')
+        return String(text ?? '')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
             .trim();
