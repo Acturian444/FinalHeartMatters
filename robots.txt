@@ -3,7 +3,6 @@ Allow: /
 
 # Allow all public pages
 Allow: /index.html
-Allow: /letitout.html
 Allow: /info.html
 Allow: /theheartroom.html
 Allow: /shop/
@@ -22,7 +21,6 @@ Allow: /images/
 Allow: /fonts/
 
 # Block development and testing files
-Disallow: /test-mvp-implementation.html
 Disallow: /tests/
 Disallow: /product_backup/
 Disallow: /node_modules/
@@ -33,8 +31,6 @@ Disallow: /server.js
 
 # Block sensitive configuration files
 Disallow: /js/config/
-Disallow: /js/firebase-debug.js
-Disallow: /js/test-setup.js
 
 # Block any potential admin or development areas
 Disallow: /admin/
