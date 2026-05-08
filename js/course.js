@@ -473,42 +473,7 @@
     }
   }
 
-  // 4. Update renderLetItOutCTA to flex row with Continue button
-  function renderLetItOutCTA() {
-    let ctaContainer = document.querySelector('.course-cta');
-    if (!ctaContainer) {
-      ctaContainer = document.createElement('div');
-      ctaContainer.className = 'course-cta';
-      document.body.appendChild(ctaContainer);
-    }
-    ctaContainer.innerHTML = `
-      <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-        <div style="display: flex; align-items: center; gap: 1.2rem;">
-          <button class="course-cta-btn" onclick="window.location.href='../letitout.html'">
-            Let It Out
-          </button>
-          <button class="course-cta-btn" id="continueBtn" style="background:#000;color:#fffcf1;border:2px solid #000;">
-            Continue
-          </button>
-        </div>
-      </div>
-    `;
-    // Attach event for Continue button
-    setTimeout(() => {
-      const btn = document.getElementById('continueBtn');
-      if (btn) {
-        btn.onclick = function() {
-          const nextDay = getNextUnlockedDay();
-          if (nextDay !== null) {
-            // Expand and scroll to next unlocked/incomplete day
-            toggleDay(nextDay);
-          }
-        };
-      }
-    }, 0);
-  }
-
-  // 5. On page load, auto-resume last opened day
+  // On page load, auto-resume last opened day
   function autoResumeLastOpenedDay() {
     const progress = getProgress();
     const isDay0Completed = progress.completedDays.includes(0);
@@ -631,7 +596,6 @@
     renderLinearProgress();
     renderReminder();
     renderWeeksAndDays();
-    // Removed renderLetItOutCTA() - sticky bar removed for better UX focus
     autoResumeLastOpenedDay();
 
     // Tooltip popover logic

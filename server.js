@@ -22,7 +22,7 @@ app.options('/create-checkout-session', (req, res) => {
 // Create checkout session endpoint
 app.post('/create-checkout-session', async (req, res) => {
     try {
-        const { type, postId, priceId, successUrl, cancelUrl } = req.body;
+        const { type, priceId, successUrl, cancelUrl } = req.body;
 
         let sessionConfig = {
             payment_method_types: ['card'],
@@ -32,27 +32,12 @@ app.post('/create-checkout-session', async (req, res) => {
             allow_promotion_codes: true,
         };
 
-        if (type === 'pack_purchase' && priceId) {
-            // Premium Prompt Pack: Use the Stripe Price ID
+        if (type === 'course_purchase' && priceId) {
             sessionConfig.line_items = [{
                 price: priceId,
                 quantity: 1,
             }];
-        } else if (type === 'course_purchase' && priceId) {
-            // Digital Course Purchase: Use the Stripe Price ID
-            sessionConfig.line_items = [{
-                price: priceId,
-                quantity: 1,
-            }];
-        } else if (type === 'post_unlock') {
-            // Let It Out – Unlock Replies: Use the Stripe Price ID for $4.99
-            sessionConfig.line_items = [{
-                price: 'price_1RaPPMQ1hjqBwoa0vVLHNXO1',
-                quantity: 1,
-            }];
-            sessionConfig.metadata = { postId: postId };
         } else {
-            // Fallback: legacy custom price (should not be used anymore)
             res.status(400).json({ error: 'Invalid purchase type or missing priceId.' });
             return;
         }

@@ -295,7 +295,7 @@ body {
   color: #aaa;
 }
 
-/* Let it out CTA */
+/* Optional fixed bottom CTA bar (reserved for future use) */
 .course-cta {
   position: fixed;
   left: 0; right: 0; bottom: 0;
